@@ -1,0 +1,424 @@
+{% comment %}
+  FAQ Accordion Section for Shopify
+  Save as: sections/faq-accordion.liquid
+{% endcomment %}
+
+<div class="page-width cus-faq-section">
+  <div class="cus-faq-container">
+    <!-- Left side - FAQ Content -->
+    <div class="cus-faq-content">
+      <h2 class="cus-faq-title">{{ section.settings.title }}</h2>
+      
+      <div class="cus-faq-accordion">
+        {% for block in section.blocks %}
+          {% if block.type == 'faq_item' %}
+            <div class="cus-faq-item{% if forloop.first %} active{% endif %}" {{ block.shopify_attributes }}>
+              <button class="cus-faq-question" type="button" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
+                <span>{{ block.settings.question }}</span>
+                <!-- <span class="cus-faq-icon">+</span> -->
+              </button>
+              <div class="cus-faq-answer">
+                <div class="cus-faq-answer-content">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right side - Product Image -->
+    <div class="cus-faq-image">
+      <div class="cus-faq-product-showcase">
+        {% if section.settings.image %}
+          <img src="{{ section.settings.image | img_url: '600x600' }}" 
+               alt="{{ section.settings.image.alt | default: 'Product Image' }}" 
+               class="cus-faq-product-image"
+               loading="lazy">
+        {% else %}
+          <div class="cus-faq-placeholder-image">
+            <svg viewBox="0 0 100 100" width="300" height="300">
+              <rect width="100" height="100" fill="#e0e0e0"/>
+              <text x="50" y="50" text-anchor="middle" dy="0.3em" font-size="12" fill="#999">Image</text>
+            </svg>
+          </div>
+        {% endif %}
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.cus-faq-section {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto 80px;
+}
+
+.cus-faq-container {
+  
+  background: {{ section.settings.background_gradient | default: 'linear-gradient(135deg, #1a365d 0%, #2d5a8a 100%)' }};
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 0 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.cus-faq-content {
+  color: {{ section.settings.text_color | default: '#ffffff' }};
+  padding: 20px 0 50px;
+}
+
+.cus-faq-title {
+  font-size: {{ section.settings.title_size | default: '2.5rem' }};
+  margin-bottom: 40px;
+  line-height: 1.2;
+  color: {{ section.settings.title_color | default: '#ffffff' }};
+  padding: 0 24px
+}
+
+.cus-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cus-faq-item {
+  border-radius: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.cus-faq-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.66);
+}
+/* .cus-faq-item:last-child {
+  border-bottom: none;
+} */
+/* 
+.cus-faq-item.active {
+  background: rgba(255, 255, 255, 0.15);
+} */
+
+.cus-faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  color: {{ section.settings.text_color | default: '#ffffff' }};
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cus-faq-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 24px;
+  text-align: center;
+}
+
+.cus-faq-item.active .cus-faq-icon {
+  transform: rotate(45deg);
+}
+
+.cus-faq-answer {
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.cus-faq-item.active .cus-faq-answer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cus-faq-answer-content {
+  padding: 0 24px 24px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.6;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cus-faq-answer-content p {
+  margin: 0;
+}
+
+.cus-faq-image {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.cus-faq-product-showcase {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.cus-faq-product-image {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cus-faq-placeholder-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+ 
+  .cus-faq-container {
+    background: #001E5F;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 40px;
+}
+  .cus-faq-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .cus-faq-question {
+    padding: 16px 20px;
+    font-size: 1rem;
+  }
+  
+  .cus-faq-answer-content {
+    padding: 0 20px 20px;
+  }
+  .cus-faq-content {
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+}
+
+@media (max-width: 480px) {
+  .cus-faq-section {
+    padding: 40px 0;
+  }
+  
+  .cus-faq-container {
+    padding: 0;
+  }
+  
+  .cus-faq-title {
+    font-size: 1.75rem;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const faqItems = document.querySelectorAll('.cus-faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.cus-faq-question');
+    const answer = item.querySelector('.cus-faq-answer');
+    const content = item.querySelector('.cus-faq-answer-content');
+    
+    // Set initial height for the first item if it's active
+    if (item.classList.contains('active')) {
+      const contentHeight = content.scrollHeight;
+      answer.style.height = contentHeight + 'px';
+    } else {
+      answer.style.height = '0px';
+    }
+    
+    question.addEventListener('click', function() {
+      const isActive = item.classList.contains('active');
+      
+      // Close all other items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          const otherAnswer = otherItem.querySelector('.cus-faq-answer');
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.cus-faq-question').setAttribute('aria-expanded', 'false');
+          otherAnswer.style.height = '0px';
+        }
+      });
+      
+      // Toggle current item
+      if (isActive) {
+        item.classList.remove('active');
+        question.setAttribute('aria-expanded', 'false');
+        answer.style.height = '0px';
+      } else {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+        const contentHeight = content.scrollHeight;
+        answer.style.height = contentHeight + 'px';
+      }
+    });
+  });
+  
+  // Handle window resize to recalculate heights
+  window.addEventListener('resize', function() {
+    faqItems.forEach(item => {
+      if (item.classList.contains('active')) {
+        const answer = item.querySelector('.cus-faq-answer');
+        const content = item.querySelector('.cus-faq-answer-content');
+        const contentHeight = content.scrollHeight;
+        answer.style.height = contentHeight + 'px';
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Section Title",
+      "default": "<p>Need to know more? Don't forget to ask!</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product Image"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "background_gradient",
+      "label": "Background Gradient",
+      "default": "linear-gradient(135deg, #1a365d 0%, #2d5a8a 100%)",
+      "info": "CSS gradient value"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "Title Size",
+      "options": [
+        { "value": "2rem", "label": "Small" },
+        { "value": "2.5rem", "label": "Medium" },
+        { "value": "3rem", "label": "Large" }
+      ],
+      "default": "2.5rem"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Your question here"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Your answer here</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who can use EVOO collagen powder?",
+            "answer": "<p>EVOO collagen powder is formulated for both men and women looking to support their skin, hair, nails, and overall health. It's perfect for anyone over the age of 18.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I use EVOO collagen powder?",
+            "answer": "<p>Simply mix one scoop (approximately 10g) of EVOO collagen powder with 200-300ml of water, juice, or your favorite beverage. Stir well and consume daily for best results. Can be taken at any time of day.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is EVOO collagen powder safe?",
+            "answer": "<p>Yes, EVOO collagen powder is completely safe when used as directed. It's made from high-quality, natural ingredients and is third-party tested for purity and potency. However, consult with your healthcare provider if you have any specific health concerns.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is EVOO collagen powder suitable for vegetarians or vegans?",
+            "answer": "<p>Our EVOO collagen powder is derived from marine sources, making it suitable for pescatarians but not for vegetarians or vegans. We recommend checking our plant-based alternatives if you follow a vegetarian or vegan lifestyle.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

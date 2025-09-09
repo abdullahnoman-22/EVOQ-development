@@ -1,0 +1,315 @@
+<div class="cus-work-how-it-works-section">
+  <div class="cus-work-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="cus-work-section-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    <div class="cus-work-how-it-works-content">
+      <div class="cus-work-image-container">
+        {% if section.settings.image != blank %}
+          <img 
+            src="{{ section.settings.image | img_url: '500x500' }}" 
+            alt="{{ section.settings.image.alt | default: 'How it works illustration' }}"
+            loading="lazy"
+            class="cus-work-how-it-works-image"
+          >
+        {% else %}
+          <div class="cus-work-placeholder-image">
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="cus-work-steps-container">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'step' %}
+              <div class="cus-work-step-item" {{ block.shopify_attributes }}>
+                <div class="cus-work-step-icon">
+                  <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="10" fill="#1e3a8a"/>
+                    <path d="M8 10.5l1.5 1.5L14 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="cus-work-step-content">
+                  {% if block.settings.title != blank %}
+                    <h3 class="cus-work-step-title">{{ block.settings.title }}</h3>
+                  {% endif %}
+                  {% if block.settings.description != blank %}
+                    <p class="cus-work-step-description">{{ block.settings.description }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            {% when 'connecting_line' %}
+              <div class="cus-work-connecting-line" {{ block.shopify_attributes }}></div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cus-work-how-it-works-section {
+    padding: 4rem 0;
+    background-color: {{ section.settings.background_color | default: '#ffffff' }};
+  }
+  
+  .cus-work-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .cus-work-section-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: {{ section.settings.heading_color | default: '#1e3a8a' }};
+    margin-bottom: 3rem;
+  }
+  
+  .cus-work-how-it-works-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    background: #c3dfda;
+    height: 500px;
+    border-radius: 1rem;
+  }
+  
+  .cus-work-image-container {
+    position: relative;
+  }
+  
+  .cus-work-how-it-works-image,
+  .cus-work-placeholder-image {
+    width: 100%;
+    height: 500px;
+    border-radius: 1rem 0 0 1rem;
+  }
+  
+  .cus-work-placeholder-image svg {
+    width: 100%;
+    height: 400px;
+    border-radius: 1rem;
+  }
+  
+  .cus-work-steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 2rem;
+  }
+  
+  .cus-work-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  .cus-work-step-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  }
+  
+  .cus-work-step-content {
+    flex: 1;
+  }
+  
+  .cus-work-step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: {{ section.settings.text_color | default: '#1e3a8a' }};
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .cus-work-step-description {
+    font-size: 0.95rem;
+    color: {{ section.settings.description_color | default: '#6b7280' }};
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .cus-work-connecting-line {
+    width: 2px;
+    height: 40px;
+    background: transparent;
+    margin-left: 19px;
+    position: relative;
+    z-index: 1;
+    border-left: 2px #1e3a8a;
+    opacity: 0.6;
+    display: block !important;
+  }
+  
+  /* Alternative approach using pseudo-element for more control */
+  .cus-work-connecting-line::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  width: 2px;
+  height: 160%;
+  background-image: linear-gradient(to bottom, #1e3a8a 50%, transparent 50%);
+  background-size: 2px 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .cus-work-how-it-works-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      height: auto;
+    }
+    
+    .cus-work-section-heading {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .cus-work-step-item {
+      padding: 1rem 0;
+    }
+    
+    .cus-work-container {
+      padding: 0 1rem;
+    }
+    
+    .cus-work-steps-container {
+      padding: 1.5rem;
+    }
+    
+    .cus-work-connecting-line {
+      height: 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cus-work-how-it-works-section {
+      padding: 2rem 0;
+    }
+    
+    .cus-work-section-heading {
+      font-size: 1.75rem;
+    }
+    
+    .cus-work-step-title {
+      font-size: 1.1rem;
+    }
+    
+    .cus-work-step-description {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "How It Works"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Feature Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1e3a8a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1e3a8a"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#6b7280"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description",
+          "default": "Add your step description here."
+        }
+      ]
+    },
+    {
+      "type": "connecting_line",
+      "name": "Connecting Line"
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Earn points",
+            "description": "by simply purchasing Feel products - every $1.38 you spend is worth 1000 points or more."
+          }
+        },
+        {
+          "type": "connecting_line"
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Higher tier",
+            "description": "means more rewards, permanent discounts, double points & early access to new products & sales."
+          }
+        },
+        {
+          "type": "connecting_line"
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Reach",
+            "description": "by simply purchasing Feel products - every $1.38 you spend is worth 1000 points or more."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,519 @@
+<!-- sections/custom-product-banner.liquid -->
+<div class="page-width custom-product-banner">
+  <div class="banner-container">
+    <!-- First Row -->
+    <div class="banner-row">
+      <!-- Text Column -->
+      <div class="banner-col banner-col-text">
+        <div class="banner-text-content">
+          {% if section.settings.heading != blank %}
+            <h2 class="banner-heading">{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.subheading != blank %}
+            <p class="banner-subheading">{{ section.settings.subheading }}</p>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Product 1 -->
+      <div class="banner-col banner-col-product">
+        {% if section.settings.product1_link != blank %}
+          <a href="{{ section.settings.product1_link }}" class="banner-product-link">
+        {% endif %}
+        
+        {% if section.settings.product1_image != blank %}
+          <div class="product-image">
+            <img src="{{ section.settings.product1_image | img_url: '600x600' }}" 
+                 alt="{{ section.settings.product1_image.alt | default: section.settings.product1_title }}">
+          </div>
+        {% endif %}
+        
+        <div class="product-overlay">
+          {% if section.settings.product1_title != blank %}
+            <h3 class="product-title">{{ section.settings.product1_title }}</h3>
+          {% endif %}
+          
+          <div class="product-arrow">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"></path></svg>
+          </div>
+        </div>
+        
+        {% if section.settings.product1_link != blank %}
+          </a>
+        {% endif %}
+      </div>
+      
+      <!-- Product 2 -->
+      <div class="banner-col banner-col-product">
+        {% if section.settings.product2_link != blank %}
+          <a href="{{ section.settings.product2_link }}" class="banner-product-link">
+        {% endif %}
+        
+        {% if section.settings.product2_image != blank %}
+          <div class="product-image">
+            <img src="{{ section.settings.product2_image | img_url: '600x600' }}" 
+                 alt="{{ section.settings.product2_image.alt | default: section.settings.product2_title }}">
+          </div>
+        {% endif %}
+        
+        <div class="product-overlay">
+          {% if section.settings.product2_title != blank %}
+            <h3 class="product-title">{{ section.settings.product2_title }}</h3>
+          {% endif %}
+          
+          <div class="product-arrow">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"></path></svg>
+          </div>
+        </div>
+        
+        {% if section.settings.product2_link != blank %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    
+    <!-- Second Row -->
+    <div class="banner-row">
+      <!-- Product 3 -->
+      <div class="banner-col banner-col-product">
+        {% if section.settings.product3_link != blank %}
+          <a href="{{ section.settings.product3_link }}" class="banner-product-link">
+        {% endif %}
+        
+        {% if section.settings.product3_image != blank %}
+          <div class="product-image">
+            <img src="{{ section.settings.product3_image | img_url: '600x600' }}" 
+                 alt="{{ section.settings.product3_image.alt | default: section.settings.product3_title }}">
+          </div>
+        {% endif %}
+        
+        <div class="product-overlay">
+          {% if section.settings.product3_title != blank %}
+            <h3 class="product-title">{{ section.settings.product3_title }}</h3>
+          {% endif %}
+          
+          <div class="product-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"></path></svg>
+          </div>
+        </div>
+        
+        {% if section.settings.product3_link != blank %}
+          </a>
+        {% endif %}
+      </div>
+      
+      <!-- Product 4 -->
+      <div class="banner-col banner-col-product">
+        {% if section.settings.product4_link != blank %}
+          <a href="{{ section.settings.product4_link }}" class="banner-product-link">
+        {% endif %}
+        
+        {% if section.settings.product4_image != blank %}
+          <div class="product-image">
+            <img src="{{ section.settings.product4_image | img_url: '600x600' }}" 
+                 alt="{{ section.settings.product4_image.alt | default: section.settings.product4_title }}">
+          </div>
+        {% endif %}
+        
+        <div class="product-overlay">
+          {% if section.settings.product4_title != blank %}
+            <h3 class="product-title">{{ section.settings.product4_title }}</h3>
+          {% endif %}
+          
+          <div class="product-arrow">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"></path></svg>
+          </div>
+        </div>
+        
+        {% if section.settings.product4_link != blank %}
+          </a>
+        {% endif %}
+      </div>
+      
+      <!-- Product 5 -->
+      <div class="banner-col banner-col-product">
+        {% if section.settings.product5_link != blank %}
+          <a href="{{ section.settings.product5_link }}" class="banner-product-link">
+        {% endif %}
+        
+        {% if section.settings.product5_image != blank %}
+          <div class="product-image">
+            <img src="{{ section.settings.product5_image | img_url: '600x600' }}" 
+                 alt="{{ section.settings.product5_image.alt | default: section.settings.product5_title }}">
+          </div>
+        {% endif %}
+        
+        <div class="product-overlay">
+          {% if section.settings.product5_title != blank %}
+            <h3 class="product-title">{{ section.settings.product5_title }}</h3>
+          {% endif %}
+          
+          <div class="product-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"></path></svg>
+          </div>
+        </div>
+        
+        {% if section.settings.product5_link != blank %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-product-banner {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  
+  .banner-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .banner-row {
+    display: flex;
+    gap: 16px;
+    height: 320px;
+  }
+  
+  .banner-col {
+    flex: 1;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  
+  /* Text Column Styling */
+  .banner-col-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .banner-text-content {
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  .banner-heading {
+    font-size: 54px;
+    font-weight: 500;
+    color: #1a202c;
+    margin-bottom: 16px;
+    line-height: 120%;
+    letter-spacing: -0.5px;
+  }
+  
+  .banner-subheading {
+    font-size: 16px;
+    color: #4a5568;
+    line-height: 22.4px;
+    font-weight: 400;
+  }
+  
+  /* Product Column Styling */
+  .banner-col-product {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .banner-product-link {
+    display: contents;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+  
+  .product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .banner-col-product:hover .product-image img {
+    transform: scale(1.05);
+  }
+  
+  .product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%);
+  }
+  
+  .product-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #2d3748;
+    margin: 0;
+  }
+  
+  .product-arrow {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    align-self: flex-start;
+  }
+  
+  .product-arrow:hover {
+    background: rgba(255,255,255,1);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  
+  .product-arrow svg {
+    width: 20px;
+    height: 20px;
+    color: #2d3748;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .banner-row {
+      height: 280px;
+    }
+    
+    .banner-heading {
+      font-size: 4.4rem;
+    }
+    
+    .product-title {
+      font-size: 2em;
+      padding: 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .custom-product-banner {
+      padding: 0 15px;
+    }
+    
+    .banner-row {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .banner-col {
+      min-height: 240px;
+    }
+    
+    .banner-col-text {
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .banner-text-content {
+      text-align: center;
+    }
+    
+    .banner-heading {
+      font-size: 4rem;
+    }
+    
+    .banner-subheading {
+      font-size: 1.6rem;
+    }
+    
+    .product-title {
+      font-size: 2rem;
+    }
+    
+    .product-overlay {
+      padding: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .custom-product-banner {
+      padding: 0 10px;
+    }
+    
+    .banner-col {
+      min-height: 200px;
+    }
+    
+    .banner-col-text {
+      padding: 20px;
+    }
+    
+    .banner-heading {
+      font-size: 3.6rem;
+    }
+    
+    .product-title {
+      font-size: 2rem;
+      padding: 0;
+    }
+    
+    .product-arrow {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .product-arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Product Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading Section"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Transformation in just a few weeks"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover the best vegan collagen supplements with effectiveness & taste!"
+    },
+    {
+      "type": "header",
+      "content": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "product1_title",
+      "label": "Product 1 Title",
+      "default": "Vanilla"
+    },
+    {
+      "type": "image_picker",
+      "id": "product1_image",
+      "label": "Product 1 Image"
+    },
+    {
+      "type": "url",
+      "id": "product1_link",
+      "label": "Product 1 Link"
+    },
+    {
+      "type": "header",
+      "content": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "product2_title",
+      "label": "Product 2 Title",
+      "default": "Chocolate"
+    },
+    {
+      "type": "image_picker",
+      "id": "product2_image",
+      "label": "Product 2 Image"
+    },
+    {
+      "type": "url",
+      "id": "product2_link",
+      "label": "Product 2 Link"
+    },
+    {
+      "type": "header",
+      "content": "Product 3"
+    },
+    {
+      "type": "text",
+      "id": "product3_title",
+      "label": "Product 3 Title",
+      "default": "Strawberry"
+    },
+    {
+      "type": "image_picker",
+      "id": "product3_image",
+      "label": "Product 3 Image"
+    },
+    {
+      "type": "url",
+      "id": "product3_link",
+      "label": "Product 3 Link"
+    },
+    {
+      "type": "header",
+      "content": "Product 4"
+    },
+    {
+      "type": "text",
+      "id": "product4_title",
+      "label": "Product 4 Title",
+      "default": "Blueberry"
+    },
+    {
+      "type": "image_picker",
+      "id": "product4_image",
+      "label": "Product 4 Image"
+    },
+    {
+      "type": "url",
+      "id": "product4_link",
+      "label": "Product 4 Link"
+    },
+    {
+      "type": "header",
+      "content": "Product 5"
+    },
+    {
+      "type": "text",
+      "id": "product5_title",
+      "label": "Product 5 Title",
+      "default": "Mango"
+    },
+    {
+      "type": "image_picker",
+      "id": "product5_image",
+      "label": "Product 5 Image"
+    },
+    {
+      "type": "url",
+      "id": "product5_link",
+      "label": "Product 5 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Banner"
+    }
+  ]
+}
+{% endschema %}

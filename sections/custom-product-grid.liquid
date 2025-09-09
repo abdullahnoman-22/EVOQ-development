@@ -1,0 +1,493 @@
+<!-- sections/product-grid.liquid -->
+<div class="product-grid-section">
+  <div class="page-width container">
+    {% if section.settings.show_sort %}
+      <div class="sort-container">
+        <select class="sort-select" onchange="sortProducts(this.value)">
+          <option value="">Sort by</option>
+          <option value="price-low-high">Price: Low to High</option>
+          <option value="price-high-low">Price: High to Low</option>
+          <option value="name-a-z">Name: A-Z</option>
+          <option value="name-z-a">Name: Z-A</option>
+        </select>
+      </div>
+    {% endif %}
+
+    <div class="product-grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'product' %}
+            {% assign product = collections[block.settings.collection].products[block.settings.product_index] | default: block.settings.product %}
+            {% if product %}
+              <div class="product-card" data-price="{{ product.price }}" data-name="{{ product.title }}">
+                <div class="product-image">
+                  {% if product.featured_image %}
+                    <img src="{{ product.featured_image | img_url: '300x300' }}"
+                         alt="{{ product.featured_image.alt | default: product.title }}"
+                         loading="lazy">
+                  {% else %}
+                    <div class="placeholder-image">
+                      <svg width="300" height="300" viewBox="0 0 300 300">
+                        <rect width="300" height="300" fill="#f5f5f5"/>
+                        <text x="150" y="150" text-anchor="middle" fill="#999">No Image</text>
+                      </svg>
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="product-info">
+                  <h3 class="product-title">{{ block.settings.custom_title | default: product.title }}</h3>
+                 
+                  {% if block.settings.show_timeline %}
+                    <div class="product-timeline">
+                      <a href="#" class="timeline-label">{{ block.settings.timeline_label | default: 'Health improvement timeline' }}</a>
+                      <a href="#" class="view-ingredients">{{ block.settings.ingredients_label | default: 'View ingredients' }}</a>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.show_rating %}
+                    <div class="product-rating">
+                      <div class="stars">
+                        {% assign rating = block.settings.rating | default: 4.6 %}
+                        {% assign full_stars = rating | floor %}
+                        {% assign has_half_star = rating | modulo: 1 %}
+                       
+                      {% for i in (1..5) %}
+                        {% if i <= full_stars %}
+                          <span class="star filled">★</span>
+                        {% elsif i == next_star and has_half_star >= 0.5 %}
+                          <span class="star half">★</span>
+                        {% else %}
+                          <span class="star">☆</span>
+                        {% endif %}
+                      {% endfor %}
+                      </div>
+                      <span class="rating-number">{{ rating }}</span>
+                      <span class="review-count">({{ block.settings.review_count | default: 1573 }} reviews)</span>
+                    </div>
+                  {% endif %}
+
+                  <div class="product-price">
+                    <span class="currency">{{ block.settings.currency | default: '$' }}</span>
+                    <span class="price">{{ block.settings.custom_price | default: product.price | divided_by: 100 }}</span>
+                  </div>
+
+                  <div class="product-actions">
+                    <button class="btn-primary add-to-cart"
+                            data-product-id="{{ product.id }}"
+                            data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+                      {{ block.settings.add_to_cart_text | default: 'Add to cart' }}
+                    </button>
+                    <a href="{{ product.url }}" class="btn-secondary learn-more">
+                      {{ block.settings.learn_more_text | default: 'Learn More' }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.product-grid-section {
+  padding: 40px 0;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.sort-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.sort-select {
+    padding: 8px 0px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 400;
+    width: 100px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  align-items: start;
+}
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: 266px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder-image svg {
+  width: 100%;
+  height: 100%;
+}
+
+.product-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #101828;
+  line-height: 1.3;
+  font-family: 'Inter';
+}
+
+.product-timeline {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 12px;
+    gap: 15px;
+}
+
+.timeline-label {
+  color:#101828;
+}
+
+.view-ingredients {
+  color: #101828;
+  text-decoration: underline;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 16px;
+}
+
+.star.filled {
+  color: #101828;
+}
+
+.star.half {
+  background: linear-gradient(90deg, #ffc107 50%, #ddd 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rating-number {
+  font-weight: 400;
+  color: #101828;
+}
+
+.review-count {
+  color:#101828;
+}
+
+.product-price {
+  font-weight: 600;
+  color: #101828;
+}
+
+ .product-price .price {
+  font-size: 32px;
+}
+.currency {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.product-actions {
+  display: flex;
+}
+
+.btn-primary, .btn-secondary {
+  flex: 1;
+  padding: 8px 20px;
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.btn-primary.add-to-cart {
+  border-radius: 6px 0 0 6px;
+}
+  .btn-secondary.learn-more {
+  border-radius: 0 6px 6px 0;
+}
+.btn-primary {
+  background: #001F5F;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #101828;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #001F5F;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+ 
+  .product-actions {
+    flex-direction: column;
+  }
+ 
+  .sort-container {
+    justify-content: center;
+  }
+}
+</style>
+
+<script>
+// Add to cart functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+ 
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const variantId = this.dataset.variantId;
+      const productId = this.dataset.productId;
+     
+      // Add loading state
+      this.textContent = 'Adding...';
+      this.disabled = true;
+     
+      // Add to cart via Shopify Ajax API
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          items: [{
+            id: variantId,
+            quantity: 1
+          }]
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Reset button
+        this.textContent = 'Add to cart';
+        this.disabled = false;
+       
+        // Show success message or redirect to cart
+        alert('Product added to cart!');
+       
+        // Optional: Update cart count in header
+        updateCartCount();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        this.textContent = 'Add to cart';
+        this.disabled = false;
+        alert('Error adding product to cart');
+      });
+    });
+  });
+});
+
+// Sort functionality
+function sortProducts(sortValue) {
+  const grid = document.querySelector('.product-grid');
+  const cards = Array.from(grid.children);
+ 
+  cards.sort((a, b) => {
+    switch(sortValue) {
+      case 'price-low-high':
+        return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+      case 'price-high-low':
+        return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+      case 'name-a-z':
+        return a.dataset.name.localeCompare(b.dataset.name);
+      case 'name-z-a':
+        return b.dataset.name.localeCompare(a.dataset.name);
+      default:
+        return 0;
+    }
+  });
+ 
+  cards.forEach(card => grid.appendChild(card));
+}
+
+// Update cart count (you'll need to implement this based on your theme)
+function updateCartCount() {
+  fetch('/cart.js')
+    .then(response => response.json())
+    .then(cart => {
+      const cartCount = document.querySelector('.cart-count');
+      if (cartCount) {
+        cartCount.textContent = cart.item_count;
+      }
+    });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_sort",
+      "label": "Show sort dropdown",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title (optional)"
+        },
+        {
+          "type": "number",
+          "id": "custom_price",
+          "label": "Custom Price (optional)"
+        },
+        {
+          "type": "text",
+          "id": "currency",
+          "label": "Currency",
+          "default": "$"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_timeline",
+          "label": "Show timeline info",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "timeline_label",
+          "label": "Timeline Label",
+          "default": "Health improvement timeline"
+        },
+        {
+          "type": "text",
+          "id": "ingredients_label",
+          "label": "Ingredients Link Text",
+          "default": "View ingredients"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show rating",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 0.1,
+          "default": 4.6
+        },
+        {
+          "type": "number",
+          "id": "review_count",
+          "label": "Review Count",
+          "default": 1573
+        },
+        {
+          "type": "text",
+          "id": "add_to_cart_text",
+          "label": "Add to Cart Button Text",
+          "default": "Add to cart"
+        },
+        {
+          "type": "text",
+          "id": "learn_more_text",
+          "label": "Learn More Button Text",
+          "default": "Learn More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

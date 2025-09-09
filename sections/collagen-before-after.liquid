@@ -1,0 +1,758 @@
+<!-- sections/image-comparison.liquid -->
+<div class="image-comparison-section" id="section-{{ section.id }}">
+  <div class="cus-image-section">
+    <div class="image-comparison-container">
+      <div class="image-comparison-wrapper">
+        <div class="image-comparison-slider" id="imageComparison-{{ section.id }}">
+          <!-- Before Image -->
+          <div class="image-before">
+            {% if section.settings.before_image != blank %}
+              <img src="{{ section.settings.before_image | img_url: '800x' }}" 
+                   alt="{{ section.settings.before_label | default: 'Before' }}"
+                   loading="lazy">
+            {% else %}
+              <div class="placeholder-image">
+                <span>Before Image</span>
+              </div>
+            {% endif %}
+            <div class="image-label before-label">
+              {{ section.settings.before_label | default: 'Before' }}
+            </div>
+          </div>
+          
+          <!-- After Image -->
+          <div class="image-after">
+            {% if section.settings.after_image != blank %}
+              <img src="{{ section.settings.after_image | img_url: '800x' }}" 
+                   alt="{{ section.settings.after_label | default: 'After' }}"
+                   loading="lazy">
+            {% else %}
+              <div class="placeholder-image">
+                <span>After Image</span>
+              </div>
+            {% endif %}
+            <div class="image-label after-label">
+              {{ section.settings.after_label | default: 'After' }}
+            </div>
+          </div>
+          
+          <!-- Slider Control -->
+          <div class="slider-control">
+            <div class="slider-handle">
+              <div class="slider-circle">
+               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512" fill="currentColor">
+                  <rect x="96" y="64" width="32" height="384" />
+                  <rect x="240" y="64" width="32" height="384" />
+                  <rect x="384" y="64" width="32" height="384" />
+                </svg>
+              </div>
+            </div>
+            <div class="slider-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if section.settings.button_text != blank and section.settings.button_url != blank %}
+      <div class="section-footer text-center">
+        <a href="{{ section.settings.button_url }}" class="btn btn-primary">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.image-comparison-section {
+  padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  background-color: {{ section.settings.background_color }};
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  margin-bottom: 0.5rem;
+  color: {{ section.settings.heading_color }};
+}
+
+.section-subheading {
+  font-size: 1.1rem;
+  color: {{ section.settings.text_color }};
+  margin: 0;
+}
+
+.image-comparison-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.image-comparison-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image-comparison-slider {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  border-radius: 8px;
+}
+
+.image-comparison-slider:active {
+  cursor: grabbing;
+}
+
+.image-before,
+.image-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image-before img,
+.image-after img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.placeholder-image {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+.image-after {
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+  transition: clip-path 0.1s ease;
+}
+
+.image-label {
+  position: absolute;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+  z-index: 1;
+}
+
+.before-label {
+  left: 20px;
+  top: 20px;
+  color: {{ section.settings.before_label_color }};
+}
+
+.after-label {
+  right: 20px;
+  bottom: 20px;
+  color: {{ section.settings.after_label_color }};
+}
+
+.slider-control {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid #fafafa;
+}
+
+.slider-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: {{ section.settings.slider_color }};
+  transform: translateX(-50%);
+  opacity: 0.8;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: all;
+  cursor: grab;
+  z-index: 2;
+}
+
+.slider-circle {
+  width: 50px;
+  height: 50px;
+  background: {{ section.settings.slider_color }};
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+}
+
+.slider-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.slider-circle svg {
+  width: 16px;
+  height: 16px;
+  color: {{ section.settings.slider_icon_color }};
+}
+
+.section-footer {
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: {{ section.settings.button_color }};
+  color: {{ section.settings.button_text_color }};
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Tablet Design */
+@media (max-width: 1024px) {
+  .image-comparison-slider {
+    height: 500px;
+  }
+  
+  .image-label {
+    font-size: 20px;
+    padding: 7px 14px;
+  }
+  
+  .slider-circle {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Mobile Design */
+@media (max-width: 768px) {
+  .image-comparison-container {
+    padding: 0 0.5rem;
+  }
+  
+  .image-comparison-slider {
+    height: 400px;
+    border-radius: 6px;
+  }
+  
+  .image-before img,
+  .image-after img {
+    border-radius: 6px;
+  }
+  
+  .image-label {
+    font-size: 20px;
+    border-radius: 15px;
+  }
+  
+  .before-label {
+    left: 15px;
+    top: 15px;
+  }
+  
+  .after-label {
+    right: 15px;
+    bottom: 15px;
+  }
+  
+  .slider-circle {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+  
+  .slider-circle svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .section-footer {
+    margin-top: 1.5rem;
+  }
+  
+  .btn {
+    padding: 14px 28px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Small Mobile Design */
+@media (max-width: 480px) {
+  .image-comparison-section {
+    padding: {{ section.settings.padding_top | divided_by: 1.5 }}px 0 {{ section.settings.padding_bottom | divided_by: 1.5 }}px;
+  }
+  
+  .image-comparison-container {
+    padding: 0 0.25rem;
+  }
+  
+  .image-comparison-slider {
+    height: 300px;
+    border-radius: 4px;
+  }
+  
+  .image-before img,
+  .image-after img {
+    border-radius: 4px;
+  }
+  
+  .image-label {
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  
+  .before-label {
+    left: 10px;
+    top: 10px;
+  }
+  
+  .after-label {
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .slider-circle {
+    width: 35px;
+    height: 35px;
+    border-width: 2px;
+  }
+  
+  .slider-circle svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .slider-line {
+    width: 1.5px;
+  }
+  
+  .section-footer {
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* Very Small Mobile Design */
+@media (max-width: 360px) {
+  .image-comparison-slider {
+    height: 250px;
+  }
+  
+  .image-label {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 10px;
+  }
+  
+  .before-label {
+    left: 8px;
+    top: 8px;
+  }
+  
+  .after-label {
+    right: 8px;
+    bottom: 8px;
+  }
+  
+  .slider-circle {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .slider-circle svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .slider-handle {
+    padding: 10px;
+  }
+  
+  .slider-circle {
+    transform: scale(1.1);
+  }
+  
+  .image-label {
+    font-weight: 500;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .image-before img,
+  .image-after img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .image-comparison-slider {
+    height: 350px;
+  }
+  
+  .image-label {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .image-after {
+    transition: none;
+  }
+  
+  .slider-circle {
+    transition: none;
+  }
+  
+  .btn {
+    transition: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.slider-handle:focus {
+  outline: 2px solid {{ section.settings.slider_color }};
+  outline-offset: 2px;
+}
+
+.slider-handle:focus .slider-circle {
+  box-shadow: 0 0 0 3px rgba(0, 100, 200, 0.3);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const slider = document.getElementById('imageComparison-{{ section.id }}');
+  if (!slider) return;
+  
+  const afterImage = slider.querySelector('.image-after');
+  const sliderControl = slider.querySelector('.slider-control');
+  const sliderHandle = slider.querySelector('.slider-handle');
+  
+  let isDragging = false;
+  let currentPosition = 50; // Start at 50%
+  
+  function updateSlider(percentage) {
+    // Clamp percentage between 0 and 100
+    percentage = Math.max(0, Math.min(100, percentage));
+    currentPosition = percentage;
+    
+    // Update clip-path for after image
+    afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+    
+    // Update slider position
+    sliderControl.style.left = `${percentage}%`;
+    
+    // Update ARIA value
+    sliderHandle.setAttribute('aria-valuenow', Math.round(percentage));
+  }
+  
+  function getPercentageFromEvent(event) {
+    const rect = slider.getBoundingClientRect();
+    const clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+    const x = clientX - rect.left;
+    return (x / rect.width) * 100;
+  }
+  
+  // Mouse events
+  slider.addEventListener('mousedown', function(event) {
+    isDragging = true;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  });
+  
+  document.addEventListener('mousemove', function(event) {
+    if (!isDragging) return;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+  });
+  
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
+  
+  // Enhanced touch events for mobile
+  let touchStartX = 0;
+  
+  slider.addEventListener('touchstart', function(event) {
+    isDragging = true;
+    touchStartX = event.touches[0].clientX;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  }, { passive: false });
+  
+  document.addEventListener('touchmove', function(event) {
+    if (!isDragging) return;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  }, { passive: false });
+  
+  document.addEventListener('touchend', function(event) {
+    isDragging = false;
+    event.preventDefault();
+  });
+  
+  // Prevent scrolling when interacting with slider on mobile
+  slider.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+  }, { passive: false });
+  
+  // Keyboard accessibility
+  sliderHandle.addEventListener('keydown', function(event) {
+    let step = 5;
+    // Smaller steps on mobile for finer control
+    if (window.innerWidth <= 768) {
+      step = 2;
+    }
+    
+    switch(event.key) {
+      case 'ArrowLeft':
+        updateSlider(currentPosition - step);
+        event.preventDefault();
+        break;
+      case 'ArrowRight':
+        updateSlider(currentPosition + step);
+        event.preventDefault();
+        break;
+      case 'Home':
+        updateSlider(0);
+        event.preventDefault();
+        break;
+      case 'End':
+        updateSlider(100);
+        event.preventDefault();
+        break;
+    }
+  });
+  
+  // Make handle focusable with proper ARIA attributes
+  sliderHandle.setAttribute('tabindex', '0');
+  sliderHandle.setAttribute('role', 'slider');
+  sliderHandle.setAttribute('aria-label', 'Image comparison slider');
+  sliderHandle.setAttribute('aria-valuemin', '0');
+  sliderHandle.setAttribute('aria-valuemax', '100');
+  sliderHandle.setAttribute('aria-valuenow', currentPosition);
+  
+  // Handle resize events
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      updateSlider(currentPosition);
+    }, 100);
+  });
+  
+  // Initialize slider position
+  updateSlider(currentPosition);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Image Comparison",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before Label",
+      "default": "Before Collagen"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After Label",
+      "default": "After use Collagen"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "before_label_color",
+      "label": "Before Label Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "after_label_color",
+      "label": "After Label Color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "slider_color",
+      "label": "Slider Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "slider_icon_color",
+      "label": "Slider Icon Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Comparison",
+      "settings": {
+        "before_label": "Before Collagen",
+        "after_label": "After use Collagen",
+        "button_text": "Shop Now"
+      }
+    }
+  ]
+}
+{% endschema %}

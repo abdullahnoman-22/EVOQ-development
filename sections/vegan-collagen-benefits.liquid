@@ -1,0 +1,312 @@
+<!-- sections/vegan-collagen-benefits.liquid -->
+<div class="cus-vcb-vegan-collagen-section">
+  <div class="page-width cus-vcb-container">
+    <div class="cus-vcb-benefits-grid">
+      <!-- Effective vegan Collagen powder -->
+      <div class="cus-vcb-benefit-card cus-vcb-main-card">
+        <div class="cus-vcb-card-header">
+          <h2>{{ section.settings.main_title | default: "Effective vegan Collagen powder" }}</h2>
+        </div>
+        <div class="cus-vcb-card-content">
+          <p>{{ section.settings.main_description | default: "Feel good inside and out with our Vegan Collagen Powder — a clean, plant-powered formula designed to support glowing skin, stronger hair, and overall wellness. Made without animal collagen or added sugar, it's the perfect daily ritual for beauty that feels as good as it looks." }}</p>
+          
+          <div class="cus-vcb-features-grid">
+            {% for block in section.blocks %}
+              {% if block.type == 'main_feature' %}
+                <div class="cus-vcb-feature-item">
+                  {% if block.settings.icon %}
+                    <div class="cus-vcb-feature-icon">
+                      {{ block.settings.icon | img_tag: block.settings.feature_title }}
+                    </div>
+                  {% endif %}
+                  <span class="cus-vcb-feature-title">{{ block.settings.feature_title }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits -->
+      <div class="cus-vcb-benefit-card cus-vcb-benefits-card">
+        <div class="cus-vcb-card-header">
+          <h2>{{ section.settings.benefits_title | default: "Benefits" }}</h2>
+        </div>
+        <div class="cus-vcb-card-content">
+          <p>{{ section.settings.benefits_description | default: "Feel good inside and out with our Vegan Collagen Powder — a clean, plant-powered formula designed to support glowing skin, stronger hair, and overall wellness. Made without animal collagen or added sugar, it's the perfect daily ritual for beauty that feels as good as it looks." }}</p>
+          
+          <div class="cus-vcb-benefits-grid-inner">
+            {% for block in section.blocks %}
+              {% if block.type == 'benefit' %}
+                <div class="cus-vcb-benefit-item">
+                  {% if block.settings.icon %}
+                    <div class="cus-vcb-benefit-icon">
+                      {{ block.settings.icon | img_tag: block.settings.benefit_title }}
+                    </div>
+                  {% endif %}
+                  <span class="cus-vcb-benefit-title">{{ block.settings.benefit_title }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.cus-vcb-vegan-collagen-section {
+  padding: 60px 0;
+}
+
+.cus-vcb-container {
+  margin: 0 auto;
+}
+
+.cus-vcb-benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.cus-vcb-benefit-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cus-vcb-card-header {
+  background: #001F5F;
+  color: white;
+  padding: 20px 30px;
+}
+
+.cus-vcb-card-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+  font-family: 'Inter' !important;
+}
+
+.cus-vcb-card-content {
+  padding: 15px;
+  background: #F2F4F7;
+}
+
+.cus-vcb-card-content p {
+  color: #344054;
+  line-height: 1.6;
+  margin: 0 0 30px 0;
+  font-size: 14px;
+}
+
+.cus-vcb-features-grid,
+.cus-vcb-benefits-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cus-vcb-feature-item,
+.cus-vcb-benefit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.cus-vcb-feature-icon,
+.cus-vcb-benefit-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cus-vcb-feature-icon img,
+.cus-vcb-benefit-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: opacity(0.8);
+}
+
+.cus-vcb-feature-title,
+.cus-vcb-benefit-title {
+  font-size: 12px;
+  font-weight: 400;
+  color: #374151;
+  line-height: 18px;
+  color: #344054;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cus-vcb-vegan-collagen-section {
+    padding: 40px 0;
+  }
+  
+  .cus-vcb-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .cus-vcb-card-content {
+    padding: 20px;
+  }
+  
+  .cus-vcb-features-grid,
+  .cus-vcb-benefits-grid-inner {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .cus-vcb-card-header h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cus-vcb-container {
+    padding: 0 15px;
+  }
+  
+  .cus-vcb-card-header {
+    padding: 15px 20px;
+  }
+  
+  .cus-vcb-card-content {
+    padding: 15px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Vegan Collagen Benefits",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "Effective vegan Collagen powder"
+    },
+    {
+      "type": "textarea",
+      "id": "main_description",
+      "label": "Main Description",
+      "default": "Feel good inside and out with our Vegan Collagen Powder — a clean, plant-powered formula designed to support glowing skin, stronger hair, and overall wellness. Made without animal collagen or added sugar, it's the perfect daily ritual for beauty that feels as good as it looks."
+    },
+    {
+      "type": "text",
+      "id": "benefits_title",
+      "label": "Benefits Title",
+      "default": "Benefits"
+    },
+    {
+      "type": "textarea",
+      "id": "benefits_description",
+      "label": "Benefits Description",
+      "default": "Feel good inside and out with our Vegan Collagen Powder — a clean, plant-powered formula designed to support glowing skin, stronger hair, and overall wellness. Made without animal collagen or added sugar, it's the perfect daily ritual for beauty that feels as good as it looks."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "main_feature",
+      "name": "Main Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Feature Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title"
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Benefit Icon"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vegan Collagen Benefits",
+      "blocks": [
+        {
+          "type": "main_feature",
+          "settings": {
+            "feature_title": "Collagen production"
+          }
+        },
+        {
+          "type": "main_feature",
+          "settings": {
+            "feature_title": "Reduction of wrinkles"
+          }
+        },
+        {
+          "type": "main_feature",
+          "settings": {
+            "feature_title": "Skin of elasticity"
+          }
+        },
+        {
+          "type": "main_feature",
+          "settings": {
+            "feature_title": "Skin of hydration"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_title": "Skin Glow"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_title": "Hydration"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_title": "Joint Health"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_title": "Vegan"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

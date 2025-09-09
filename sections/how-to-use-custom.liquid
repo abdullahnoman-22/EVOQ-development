@@ -1,0 +1,284 @@
+<!-- How to Use Section -->
+<section class="htu-section">
+  <div class="htu-container">
+    <div class="htu-header">
+      <h2 class="htu-title">{{ section.settings.title | default: 'How to Use' }}</h2>
+      <p class="htu-subtitle">
+        {{ section.settings.subtitle | default: 'Sure! Here&#39;s a short and real-feel version of the subtext for &#34;How to Use&#34; &#8212; ideal for packaging, website, or social' }}
+      </p>
+    </div>
+
+    <div class="htu-grid">
+      {% for block in section.blocks %}
+        <div class="htu-step" {{ block.shopify_attributes }}>
+          {% if block.settings.image %}
+            <div class="htu-step-image">
+              {{ block.settings.image | image_url: width: 400 | image_tag: 
+                alt: block.settings.image_alt,
+                loading: 'lazy',
+                class: 'htu-step-img'
+              }}
+            </div>
+          {% endif %}
+          
+          <div class="htu-step-content">
+            {% if block.settings.step_title %}
+              <h3 class="htu-step-title">{{ block.settings.step_title }}</h3>
+            {% endif %}
+            
+            {% if block.settings.step_description %}
+              <p class="htu-step-description">{{ block.settings.step_description }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .htu-section {
+    padding: 60px 0;
+  }
+
+  .htu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .htu-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .htu-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: {{ section.settings.title_color | default: '#333333' }};
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-family: 'Inter' !important;
+  }
+
+  .htu-subtitle {
+    font-size: 20px;
+    color: {{ section.settings.subtitle_color | default: '#666666' }};
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 30px;
+    font-weight: 400;
+    font-family: 'Inter' !important;
+  }
+
+  .htu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    align-items: start;
+  }
+
+  .htu-step {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+
+  .htu-step-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .htu-step-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.3s ease;
+    border-radius: 5px;
+  }
+
+  .htu-step:hover .htu-step-img {
+    scale: 1.02;
+    border-radius: 5px;
+  }
+
+
+  .htu-step-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: {{ section.settings.step_title_color | default: '#333333' }};
+    margin-bottom: 12px;
+    line-height: 20px;
+    padding: 15px 0;
+  }
+
+  .htu-step-description {
+    font-size: 14px;
+    color: {{ section.settings.step_description_color | default: '#666666' }};
+    line-height: 20px;
+    margin: 0;
+    padding: 15px 0;
+    font-weight: 400;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .htu-section {
+      padding: 40px 0;
+    }
+
+    .htu-title {
+      font-size: 2rem;
+    }
+
+    .htu-subtitle {
+      font-size: 1rem;
+    }
+
+    .htu-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    .htu-step-content {
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .htu-container {
+      padding: 0 15px;
+    }
+
+    .htu-title {
+      font-size: 1.8rem;
+    }
+
+    .htu-step-image {
+      height: 200px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How to Use",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "How to Use"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Sure! Here&#39;s a short and real-feel version of the subtext for &#34;How to Use&#34; &#8212; ideal for packaging, website, or social"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "step_title_color",
+      "label": "Step Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "step_description_color",
+      "label": "Step Description Color",
+      "default": "#666666"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "How-to Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt Text"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "step_description",
+          "label": "Step Description",
+          "default": "Add your step description here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to Use",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "For Tea or Coffee",
+            "step_description": "Add 2 heaped scoops (1 serving) to your tea or coffee."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "For Smoothies or Oatmeal",
+            "step_description": "You can also mix it into your smoothies or oatmeal."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Mixing and Consuming",
+            "step_description": "Mix the product in thoroughly. For best results, consume 1 serving per day."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Storage",
+            "step_description": "Store the product in a cool, dark location away from direct sunlight."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

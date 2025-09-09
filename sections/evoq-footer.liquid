@@ -1,0 +1,658 @@
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'component-footer.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .cus-f-footer-evoq {
+    background-color: #001E5F;
+    color: white;
+    padding: 4rem 0 2rem;
+  }
+  
+  .cus-f-footer-evoq .cus-f-container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  
+  .cus-f-footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    justify-items: center;
+  }
+  
+  .cus-f-footer-brand {
+    grid-column: 1 / 2;
+    width: 100%;
+  }
+  
+  .cus-f-footer-brand h2 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-top: 0;
+  }
+  
+  .cus-f-newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 300px;
+  }
+  
+  .cus-f-newsletter-form input {
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .cus-f-newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .cus-f-newsletter-form button {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: #1e3a8a;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 50%;
+  }
+  
+  .cus-f-newsletter-form button:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+  }
+  
+  .cus-f-footer-column h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+  
+  .cus-f-footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .cus-f-footer-column li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cus-f-footer-column a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 14px;
+  }
+  
+  .cus-f-footer-column a:hover {
+    color: white;
+  }
+  
+  .cus-f-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .cus-f-footer-tagline {
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+  
+  .cus-f-footer-reviews {
+    background: white;
+    color: #333;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 40%;
+  }
+ .cus-f-review-image {
+  height: auto;
+  border-radius: 4px;
+       width: 100%;
+}
+  
+  .cus-f-review-logos {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .cus-f-footer-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .cus-f-footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .cus-f-footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  
+  .cus-f-payment-icons img{
+    height: 30px;
+    width: 100%;
+  }
+  
+  .cus-f-copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+  }
+  .cus-f-copyright p {
+    margin: 0;
+}
+  
+  @media (max-width: 768px) {
+    .cus-f-footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .cus-f-footer-brand {
+      grid-column: 1;
+    }
+    
+    .cus-f-footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .cus-f-footer-meta {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .cus-f-footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
+
+<footer class="cus-f-footer-evoq">
+  <div class="page-width cus-f-container">
+    <div class="cus-f-footer-content">
+      <!-- Brand and Newsletter -->
+      <div class="cus-f-footer-brand">
+        <h2>{{ section.settings.brand_name | default: 'EVOQ' }}</h2>
+        
+        {% if section.settings.newsletter_enable %}
+          <form class="cus-f-newsletter-form" action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+            <input 
+              type="email" 
+              name="contact[email]" 
+              placeholder="{{ section.settings.newsletter_placeholder | default: 'Your Email' }}" 
+              required
+            >
+            <button type="submit">
+              {{ section.settings.newsletter_button_text | default: 'Subscribe' }}
+            </button>
+          </form>
+        {% endif %}
+      </div>
+      
+      <!-- Shop Column -->
+      <div class="cus-f-footer-column">
+        <h3>{{ section.settings.shop_heading | default: 'Shop' }}</h3>
+        <ul>
+          {% for block in section.blocks %}
+            {% if block.type == 'shop_link' %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.label }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <!-- About Column -->
+      <div class="cus-f-footer-column">
+        <h3>{{ section.settings.about_heading | default: 'About' }}</h3>
+        <ul>
+          {% for block in section.blocks %}
+            {% if block.type == 'about_link' %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.label }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <!-- What is Collagen Column -->
+      <div class="cus-f-footer-column">
+        <h3>{{ section.settings.collagen_heading | default: 'What is Collagen?' }}</h3>
+        <ul>
+          {% for block in section.blocks %}
+            {% if block.type == 'collagen_link' %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.label }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <!-- Reviews Column -->
+      <div class="cus-f-footer-column">
+        <h3>{{ section.settings.reviews_heading | default: 'Reviews' }}</h3>
+        <ul>
+          {% for block in section.blocks %}
+            {% if block.type == 'reviews_link' %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.label }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <!-- Blog Column -->
+      <div class="cus-f-footer-column">
+        <h3>{{ section.settings.blog_heading | default: 'Blog' }}</h3>
+        <ul>
+          {% for block in section.blocks %}
+            {% if block.type == 'blog_link' %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.label }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+   <div class="cus-f-footer-bottom">
+      <div class="cus-f-footer-tagline">
+        {{ section.settings.tagline | default: 'Premium wellness, reimagined' }}
+      </div>
+      
+      {% if section.settings.show_reviews and section.settings.image_review %}
+        <div class="cus-f-footer-reviews">
+           <img src="{{ section.settings.image_review | img_url: '200x' }}" 
+               alt="Customer Reviews" 
+               class="cus-f-review-image"
+               loading="lazy">
+        </div>
+      {% endif %}
+    </div>
+    
+    <!-- Footer Meta -->
+    <div class="cus-f-footer-meta">
+      <div class="cus-f-copyright">
+        <p>© {{ 'now' | date: '%Y' }} {{ section.settings.company_name | default: 'Feel Holdings Limited' }}. All rights reserved.</p>
+        <p>{{ section.settings.address | default: 'Uncommon Holborn, 91-97 High Holborn, London, WC1V 6DF, UK' }}</p>
+      </div>
+      
+      <div class="cus-f-footer-links">
+        <a href="{{ section.settings.privacy_policy_url | default: '/policies/privacy-policy' }}">Privacy policy</a>
+        <a href="{{ section.settings.shipping_returns_url | default: '/policies/shipping-policy' }}">Shipping and returns</a>
+        <a href="{{ section.settings.terms_service_url | default: '/policies/terms-of-service' }}">Terms of service</a>
+      </div>
+      
+      {% if section.settings.show_payment_icons %}
+        <div class="cus-f-payment-icons">
+            <img src="{{ section.settings.image_payment | img_url: '200x' }}" 
+               alt="Payment Icon" 
+               loading="lazy">
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "EVOQ Footer",
+  "settings": [
+   {
+      "type": "image_picker",
+      "id": "image_payment",
+      "label": "Payment Image"
+    },
+     {
+      "type": "image_picker",
+      "id": "image_review",
+      "label": "Review Image"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "EVOQ"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "label": "Enable Newsletter Signup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Newsletter Input Placeholder",
+      "default": "Your Email"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_text",
+      "label": "Newsletter Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "shop_heading",
+      "label": "Shop Column Heading",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "about_heading",
+      "label": "About Column Heading",
+      "default": "About"
+    },
+    {
+      "type": "text",
+      "id": "collagen_heading",
+      "label": "Collagen Column Heading",
+      "default": "What is Collagen?"
+    },
+    {
+      "type": "text",
+      "id": "reviews_heading",
+      "label": "Reviews Column Heading",
+      "default": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "blog_heading",
+      "label": "Blog Column Heading",
+      "default": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Footer Tagline",
+      "default": "Premium wellness, reimagined"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show Customer Reviews",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review Count",
+      "default": "141"
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company Name",
+      "default": "Feel Holdings Limited"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Company Address",
+      "default": "Uncommon Holborn, 91-97 High Holborn, London, WC1V 6DF, UK"
+    },
+    {
+      "type": "url",
+      "id": "privacy_policy_url",
+      "label": "Privacy Policy URL"
+    },
+    {
+      "type": "url",
+      "id": "shipping_returns_url",
+      "label": "Shipping and Returns URL"
+    },
+    {
+      "type": "url",
+      "id": "terms_service_url",
+      "label": "Terms of Service URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show Payment Icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "shop_link",
+      "name": "Shop Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Link Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "about_link",
+      "name": "About Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Link Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "collagen_link",
+      "name": "Collagen Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Link Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "reviews_link",
+      "name": "Reviews Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Link Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "blog_link",
+      "name": "Blog Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Link Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "EVOQ Footer",
+      "blocks": [
+        {
+          "type": "shop_link",
+          "settings": {
+            "label": "All Products",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "shop_link",
+          "settings": {
+            "label": "Bundle & Save",
+            "link": "/collections/bundles"
+          }
+        },
+        {
+          "type": "shop_link",
+          "settings": {
+            "label": "Rewards & Points",
+            "link": "/pages/rewards"
+          }
+        },
+        {
+          "type": "shop_link",
+          "settings": {
+            "label": "Refer a Friend",
+            "link": "/pages/referrals"
+          }
+        },
+        {
+          "type": "about_link",
+          "settings": {
+            "label": "Our Story",
+            "link": "/pages/about"
+          }
+        },
+        {
+          "type": "about_link",
+          "settings": {
+            "label": "Our mission",
+            "link": "/pages/mission"
+          }
+        },
+        {
+          "type": "about_link",
+          "settings": {
+            "label": "Contact us",
+            "link": "/pages/contact"
+          }
+        },
+        {
+          "type": "collagen_link",
+          "settings": {
+            "label": "At human body",
+            "link": "/pages/collagen-body"
+          }
+        },
+        {
+          "type": "collagen_link",
+          "settings": {
+            "label": "The helix structure",
+            "link": "/pages/helix-structure"
+          }
+        },
+        {
+          "type": "collagen_link",
+          "settings": {
+            "label": "3 types of collagen",
+            "link": "/pages/collagen-types"
+          }
+        },
+        {
+          "type": "reviews_link",
+          "settings": {
+            "label": "Customer Reviews",
+            "link": "/pages/reviews"
+          }
+        },
+        {
+          "type": "reviews_link",
+          "settings": {
+            "label": "Nutritionist Reviews",
+            "link": "/pages/nutritionist-reviews"
+          }
+        },
+        {
+          "type": "reviews_link",
+          "settings": {
+            "label": "Brand Ambassadors",
+            "link": "/pages/ambassadors"
+          }
+        },
+        {
+          "type": "blog_link",
+          "settings": {
+            "label": "Hair Growth",
+            "link": "/blogs/hair-growth"
+          }
+        },
+        {
+          "type": "blog_link",
+          "settings": {
+            "label": "Skin Beauty",
+            "link": "/blogs/skin-beauty"
+          }
+        },
+        {
+          "type": "blog_link",
+          "settings": {
+            "label": "Muscle gain",
+            "link": "/blogs/muscle-gain"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

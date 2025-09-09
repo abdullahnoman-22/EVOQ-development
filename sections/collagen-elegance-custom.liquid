@@ -1,0 +1,324 @@
+<!-- sections/collagen-elegance.liquid -->
+<div class="cus-e-collagen-elegance-section">
+  <div class="page-width cus-e-product-grid">
+    {% for block in section.blocks %}
+      <div class="cus-e-product-card cus-e-product-card-{{ forloop.index }}" {{ block.shopify_attributes }}>
+        <div class="cus-e-product-card-inner">
+          
+          <!-- Main Image -->
+          {% if block.settings.main_image %}
+            <div class="cus-e-main-image">
+              {{ block.settings.main_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+            </div>
+          {% endif %}
+
+          <!-- Content Overlay -->
+          <div class="cus-e-content-overlay">
+            <!-- Brand Name -->
+            {% if block.settings.brand_name != blank %}
+              <div class="cus-e-brand-name">{{ block.settings.brand_name }}</div>
+            {% endif %}
+            
+            <!-- Main Heading -->
+            {% if block.settings.heading != blank %}
+              <h2 class="cus-e-main-heading">{{ block.settings.heading }}</h2>
+            {% endif %}
+            
+            <!-- Description -->
+            {% if block.settings.description != blank %}
+              <p class="cus-e-description">{{ block.settings.description }}</p>
+            {% endif %}
+            
+            <!-- Shop All Button -->
+            {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}" class="cus-e-shop-all-btn">
+                {{ block.settings.button_text }}
+              </a>
+            {% endif %}
+          </div>
+         
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.cus-e-collagen-elegance-section {
+  padding: 0;
+  margin: 80px auto;
+  max-width: 1300px;
+}
+
+.cus-e-product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  min-height: 600px;
+}
+
+.cus-e-product-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.cus-e-product-card-inner {
+  position: relative;
+  height: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 40px;
+  border-radius: 5px;
+}
+
+/* Background Styling */
+.cus-e-product-card-1 .cus-e-product-card-inner {
+  background: linear-gradient(135deg, #1a3d2e 0%, #2d5a42 100%);
+  color: white;
+}
+
+.cus-e-product-card-2 .cus-e-product-card-inner {
+  background: linear-gradient(135deg, #b8a389 0%, #d4c4a8 100%);
+  color: white;
+}
+
+/* Main Image */
+.cus-e-main-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.cus-e-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content Overlay */
+.cus-e-content-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.cus-e-brand-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.cus-e-main-heading {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #fff;
+  margin: 0;
+}
+
+.cus-e-description {
+  font-size: 16px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.cus-e-shop-all-btn {
+ display: inline-block;
+    background: white;
+    color: #000;
+    padding: 8px 40px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: math-auto;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.cus-e-shop-all-btn:hover {
+  background: #001F5F;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cus-e-product-grid {
+    grid-template-columns: 1fr;
+  }
+  .cus-e-collagen-elegance-section {
+    padding: 0;
+    margin: 60px auto;
+}
+  .cus-e-product-card-inner {
+    min-height: 500px;
+    padding: 20px 20px;
+  }
+  
+  .cus-e-content-overlay {
+    max-width: 100%;
+    padding: 0 20px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  
+  .cus-e-main-heading {
+    font-size: 24px;
+  }
+  
+  .cus-e-description {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cus-e-product-card-inner {
+    min-height: 400px;
+    padding: 0 15px;
+  }
+  
+  .cus-e-main-heading {
+    font-size: 20px;
+  }
+  
+  .cus-e-content-overlay {
+    max-width: 100%;
+    padding: 20px 15px;
+  }
+  .cus-e-brand-name {
+  font-size: 8px;
+  margin-bottom: 0;
+}
+  .cus-e-description {
+  font-size: 10px;
+  line-height: 1.2;
+}
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Add smooth hover effects
+  const productCards = document.querySelectorAll('.cus-e-product-card');
+  
+  productCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      const mainImage = this.querySelector('.cus-e-main-image img');
+      if (mainImage) {
+        mainImage.style.transform = 'scale(1.05)';
+        mainImage.style.transition = 'transform 0.3s ease';
+      }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      const mainImage = this.querySelector('.cus-e-main-image img');
+      if (mainImage) {
+        mainImage.style.transform = 'scale(1)';
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Collagen Elegance",
+  "class": "cus-e-collagen-elegance-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content Settings"
+        },
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name",
+          "default": "SLIGHTLY WORK"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Main Heading",
+          "default": "Elegance in every way"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Collagen supplementation can be a game-changer for skin, joints, and hormonal balance — I often recommend plant-based"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop All"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "header",
+          "content": "Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Background Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collagen Elegance",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "brand_name": "SLIGHTLY WORK",
+            "heading": "Elegance in every way",
+            "description": "Collagen supplementation can be a game-changer for skin, joints, and hormonal balance — I often recommend plant-based",
+            "button_text": "Shop All"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "brand_name": "SLIGHTLY WORK",
+            "heading": "Elegance in every way",
+            "description": "Collagen supplementation can be a game-changer for skin, joints, and hormonal balance — I often recommend plant-based",
+            "button_text": "Shop All"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
