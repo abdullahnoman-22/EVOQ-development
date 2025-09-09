@@ -19,7 +19,7 @@
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
-    <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
+    <div id="CartDrawer-Overlay" class="cart-drawer__overlay" onclick="this.closest('cart-drawer').close()"></div>
     <div
       class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
       role="dialog"
@@ -559,3 +559,35 @@
     </div>
   </div>
 </cart-drawer>
+
+<script>
+  // Enhanced cart drawer closing functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const cartDrawer = document.querySelector('cart-drawer');
+    const cartDrawerInner = document.querySelector('.drawer__inner');
+    
+    if (cartDrawer) {
+      // Close drawer when clicking outside the drawer content
+      cartDrawer.addEventListener('click', function(e) {
+        // If the click is on the cart-drawer element itself (background/overlay) but not on the drawer content
+        if (e.target === cartDrawer || e.target.classList.contains('cart-drawer__overlay')) {
+          cartDrawer.close();
+        }
+      });
+      
+      // Prevent closing when clicking inside the drawer content
+      if (cartDrawerInner) {
+        cartDrawerInner.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      }
+      
+      // Close drawer with ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && cartDrawer.hasAttribute('open')) {
+          cartDrawer.close();
+        }
+      });
+    }
+  });
+</script>

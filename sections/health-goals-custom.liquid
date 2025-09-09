@@ -1,6 +1,6 @@
 <!-- sections/health-goals.liquid -->
 <div class="cus-health-goals-section">
-  <div class="cus-health-goals-container">
+  <div class="page-width cus-health-goals-container">
    
     {% if section.settings.heading != blank %}
       <h2 class="cus-health-goals-heading">
@@ -145,11 +145,10 @@
 
 .cus-health-goals-section {
   background: #E2EDFA;
-  padding: 30px 20px;
+  padding: 30px 0;
 }
 
 .cus-health-goals-container {
-  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -207,7 +206,8 @@
   margin: 0;
   line-height: 1.4;
 }
-  .cus-health-card-title:hover {
+
+.cus-health-card-title:hover {
   font-size: 16px;
   font-weight: 600;
 }
@@ -230,7 +230,7 @@
   padding: 8px 30px;
   border-radius: 8px;
   text-decoration: none;
-  font-weight: 00;
+  font-weight: 400;
   font-size: 16px;
   border: 2px solid #001F5F;
   cursor: pointer;
@@ -242,29 +242,47 @@
   color: #fff;
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive - Keep same layout as desktop, just smaller cards */
 @media (max-width: 768px) {
   .cus-health-goals-section {
-    padding: 40px 15px;
+    padding: 30px 15px;
   }
  
   .cus-health-goals-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
+    grid-template-columns: repeat(4, 95px);
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .cus-health-goal-card {
+    width: 95px;
+    height: 109px;
+    border-radius: 7px;
+    border: 1px solid transparent;
+  }
+  
+  .cus-health-card-image {
+    height: 60px;
   }
  
   .cus-health-card-content {
-    padding: 20px;
+    padding: 8px 4px;
   }
- 
-  .cus-health-goals-heading {
-    font-size: 24px;
-    margin-bottom: 30px;
+  
+  .cus-health-card-title {
+    font-size: 10px;
+    line-height: 1.2;
   }
- 
-  .cus-health-bundle-button {
-    padding: 12px 28px;
-    font-size: 14px;
+  
+  .cus-health-card-title:hover {
+    font-size: 10px;
+    font-weight: 600;
+  }
+  
+  .cus-health-card-description {
+    font-size: 8px;
+    margin: 4px 0 0 0;
+    line-height: 1.3;
   }
 }
 
@@ -272,17 +290,43 @@
   .cus-health-goals-section {
     padding: 30px 10px;
   }
+  
+  .cus-health-goals-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .cus-health-goal-card {
+    width: 95px;
+    height: 109px;
+    border-radius: 7px;
+    border: 1px solid transparent;
+  }
+  
+  .cus-health-card-image {
+    height: 60px;
+  }
  
   .cus-health-card-content {
-    padding: 16px;
+    padding: 8px 4px;
   }
- 
+  
   .cus-health-card-title {
-    font-size: 16px;
+    font-size: 10px;
+    line-height: 1.2;
   }
- 
+  
+  .cus-health-card-title:hover {
+    font-size: 10px;
+    font-weight: 600;
+  }
+  
   .cus-health-card-description {
-    font-size: 13px;
+    font-size: 8px;
+    margin: 4px 0 0 0;
+    line-height: 1.3;
   }
 }
 </style>

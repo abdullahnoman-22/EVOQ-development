@@ -1,0 +1,1033 @@
+{% schema %}
+{
+  "name": "Bundle Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Bundle Builder"
+    },
+    {
+      "type": "range",
+      "id": "discount_2_items",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Discount for 2 items",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "discount_3_items",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Discount for 3 items",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "discount_4_items",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Discount for 4 items",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "discount_5_items",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Discount for 5+ items",
+      "default": 25
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product Selection"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product (optional)",
+          "info": "Choose a product from your store, or use custom options below"
+        },
+        {
+          "type": "text",
+          "id": "variant_id",
+          "label": "Variant ID (optional)",
+          "info": "Paste the variant ID you want to add. If empty, first available variant will be used."
+        },
+        {
+          "type": "header",
+          "content": "Custom Overrides"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Product Image",
+          "info": "Override the product's featured image with a custom image"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title",
+          "info": "Override the product title with custom text"
+        },
+        {
+          "type": "url",
+          "id": "custom_link",
+          "label": "Custom Link",
+          "info": "Override where the product links to (e.g., external site, custom page)"
+        },
+        {
+          "type": "number",
+          "id": "custom_price",
+          "label": "Custom Price",
+          "info": "Override the product price with a custom price"
+        },
+        {
+          "type": "text",
+          "id": "currency",
+          "label": "Currency Symbol",
+          "default": "$"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Bundle Products"
+    }
+  ]
+}
+{% endschema %}
+
+<section id="cus-bp-bundle-builder" class="page-width cus-bp-bundle-builder" data-section-id="{{ section.id }}">
+  {% if section.settings.section_title != blank %}
+    <h2 class="cus-bp-bundle-title">{{ section.settings.section_title }}</h2>
+  {% endif %}
+  
+  <div class="cus-bp-bundle-container">
+    <div class="cus-bp-products-section">
+      <div class="cus-bp-products-grid">
+        {% for block in section.blocks %}
+  {% assign product = all_products[block.settings.product] %}
+  {% if product != blank or block.settings.custom_image != blank %}
+
+    {%- comment -%} Product Image {%- endcomment -%}
+    {% if block.settings.custom_image != blank %}
+      {% assign product_image = block.settings.custom_image %}
+    {% elsif product.featured_image %}
+      {% assign product_image = product.featured_image %}
+    {% else %}
+      {% assign product_image = null %}
+    {% endif %}
+
+    {%- comment -%} Product Title {%- endcomment -%}
+    {% if block.settings.custom_title != blank %}
+      {% assign product_title = block.settings.custom_title %}
+    {% elsif product.title %}
+      {% assign product_title = product.title %}
+    {% else %}
+      {% assign product_title = "Product Name" %}
+    {% endif %}
+
+    {%- comment -%} Product Link {%- endcomment -%}
+    {% if block.settings.custom_link != blank %}
+      {% assign product_link = block.settings.custom_link %}
+    {% elsif product.url %}
+      {% assign product_link = product.url %}
+    {% else %}
+      {% assign product_link = "#" %}
+    {% endif %}
+
+    {%- comment -%} Product Price {%- endcomment -%}
+    {% if block.settings.custom_price and block.settings.custom_price > 0 %}
+      {% assign product_price = block.settings.custom_price %}
+      {% assign display_price = product_price %}
+    {% elsif product.price %}
+      {% assign product_price = product.price %}
+      {% assign display_price = product.price | money_without_currency %}
+    {% else %}
+      {% assign product_price = 0 %}
+      {% assign display_price = 0 %}
+    {% endif %}
+
+    {% assign currency_symbol = block.settings.currency | default: '$' %}
+
+    {%- comment -%} Variant selection {%- endcomment -%}
+    {% assign variant_id = block.settings.variant_id | plus: 0 %}
+    {% assign selected_variant = product.variants | where: "id", variant_id | first %}
+    {% if selected_variant == blank %}
+      {% assign selected_variant = product.selected_or_first_available_variant %}
+    {% endif %}
+
+    <div data-block-id="{{ selected_variant.id }}" class="cus-bp-product-card" {{ block.shopify_attributes }}>
+      <div class="cus-bp-product-content">
+        <div class="cus-bp-product-image-with-text">
+          <div class="cus-bp-product-image">
+            {% if product_image %}
+              {% if block.settings.custom_image != blank %}
+                <img src="{{ product_image | img_url: '120x120' }}" alt="{{ block.settings.custom_image.alt | default: product_title }}" loading="lazy">
+              {% else %}
+                <img src="{{ product_image | img_url: '120x120' }}" alt="{{ product_image.alt | default: product_title }}" loading="lazy">
+              {% endif %}
+            {% else %}
+              <div class="cus-bp-product-placeholder">📦</div>
+            {% endif %}
+          </div>
+          <div class="cus-bp-product-price-with-title">
+            <h3 class="cus-bp-product-title">{{ product_title }}</h3>
+            <div class="cus-bp-product-price">
+              <span class="cus-bp-currency">{{ currency_symbol }}</span> 
+              {{ display_price }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cus-bp-product-add-button">
+        {% if product and selected_variant.available %}
+          <button 
+            class="cus-bp-btn-primary cus-bp-btn-add-to-bundle" 
+            data-id="{{ product.id }}" 
+            data-title="{{ product_title | escape }}" 
+            data-price="{{ display_price | remove: ',' }}"
+            data-handle="{{ product.handle }}"
+            data-variant-id="{{ selected_variant.id }}">
+            Add to cart
+          </button>
+        {% elsif block.settings.custom_link != blank %}
+          <a href="{{ product_link }}" class="cus-bp-btn-primary cus-bp-btn-add-to-bundle">
+            Add to cart
+          </a>
+        {% else %}
+          <button class="cus-bp-btn-primary cus-bp-btn-add-to-bundle" disabled>
+            Unavailable
+          </button>
+        {% endif %}
+        
+        <a href="{{ product_link }}" class="cus-bp-btn-secondary">Learn More</a>
+
+        {% if product and selected_variant.available %}
+          <div class="cus-bp-quantity-controls" style="display: none;">
+            <button class="cus-bp-quantity-btn cus-bp-minus" data-variant-id="{{ selected_variant.id }}">-</button>
+            <span class="cus-bp-quantity-display">1</span>
+            <button class="cus-bp-quantity-btn cus-bp-plus" data-variant-id="{{ selected_variant.id }}">+</button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+
+      </div>
+    </div>
+
+    <div class="cus-bp-bundle-sidebar">
+      <div class="cus-bp-discount-tiers">
+        <div class="cus-bp-tier">
+          <span class="cus-bp-tier-number">2 Items</span>
+          <div class="cus-bp-tier-discount">{{ section.settings.discount_2_items }}% OFF</div>
+        </div>
+        <div class="cus-bp-tier">
+          <span class="cus-bp-tier-number">3 Items</span>
+          <div class="cus-bp-tier-discount">{{ section.settings.discount_3_items }}% OFF</div>
+        </div>
+        <div class="cus-bp-tier">
+          <span class="cus-bp-tier-number">4 Items</span>
+          <div class="cus-bp-tier-discount">{{ section.settings.discount_4_items }}% OFF</div>
+        </div>
+        <div class="cus-bp-tier">
+          <span class="cus-bp-tier-number">5+ Items</span>
+          <div class="cus-bp-tier-discount">{{ section.settings.discount_5_items }}% OFF</div>
+        </div>
+      </div>
+
+      <div class="cus-bp-bundle-steps">
+        <div class="cus-bp-step">
+          <div class="cus-bp-step-number">+</div>
+          <div class="cus-bp-step-text">Add 1 Product</div>
+          <div class="cus-bp-step-discount"></div>
+        </div>
+        <div class="cus-bp-step">
+          <div class="cus-bp-step-number">+</div>
+          <div class="cus-bp-step-text">Add 2 Products</div>
+          <div class="cus-bp-step-discount">Get {{ section.settings.discount_2_items }}% OFF</div>
+        </div>
+        <div class="cus-bp-step">
+          <div class="cus-bp-step-number">+</div>
+          <div class="cus-bp-step-text">Add 3 Products</div>
+          <div class="cus-bp-step-discount">Get {{ section.settings.discount_3_items }}% OFF</div>
+        </div>
+        <div class="cus-bp-step">
+          <div class="cus-bp-step-number">+</div>
+          <div class="cus-bp-step-text">Add 4 Products</div>
+          <div class="cus-bp-step-discount">Get {{ section.settings.discount_4_items }}% OFF</div>
+        </div>
+        <div class="cus-bp-step">
+          <div class="cus-bp-step-number">+</div>
+          <div class="cus-bp-step-text">Add 5 Products</div>
+          <div class="cus-bp-step-discount">Get {{ section.settings.discount_5_items }}% OFF</div>
+        </div>
+      </div>
+      {% comment %}
+      <div class="cus-bp-delivery-section">
+        <label class="cus-bp-delivery-label" for="delivery-frequency">Delivery frequency:</label>
+        <select class="cus-bp-delivery-select" id="delivery-frequency">
+          <option value="2">Every 2 weeks</option>
+          <option value="4" selected>Every 4 weeks</option>
+          <option value="6">Every 6 weeks</option>
+        </select>
+      </div>
+      {% endcomment %}
+      <ul class="cus-bp-selected-products" id="selected-products">
+        <!-- Selected products will appear here -->
+      </ul>
+
+      <div class="cus-bp-pricing-summary">
+        <div class="cus-bp-pricing-row">
+          <span>Your custom discount:</span>
+          <span id="discount-percent">0%</span>
+        </div>
+        <div class="cus-bp-pricing-row">
+          <span>Discount:</span>
+          <span id="discount-amount">$0.00</span>
+        </div>
+        <div class="cus-bp-pricing-row cus-bp-total">
+          <span>Bundle price:</span>
+          <span id="bundle-total">$0.00</span>
+        </div>
+      </div>
+
+      <button class="cus-bp-checkout-btn" id="bundle-checkout">CHECKOUT SECURELY</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cus-bp-bundle-builder {
+    margin: 110px auto;
+  }
+
+  .cus-bp-bundle-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #1f2937;
+  }
+
+  .cus-bp-bundle-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+  }
+
+  .cus-bp-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .cus-bp-product-card {
+    border-radius: 12px;
+    padding: 20px;
+    text-align: start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .cus-bp-product-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cus-bp-product-image-with-text {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    align-items: flex-start;
+    flex: 1;
+  }
+  
+  .cus-bp-product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .cus-bp-product-card.cus-bp-selected {
+    border-color: #344054;
+    background: #f0fdf4;
+  }
+
+  .cus-bp-product-image {
+    width: 50%;
+    height: 120px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .cus-bp-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .cus-bp-product-placeholder {
+    font-size: 48px;
+    color: #9ca3af;
+  }
+
+  .cus-bp-product-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #101828;
+    line-height: 30px;
+    margin-top: 0;
+  }
+  
+  .cus-bp-product-price-with-title {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cus-bp-product-price {
+    font-size: 32px;
+    font-weight: 600;
+    color: #101828;
+    line-height: 30px;
+    margin-top: auto;
+  }
+
+  .cus-bp-currency {
+    font-size: 24px;
+    color: #101828;
+    line-height: 30px;
+  }
+
+  .cus-bp-product-add-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    border: 1px solid #001F5F;
+    border-radius: 6px;
+    position: relative;
+    flex-shrink: 0;
+    height: 44px;
+  }
+
+  .cus-bp-product-card.cus-bp-selected .cus-bp-product-add-button {
+    border: none;
+  }
+
+  .cus-bp-btn-primary {
+    background: #001F5F;
+    color: white;
+    border: none;
+    padding: 0;
+    font-weight: 600;
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+    transition: background 0.2s ease;
+    text-decoration: none;
+    line-height: 100%;
+    font-size: 16px;
+    border-radius: 6px 0 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cus-bp-btn-primary:hover {
+    background: #fafafa;
+    color: #001F5F;
+  }
+
+  .cus-bp-btn-primary:disabled {
+    background: #9ca3af;
+    color: #666;
+    cursor: not-allowed;
+  }
+
+  .cus-bp-btn-secondary {
+    background: white;
+    color: #001F5F;
+    border: none;
+    padding: 0;
+    font-weight: 400;
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+    transition: background 0.2s ease;
+    text-decoration: none;
+    line-height: 100%;
+    font-size: 16px;
+    border-radius: 0 6px 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cus-bp-btn-secondary:hover {
+    background: #001F5F;
+    color: white;
+  }
+
+  /* Quantity Controls Styling */
+  .cus-bp-quantity-controls {
+    display: none;
+    align-items: center;
+    background: white;
+    border: 1px solid #001F5F;
+    border-radius: 6px;
+    gap: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    z-index: 10;
+  }
+
+  .cus-bp-quantity-btn {
+    width: 50%;
+    height: 100%;
+    border: none;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    color: #344054;
+    transition: all 0.2s ease;
+  }
+
+  .cus-bp-quantity-btn.cus-bp-minus {
+    color: #ef4444;
+    border-radius: 6px 0 0 6px;
+  }
+
+  .cus-bp-quantity-btn.cus-bp-plus {
+    color: #10b981;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .cus-bp-quantity-display {
+    min-width: 40px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: #374151;
+    background: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #d1d5db;
+    border-right: 1px solid #d1d5db;
+  }
+
+  .cus-bp-bundle-sidebar {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+  }
+
+  .cus-bp-discount-tiers {
+    background: #001F5F;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  .cus-bp-tier {
+    text-align: center;
+    flex: 1;
+  }
+
+  .cus-bp-tier-number {
+    font-weight: bold;
+    display: block;
+  }
+
+  .cus-bp-tier-discount {
+    font-size: 10px;
+    margin-top: 2px;
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 4px;
+  }
+
+  .cus-bp-bundle-steps {
+    margin-bottom: 20px;
+  }
+
+  .cus-bp-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .cus-bp-step-number {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #344054;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.2s ease;
+  }
+
+  .cus-bp-step-number.cus-bp-active {
+    background: #10b981;
+    color: white;
+  }
+
+  .cus-bp-step-text {
+    flex: 1;
+    color: #344054;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .cus-bp-step-discount {
+    color: #ef4444;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  span#discount-amount {
+    color: #D92D20;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .cus-bp-delivery-section {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cus-bp-delivery-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+    display: block;
+  }
+  
+  .cus-bp-delivery-select {
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: white;
+    font-size: 14px;
+  }
+
+  .cus-bp-selected-products {
+    list-style: none;
+    margin-bottom: 15px;
+    padding: 0;
+  }
+
+  .cus-bp-selected-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 14px;
+  }
+
+  .cus-bp-selected-product:last-child {
+    border-bottom: none;
+  }
+
+  .cus-bp-remove-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .cus-bp-remove-btn:hover {
+    background: #dc2626;
+  }
+
+  .cus-bp-pricing-summary {
+    margin-bottom: 20px;
+  }
+
+  .cus-bp-pricing-row {
+    display: flex;
+    justify-content: space-between;
+    color: #344054;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+.cus-bp-pricing-row:last-child {
+    border-bottom: none;
+}
+  .cus-bp-pricing-row.cus-bp-total {
+    font-weight: 700;
+    font-size: 18px;
+    color: #344054;
+    padding-top: 8px;
+  }
+
+  .cus-bp-checkout-btn {
+    background: #001F5F;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background 0.2s ease;
+  }
+
+  .cus-bp-checkout-btn:hover {
+    background: #001F5F;
+  }
+
+  .cus-bp-checkout-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    .cus-bp-bundle-builder {
+    margin: 56px auto;
+  }
+    .cus-bp-bundle-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .cus-bp-products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .cus-bp-bundle-sidebar {
+    padding: 0;
+    }
+
+    .cus-bp-selected-product{
+    padding: 0 15px;
+    }
+    .cus-bp-discount-tiers {
+      flex-direction: row;
+      gap: 8px;
+      border-radius: 8px 8px 0 0;
+    }
+    .cus-bp-bundle-title {
+      font-size: 2rem;
+    }
+    .cus-bp-bundle-steps {
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+    .cus-bp-pricing-summary{
+    padding: 0 20px;
+  }
+  }
+</style>
+
+<script>
+(function() {
+  const sectionId = '{{ section.id }}';
+  const section = document.querySelector(`[data-section-id="${sectionId}"]`);
+  
+  if (!section) return;
+
+  let selectedProducts = [];
+  const discountRates = {
+    2: {{ section.settings.discount_2_items | divided_by: 100.0 }},
+    3: {{ section.settings.discount_3_items | divided_by: 100.0 }},
+    4: {{ section.settings.discount_4_items | divided_by: 100.0 }},
+    5: {{ section.settings.discount_5_items | divided_by: 100.0 }}
+  };
+  const currency = '$';
+
+  // Initialize event listeners
+  section.querySelectorAll('.cus-bp-btn-add-to-bundle').forEach(button => {
+    // Only add event listener if it's a button (not an anchor)
+    if (button.tagName === 'BUTTON') {
+      button.addEventListener('click', handleAddToBundle);
+    }
+  });
+
+  section.querySelectorAll('.cus-bp-plus').forEach(button => {
+    button.addEventListener('click', handleQuantityIncrease);
+  });
+
+  section.querySelectorAll('.cus-bp-minus').forEach(button => {
+    button.addEventListener('click', handleQuantityDecrease);
+  });
+
+  section.querySelector('#bundle-checkout').addEventListener('click', handleBundleCheckout);
+
+  function handleAddToBundle(e) {
+    const button = e.target;
+    const id = button.dataset.id;
+    const title = button.dataset.title;
+    const price = parseFloat(button.dataset.price);
+    const variantId = button.dataset.variantId;
+    const handle = button.dataset.handle;
+
+    // Only proceed if we have valid product data
+    if (!id || !variantId) return;
+
+    // Add product with quantity 1, using variantId as unique identifier
+    selectedProducts.push({ id, title, price, variantId, handle, quantity: 1 });
+    
+    // Reset quantity display to 1 before showing quantity controls
+    updateQuantityDisplay(variantId, 1);
+    
+    // Toggle UI: hide add button, show quantity controls (using variantId)
+    toggleProductUI(variantId, true);
+    updateBundleDisplay();
+  }
+
+  function handleQuantityIncrease(e) {
+    const variantId = e.target.dataset.variantId;
+    const product = selectedProducts.find(p => p.variantId === variantId);
+    
+    if (product) {
+      product.quantity += 1;
+      updateQuantityDisplay(variantId, product.quantity);
+      updateBundleDisplay();
+    }
+  }
+
+  function handleQuantityDecrease(e) {
+    const variantId = e.target.dataset.variantId;
+    const product = selectedProducts.find(p => p.variantId === variantId);
+    
+    if (product) {
+      if (product.quantity > 1) {
+        product.quantity -= 1;
+        updateQuantityDisplay(variantId, product.quantity);
+        updateBundleDisplay();
+      } else {
+        // Remove product if quantity becomes 0
+        removeFromBundle(variantId);
+      }
+    }
+  }
+
+  function toggleProductUI(variantId, showQuantity) {
+    const card = section.querySelector(`[data-block-id="${variantId}"]`);
+    if (!card) return;
+    
+    const addButton = card.querySelector('.cus-bp-btn-add-to-bundle');
+    const learnMoreButton = card.querySelector('.cus-bp-btn-secondary');
+    const quantityControls = card.querySelector('.cus-bp-quantity-controls');
+
+    if (showQuantity && quantityControls) {
+      // Hide the individual buttons and show quantity controls
+      addButton.style.display = 'none';
+      learnMoreButton.style.display = 'none';
+      quantityControls.style.display = 'flex';
+      card.classList.add('cus-bp-selected');
+    } else {
+      // Show the individual buttons and hide quantity controls
+      addButton.style.display = 'flex';
+      learnMoreButton.style.display = 'flex';
+      if (quantityControls) {
+        quantityControls.style.display = 'none';
+      }
+      card.classList.remove('cus-bp-selected');
+    }
+  }
+
+  function updateQuantityDisplay(variantId, quantity) {
+    const card = section.querySelector(`[data-block-id="${variantId}"]`);
+    if (!card) return;
+    
+    const quantityDisplay = card.querySelector('.cus-bp-quantity-display');
+    if (quantityDisplay) {
+      quantityDisplay.textContent = quantity;
+    }
+  }
+
+  function removeFromBundle(variantId) {
+    selectedProducts = selectedProducts.filter(p => p.variantId !== variantId);
+    toggleProductUI(variantId, false);
+    updateBundleDisplay();
+  }
+
+  function updateBundleDisplay() {
+    const selectedList = section.querySelector('#selected-products');
+    const discountPercent = section.querySelector('#discount-percent');
+    const discountAmount = section.querySelector('#discount-amount');
+    const bundleTotal = section.querySelector('#bundle-total');
+    const checkoutBtn = section.querySelector('#bundle-checkout');
+
+    // Update selected products list
+    selectedList.innerHTML = '';
+    selectedProducts.forEach(product => {
+      const li = document.createElement('li');
+      li.className = 'cus-bp-selected-product';
+      const productTotal = product.price * product.quantity;
+      
+      // Create remove button with event listener instead of inline onclick
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'cus-bp-remove-btn';
+      removeBtn.textContent = '×';
+      removeBtn.addEventListener('click', () => removeFromBundle(product.variantId));
+      
+      // Create product info span
+      const productInfo = document.createElement('span');
+      productInfo.textContent = `${product.title} x${product.quantity} - ${currency}${productTotal.toFixed(2)}`;
+      
+      // Append elements to list item
+      li.appendChild(productInfo);
+      li.appendChild(removeBtn);
+      selectedList.appendChild(li);
+    });
+
+    // Calculate totals based on total quantity
+    const totalQuantity = selectedProducts.reduce((sum, p) => sum + p.quantity, 0);
+    const subtotal = selectedProducts.reduce((sum, p) => sum + (p.price * p.quantity), 0);
+    
+    let discountRate = 0;
+    if (totalQuantity >= 5) discountRate = discountRates[5];
+    else if (totalQuantity >= 2) discountRate = discountRates[totalQuantity] || 0;
+
+    const discount = subtotal * discountRate;
+    const total = subtotal - discount;
+
+    // Update display
+    discountPercent.textContent = `${Math.round(discountRate * 100)}%`;
+    discountAmount.textContent = `${currency}${discount.toFixed(2)}`;
+    bundleTotal.textContent = `${currency}${total.toFixed(2)}`;
+
+    // Update step indicators
+    section.querySelectorAll('.cus-bp-step-number').forEach((step, index) => {
+      if (index < totalQuantity) {
+        step.classList.add('cus-bp-active');
+      } else {
+        step.classList.remove('cus-bp-active');
+      }
+    });
+
+    // Update checkout button
+    checkoutBtn.disabled = selectedProducts.length === 0;
+  }
+
+  async function handleBundleCheckout() {
+    if (selectedProducts.length === 0) return;
+
+    // Show loading state
+    const checkoutBtn = section.querySelector('#bundle-checkout');
+    const originalText = checkoutBtn.textContent;
+    checkoutBtn.textContent = 'Processing...';
+    checkoutBtn.disabled = true;
+
+    try {
+      // First, clear the cart to ensure only bundle products are included
+      await fetch('/cart/clear.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      // Add bundle products to cart with quantities
+      const formData = {
+        'items': selectedProducts.map(product => ({
+          'id': product.variantId,
+          'quantity': product.quantity
+        }))
+      };
+
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        // Redirect directly to checkout
+        window.location.href = '/checkout';
+      } else {
+        throw new Error('Failed to add products to cart');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error processing checkout. Please try again.');
+      
+      // Reset button state
+      checkoutBtn.textContent = originalText;
+      checkoutBtn.disabled = false;
+    }
+  }
+
+  // Initialize the display
+  updateBundleDisplay();
+
+})();
+</script>

@@ -54,38 +54,40 @@
 .cus-faq-section {
   position: relative;
   overflow: hidden;
-  margin: 0 auto 80px;
+  margin: 110px auto;
 }
 
 .cus-faq-container {
   
-  background: {{ section.settings.background_gradient | default: 'linear-gradient(135deg, #1a365d 0%, #2d5a8a 100%)' }};
-  max-width: 1300px;
+  background: #062662;
   margin: 0 auto;
-  padding: 0 0 0 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
   align-items: center;
+  border-radius: 5px;
 }
 
 .cus-faq-content {
   color: {{ section.settings.text_color | default: '#ffffff' }};
-  padding: 20px 0 50px;
+  padding: 20px 0 10px;
+
 }
 
 .cus-faq-title {
-  font-size: {{ section.settings.title_size | default: '2.5rem' }};
-  margin-bottom: 40px;
-  line-height: 1.2;
-  color: {{ section.settings.title_color | default: '#ffffff' }};
-  padding: 0 24px
+    font-size: 24px;
+    margin-bottom: 20px;
+    line-height: 44px;
+    color: #ffffff;
+    padding: 0 24px;
+    font-family: 'Inter' !important;
+
 }
 
 .cus-faq-accordion {
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding-bottom: 30px;
 }
 
 .cus-faq-item {
@@ -118,7 +120,7 @@
   background: none;
   border: none;
   color: {{ section.settings.text_color | default: '#ffffff' }};
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   text-align: left;
   cursor: pointer;
@@ -126,6 +128,8 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 28px;
+
 }
 .cus-faq-icon {
   font-size: 1.5rem;
@@ -154,8 +158,8 @@
 .cus-faq-answer-content {
   padding: 0 24px 24px;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 24px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -180,6 +184,7 @@
     max-width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 0 5px 5px 0;
 }
 
 .cus-faq-placeholder-image {
@@ -203,16 +208,16 @@
     display: flex;
     align-items: center;
     flex-direction: column-reverse;
-    gap: 40px;
+    gap: 0;
 }
   .cus-faq-title {
-    font-size: 2rem;
+    font-size: 24px;
     margin-bottom: 30px;
   }
   
   .cus-faq-question {
     padding: 16px 20px;
-    font-size: 1rem;
+    font-size: 18px;
   }
   
   .cus-faq-answer-content {
@@ -220,22 +225,18 @@
   }
   .cus-faq-content {
     color: #ffffff;
-    margin-bottom: 30px;
+    margin-bottom: 0;
+}
+.cus-faq-section {
+    margin: 56px auto 56px;
 }
 }
 
 @media (max-width: 480px) {
-  .cus-faq-section {
-    padding: 40px 0;
-  }
-  
   .cus-faq-container {
     padding: 0;
   }
   
-  .cus-faq-title {
-    font-size: 1.75rem;
-  }
 }
 </style>
 

@@ -1,6 +1,6 @@
 <!-- Brand Logo Auto-Slider Section -->
 <div class="brand-slider-container" style="background: {{ section.settings.background_color }};">
-  <div class="brand-slider-wrapper">
+  <div class="page-width brand-slider-wrapper">
     <div class="brand-slider-track" style="animation-duration: {{ section.settings.animation_speed }}s;">
       {% for block in section.blocks %}
         {% if block.settings.logo %}
@@ -35,7 +35,6 @@
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  max-width: 1200px;
   overflow: hidden;
   margin: 0 auto;
 }

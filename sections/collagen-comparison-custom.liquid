@@ -2,10 +2,7 @@
   Collagen Comparison Table Section
   Save as: sections/collagen-comparison.liquid
 {% endcomment %}
-
-<div class="collagen-comparison-section">
-  <div class="container">
-    {% if section.settings.heading != blank %}
+ {% if section.settings.heading != blank %}
       <h2 class="comparison-heading">{{ section.settings.heading }}</h2>
     {% endif %}
     
@@ -13,8 +10,11 @@
       <p class="comparison-subheading">{{ section.settings.subheading }}</p>
     {% endif %}
 
+<div class="collagen-comparison-section">
+  <div class="page-width container">
+   
     <div class="comparison-table-wrapper">
-      <table class="collagen-comparison-table">
+      <table id="collagenTable" class="collagen-comparison-table">
         <thead>
           <tr>
             <th class="feature-column">{{ section.settings.feature_column_title | default: '' }}</th>
@@ -22,7 +22,16 @@
               <div class="product-header">
                 <span class="product-name">{{ section.settings.pro_collagen_name | default: '' }}</span>
                 <span class="product-icon">{{ section.settings.pro_collagen_icon | default: '' }}</span>
-                <span class="status-indicator success">✓</span>
+                <span class="status-indicator success"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+<g clip-path="url(#clip0_197_2888)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16 32C7.16485 32 0 24.8351 0 16C0 7.16485 7.16485 0 16 0C24.8351 0 32 7.16485 32 16C32 24.8351 24.8351 32 16 32ZM13.7987 18.8152L23.4002 9.21386C23.7324 8.88151 24.2779 8.88491 24.6069 9.21386L25.6956 10.3026C26.0246 10.6316 26.0246 11.1805 25.6956 11.5093L14.4189 22.7861C14.2172 22.9878 13.9339 23.0672 13.6684 23.0216C13.4867 22.9988 13.3115 22.9191 13.1747 22.7824L6.30539 15.9131C5.97707 15.5848 5.97317 15.0386 6.30539 14.7063L7.39414 13.6175C7.72649 13.2853 8.2686 13.2853 8.60095 13.6175L13.7987 18.8152Z" fill="#48B02C"/>
+</g>
+<defs>
+<clipPath id="clip0_197_2888">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg></span>
               </div>
             </th>
             <th class="product-column marine-collagen">
@@ -47,14 +56,39 @@
               <td class="feature-name">{{ block.settings.feature_name }}</td>
               <td class="pro-value {{ block.settings.pro_status }}">
                 {% if block.settings.pro_status == 'success' %}
-                  <span class="check-icon">✓</span>
+                  <span class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="none">
+<g clip-path="url(#clip0_197_2888)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16 32C7.16485 32 0 24.8351 0 16C0 7.16485 7.16485 0 16 0C24.8351 0 32 7.16485 32 16C32 24.8351 24.8351 32 16 32ZM13.7987 18.8152L23.4002 9.21386C23.7324 8.88151 24.2779 8.88491 24.6069 9.21386L25.6956 10.3026C26.0246 10.6316 26.0246 11.1805 25.6956 11.5093L14.4189 22.7861C14.2172 22.9878 13.9339 23.0672 13.6684 23.0216C13.4867 22.9988 13.3115 22.9191 13.1747 22.7824L6.30539 15.9131C5.97707 15.5848 5.97317 15.0386 6.30539 14.7063L7.39414 13.6175C7.72649 13.2853 8.2686 13.2853 8.60095 13.6175L13.7987 18.8152Z" fill="#48B02C"/>
+</g>
+<defs>
+<clipPath id="clip0_197_2888">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg></span>
                 {% elsif block.settings.pro_status == 'fail' %}
                   <span class="cross-icon">✗</span>
                 {% endif %}
-                {{ block.settings.pro_value }}
+                <span class="pro-value-text">{{ block.settings.pro_value }}</span>
+                {% if block.settings.pro_image != blank %}
+                  <img src="{{ block.settings.pro_image | img_url: 'master' }}" alt="{{ block.settings.pro_value }}">
+                {% endif %}
+                
               </td>
-              <td class="marine-value">{{ block.settings.marine_value }}</td>
-              <td class="bovine-value">{{ block.settings.bovine_value }}</td>
+              <td class="marine-value">
+                 {{ block.settings.marine_value }}
+                {% if block.settings.marine_image != blank %}
+                  <img src="{{ block.settings.marine_image | img_url: 'master' }}" alt="{{ block.settings.marine_value }}">
+                {% endif %}
+               
+              </td>
+              <td class="bovine-value">
+                 {{ block.settings.bovine_value }}
+                {% if block.settings.bovine_image != blank %}
+                  <img src="{{ block.settings.bovine_image | img_url: 'master' }}" alt="{{ block.settings.bovine_value }}">
+                {% endif %}
+               
+              </td>
             </tr>
           {% endfor %}
         </tbody>
@@ -66,13 +100,11 @@
 <style>
 .collagen-comparison-section {
   padding: 60px 0;
-  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  background: #F7F7F7;
 }
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .comparison-heading {
@@ -98,24 +130,18 @@
 }
 
 .comparison-table-wrapper {
-  background: white;
-  border-radius: 20px;
+  background: #F7F7F7;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e8ecf4;
 }
 
 .collagen-comparison-table {
   width: 100%;
   border-collapse: collapse;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .collagen-comparison-table th {
-  background: #f8f9ff;
   padding: 25px 20px;
   text-align: center;
-  border-bottom: 2px solid #e8ecf4;
   font-weight: 600;
 }
 
@@ -147,7 +173,11 @@
 .product-icon {
   font-size: 1.5rem;
 }
-
+  
+.check-icon svg {
+    transform: translate(0px, 4px);
+}
+  
 .status-indicator {
   width: 24px;
   height: 24px;
@@ -159,9 +189,24 @@
   font-weight: bold;
 }
 
+#collagenTable > tbody > tr:nth-child(1) > td.feature-name{
+  font-weight: 600;
+    background: none;
+    font-size: 32px;
+    line-height: 45px;
+    padding: 0;
+}
+
 .status-indicator.success {
-  background: #27ae60;
   color: white;
+}
+
+#collagenTable > tbody > tr:nth-child(14) > td.pro-value.success{
+  border-bottom: 1px solid #101828;
+}
+
+.comparison-row img {
+    margin-bottom: -10px;
 }
 
 .status-indicator.fail {
@@ -171,7 +216,7 @@
 
 .collagen-comparison-table td {
   padding: 20px;
-  text-align: center;
+  text-align: start;
   border-bottom: 1px solid #f1f3f7;
   font-size: 18px;
 }
@@ -183,30 +228,28 @@
   background: #FFFFFF;
 }
 
+/* SINGLE .pro-value RULE WITH BOX SHADOW */
 .pro-value {
-  background: #F0F8F0;
+  background: #F4F3FF;
   font-weight: 400;
   color: #001F5F;
   position: relative;
   border: 1px solid #101828;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .pro-value.success {
-  background: #f0f8f0;
+  background: #F4F3FF;
 }
 
 .marine-value, .bovine-value {
   color: #101828;
+  background: #FFFFFF;
 }
 
 .check-icon {
-    font-size: 15px;
-    font-weight: bold;
-    margin-right: 5px;
-    border-radius: 50%;
-    background: #27ae60;
-    color: white;
-    padding: 3px;
+   width: 24px;
+  height: 24px;
 }
 
 .cross-icon {
@@ -218,13 +261,21 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .comparison-heading {
-    font-size: 2rem;
+    font-size: 30px;
   }
-  
+  .comparison-subheading {
+  font-size: 14px;
+}
   .comparison-table-wrapper {
     overflow-x: auto;
   }
-  
+  #collagenTable > tbody > tr:nth-child(1) > td.feature-name {
+    font-weight: 600;
+    background: none;
+    font-size: 16px;
+    line-height: 45px;
+    padding: 0;
+}
   .collagen-comparison-table {
     min-width: 600px;
   }
@@ -232,12 +283,17 @@
   .collagen-comparison-table th,
   .collagen-comparison-table td {
     padding: 15px 10px;
-    font-size: 0.9rem;
+    font-size: 12px;
   }
   
   .product-name {
-    font-size: 0.9rem;
+    font-size: 12px;
   }
+  .comparison-row img {
+    height: 20px;
+    width: 21px;
+}
+
 }
 
 @media (max-width: 480px) {
@@ -246,11 +302,18 @@
   }
   
   .comparison-heading {
-    font-size: 1.75rem;
+    font-size: 30px;
   }
   
   .collagen-comparison-section {
     padding: 40px 0;
+  }
+
+  .pro-value-image,
+  .marine-value-image,
+  .bovine-value-image {
+    max-width: 30px;
+    max-height: 30px;
   }
 }
 </style>
@@ -332,6 +395,12 @@
           "label": "Pro Collagen Value"
         },
         {
+          "type": "image_picker",
+          "id": "pro_image",
+          "label": "Pro Collagen Image (Optional)",
+          "info": "Upload an image to display alongside the Pro Collagen value"
+        },
+        {
           "type": "select",
           "id": "pro_status",
           "label": "Pro Collagen Status",
@@ -348,9 +417,21 @@
           "label": "Marine Collagen Value"
         },
         {
+          "type": "image_picker",
+          "id": "marine_image",
+          "label": "Marine Collagen Image (Optional)",
+          "info": "Upload an image to display alongside the Marine Collagen value"
+        },
+        {
           "type": "text",
           "id": "bovine_value",
           "label": "Bovine Collagen Value"
+        },
+        {
+          "type": "image_picker",
+          "id": "bovine_image",
+          "label": "Bovine Collagen Image (Optional)",
+          "info": "Upload an image to display alongside the Bovine Collagen value"
         }
       ]
     }

@@ -1,0 +1,224 @@
+{% comment %}
+  Let's Chat Banner Section
+  Usage: Include this in a section file or template
+{% endcomment %}
+
+<section class="cus-lcb-lets-chat-banner" 
+         style="{% if section.settings.bg_color != blank %}background-color: {{ section.settings.bg_color }};{% endif %}{% if section.settings.bg_image != blank %}background-image: url('{{ section.settings.bg_image | img_url: '1920x' }}');{% endif %}">
+  <div class="page-width cus-lcb-container">
+    <div class="cus-lcb-chat-content">
+      <div class="cus-lcb-text-content">
+        <h2 class="cus-lcb-chat-title">{{ section.settings.title | default: "Let's Chat" }}</h2>
+        <p class="cus-lcb-chat-subtitle">{{ section.settings.subtitle | default: "Question? We're here for you." }}</p>
+        {% if section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_url | default: '#' }}" class="cus-lcb-chat-button">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+      <div class="cus-lcb-image-content">
+        {% if section.settings.banner_image != blank %}
+          <img 
+            src="{{ section.settings.banner_image | img_url: '800x' }}" 
+            alt="{{ section.settings.banner_image.alt | default: 'Customer service representative' }}"
+            loading="lazy"
+            class="cus-lcb-chat-image"
+          >
+        {% else %}
+          <div class="cus-lcb-placeholder-image">
+            <span>Add your image</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.cus-lcb-lets-chat-banner {
+  background: #F0F3FF;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px 0;
+  height: 550px;
+  display: flex;
+  align-items: center;
+}
+
+.cus-lcb-container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cus-lcb-chat-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  height: 100%;
+}
+
+.cus-lcb-text-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.cus-lcb-chat-title {
+  font-size: 48px;
+  font-weight: 600;
+  color: #001F5F;
+  margin: 0 0 10px 0;
+  line-height: 60px;
+}
+
+.cus-lcb-chat-subtitle {
+  font-size: 20px;
+  color: #344054;
+  margin: 0 0 20px 0;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.cus-lcb-chat-button {
+  display: inline-block;
+  background: #1a237e;
+  color: white;
+  padding: 12px 30px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.cus-lcb-chat-button:hover {
+  background: #0d47a1;
+}
+
+.cus-lcb-image-content {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  height: 550px;
+}
+
+.cus-lcb-chat-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.cus-lcb-placeholder-image {
+  width: 300px;
+  height: 300px;
+  background: #ddd;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .cus-lcb-lets-chat-banner {
+    padding: 40px 0;
+    height: auto;
+    min-height: 450px;
+  }
+  .cus-lcb-chat-subtitle{
+  font-size: 14px;
+  }
+  .cus-lcb-chat-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .cus-lcb-chat-title {
+    font-size: 36px;
+  }
+  
+  .cus-lcb-image-content {
+    justify-content: center;
+  }
+  
+  .cus-lcb-placeholder-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cus-lcb-chat-title {
+    font-size: 36px;
+  }
+  
+  .cus-lcb-container {
+    padding: 0 15px;
+  }
+  
+  .cus-lcb-lets-chat-banner {
+    min-height: 400px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Let's Chat Banner",
+  "tag": "section",
+  "class": "cus-lcb-lets-chat-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Let's Chat"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Question? We're here for you."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text (optional)"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "info": "This will override the default gradient background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image",
+      "info": "This will be used as background image. Background color will be used as overlay if both are set."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Let's Chat Banner"
+    }
+  ]
+}
+{% endschema %}

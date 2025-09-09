@@ -1,7 +1,17 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-blog",
+      "disabled": true,
       "settings": {
         "layout": "collage",
         "show_image": true,
@@ -11,9 +21,110 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "custom_blog_section_GYK43T": {
+      "type": "custom-blog-section",
+      "name": "Custom Blog Section",
+      "settings": {
+        "blog": "news",
+        "breadcrumb_text": "Our Blog",
+        "title": "Resource library",
+        "subtitle": "Subscribe to learn about new product features, the latest in technology, solutions, and updates.",
+        "articles_per_page": 13,
+        "show_search": true,
+        "search_placeholder": "search here",
+        "search_button_text": "Search",
+        "show_tags": true,
+        "show_author": false,
+        "show_date": true,
+        "show_read_time": true,
+        "read_time_text": "min read",
+        "show_excerpt": true,
+        "read_more_text": "Continue Reading",
+        "background_color": "#f8f9fa",
+        "title_color": "#1a365d",
+        "accent_color": "#001f5f"
+      }
+    },
+    "brand_logo_slider_c6CJab": {
+      "type": "brand-logo-slider",
+      "blocks": {
+        "logo_cr6Xyp": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Vogue_Business.png"
+          }
+        },
+        "logo_CYyKhU": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOF.png"
+          }
+        },
+        "logo_AKqhpL": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Global_Cosmetics_news.png"
+          }
+        },
+        "logo_Yb77in": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/WWD.png"
+          }
+        },
+        "logo_yPh8PQ": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Glossy.png"
+          }
+        },
+        "logo_6UDMYF": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Independent.png"
+          }
+        },
+        "logo_ExWFNt": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Cosmetics_Business.png"
+          }
+        },
+        "logo_YXzayD": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Allure.png"
+          }
+        },
+        "logo_arYAUM": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Business_Jurnal.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_cr6Xyp",
+        "logo_CYyKhU",
+        "logo_AKqhpL",
+        "logo_Yb77in",
+        "logo_yPh8PQ",
+        "logo_6UDMYF",
+        "logo_ExWFNt",
+        "logo_YXzayD",
+        "logo_arYAUM"
+      ],
+      "name": "Brand Logo Slider",
+      "settings": {
+        "animation_speed": 30,
+        "background_color": "#efeae1"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_blog_section_GYK43T",
+    "brand_logo_slider_c6CJab"
   ]
 }

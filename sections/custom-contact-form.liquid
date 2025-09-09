@@ -1,0 +1,837 @@
+{% comment %}
+  Contact Form Section
+  Save this as: sections/contact-form.liquid
+{% endcomment %}
+
+<div class="contact-form-section" id="contact-form-{{ section.id }}">
+  <div class="page-width contact-form-wrapper">
+    <div class="contact-header">
+      {% if section.settings.show_icon and section.settings.header_image != blank %}
+        <div class="header-icon">
+          <img src="{{ section.settings.header_image | img_url: '75x75' }}" alt="Contact Icon" width="75" height="75">
+        </div>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
+    
+    {% if section.settings.description != blank %}
+      <div class="contact-description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+    
+    {% if section.settings.business_hours != blank %}
+      <p class="business-hours">
+        <strong>{{ section.settings.business_hours }}</strong>
+      </p>
+    {% endif %}
+
+    {% form 'contact', class: 'contact-form' %}
+      <!-- Hidden field to specify recipient email -->
+      <input type="hidden" name="contact[recipient]" value="adnan@digitalpylot.io">
+      {% if form.posted_successfully? %}
+        <div class="form-success">
+          <p>{{ section.settings.success_message | default: "Thanks for contacting us. We'll get back to you as soon as possible." }}</p>
+        </div>
+      {% endif %}
+
+      {% if form.errors %}
+        <div class="form-errors">
+          <h4>Please correct the following errors:</h4>
+          <ul>
+            {% for field in form.errors %}
+              <li>
+                {% if field == 'form' %}
+                  {{ form.errors.messages[field] }}
+                {% else %}
+                  {{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_product_selector %}
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="contact_collagen_product">{{ section.settings.product_label }} </label>
+            <select name="contact[collagen_product]" id="contact_collagen_product" required>
+              <option value="">{{ section.settings.product_placeholder | default: 'Select Product' }}</option>
+              {% for product_option in section.blocks %}
+                {% if product_option.type == 'product_option' %}
+                  <option value="{{ product_option.settings.value }}">{{ product_option.settings.label }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          
+          {% if section.settings.show_subscription_selector %}
+            <div class="form-group half-width">
+              <label for="contact_subscription">{{ section.settings.subscription_label }}</label>
+              <select name="contact[subscription]" id="contact_subscription">
+                <option value="">{{ section.settings.subscription_placeholder | default: 'Select Program' }}</option>
+                {% for subscription_option in section.blocks %}
+                  {% if subscription_option.type == 'subscription_option' %}
+                    <option value="{{ subscription_option.settings.value }}">{{ subscription_option.settings.label }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="form-row">
+        <div class="form-group half-width">
+          <label for="contact_name">{{ section.settings.name_label | default: 'Name' }} <span class="required">*</span></label>
+          <input type="text" name="contact[name]" id="contact_name" placeholder="{{ section.settings.name_placeholder | default: 'Enter Your Name' }}" value="{{ form.name }}" required>
+        </div>
+        
+        <div class="form-group half-width">
+          <label for="contact_email">{{ section.settings.email_label | default: 'Email' }} <span class="required">*</span></label>
+          <input type="email" name="contact[email]" id="contact_email" placeholder="{{ section.settings.email_placeholder | default: 'Enter Your Email' }}" value="{{ form.email }}" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half-width">
+          <label for="contact_service_type">{{ section.settings.service_label | default: 'Type of service' }} <span class="required">*</span></label>
+          <select name="contact[service_type]" id="contact_service_type" required>
+            <option value="">{{ section.settings.service_placeholder | default: 'Select Service' }}</option>
+            {% for service_option in section.blocks %}
+              {% if service_option.type == 'service_option' %}
+                <option value="{{ service_option.settings.value }}">{{ service_option.settings.label }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        
+        <div class="form-group half-width">
+          <label for="contact_subject">{{ section.settings.subject_label | default: 'Subject' }} <span class="required">*</span></label>
+          <input type="text" name="contact[subject]" id="contact_subject" placeholder="{{ section.settings.subject_placeholder | default: 'Enter the subject you need' }}" value="{{ form.subject }}" required>
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="contact_message">{{ section.settings.message_label | default: 'Message' }} <span class="required">*</span></label>
+        <textarea name="contact[body]" id="contact_message" placeholder="{{ section.settings.message_placeholder | default: 'Enter Your Message' }}" rows="6" required>{{ form.body }}</textarea>
+      </div>
+
+      {% if section.settings.show_file_upload %}
+        <div class="form-group full-width">
+          <label for="contact_attachment" class="file-upload-label">
+            {{ section.settings.file_upload_label | default: 'Attach Files (max size 5MB)' }}
+          </label>
+          <div class="file-upload-area">
+            <div class="upload-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="#ccc"/>
+              </svg>
+            </div>
+            <p>{{ section.settings.drag_drop_text | default: 'Drag and Drop Files Here' }}</p>
+            <p>Or <span class="browse-link">{{ section.settings.browse_text | default: 'Browse' }}</span></p>
+            <input type="file" name="contact[attachment]" id="contact_attachment" multiple accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx">
+          </div>
+        </div>
+      {% endif %}
+
+      <!-- Updated: reCAPTCHA and Submit Button in same row -->
+      <div class="form-row submit-row">
+        {% if section.settings.show_recaptcha %}
+          <div class="form-group recaptcha-width">
+            <div class="recaptcha-placeholder">
+              <input type="checkbox" id="not_robot" name="contact[not_robot]" required>
+              <label for="not_robot">{{ section.settings.recaptcha_text | default: "I'm not a robot" }}</label>
+            </div>
+          </div>
+        {% endif %}
+        
+        <div class="form-group {% if section.settings.show_recaptcha %}submit-width{% else %}full-width{% endif %}">
+          <button type="submit" class="submit-button" style="background-color: {{ section.settings.button_color }};">
+            {{ section.settings.submit_text | default: 'Send message' }}
+          </button>
+        </div>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+<style>
+#contact-form-{{ section.id }} {
+  padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
+  {% if section.settings.background_color != blank %}
+    background-color: {{ section.settings.background_color }};
+  {% endif %}
+}
+
+#contact-form-{{ section.id }} .contact-form-wrapper {
+  max-width: {{ section.settings.form_width }}px;
+  margin: 0 auto;
+}
+
+#contact-form-{{ section.id }} .contact-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-direction: row-reverse;
+    justify-content: center;
+    justify-content: space-between;
+  {% unless section.settings.show_icon %}
+    .header-icon { display: none; }
+  {% endunless %}
+}
+
+#contact-form-{{ section.id }} .header-icon {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 99px;
+  height: 99px;
+}
+
+#contact-form-{{ section.id }} .header-icon img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#contact-form-{{ section.id }} .contact-header h2 {
+  font-size: {{ section.settings.heading_size }}px;
+  font-weight: 600;
+  margin: 0;
+  color: {{ section.settings.heading_color }};
+}
+
+#contact-form-{{ section.id }} .contact-description {
+  color: {{ section.settings.text_color }};
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+#contact-form-{{ section.id }} .business-hours {
+  color: {{ section.settings.text_color }};
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+#contact-form-{{ section.id }} .contact-form {
+  background: white;
+}
+
+#contact-form-{{ section.id }} .form-success {
+  background: #d4edda;
+  color: #155724;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #c3e6cb;
+  margin-bottom: 20px;
+}
+
+#contact-form-{{ section.id }} .form-errors {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 20px;
+}
+
+#contact-form-{{ section.id }} .form-errors ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+}
+
+#contact-form-{{ section.id }} .form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Updated: Submit row specific styling */
+#contact-form-{{ section.id }} .submit-row {
+  align-items: flex-end;
+}
+
+#contact-form-{{ section.id }} .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-form-{{ section.id }} .form-group.half-width {
+  flex: 1;
+}
+
+#contact-form-{{ section.id }} .form-group.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* Updated: New width classes for reCAPTCHA and submit button */
+#contact-form-{{ section.id }} .form-group.recaptcha-width {
+  width: 30%;
+}
+
+#contact-form-{{ section.id }} .form-group.submit-width {
+  width: 70%;
+}
+
+#contact-form-{{ section.id }} .form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: {{ section.settings.text_color }};
+  margin-bottom: 6px;
+}
+
+#contact-form-{{ section.id }} .required {
+  color: #e74c3c;
+}
+
+#contact-form-{{ section.id }} .form-group input,
+#contact-form-{{ section.id }} .form-group select,
+#contact-form-{{ section.id }} .form-group textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+#contact-form-{{ section.id }} .form-group input:focus,
+#contact-form-{{ section.id }} .form-group select:focus,
+#contact-form-{{ section.id }} .form-group textarea:focus {
+  outline: none;
+  border-color: {{ section.settings.accent_color }};
+  box-shadow: 0 0 0 2px {{ section.settings.accent_color | color_modify: 'alpha', 0.1 }};
+}
+
+#contact-form-{{ section.id }} .form-group input::placeholder,
+#contact-form-{{ section.id }} .form-group textarea::placeholder {
+  color: #999;
+}
+
+#contact-form-{{ section.id }} .file-upload-area {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  background: #f8f9fa;
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+#contact-form-{{ section.id }} .file-upload-area:hover {
+  border-color: {{ section.settings.accent_color }};
+}
+
+#contact-form-{{ section.id }} .upload-icon {
+  margin-bottom: 12px;
+}
+
+#contact-form-{{ section.id }} .file-upload-area p {
+  margin: 4px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+#contact-form-{{ section.id }} .browse-link {
+  color: {{ section.settings.accent_color }};
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#contact-form-{{ section.id }} .file-upload-area input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#contact-form-{{ section.id }} .recaptcha-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+  height: fit-content;
+}
+
+#contact-form-{{ section.id }} .recaptcha-placeholder input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+#contact-form-{{ section.id }} .submit-button {
+  width: 100%;
+  color: white;
+  padding: 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#contact-form-{{ section.id }} .submit-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+#contact-form-{{ section.id }} .submit-button:active {
+  transform: translateY(1px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  #contact-form-{{ section.id }} .form-row {
+    flex-direction: column;
+  }
+  #contact-form-{{ section.id }} .contact-header {
+    justify-content: center;
+}
+#contact-form-{{ section.id }} .contact-header h2 {
+  font-size: 26px;
+}
+  #contact-form-{{ section.id }} .form-group.half-width {
+    width: 100%;
+  }
+  
+  /* Updated: Mobile styles for reCAPTCHA and submit button */
+  #contact-form-{{ section.id }} .form-group.recaptcha-width,
+  #contact-form-{{ section.id }} .form-group.submit-width {
+    width: 100%;
+  }
+  
+  #contact-form-{{ section.id }} .contact-form-wrapper {
+    padding: 0 16px;
+  }
+  
+  /* Hide header icon on mobile */
+  #contact-form-{{ section.id }} .header-icon {
+    display: none !important;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "tag": "section",
+  "class": "contact-form-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get in touch"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Want to know more about our products, follow up on an order or anything collagen related? Send an email to hello@evoq.co or fill out the form here & we'll be in touch.</p>"
+    },
+    {
+      "type": "text",
+      "id": "business_hours",
+      "label": "Business Hours",
+      "default": "Business hours (Monday to Friday - 8am to 4.30pm)"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Thanks for contacting us. We'll get back to you as soon as possible."
+    },
+    {
+      "type": "header",
+      "content": "Form Labels & Placeholders"
+    },
+    {
+      "type": "text",
+      "id": "product_label",
+      "label": "Product Selector Label",
+      "default": "<p> </p>"
+    },
+    {
+      "type": "text",
+      "id": "product_placeholder",
+      "label": "Product Selector Placeholder",
+      "default": "What collagen product is right for..."
+    },
+    {
+      "type": "text",
+      "id": "subscription_label",
+      "label": "Subscription Label",
+      "default": "<p> </p>"
+    },
+    {
+      "type": "text",
+      "id": "subscription_placeholder",
+      "label": "Subscription Placeholder",
+      "default": "Subscription Program"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name Label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name Placeholder",
+      "default": "Enter Your Name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email Label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email Placeholder",
+      "default": "Enter Your Email"
+    },
+    {
+      "type": "text",
+      "id": "service_label",
+      "label": "Service Type Label",
+      "default": "Type of service"
+    },
+    {
+      "type": "text",
+      "id": "service_placeholder",
+      "label": "Service Type Placeholder",
+      "default": "Select Service"
+    },
+    {
+      "type": "text",
+      "id": "subject_label",
+      "label": "Subject Label",
+      "default": "Subject"
+    },
+    {
+      "type": "text",
+      "id": "subject_placeholder",
+      "label": "Subject Placeholder",
+      "default": "Enter the subject you need"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Message Label",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Message Placeholder",
+      "default": "Enter Your Message"
+    },
+    {
+      "type": "text",
+      "id": "submit_text",
+      "label": "Submit Button Text",
+      "default": "Send message"
+    },
+    {
+      "type": "header",
+      "content": "Optional Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_selector",
+      "label": "Show Product Selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subscription_selector",
+      "label": "Show Subscription Selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_file_upload",
+      "label": "Show File Upload",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "file_upload_label",
+      "label": "File Upload Label",
+      "default": "Attach Files (max size 5MB)"
+    },
+    {
+      "type": "text",
+      "id": "drag_drop_text",
+      "label": "Drag & Drop Text",
+      "default": "Drag and Drop Files Here"
+    },
+    {
+      "type": "text",
+      "id": "browse_text",
+      "label": "Browse Text",
+      "default": "Browse"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_recaptcha",
+      "label": "Show reCAPTCHA Placeholder",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "recaptcha_text",
+      "label": "reCAPTCHA Text",
+      "default": "I'm not a robot"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show Header Icon",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "header_image",
+      "label": "Header Icon Image",
+      "info": "Image will be displayed at 75x75 pixels"
+    },
+    {
+      "type": "header",
+      "content": "Design Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (borders, links)",
+      "default": "#007bff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#1a365d"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 18,
+      "max": 36,
+      "step": 2,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "form_width",
+      "label": "Form Max Width",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "default": 800,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_option",
+      "name": "Product Option",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Option Label",
+          "default": "Product Name"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Option Value",
+          "default": "product-name"
+        }
+      ]
+    },
+    {
+      "type": "subscription_option",
+      "name": "Subscription Option",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Option Label",
+          "default": "Subscription Type"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Option Value",
+          "default": "subscription-type"
+        }
+      ]
+    },
+    {
+      "type": "service_option",
+      "name": "Service Option",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Option Label",
+          "default": "Service Type"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Option Value",
+          "default": "value-type"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form",
+      "blocks": [
+        {
+          "type": "product_option",
+          "settings": {
+            "label": "Marine Collagen",
+            "value": "marine-collagen"
+          }
+        },
+        {
+          "type": "product_option",
+          "settings": {
+            "label": "Bovine Collagen",
+            "value": "bovine-collagen"
+          }
+        },
+        {
+          "type": "product_option",
+          "settings": {
+            "label": "Collagen Peptides",
+            "value": "collagen-peptides"
+          }
+        },
+        {
+          "type": "product_option",
+          "settings": {
+            "label": "Not Sure",
+            "value": "not-sure"
+          }
+        },
+        {
+          "type": "subscription_option",
+          "settings": {
+            "label": "Monthly Subscription",
+            "value": "monthly"
+          }
+        },
+        {
+          "type": "subscription_option",
+          "settings": {
+            "label": "Quarterly Subscription",
+            "value": "quarterly"
+          }
+        },
+        {
+          "type": "subscription_option",
+          "settings": {
+            "label": "No Subscription",
+            "value": "no-subscription"
+          }
+        },
+        {
+          "type": "service_option",
+          "settings": {
+            "label": "Product Inquiry",
+            "value": "product-inquiry"
+          }
+        },
+        {
+          "type": "service_option",
+          "settings": {
+            "label": "Order Support",
+            "value": "order-support"
+          }
+        },
+        {
+          "type": "service_option",
+          "settings": {
+            "label": "Subscription Help",
+            "value": "subscription-help"
+          }
+        },
+        {
+          "type": "service_option",
+          "settings": {
+            "label": "General Question",
+            "value": "general-question"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

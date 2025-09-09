@@ -1,0 +1,393 @@
+{% comment %}
+  Collagen Information Section
+  Usage: {% section 'collagen-info' %}
+{% endcomment %}
+
+{%- style -%}
+  .collagen-section {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    margin: 80px 0 auto;
+  }
+  
+  .collagen-container {
+    margin: 0 auto;
+    background-color: {{ section.settings.background_color | default: '#f5f1e8' }};
+  }
+  
+  .collagen-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .collagen-image {
+    position: relative;
+  }
+  
+  .collagen-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  .collagen-stats {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-width: 200px;
+  }
+  
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+  
+  .stat-item:last-child {
+    border-bottom: none;
+  }
+  
+  .stat-label {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .stat-value {
+    font-weight: 600;
+    color: #666;
+  }
+  
+  .collagen-text {
+    padding-left: 40px;
+  }
+  
+  .collagen-title {
+    font-size: {{ section.settings.title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.title_color | default: '#2c5aa0' }};
+    margin-bottom: 30px;
+    line-height: 1.2;
+  }
+  
+  .collagen-description {
+    font-size: {{ section.settings.text_size }}px;
+    line-height: 1.6;
+    color: {{ section.settings.text_color | default: '#333' }};
+    margin-bottom: 20px;
+  }
+  
+  .collagen-cta {
+    margin-top: 30px;
+  }
+  
+  .collagen-btn {
+    display: inline-block;
+    background-color: {{ section.settings.button_color | default: '#2c5aa0' }};
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .collagen-btn:hover {
+    background-color: {{ section.settings.button_hover_color | default: '#1e3d6f' }};
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .collagen-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .collagen-stats {
+      position: static;
+      transform: none;
+      margin-top: 20px;
+      right: auto;
+    }
+    
+    .collagen-text {
+      padding-left: 0;
+    }
+    
+    .collagen-title {
+      font-size: {{ section.settings.title_size | minus: 8 }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="page-width collagen-section">
+  <div class="collagen-container">
+    <div class="collagen-content">
+      
+      <!-- Image Section -->
+      <div class="collagen-image">
+        {% if section.settings.main_image %}
+          <img src="{{ section.settings.main_image | img_url: '600x' }}" 
+               alt="{{ section.settings.main_image.alt | default: 'Human body collagen diagram' }}"
+               loading="lazy">
+        {% else %}
+          <!-- Fallback placeholder -->
+          <div style="background: #ddd; height: 400px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #666;">
+            Upload collagen diagram image
+          </div>
+        {% endif %}
+        
+        <!-- Collagen Stats Box -->
+        <div class="collagen-stats">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'stat_item' %}
+                <div class="stat-item">
+                  <span class="stat-label">{{ block.settings.stat_label }}</span>
+                  <span class="stat-value">{{ block.settings.stat_value }}</span>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+      
+      <!-- Text Content -->
+      <div class="collagen-text">
+        {% if section.settings.title %}
+          <h2 class="collagen-title">{{ section.settings.title }}</h2>
+        {% endif %}
+        
+        {% if section.settings.description_1 %}
+          <p class="collagen-description">{{ section.settings.description_1 }}</p>
+        {% endif %}
+        
+        {% if section.settings.description_2 %}
+          <p class="collagen-description">{{ section.settings.description_2 }}</p>
+        {% endif %}
+        
+        {% if section.settings.button_text and section.settings.button_url %}
+          <div class="collagen-cta">
+            <a href="{{ section.settings.button_url }}" class="collagen-btn">
+              {{ section.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collagen Information",
+  "tag": "section",
+  "class": "collagen-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f1e8"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Collagen Diagram Image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Collagen is everywhere in the human body"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#2c5aa0"
+    },
+    {
+      "type": "textarea",
+      "id": "description_1",
+      "label": "First Description Paragraph",
+      "default": "At our core, we thrive on innovation. We are passionate about pushing boundaries, discovering new possibilities, and constantly evolving to meet the ever-changing needs of our customers."
+    },
+    {
+      "type": "textarea",
+      "id": "description_2",
+      "label": "Second Description Paragraph",
+      "default": "We believe that through innovation, we can make a real difference in people's lives. From groundbreaking research to cutting-edge technology, we strive to develop products that revolutionize the industry and provide unique formulas that enhance well-being."
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#2c5aa0"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button Hover Color",
+      "default": "#1e3d6f"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat_item",
+      "name": "Collagen Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Body Part/Tissue",
+          "default": "Bone matrix"
+        },
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Collagen Percentage",
+          "default": "90% collagen"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collagen Information",
+      "blocks": [
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Bone matrix",
+            "stat_value": "90% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Skin",
+            "stat_value": "75% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Joint cartilage",
+            "stat_value": "70% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Ligaments",
+            "stat_value": "90% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Tendons",
+            "stat_value": "85% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Fascia",
+            "stat_value": "90% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Muscle tissue",
+            "stat_value": "6% collagen"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

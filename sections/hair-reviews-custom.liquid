@@ -1,0 +1,672 @@
+<!-- sections/hair-reviews.liquid -->
+<div class="cus-hrl-hair-reviews-section">
+  <div class="page-width cus-hrl-container">
+    <div class="cus-hrl-reviews-content">
+      <!-- Left side - Text content -->
+      <div class="cus-hrl-reviews-text">
+        <div class="cus-hrl-star-rating">
+          {% for i in (1..5) %}
+            <span class="cus-hrl-star">
+              <svg class="cus-hrl-star-desktop" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <g clip-path="url(#clip0_223_13684)">
+                <path d="M39.8957 15.3449C39.6339 14.535 38.9155 13.9597 38.0655 13.8831L26.5205 12.8348L21.9552 2.14939C21.6186 1.36629 20.852 0.859375 20.0002 0.859375C19.1484 0.859375 18.3818 1.36628 18.0452 2.15122L13.48 12.8348L1.93303 13.8831C1.08462 13.9615 0.368046 14.535 0.104673 15.3449C-0.158701 16.1549 0.0845308 17.0433 0.726332 17.6033L9.45306 25.2567L6.87975 36.5921C6.69145 37.4256 7.01495 38.2871 7.70649 38.787C8.07821 39.0555 8.51309 39.1923 8.95164 39.1923C9.32976 39.1923 9.70483 39.0903 10.0415 38.8889L20.0002 32.9369L29.9553 38.8889C30.6838 39.3272 31.6021 39.2872 32.2921 38.787C32.9839 38.2856 33.3071 37.4237 33.1188 36.5921L30.5455 25.2567L39.2722 17.6048C39.914 17.0433 40.1591 16.1564 39.8957 15.3449Z" fill="#FFC107"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_223_13684">
+                <rect width="40" height="40" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+              <svg class="cus-hrl-star-mobile" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <g clip-path="url(#clip0_223_13684_mobile)">
+                <path d="M23.9374 9.20696C23.7803 8.72101 23.3493 8.37582 22.8393 8.32986L15.9123 7.70089L13.173 1.28963C12.9712 0.819774 12.5112 0.515625 12.0001 0.515625C11.489 0.515625 11.0291 0.819774 10.8273 1.29073L8.08799 7.70089L1.15982 8.32986C0.650771 8.37691 0.220827 8.72101 0.0628037 9.20696C-0.0952202 9.69291 0.0507185 10.2260 0.435799 10.5620L5.67184 15.1540L4.12785 21.9553C4.01487 22.4554 4.20897 22.9723 4.62389 23.2722C4.84693 23.4333 5.10785 23.5154 5.37098 23.5154C5.59786 23.5154 5.8229 23.4542 6.0249 23.3333L12.0001 19.7621L17.9732 23.3333C18.4103 23.5963 18.9613 23.5723 19.3753 23.2722C19.7903 22.9713 19.9843 22.4542 19.8713 21.9553L18.3273 15.1540L23.5633 10.5629C23.9484 10.2260 24.0955 9.69382 23.9374 9.20696Z" fill="#FFC107"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_223_13684_mobile">
+                <rect width="24" height="24" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </span>
+          {% endfor %}
+        </div>
+        
+        <h2 class="cus-hrl-reviews-title">
+          {{ section.settings.title | default: 'Real People, Real Community Reviews' }}
+        </h2>
+        
+        <p class="cus-hrl-reviews-subtitle">
+          {{ section.settings.subtitle | default: "Question? We're here for you." }}
+        </p>
+        
+        {% if section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_link | default: '#' }}" class="cus-hrl-cta-button cus-hrl-desktop-cta">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+      
+      <!-- Right side - Image gallery -->
+      <div class="cus-hrl-reviews-gallery-wrapper">
+        <div class="cus-hrl-reviews-gallery">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'before_after_image' %}
+                <div class="cus-hrl-review-image cus-hrl-before-after" {{ block.shopify_attributes }}>
+                  {% if block.settings.before_image != blank and block.settings.after_image != blank %}
+                    <div class="cus-hrl-before-after-container">
+                      <div class="cus-hrl-before-image">
+                        <img src="{{ block.settings.before_image | img_url: '400x400' }}" 
+                             alt="Before - {{ block.settings.alt_text | default: 'Hair transformation before' }}"
+                             loading="lazy">
+                        {% if block.settings.show_labels %}
+                          <span class="cus-hrl-image-label cus-hrl-before-label">{{ block.settings.before_label | default: 'BEFORE' }}</span>
+                        {% endif %}
+                      </div>
+                      <div class="cus-hrl-after-image">
+                        <img src="{{ block.settings.after_image | img_url: '400x400' }}" 
+                             alt="After - {{ block.settings.alt_text | default: 'Hair transformation after' }}"
+                             loading="lazy">
+                        {% if block.settings.show_labels %}
+                          <span class="cus-hrl-image-label cus-hrl-after-label">{{ block.settings.after_label | default: 'AFTER' }}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                    {% if block.settings.brand_text != blank %}
+                      <div class="cus-hrl-brand-overlay">{{ block.settings.brand_text }}</div>
+                    {% endif %}
+                  {% endif %}
+                </div>
+                
+              {% when 'single_image' %}
+                <div class="cus-hrl-review-image cus-hrl-single-image" {{ block.shopify_attributes }}>
+                  {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | img_url: '400x400' }}" 
+                         alt="{{ block.settings.alt_text | default: 'Customer review image' }}"
+                         loading="lazy">
+                    {% if block.settings.overlay_text != blank %}
+                      <div class="cus-hrl-image-overlay">{{ block.settings.overlay_text }}</div>
+                    {% endif %}
+                  {% endif %}
+                </div>
+                
+              {% when 'testimonial_image' %}
+                <div class="cus-hrl-review-image cus-hrl-testimonial-image" {{ block.shopify_attributes }}>
+                  {% if block.settings.main_image != blank %}
+                    <img src="{{ block.settings.main_image | img_url: '400x400' }}" 
+                         alt="{{ block.settings.alt_text | default: 'Customer testimonial' }}"
+                         loading="lazy">
+                    {% if block.settings.thumbnail_image != blank %}
+                      <div class="cus-hrl-testimonial-thumbnail">
+                        <img src="{{ block.settings.thumbnail_image | img_url: '100x100' }}" 
+                             alt="Customer photo"
+                             loading="lazy">
+                      </div>
+                    {% endif %}
+                    {% if block.settings.testimonial_text != blank %}
+                      <div class="cus-hrl-testimonial-overlay">
+                        <p>"{{ block.settings.testimonial_text }}"</p>
+                        {% if block.settings.customer_name != blank %}
+                          <cite>- {{ block.settings.customer_name }}</cite>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+      
+      <!-- Mobile CTA Button - Moved outside gallery wrapper -->
+      {% if section.settings.button_text != blank %}
+        <div class="cus-hrl-mobile-cta-wrapper">
+          <a href="{{ section.settings.button_link | default: '#' }}" class="cus-hrl-cta-button cus-hrl-mobile-cta">
+            {{ section.settings.button_text }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+.cus-hrl-hair-reviews-section {
+  padding: 110px 0;
+}
+
+.cus-hrl-container {
+  margin: 0 auto;
+}
+
+.cus-hrl-reviews-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.cus-hrl-reviews-text {
+  padding-right: 20px;
+}
+
+.cus-hrl-star-rating {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.cus-hrl-star {
+  margin-right: 4px;
+}
+
+/* Desktop stars - 40x40 */
+.cus-hrl-star-desktop {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+/* Mobile stars - 24x24, hidden by default */
+.cus-hrl-star-mobile {
+  width: 24px;
+  height: 24px;
+  display: none;
+}
+
+.cus-hrl-reviews-title {
+font-size: 36px;
+font-weight: 600;
+line-height: 44px;
+margin-bottom: 16px;
+font-family: 'Inter' !important;
+color: {{ section.settings.title_color | default: ' #001F5F' }};
+margin-top: 0;
+}
+
+.cus-hrl-reviews-subtitle {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 30px;
+    color: {{ section.settings.text_color | default: '#344054' }};
+    margin-top: 10px;
+}
+
+.cus-hrl-cta-button {
+display: inline-block;
+background-color: {{ section.settings.button_color | default: '#001F5F' }};
+color: white;
+padding: 10px 16px;
+border-radius: 8px;
+text-decoration: none;
+font-weight: 400;
+font-size: 16px;
+transition: all 0.3s ease;
+}
+
+.cus-hrl-cta-button:hover {
+  background-color: {{ section.settings.button_hover_color | default: '#001F5F' }};
+  transform: translateY(-2px);
+}
+
+/* Desktop Gallery */
+.cus-hrl-reviews-gallery-wrapper {
+  overflow: hidden;
+}
+
+.cus-hrl-reviews-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding-top: 40px;
+}
+
+.cus-hrl-review-image {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.cus-hrl-review-image:nth-child(2), .cus-hrl-review-image:nth-child(5) {
+  transform: translateY(-4rem);
+}
+
+.cus-hrl-review-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cus-hrl-before-after-container {
+  display: flex;
+  height: 268px;
+}
+
+.cus-hrl-before-image,
+.cus-hrl-after-image {
+  flex: 1;
+  position: relative;
+}
+
+.cus-hrl-before-image {
+  border-right: 2px solid white;
+}
+
+.cus-hrl-image-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cus-hrl-brand-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: white;
+  color: #1e3a8a;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cus-hrl-single-image {
+  height: 280px;
+}
+
+.cus-hrl-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 20px 16px 16px;
+  font-size: 14px;
+}
+
+.cus-hrl-testimonial-image {
+  height: 320px;
+}
+
+.cus-hrl-testimonial-thumbnail {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cus-hrl-testimonial-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 40px 16px 16px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.cus-hrl-testimonial-overlay p {
+  margin: 0 0 8px 0;
+}
+
+.cus-hrl-testimonial-overlay cite {
+  font-size: 11px;
+  opacity: 0.8;
+  font-style: normal;
+}
+
+/* Mobile CTA Button - Hidden on desktop */
+.cus-hrl-mobile-cta-wrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Show mobile stars, hide desktop stars */
+  .cus-hrl-star-desktop {
+    display: none;
+  }
+  .cus-hrl-star-rating {
+    justify-content: center;
+}
+  .cus-hrl-star-mobile {
+    display: block;
+  }
+
+  .cus-hrl-reviews-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+  }
+  .cus-hrl-reviews-text {
+  text-align: center;
+}
+  .cus-hrl-hair-reviews-section {
+    padding: 56px 0;
+  }
+  
+  .cus-hrl-reviews-title {
+    font-size: 36px;
+  }
+  
+  /* Hide desktop CTA button on mobile */
+  .cus-hrl-desktop-cta {
+    display: none;
+  }
+  
+  /* Show mobile CTA button - Fixed positioning */
+  .cus-hrl-mobile-cta-wrapper {
+    display: block;
+    text-align: center;
+    padding: 0 16px;
+    position: relative; /* Ensures it stays in normal document flow */
+    width: 100%;
+  }
+  
+  .cus-hrl-mobile-cta {
+    display: inline-block;
+    width: auto;
+    min-width: 200px;
+    position: static; /* Prevents any positioning issues */
+  }
+  
+  /* Mobile Swipe Gallery */
+  .cus-hrl-reviews-gallery-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    padding-bottom: 10px; /* Space for potential scrollbar */
+  }
+  
+  .cus-hrl-reviews-gallery-wrapper::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Webkit browsers */
+  }
+  
+  .cus-hrl-reviews-gallery {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: max-content;
+    padding: 0; /* Side padding for better UX */
+  }
+  
+  .cus-hrl-review-image {
+    flex: 0 0 280px; /* Wider cards for better viewing */
+    width: 280px;
+    transform: none !important; /* Remove desktop transforms */
+  }
+  
+  .cus-hrl-before-after-container,
+  .cus-hrl-single-image,
+  .cus-hrl-testimonial-image {
+    height: 320px; /* Taller for better aspect ratio */
+  }
+  
+  /* Snap scrolling for better UX */
+  .cus-hrl-reviews-gallery {
+    scroll-snap-type: x mandatory;
+  }
+  
+  .cus-hrl-review-image {
+    scroll-snap-align: start;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .cus-hrl-review-image {
+    flex: 0 0 260px; /* Slightly smaller for small screens */
+    width: 260px;
+  }
+  
+  .cus-hrl-before-after-container,
+  .cus-hrl-single-image,
+  .cus-hrl-testimonial-image {
+    height: 300px;
+  }
+  
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Add smooth scroll behavior for mobile gallery
+  if (window.innerWidth <= 768) {
+    const gallery = document.querySelector('.cus-hrl-reviews-gallery');
+    const wrapper = document.querySelector('.cus-hrl-reviews-gallery-wrapper');
+    
+    // Enable smooth scrolling
+    if (wrapper) {
+      wrapper.style.scrollBehavior = 'smooth';
+    }
+    
+    // Optional: Add touch feedback
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    if (wrapper) {
+      wrapper.addEventListener('mousedown', (e) => {
+        isDown = true;
+        wrapper.style.cursor = 'grabbing';
+        startX = e.pageX - wrapper.offsetLeft;
+        scrollLeft = wrapper.scrollLeft;
+      });
+
+      wrapper.addEventListener('mouseleave', () => {
+        isDown = false;
+        wrapper.style.cursor = 'grab';
+      });
+
+      wrapper.addEventListener('mouseup', () => {
+        isDown = false;
+        wrapper.style.cursor = 'grab';
+      });
+
+      wrapper.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - wrapper.offsetLeft;
+        const walk = (x - startX) * 2;
+        wrapper.scrollLeft = scrollLeft - walk;
+      });
+    }
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Hair Reviews Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Real People, Real Community Reviews"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Question? We're here for you."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "View Real Result"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#1e3a8a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#1e3a8a"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button Hover Color",
+      "default": "#1e40af"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "before_after_image",
+      "name": "Before/After Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Before Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "After Image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_labels",
+          "label": "Show Before/After Labels",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "before_label",
+          "label": "Before Label",
+          "default": "BEFORE"
+        },
+        {
+          "type": "text",
+          "id": "after_label",
+          "label": "After Label",
+          "default": "AFTER"
+        },
+        {
+          "type": "text",
+          "id": "brand_text",
+          "label": "Brand Text (e.g., EVOO Women)"
+        }
+      ]
+    },
+    {
+      "type": "single_image",
+      "name": "Single Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text"
+        },
+        {
+          "type": "text",
+          "id": "overlay_text",
+          "label": "Overlay Text"
+        }
+      ]
+    },
+    {
+      "type": "testimonial_image",
+      "name": "Testimonial Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_image",
+          "label": "Customer Thumbnail"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial Text"
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hair Reviews Section",
+      "blocks": [
+        {
+          "type": "before_after_image",
+          "settings": {
+            "brand_text": "EVOO Women"
+          }
+        },
+        {
+          "type": "single_image"
+        },
+        {
+          "type": "testimonial_image"
+        },
+        {
+          "type": "single_image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

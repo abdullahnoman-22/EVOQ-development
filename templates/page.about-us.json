@@ -1,0 +1,312 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_main_4dNAEt": {
+      "type": "image-with-text-main",
+      "blocks": {
+        "heading_BaDmXE": {
+          "type": "heading",
+          "settings": {
+            "heading": "Wellness Reimagined",
+            "heading_size": "h1"
+          }
+        },
+        "text_RQCQ49": {
+          "type": "text",
+          "settings": {
+            "text": "<h3><em>With Evoq Collagen</em></h3>",
+            "text_style": "body"
+          }
+        },
+        "text_JVwkRH": {
+          "type": "text",
+          "settings": {
+            "text": "<p>This is About Evoq Collagen, which is a plant-based supplement designed to nourish your body from the inside out. Backed by research and built with purpose, Evoq Collagen supports skin, hair, nails, gut health, energy, and hormonal balance with clean, effective ingredients.<br/><br/></p>",
+            "text_style": "body"
+          }
+        },
+        "button_6dgMht": {
+          "type": "button",
+          "settings": {
+            "button_label": "Start growing now",
+            "button_link": "shopify://collections/shop",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_BaDmXE",
+        "text_RQCQ49",
+        "text_JVwkRH",
+        "button_6dgMht"
+      ],
+      "name": "Image with text main",
+      "settings": {
+        "image": "shopify://shop_images/Group_1171277515.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "mobile_layout": "follow_desktop",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "mission_section_custom_F9CeWU": {
+      "type": "mission-section-custom",
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": true,
+        "main_title": "Our philosophy centers on empowering you to take control of your health journey with clarity & confidence.",
+        "main_title_font_weight": "500",
+        "title": "About Evoq's Mission",
+        "details": "<p>About Evoq isn’t just about collagen - it’s about confidence, clarity, and complete wellness. Our mission is to empower real people with real, ethical nutrition. Evoq is here to simplify inner wellness with formulas that are transparent, inclusive, and clinically inspired. Whether you’re dealing with aging skin or everyday fatigue, we’re your partner in glow.</p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/image_405c5d47-6d8c-4e5c-88a7-3f0e32eeecec.png",
+        "video_url": "",
+        "custom_bg_color": "",
+        "layout": "image_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "",
+        "overlay_description": "<p> </p>",
+        "show_collagen_stats": false
+      }
+    },
+    "mission_section_custom_dVwdDV": {
+      "type": "mission-section-custom",
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": false,
+        "main_title": "",
+        "main_title_font_weight": "500",
+        "title": "Innovation That Works",
+        "details": "<p>At the core of “About Evoq” is intelligent innovation - not empty claims. We use the latest nutritional science, including collagen-boosting compounds like amino acids, vitamins, and minerals to create a formula that’s high-performing, fast-absorbing, and deeply effective. Everything is designed for real results, not just promises.</p><p>While traditional collagen supplements are animal-derived, we focused on finding a solution that’s just as effective without compromising your values. This is why Evoq collagen powder is one of the best vegan collagen supplements on the market today.</p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/image_405c5d47-6d8c-4e5c-88a7-3f0e32eeecec.png",
+        "video_url": "",
+        "custom_bg_color": "#fcf0e3",
+        "layout": "text_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "",
+        "overlay_description": "<p> </p>",
+        "show_collagen_stats": false
+      }
+    },
+    "mission_section_custom_XhRhMa": {
+      "type": "mission-section-custom",
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": false,
+        "main_title": "",
+        "main_title_font_weight": "500",
+        "title": "What You See Is What You Get",
+        "details": "<p>We firmly believe in cultivating honest and open relationships with our esteemed clientele. It is for this reason that we are dedicated to providing complete transparency in all that we undertake. We believe that our customer holds the right to be fully informed regarding the components of our products, our manufacturing methods, and the scientific research underpinning them. From the sourcing of ingredients to our manufacturing processes, we are steadfastly committed to sharing information that empowers you to make judicious decisions pertaining to your health.</p><p>With our organisation, you can be assured that transparency is not merely a buzzword, but rather an unwavering commitment to earning and maintaining your steadfast trust.</p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/image_405c5d47-6d8c-4e5c-88a7-3f0e32eeecec.png",
+        "video_url": "",
+        "custom_bg_color": "#f3f3f7",
+        "layout": "image_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "",
+        "overlay_description": "<p> </p>",
+        "show_collagen_stats": false
+      }
+    },
+    "promise_section_custom_g4P8fh": {
+      "type": "promise-section-custom",
+      "blocks": {
+        "promise_item_VJhRUG": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Plant-Based & Clean",
+            "description": "Evoq uses all natural ingredients like soya and peas to support your body’s collagen production. So there is no animal products used, no compromises.",
+            "icon": "shopify://shop_images/d7e9e94b-1e16-4097-84c6-9e29d2ac4a45.png",
+            "icon_svg": "",
+            "icon_background": "rgba(0,0,0,0)",
+            "card_background_color": "#ffffff"
+          }
+        },
+        "promise_item_hdbLUt": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Scientifically Formulated",
+            "description": "Our expert team dedicates countless hours of research to ensure our advanced formulations can guarantee you genuine results in an expeditious manner.",
+            "icon": "shopify://shop_images/6f38f397-d66e-4fca-91c1-f65f1cbbc689.png",
+            "icon_svg": "",
+            "icon_background": "rgba(0,0,0,0)",
+            "card_background_color": "#ffffff"
+          }
+        },
+        "promise_item_a9ibMY": {
+          "type": "promise_item",
+          "settings": {
+            "title": "For All Genders",
+            "description": "Whether you're looking for the best collagen supplements for men or effective collagen powders for women, Evoq is the right answer for you.",
+            "icon": "shopify://shop_images/170e0e75-3c02-4e33-a513-99f0e1cc77dc.png",
+            "icon_svg": "",
+            "icon_background": "rgba(0,0,0,0)",
+            "card_background_color": "#ffffff"
+          }
+        },
+        "promise_item_NACNTd": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Delicious Taste",
+            "description": "Unlike our competitors, we meticulously formulate all products in-house, with our esteemed team conducting thousands of taste tests to achieve the perfect flavors.",
+            "icon": "shopify://shop_images/Group_18.png",
+            "icon_svg": "",
+            "icon_background": "rgba(0,0,0,0)",
+            "card_background_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "promise_item_VJhRUG",
+        "promise_item_hdbLUt",
+        "promise_item_a9ibMY",
+        "promise_item_NACNTd"
+      ],
+      "name": "Promise Section",
+      "settings": {
+        "heading": "<p><strong>Evoq at its Core</strong></p>",
+        "heading_size": 32,
+        "heading_color": "#001f5f",
+        "title_color": "#000000",
+        "text_color": "#344054",
+        "background_color": "#e2edfa",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "brand_logo_slider_fqQeyp": {
+      "type": "brand-logo-slider",
+      "blocks": {
+        "logo_9NRxMm": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Vogue_Business.png"
+          }
+        },
+        "logo_LXAaxp": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOF.png"
+          }
+        },
+        "logo_4LMjwc": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Global_Cosmetics_news.png"
+          }
+        },
+        "logo_mecVjL": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/WWD.png"
+          }
+        },
+        "logo_npTbdp": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Glossy.png"
+          }
+        },
+        "logo_XAxf3H": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Independent.png"
+          }
+        },
+        "logo_XYLpDx": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Allure.png"
+          }
+        },
+        "logo_BG6pim": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Cosmetics_Business.png"
+          }
+        },
+        "logo_BYqWyh": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Business_Jurnal.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_9NRxMm",
+        "logo_LXAaxp",
+        "logo_4LMjwc",
+        "logo_mecVjL",
+        "logo_npTbdp",
+        "logo_XAxf3H",
+        "logo_XYLpDx",
+        "logo_BG6pim",
+        "logo_BYqWyh"
+      ],
+      "name": "Brand Logo Slider",
+      "settings": {
+        "animation_speed": 30,
+        "background_color": "#efeae1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_main_4dNAEt",
+    "mission_section_custom_F9CeWU",
+    "mission_section_custom_dVwdDV",
+    "mission_section_custom_XhRhMa",
+    "promise_section_custom_g4P8fh",
+    "brand_logo_slider_fqQeyp"
+  ]
+}

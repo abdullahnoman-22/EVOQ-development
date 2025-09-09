@@ -16,219 +16,110 @@
 
 <style>
   .product__info-container.product__column-sticky {
-    font-size: 18px !important;
-  }
-  label.quantity__label.form__label {
-    font-size: 25px;
-  }
-  legend.form__label {
-    font-size: 25px;
-  }
-  
-  /* Styles for first variant (with images) - Flavour - NO RADIO BUTTONS */
-  .variant-option-with-image {
-    display: inline-block;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-  }
+  font-size: 18px !important;
+}
 
-  .variant-option-with-image input[type="radio"] {
-    display: none;
-  }
+label.quantity__label.form__label {
+  font-size: 25px;
+}
 
-  .variant-option-with-image label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid #e4e4e4;
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 14px;
-    white-space: nowrap;
-  }
+legend.form__label {
+  font-size: 20px;
+  color: #101828;
+  font-weight: 600;
+  font-family: 'Inter' !important;
+}
 
-  .variant-option-with-image img.variant-thumb {
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
-    border-radius: 4px;
-  }
+/* Variant Description Styles */
+.variant-description {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+}
 
-  .variant-option-with-image .variant-title {
-    font-size: 14px;
-    color: #000;
-    line-height: 1.2;
-  }
+.variant-description p {
+  margin: 0 0 0.5rem 0;
+}
 
-  /* Hover effect */
-  .variant-option-with-image:hover label {
-    border-color: #c4ff56;
-  }
+.variant-description p:last-child {
+  margin-bottom: 0;
+}
 
-  /* Selected style for image variants - NO RADIO BUTTON */
-  .variant-option-with-image input[type="radio"]:checked + label {
-    border-color: #000;
-    background-color: #000;
-    color: white;
-  }
+/* Flavour Variant - No Radio Buttons */
+.variant-option-with-image {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
 
-  /* Disabled state for image variants */
-  .variant-option-with-image input.disabled + label {
-    opacity: 0.5;
-    pointer-events: none;
-  }
+.variant-option-with-image input[type="radio"] {
+  display: none;
+}
 
-  /* Badge in top-left corner */
-  .variant-badge {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    background-color: #7fe233;
-    color: #000;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 4px;
-    z-index: 2;
-  }
+.variant-option-with-image label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e4e4e4;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  white-space: nowrap;
+}
 
-  /* Styles for second variant with radio buttons - Size/Volume */
-  .product-form__input--pill {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
+.variant-option-with-image img.variant-thumb {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 4px;
+}
 
-  .product-form__input--pill input[type=radio] {
-    display: none;
-  }
+.variant-option-with-image .variant-title {
+  font-size: 14px;
+  color: #000;
+  line-height: 1.2;
+}
 
-  .product-form__input--pill input[type=radio] + label {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem;
-    margin: 0;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 16px;
-    font-weight: 500;
-    position: relative;
-  }
+.variant-option-with-image:hover label {
+  border-color: #c4ff56;
+}
 
-  /* Radio button circle */
-  .product-form__input--pill input[type=radio] + label::before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    border: 2px solid #d1d5db;
-    border-radius: 50%;
-    background: white;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-  }
+.variant-option-with-image input[type="radio"]:checked + label {
+  border-color: #ddd;
+  background-color: #000;
+  color: white;
+}
 
-  .Flavour input[type=radio] + label:hover {
-    border-color: #d1d5db;
-    background-color: #001F5F;
-    color: #fff !important;
-  }
-  .Flavour label:hover .variant-title{
-    color: #fff !important;
-  }
+.variant-option-with-image input.disabled + label {
+  opacity: 0.5;
+  pointer-events: none;
+}
 
-  .product-form__input--pill input[type=radio] + label:hover::before {
-    border-color: #6b7280;
-  }
+.variant-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: #7fe233;
+  color: #000;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  z-index: 2;
+}
 
-  /* Selected state - filled radio button */
-  .product-form__input--pill input[type=radio]:checked + label {
-    border-color: #000;
-    background-color: #001F5F;
-    color: #fff !important;
-  }
-  .Flavour input[type=radio]:checked + label {
-    border-color: #000;
-    background-color: #001F5F !important;
-    color: #fff !important;
-  }
-  .Flavour input[type=radio]:checked + label .variant-title{
-    color: #fff !important;
-  }
-
-  .product-form__input--pill input[type=radio]:checked + label::before {
-    border-color: #000;
-    background-color: #000;
-    box-shadow: inset 0 0 0 4px white;
-  }
-
-  .product-form__input--pill .variant-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1;
-  }
-
-  .product-form__input--pill .variant-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    color: #000;
-  }
-  
-
-  
-  .product-form__input--pill .variant-subtitle {
-    font-size: 14px;
-    color: #6b7280;
-    font-weight: normal;
-  }
-
-  .product-form__input--pill input.disabled + label {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  @media screen and (max-width: 768px) {
-    label.quantity__label.form__label {
-      font-size: 20px;
-    }
-    legend.form__label {
-      font-size: 20px;
-    }
-    .variant-option-with-image {
-      margin-right: 0.25rem;
-      margin-bottom: 0.25rem;
-    }
-    .variant-option-with-image label {
-      padding: 0.4rem 0.8rem;
-      font-size: 13px;
-    }
-    .variant-option-with-image img.variant-thumb {
-      width: 18px;
-      height: 18px;
-    }
-    .product-form__input--pill input[type=radio] + label {
-      padding: 0.8rem;
-      font-size: 15px;
-    }
-    .product-form__input--pill input[type=radio] + label::before {
-      width: 18px;
-      height: 18px;
-    }
-  }
-  /* Alternative approach - Add a span element for the radio button */
-
+/* Size/Volume Variant - With Radio Buttons */
 .product-form__input--pill {
   display: flex;
   flex-direction: row;
@@ -247,7 +138,7 @@
   padding: 1rem;
   margin: 0;
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  border-radius: 4px;
   background: white;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -256,8 +147,9 @@
   position: relative;
 }
 
-/* Custom radio button using span */
+.product-form__input--pill input[type=radio] + label::before,
 .product-form__input--pill .custom-radio {
+  content: '';
   width: 20px;
   height: 20px;
   border: 2px solid #d1d5db;
@@ -272,16 +164,18 @@
   border-color: #d1d5db;
 }
 
+.product-form__input--pill input[type=radio] + label:hover::before,
 .product-form__input--pill input[type=radio] + label:hover .custom-radio {
   border-color: #6b7280;
 }
 
-/* Selected state */
 .product-form__input--pill input[type=radio]:checked + label {
-  border-color: #000;
+  border-color: #ddd;
   background-color: white;
+  color: #fff !important;
 }
 
+.product-form__input--pill input[type=radio]:checked + label::before,
 .product-form__input--pill input[type=radio]:checked + label .custom-radio {
   border-color: #000;
   background-color: #000;
@@ -297,7 +191,7 @@
 
 .product-form__input--pill .variant-title {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 0.25rem;
   color: #000;
 }
@@ -312,6 +206,62 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
+/* Flavour-specific hover and checked states */
+.Flavour input[type=radio] + label:hover {
+  border-color: #d1d5db;
+  background-color: #001F5F;
+  color: #fff !important;
+}
+
+.Flavour label:hover .variant-title {
+  color: #fff !important;
+}
+
+.Flavour input[type=radio]:checked + label {
+  border-color: #000;
+  background-color: #001F5F !important;
+  color: #fff !important;
+}
+
+.Flavour input[type=radio]:checked + label .variant-title {
+  color: #fff !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  label.quantity__label.form__label {
+    font-size: 20px;
+  }
+  legend.form__label {
+    font-size: 20px;
+  }
+  .variant-description {
+    padding: 0.75rem;
+    font-size: 13px;
+  }
+  .variant-option-with-image {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  .variant-option-with-image label {
+    padding: 0.4rem 0.8rem;
+    font-size: 13px;
+  }
+  .variant-option-with-image img.variant-thumb {
+    width: 18px;
+    height: 18px;
+  }
+  .product-form__input--pill input[type=radio] + label {
+    padding: 0.8rem;
+    font-size: 15px;
+  }
+  .product-form__input--pill input[type=radio] + label::before,
+  .product-form__input--pill .custom-radio {
+    width: 18px;
+    height: 18px;
+  }
+}
 </style>
 
 {%- liquid
@@ -321,6 +271,9 @@
 
 {%- if option.position == 1 -%}
   <!-- First option with images (like Flavour) -->
+  
+  
+
   {%- for value in option.values -%}
     {%- assign option_disabled = true -%}
     {%- if value.available -%}
@@ -363,7 +316,7 @@
     {%- endfor -%}
 
     {%- if picker_type == 'button' -%}
-      <div class="variant-option-with-image">
+      <div class="variant-option-with-image" data-variant-description="{{ matched_variant.metafields.custom.variant_description | escape }}">
         <input
           type="radio"
           id="{{ input_id }}"
@@ -490,3 +443,50 @@
     {%- endfor -%}
   </div>
 {%- endif -%}
+
+<script>
+(function() {
+  'use strict';
+  
+  function updateVariantDescription() {
+    const vDescElement = document.getElementById('v_desc');
+    if (!vDescElement) return;
+    
+    // Find the checked variant option
+    const checkedOption = document.querySelector('.variant-option-with-image input[type="radio"]:checked');
+    if (checkedOption) {
+      const parentDiv = checkedOption.closest('.variant-option-with-image');
+      const description = parentDiv.getAttribute('data-variant-description');
+      
+      if (description && description.trim() !== '') {
+        vDescElement.innerHTML = description;
+      } else {
+        vDescElement.innerHTML = '';
+      }
+    }
+  }
+  
+  function init() {
+    // Update description on page load
+    updateVariantDescription();
+    
+    // Add event listeners to all variant radio buttons
+    const variantOptions = document.querySelectorAll('.variant-option-with-image input[type="radio"]');
+    
+    variantOptions.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        if (this.checked) {
+          updateVariantDescription();
+        }
+      });
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

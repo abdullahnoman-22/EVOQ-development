@@ -1,0 +1,326 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_banner_XcjjGi": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_eEEkjY": {
+          "type": "heading",
+          "settings": {
+            "heading": "Honest reviews from real customers",
+            "heading_size": "h1"
+          }
+        },
+        "text_TjRJaT": {
+          "type": "text",
+          "settings": {
+            "text": "<em>Question? We/re here for you.</em>",
+            "text_style": "body"
+          }
+        },
+        "buttons_MhLzg3": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Start glowing now",
+            "button_link_1": "shopify://collections/shop",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_eEEkjY",
+        "text_TjRJaT",
+        "buttons_MhLzg3"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/image_4.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "hair_reviews_custom_JmYfnj": {
+      "type": "hair-reviews-custom",
+      "blocks": {
+        "single_image_P3VQbU": {
+          "type": "single_image",
+          "settings": {
+            "image": "shopify://shop_images/image_8_096b2c87-e41d-48b0-953e-831603633949.png",
+            "alt_text": "",
+            "overlay_text": ""
+          }
+        },
+        "single_image_6HTWPf": {
+          "type": "single_image",
+          "settings": {
+            "image": "shopify://shop_images/Group_1171276823.png",
+            "alt_text": "",
+            "overlay_text": ""
+          }
+        },
+        "single_image_btmBzK": {
+          "type": "single_image",
+          "settings": {
+            "image": "shopify://shop_images/Group_1171276822.png",
+            "alt_text": "",
+            "overlay_text": ""
+          }
+        },
+        "single_image_UCtY6t": {
+          "type": "single_image",
+          "settings": {
+            "image": "shopify://shop_images/image_9.png",
+            "alt_text": "",
+            "overlay_text": ""
+          }
+        },
+        "single_image_BEyxhp": {
+          "type": "single_image",
+          "settings": {
+            "image": "shopify://shop_images/Group_1171276824.png",
+            "alt_text": "",
+            "overlay_text": ""
+          }
+        },
+        "single_image_4k6BK9": {
+          "type": "single_image",
+          "settings": {
+            "image": "shopify://shop_images/image_10.png",
+            "alt_text": "",
+            "overlay_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "single_image_P3VQbU",
+        "single_image_6HTWPf",
+        "single_image_btmBzK",
+        "single_image_UCtY6t",
+        "single_image_BEyxhp",
+        "single_image_4k6BK9"
+      ],
+      "name": "Hair Reviews",
+      "settings": {
+        "title": "True Community Feedback",
+        "subtitle": "Question? We're here for you.",
+        "button_text": "View Real Result",
+        "button_link": "shopify://collections/shop",
+        "title_color": "#001f5f",
+        "text_color": "#344054",
+        "button_color": "#001f5f",
+        "button_hover_color": "#001f5f"
+      }
+    },
+    "testimonials_grid_custom_tg_ggLnnx": {
+      "type": "testimonials-grid-custom-tg",
+      "name": "Testimonials Grid",
+      "settings": {
+        "bg_color_1": "#fafcff",
+        "image_1": "shopify://shop_images/image_8_096b2c87-e41d-48b0-953e-831603633949.png",
+        "quote_1": "I’ve been using EVOQ for 3 months now, and the results are incredible! My wrinkles have visibly reduced, and my skin feels so much firmer and hydrated. I love that it’s vegan and made from natural ingredients like soya and beans. Highly recommend it!",
+        "name_1": "Sarah K.",
+        "title_1": "Skin Transformation",
+        "bg_color_2": "#fcf6f0",
+        "image_2": "shopify://shop_images/image_5_01289d70-866c-4de9-ba4f-5663080b7a8d.png",
+        "quote_2": "EVOQ has been a game-changer for me. My hair was thinning, and my nails were constantly breaking, but after a few weeks of using this collagen powder, I noticed a huge improvement. My hair feels thicker, and my nails are stronger than ever. Plus, it’s vegan, which is a big bonus!",
+        "name_2": "Emma J.",
+        "title_2": "Stronger Hair and Nails",
+        "bg_color_3": "#e2edfa",
+        "image_3": "shopify://shop_images/image_6_d32886b9-7d2a-4de7-9f06-b6af7f86bb50.png",
+        "quote_3": "I’ve struggled with joint pain for years, but since I started taking EVOQ, I feel so much better. My knees don’t ache as much, and I feel more flexible overall. It’s amazing how effective this vegan collagen powder is. Thank you, EVOQ!",
+        "name_3": "Mark L.",
+        "title_3": "Joint Pain Relief",
+        "bg_color_4": "#fcf0e3",
+        "image_4": "shopify://shop_images/aa817907-1926-481f-829f-405a2af836c8_640.png",
+        "quote_4": "EVOQ has given me my confidence back! My skin looks radiant and youthful, and I’ve even received compliments from friends. It’s so easy to mix into my smoothies, and I love knowing that it’s plant-based and healthy.",
+        "name_4": "Olivia P.",
+        "title_4": " Youthful Glow",
+        "bg_color_5": "#e2edfa",
+        "image_5": "shopify://shop_images/Rectangle_23900.png",
+        "quote_5": "As someone who’s active and always on the go, EVOQ has been a lifesaver for my joints and bones. I feel stronger, and my body recovers faster after workouts. I’m so glad I found a vegan collagen that actually works!",
+        "name_5": "David R.",
+        "title_5": "Bone and Joint Health",
+        "bg_color_6": "#fcf0e3",
+        "image_6": "shopify://shop_images/image_7_72d8f83c-eb94-4c43-8834-f199508cf0bb.png",
+        "quote_6": "EVOQ has improved my skin, hair, nails, and even my joints! I’ve tried other collagen powders before, but none worked like this. The fact that it’s vegan and made from sustainable ingredients makes it even better. I’ll never go back to anything else!",
+        "name_6": "Mia T.",
+        "title_6": "All-in-One Beauty Solution"
+      }
+    },
+    "customer_testimonial_mosaic_TCdbtx": {
+      "type": "customer-testimonial-mosaic",
+      "blocks": {
+        "video_JmeFn4": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/815820bf304a46b39c47cb080a8ca98e.mp4",
+            "grid_position": "default"
+          }
+        },
+        "video_4rfXTG": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/beda601f5b534462a7c5cab6ef12a57a.mp4",
+            "grid_position": "default"
+          }
+        },
+        "video_ze8AJn": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/bb6f3199e68c44d982a16292e2ed26b7.mp4",
+            "grid_position": "center"
+          }
+        },
+        "video_YbmTEj": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/5783089aa7dd4c07b5e2bf4cda95f3ea.mp4",
+            "grid_position": "top"
+          }
+        },
+        "video_TzYyRd": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/c594b157c27c4406847c12308da3e615.mp4",
+            "grid_position": "bottom"
+          }
+        },
+        "video_UKPfnM": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/2537795ea23c42c1b899a4e1551cfb6f.mp4",
+            "grid_position": "tall"
+          }
+        }
+      },
+      "block_order": [
+        "video_JmeFn4",
+        "video_4rfXTG",
+        "video_ze8AJn",
+        "video_YbmTEj",
+        "video_TzYyRd",
+        "video_UKPfnM"
+      ],
+      "name": "Customer Testimonial Mosaic",
+      "settings": {
+        "heading": "The voice of Our Happy Customers",
+        "subtext": "99% of customers agree our products taste better than other brands.",
+        "instagram_handle": "@evoq24.com",
+        "instagram_url": "https://evoq24.com",
+        "facebook_url": "https://www.facebook.com/profile.php?id=61577026700194",
+        "tiktok_url": "https://www.tiktok.com/@evoq_collagen?is_from_webapp=1&sender_device=pc",
+        "youtube_url": "https://youtube.com/@evoq_official?si=PgvtiUaVqYE4HSrz"
+      }
+    },
+    "brand_logo_slider_kTDxkf": {
+      "type": "brand-logo-slider",
+      "blocks": {
+        "logo_R7Keq7": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Vogue_Business.png"
+          }
+        },
+        "logo_wPyPGp": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOF.png"
+          }
+        },
+        "logo_UGyKTE": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Global_Cosmetics_news.png"
+          }
+        },
+        "logo_T6txQA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/WWD.png"
+          }
+        },
+        "logo_7inwid": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Glossy.png"
+          }
+        },
+        "logo_fjY3dF": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Independent.png"
+          }
+        },
+        "logo_rgDJhJ": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Allure.png"
+          }
+        },
+        "logo_wqq79m": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Cosmetics_Business.png"
+          }
+        },
+        "logo_JBRyiw": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Business_Jurnal.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_R7Keq7",
+        "logo_wPyPGp",
+        "logo_UGyKTE",
+        "logo_T6txQA",
+        "logo_7inwid",
+        "logo_fjY3dF",
+        "logo_rgDJhJ",
+        "logo_wqq79m",
+        "logo_JBRyiw"
+      ],
+      "name": "Brand Logo Slider",
+      "settings": {
+        "animation_speed": 30,
+        "background_color": "#fcf0e3"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_XcjjGi",
+    "hair_reviews_custom_JmYfnj",
+    "testimonials_grid_custom_tg_ggLnnx",
+    "customer_testimonial_mosaic_TCdbtx",
+    "brand_logo_slider_kTDxkf"
+  ]
+}

@@ -1,0 +1,693 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_main_bPkrpf": {
+      "type": "image-with-text-main",
+      "blocks": {
+        "heading_idT9ed": {
+          "type": "heading",
+          "settings": {
+            "heading": "What is collagen?",
+            "heading_size": "h1"
+          }
+        },
+        "text_QHzxT3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Collagen is the primary structural protein in the human body that acts as the \"glue\" holding everything together. It is the most abundant protein in the human body, making up about 30% of the total protein content.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_J7U83a": {
+          "type": "button",
+          "settings": {
+            "button_label": "Start glowing now",
+            "button_link": "shopify://collections/shop",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_idT9ed",
+        "text_QHzxT3",
+        "button_J7U83a"
+      ],
+      "name": "Image with text main",
+      "settings": {
+        "image": "shopify://shop_images/Group_1171277518.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "mobile_layout": "follow_desktop",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "mission_section_custom_F9CeWU": {
+      "type": "mission-section-custom",
+      "blocks": {
+        "stat_item_g34jV7": {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Bone matrix:",
+            "stat_value": "90% collagen"
+          }
+        },
+        "stat_item_YD6FDb": {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Skin:",
+            "stat_value": "75% collagen"
+          }
+        },
+        "stat_item_tdcVFr": {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Joint cartilage:",
+            "stat_value": "70% collagen"
+          }
+        },
+        "stat_item_E6WVeV": {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Ligaments:",
+            "stat_value": "70% collagen"
+          }
+        },
+        "stat_item_DejP8j": {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Tendons:",
+            "stat_value": "85% collagen"
+          }
+        },
+        "stat_item_mCBwaL": {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Fasciae:",
+            "stat_value": "70% collagen"
+          }
+        },
+        "stat_item_L6Et8x": {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Muscle tissue:",
+            "stat_value": "6% collagen"
+          }
+        }
+      },
+      "block_order": [
+        "stat_item_g34jV7",
+        "stat_item_YD6FDb",
+        "stat_item_tdcVFr",
+        "stat_item_E6WVeV",
+        "stat_item_DejP8j",
+        "stat_item_mCBwaL",
+        "stat_item_L6Et8x"
+      ],
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": false,
+        "main_title": "",
+        "main_title_font_weight": "500",
+        "title": "Collagen in the human body:",
+        "details": "<p>Collagen is pervasive in the human body, as it is the primary component of connective tissues and the most abundant protein overall.</p><p>It makes up a significant portion of the body's total composition and is found in a wide variety of tissues and structures.</p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/image_405c5d47-6d8c-4e5c-88a7-3f0e32eeecec.png",
+        "video_url": "",
+        "custom_bg_color": "#fcf0e3",
+        "layout": "text_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "Premium Quality",
+        "overlay_description": "Sourced from the finest ingredients",
+        "show_collagen_stats": true
+      }
+    },
+    "mission_section_custom_QNKEAd": {
+      "type": "mission-section-custom",
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": false,
+        "main_title": "Our Mission",
+        "main_title_font_weight": "500",
+        "title": "The Strength of Collagen's Triple Helix",
+        "details": "<p>Each collagen molecule consists of three intertwined amino acid chains twisted into a tight, triple-helix structure. This helical configuration grants collagen remarkable strength and flexibility, enabling it to reinforce and support various bodily tissues such as skin, muscles, tendons, and bones.<br/><br/></p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/image_405c5d47-6d8c-4e5c-88a7-3f0e32eeecec.png",
+        "video_url": "",
+        "custom_bg_color": "",
+        "layout": "image_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "Premium Quality",
+        "overlay_description": "Sourced from the finest ingredients",
+        "show_collagen_stats": false
+      }
+    },
+    "collagen_types_custom_UJJRqA": {
+      "type": "collagen-types-custom",
+      "name": "Collagen Types",
+      "settings": {
+        "title": "The 3 Key Collagen Types",
+        "subtitle": "While there are 28 known collagen types in the human body, the three most prevalent and significant are Type 1, Type 2, and Type 3 collagens. Together, these three collagen types account for nearly 90% of all collagens found throughout the body.",
+        "type1_title": "Type 1 Collagen:",
+        "type1_description": "The most abundant collagen in the body\nPrevalent in skin, providing resilience, plumpness, and bounce\nAlso found in bones, tendons, ligaments, and other connective tissues.",
+        "type1_image_1": "shopify://shop_images/Close-up_of_a_woman_s_smooth_clear_complexion_highlighting_youthful_skin._Ideal_for_promoting_collagen_beauty_supplements..png",
+        "type1_image_2": "shopify://shop_images/Person_holding_elbow_with_a_superimposed_skeletal_diagram_highlighting_joint_health_benefits_of_collagen_supplements_for_beauty_and_wellness._1.png",
+        "type2_title": "Type 2 Collagen:",
+        "type2_description": "Provides cushioning in cartilage, preventing friction between adjoining bones\nAlso present in the windpipe, voice box, lungs, and ears.",
+        "type2_image_1": "shopify://shop_images/3D_illustration_of_a_knee_joint_showcasing_smooth_articulation_highlighting_collagen_s_role_in_joint_health_and_beauty_supplements..png",
+        "type2_image_2": "shopify://shop_images/Close-up_of_wavy_golden_brown_hair_highlighting_smooth_texture_and_shine._Perfect_for_beauty_and_haircare_focus..png",
+        "type3_title": "Type 3 Collagen:",
+        "type3_description": "Closely associated with Type 1, appearing in similar locations like skin, ligaments, and blood vessels\nMay play an important role in the production of Type 1 collagen",
+        "type3_image_1": "shopify://shop_images/Close-up_of_a_woman_s_smooth_clear_complexion_highlighting_youthful_skin._Ideal_for_promoting_collagen_beauty_supplements._1.png",
+        "type3_image_2": "shopify://shop_images/Person_holding_elbow_with_a_superimposed_skeletal_diagram_highlighting_joint_health_benefits_of_collagen_supplements_for_beauty_and_wellness._1.png"
+      }
+    },
+    "mission_section_custom_DUFrRx": {
+      "type": "mission-section-custom",
+      "disabled": true,
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": true,
+        "main_title": "Collagen keeps your skin supple, bones sturdy, and joints limber - until it doesn't.",
+        "main_title_font_weight": "500",
+        "title": "The Dual Drivers of Collagen Depletion",
+        "details": "<p>Aging's Impact</p><p>As we grow older, the cells responsible for producing collagen, such as fibroblasts and chondrocytes, accumulate DNA damage over time. This means fewer of these cells are functioning optimally, leading to a natural decrease in our body's collagen levels.</p>",
+        "image_width": 600,
+        "image_height": 600,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "video",
+        "product_image": "shopify://shop_images/Group_1000005020_1.png",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/1e966631551d49198b43b300a0dd8bc6.mp4",
+        "custom_bg_color": "rgba(0,0,0,0)",
+        "layout": "image_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "Premium Quality",
+        "overlay_description": "Sourced from the finest ingredients",
+        "show_collagen_stats": false
+      }
+    },
+    "mission_section_v2_custom_UfVRPq": {
+      "type": "mission-section-v2-custom",
+      "name": "Mission Section v2",
+      "settings": {
+        "show_main_title": true,
+        "main_title": "Collagen keeps your skin supple, bones sturdy, and joints limber - until it doesn't.",
+        "main_title_font_weight": "500",
+        "title": "The Dual Drivers of Collagen Depletion",
+        "details": "<p>Aging's Impact</p><p>As we grow older, the cells responsible for producing collagen, such as fibroblasts and chondrocytes, accumulate DNA damage over time. This means fewer of these cells are functioning optimally, leading to a natural decrease in our body's collagen levels.</p>",
+        "image_width": 600,
+        "image_height": 600,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "video",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/1e966631551d49198b43b300a0dd8bc6.mp4",
+        "custom_bg_color": "#ffffff",
+        "layout": "image_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "",
+        "overlay_description": "<p> </p>",
+        "show_collagen_stats": false
+      }
+    },
+    "mission_section_custom_zTVmWN": {
+      "type": "mission-section-custom",
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": true,
+        "main_title": "Two things behind this decline",
+        "main_title_font_weight": "600",
+        "title": "Collagen is everywhere in the human body",
+        "details": "<p>Collagen is the main component of connective tissue & is the most abundant protein in the human body.</p><p>It makes up approximately 30% of the whole body & 70% to 80% of the skin's protein content. As a result, you'd be hard-pressed to find a body part that doesn't contain collagen. It's in your skin, hair, bones, cartilage, digestive system, & more.<br/></p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/Group_1171276844.png",
+        "video_url": "",
+        "custom_bg_color": "#e2edfa",
+        "layout": "text_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "Premium Quality",
+        "overlay_description": "Sourced from the finest ingredients",
+        "show_collagen_stats": false
+      }
+    },
+    "mission_section_custom_HQ36VM": {
+      "type": "mission-section-custom",
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": false,
+        "main_title": "Two things behind this decline",
+        "main_title_font_weight": "500",
+        "title": "Oxidative stress",
+        "details": "<p>While free radicals are a natural by product of normal cellular processes, your body can also produce excessive amounts (a phenomenon known as oxidative stress) in response to external aggressors. Examples include:</p><ul><li><strong>UV Rays  </strong></li><li><strong> Air pollution</strong></li><li><strong>Inflammatory diets</strong></li></ul><p>These highly unstable & reactive molecules can steal electrons from healthy, collagen pro-ducing cells damaging them irreversibly. This, in turn, speeds up the rate at which you lose collagen.<br/><br/></p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/image_1_f75ac521-d1ce-43f8-b242-87df3f287233.png",
+        "video_url": "",
+        "custom_bg_color": "#fcf0e3",
+        "layout": "image_first",
+        "show_cta_button": false,
+        "cta_text": "Start glowing now",
+        "cta_url": "",
+        "cta_open_new_tab": false,
+        "show_image_overlay": true,
+        "overlay_title": "",
+        "overlay_description": "",
+        "show_collagen_stats": false
+      }
+    },
+    "promise_section_v2_custom_XyExpz": {
+      "type": "promise-section-v2-custom",
+      "blocks": {
+        "promise_item_idYxmb": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Dry, wrinkly, saggy skin",
+            "description": "",
+            "icon": "shopify://shop_images/Background.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "rgba(0,0,0,0)"
+          }
+        },
+        "promise_item_hCcKe7": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Dull, brittle, limp hair",
+            "description": "",
+            "icon": "shopify://shop_images/Background_1.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "rgba(0,0,0,0)"
+          }
+        },
+        "promise_item_FHBx7q": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Weak, cracked nails",
+            "description": "",
+            "icon": "shopify://shop_images/Background_2.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "rgba(0,0,0,0)"
+          }
+        },
+        "promise_item_qKLb3U": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Gas, bloating, & discomfort",
+            "description": "",
+            "icon": "shopify://shop_images/Background_3.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "rgba(0,0,0,0)"
+          }
+        },
+        "promise_item_qppGnJ": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Sore, achy, creaky joints",
+            "description": "",
+            "icon": "shopify://shop_images/Background_4.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "promise_item_idYxmb",
+        "promise_item_hCcKe7",
+        "promise_item_FHBx7q",
+        "promise_item_qKLb3U",
+        "promise_item_qppGnJ"
+      ],
+      "name": "Promise Section v2",
+      "settings": {
+        "heading": "<p>A decline in collagen production translates <em><strong>to a loss in structure.</strong></em> & hello, unpleasant head-to-toe symptoms.</p>",
+        "heading_size": 36,
+        "heading_color": "#001f5f",
+        "title_color": "#101828",
+        "text_color": "#666666",
+        "background_color": "#e8f0fe",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "collagen_education_custom_MXMkUx": {
+      "type": "collagen-education-custom",
+      "blocks": {
+        "question_qgHVHi": {
+          "type": "question",
+          "settings": {
+            "question": "What are hydrolysed collagen peptides?",
+            "answer": "<p>Hydrolysed collagen peptides are short chains of amino acids derived from the breakdown of collagen, the most abundant protein in the human body. Collagen provides structure and support to skin, bones, joints, and other connective tissues. Through a process called hydrolysis, the large collagen molecules are cleaved into smaller, more absorbable peptide fragments. This hydrolysis step makes the collagen more bioavailable, allowing the body to more readily utilize the amino acids and peptides.<br/><br/></p>"
+          }
+        },
+        "question_T9VDmb": {
+          "type": "question",
+          "settings": {
+            "question": "Do they even get to where they need to be?",
+            "answer": "<p>Research has shown that hydrolysed collagen peptides can be effectively absorbed from the digestive system and distributed throughout the body. Once ingested, the small collagen peptides are able to pass through the intestinal lining and enter the bloodstream. From there, they can circulate and be taken up by cells in the skin, joints, bones, and other connective tissues that require collagen. Studies using radioactive or fluorescent-labeled collagen peptides have demonstrated their ability to accumulate in target tissues like the skin and cartilage. This targeted delivery is what allows hydrolysed collagen supplements to provide benefits to these specific areas of the body.<br/><br/></p>"
+          }
+        },
+        "question_cnfPDJ": {
+          "type": "question",
+          "settings": {
+            "question": "Well, where's the proof?",
+            "answer": "<p>There is a growing body of clinical research supporting the efficacy of hydrolysed collagen peptides for improving skin, joint, and bone health. Multiple randomized, placebo-controlled studies have found that daily supplementation with collagen peptides leads to measurable improvements. For example, several trials have shown that collagen peptide supplements can increase skin elasticity and hydration, reduce the appearance of wrinkles, and alleviate joint pain and stiffness in people with osteoarthritis. Other research has demonstrated benefits for bone mineral density and strength. The mechanisms behind these effects involve the collagen peptides stimulating the production of new collagen, as well as reducing inflammation and oxidative stress in the target tissues. While more research is always welcome, the existing scientific evidence provides strong proof of the benefits of hydrolysed collagen peptides.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_qgHVHi",
+        "question_T9VDmb",
+        "question_cnfPDJ"
+      ],
+      "name": "Collagen Education",
+      "settings": {
+        "main_title": "Hydrolysed collagen peptides can help combat",
+        "sub_title": "the effects of aging and oxidative stress.",
+        "highlight_color": "#001f5f",
+        "header_text_color": "#001f5f",
+        "background_gradient_start": "#ffffff",
+        "background_gradient_end": "#ffffff",
+        "header_bg_start": "#ffffff",
+        "header_bg_end": "#ffffff",
+        "sidebar_bg": "#ffffff",
+        "answer_bg": "#fcfcfc",
+        "answer_text_color": "#344054",
+        "question_text_color": "#121c30",
+        "question_active_color": "#ffffff",
+        "question_hover_bg": "#001f5f",
+        "question_active_bg": "#001f5f",
+        "border_color": "#e2edfa",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "promise_section_custom_M6rHti": {
+      "type": "promise-section-custom",
+      "blocks": {
+        "promise_item_DhRhQj": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Dosage Considerations",
+            "description": "While there are no official guidelines, research and customer feedback suggest an optimal collagen dosage of 10-15 grams per day to support the body's natural collagen production and maintenance.",
+            "icon": "shopify://shop_images/d7e9e94b-1e16-4097-84c6-9e29d2ac4a45.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "#ffffff"
+          }
+        },
+        "promise_item_MGCnGR": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Collagen Protein Type and Formulation",
+            "description": "The specific collagen protein type and formulation can significantly impact efficacy and bioavailability. The featured products are thoughtfully designed to surpass the minimum effective dosage, helping users achieve desired results efficiently.",
+            "icon": "shopify://shop_images/6f38f397-d66e-4fca-91c1-f65f1cbbc689.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "#ffffff"
+          }
+        },
+        "promise_item_4Ryh7q": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Quality and Source Considerations",
+            "description": "The sourcing methods for collagen raw materials are crucial. Dubious practices may compromise user health, so reputable manufacturers prioritize purity, safety, and sustainability from high-quality, responsibly-raised sources.",
+            "icon": "shopify://shop_images/170e0e75-3c02-4e33-a513-99f0e1cc77dc.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "#ffffff"
+          }
+        },
+        "promise_item_4tx38x": {
+          "type": "promise_item",
+          "settings": {
+            "title": "Taste and User Experience",
+            "description": "Unlike other macronutrients, protein cannot be stored long-term, necessitating consistent collagen supplementation. The palatability and user experience can greatly impact compliance and adherence, ensuring users receive the full spectrum of potential benefits.",
+            "icon": "shopify://shop_images/Group_18.png",
+            "icon_svg": "",
+            "icon_background": "#ffffff",
+            "card_background_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "promise_item_DhRhQj",
+        "promise_item_MGCnGR",
+        "promise_item_4Ryh7q",
+        "promise_item_4tx38x"
+      ],
+      "name": "Promise Section",
+      "settings": {
+        "heading": "<p>The<strong> Importance</strong> of Evaluating Hydrolysed Collagen Peptide <strong>Supplements</strong><br/></p>",
+        "heading_size": 36,
+        "heading_color": "#001f5f",
+        "title_color": "#101828",
+        "text_color": "#101828",
+        "background_color": "#e8f0fe",
+        "padding_top": 20,
+        "padding_bottom": 60
+      }
+    },
+    "custom_product_grid_PmaFG7": {
+      "type": "custom-product-grid",
+      "blocks": {
+        "product_4yjHGC": {
+          "type": "product",
+          "settings": {
+            "product": "collagen-powder",
+            "variant_id": "42110940151898",
+            "custom_image": "shopify://shop_images/Group_1171277507.png",
+            "custom_title": "Collagen Powder - Chocolate",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940151898",
+            "custom_price": 95,
+            "currency": "$",
+            "show_badge": true,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": false,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_6PNF8q": {
+          "type": "product",
+          "settings": {
+            "product": "collagen-powder",
+            "variant_id": "42110940086362",
+            "custom_image": "shopify://shop_images/Group_1171277509.png",
+            "custom_title": "Collagen Powder - Strawberry",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940086362",
+            "custom_price": 85,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": false,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_qrLJjV": {
+          "type": "product",
+          "settings": {
+            "product": "collagen-powder",
+            "variant_id": "42110940217434",
+            "custom_image": "shopify://shop_images/Group_1171277505.png",
+            "custom_title": "Collagen Powder - Mango",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940217434",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": true,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": false,
+            "learn_more_text": "Learn More"
+          }
+        }
+      },
+      "block_order": [
+        "product_4yjHGC",
+        "product_6PNF8q",
+        "product_qrLJjV"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_sort": false
+      }
+    },
+    "brand_logo_slider_4kaJiE": {
+      "type": "brand-logo-slider",
+      "blocks": {
+        "logo_Xw6ggX": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Vogue_Business.png"
+          }
+        },
+        "logo_imthjH": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOF.png"
+          }
+        },
+        "logo_K3GjfM": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Global_Cosmetics_news.png"
+          }
+        },
+        "logo_ntwt7J": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/WWD.png"
+          }
+        },
+        "logo_GBXHCW": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Glossy.png"
+          }
+        },
+        "logo_wFGAAd": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Independent.png"
+          }
+        },
+        "logo_XYBNMJ": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Cosmetics_Business.png"
+          }
+        },
+        "logo_WCYFk9": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Allure.png"
+          }
+        },
+        "logo_UUAMkg": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Business_Jurnal.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_Xw6ggX",
+        "logo_imthjH",
+        "logo_K3GjfM",
+        "logo_ntwt7J",
+        "logo_GBXHCW",
+        "logo_wFGAAd",
+        "logo_XYBNMJ",
+        "logo_WCYFk9",
+        "logo_UUAMkg"
+      ],
+      "name": "Brand Logo Slider",
+      "settings": {
+        "animation_speed": 30,
+        "background_color": "#efeae1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_main_bPkrpf",
+    "mission_section_custom_F9CeWU",
+    "mission_section_custom_QNKEAd",
+    "collagen_types_custom_UJJRqA",
+    "mission_section_custom_DUFrRx",
+    "mission_section_v2_custom_UfVRPq",
+    "mission_section_custom_zTVmWN",
+    "mission_section_custom_HQ36VM",
+    "promise_section_v2_custom_XyExpz",
+    "collagen_education_custom_MXMkUx",
+    "promise_section_custom_M6rHti",
+    "custom_product_grid_PmaFG7",
+    "brand_logo_slider_4kaJiE"
+  ]
+}

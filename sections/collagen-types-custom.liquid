@@ -5,93 +5,93 @@
 
 {% assign section_id = section.id | default: 'collagen-types' %}
 
-<section class="collagen-types-section" id="{{ section_id }}">
-  <div class="container">
+<section class="cus-ct-collagen-types-section" id="{{ section_id }}">
+  <div class="page-width cus-ct-container">
     
     {% comment %} Section Header {% endcomment %}
-    <div class="section-header">
-      <h2 class="section-title">
+    <div class="cus-ct-section-header">
+      <h3 class="cus-ct-section-title">
         {{ section.settings.title | default: '3 types of collagen you need to know' }}
-      </h2>
-      <p class="section-subtitle">
+      </h3>
+      <p class="cus-ct-section-subtitle">
         {{ section.settings.subtitle | default: 'Of the 28 "types" in the human body, Type 1, Type 2, & Type 3 collagens are the most noteworthy. That is because they make up nearly 90% of all collagens in your body.' }}
       </p>
     </div>
 
     {% comment %} Collagen Types Grid {% endcomment %}
-    <div class="collagen-grid">
+    <div class="cus-ct-collagen-grid">
       
       {% comment %} Type 1 Collagen {% endcomment %}
-      <div class="collagen-card">
-        <div class="collagen-icons">
+      <div class="cus-ct-collagen-card">
+        <div class="cus-ct-collagen-icons">
           {% if section.settings.type1_image_1 %}
-            <img src="{{ section.settings.type1_image_1 | img_url: '60x60' }}" alt="Type 1 Collagen Icon 1" class="collagen-icon">
+            <img src="{{ section.settings.type1_image_1 | img_url: '60x60' }}" alt="Type 1 Collagen Icon 1" class="cus-ct-collagen-icon">
           {% else %}
-            <div class="collagen-icon placeholder-icon skin-icon"></div>
+            <div class="cus-ct-collagen-icon cus-ct-placeholder-icon cus-ct-skin-icon"></div>
           {% endif %}
           
           {% if section.settings.type1_image_2 %}
-            <img src="{{ section.settings.type1_image_2 | img_url: '60x60' }}" alt="Type 1 Collagen Icon 2" class="collagen-icon">
+            <img src="{{ section.settings.type1_image_2 | img_url: '60x60' }}" alt="Type 1 Collagen Icon 2" class="cus-ct-collagen-icon">
           {% else %}
-            <div class="collagen-icon placeholder-icon hair-icon"></div>
+            <div class="cus-ct-collagen-icon cus-ct-placeholder-icon cus-ct-hair-icon"></div>
           {% endif %}
         </div>
         
-        <h3 class="collagen-title">
+        <h3 class="cus-ct-collagen-title">
           {{ section.settings.type1_title | default: 'Type 1 Collagen' }}
         </h3>
         
-        <p class="collagen-description">
+        <p class="cus-ct-collagen-description">
           {{ section.settings.type1_description | default: 'The most prevalent type of collagen in your body. It is especially abundant in the skin, where it pairs up with elastin to keep your skin resilient, plump, and bouncy. Also found in bones, tendons, ligaments, and other connective tissues.' }}
         </p>
       </div>
 
       {% comment %} Type 2 Collagen {% endcomment %}
-      <div class="collagen-card">
-        <div class="collagen-icons">
+      <div class="cus-ct-collagen-card">
+        <div class="cus-ct-collagen-icons">
           {% if section.settings.type2_image_1 %}
-            <img src="{{ section.settings.type2_image_1 | img_url: '60x60' }}" alt="Type 2 Collagen Icon 1" class="collagen-icon">
+            <img src="{{ section.settings.type2_image_1 | img_url: '60x60' }}" alt="Type 2 Collagen Icon 1" class="cus-ct-collagen-icon">
           {% else %}
-            <div class="collagen-icon placeholder-icon joint-icon"></div>
+            <div class="cus-ct-collagen-icon cus-ct-placeholder-icon cus-ct-joint-icon"></div>
           {% endif %}
           
           {% if section.settings.type2_image_2 %}
-            <img src="{{ section.settings.type2_image_2 | img_url: '60x60' }}" alt="Type 2 Collagen Icon 2" class="collagen-icon">
+            <img src="{{ section.settings.type2_image_2 | img_url: '60x60' }}" alt="Type 2 Collagen Icon 2" class="cus-ct-collagen-icon">
           {% else %}
-            <div class="collagen-icon placeholder-icon cartilage-icon"></div>
+            <div class="cus-ct-collagen-icon cus-ct-placeholder-icon cus-ct-cartilage-icon"></div>
           {% endif %}
         </div>
         
-        <h3 class="collagen-title">
+        <h3 class="cus-ct-collagen-title">
           {{ section.settings.type2_title | default: 'Type 2 Collagen' }}
         </h3>
         
-        <p class="collagen-description">
+        <p class="cus-ct-collagen-description">
           {{ section.settings.type2_description | default: 'Found in your cartilage-cushy padding that prevents 2 adjoining bones, like in your elbow, from grinding against each other. You can also find Type 2 collagen in your windpipe, voice box, ribs, passages in the lung, and ears.' }}
         </p>
       </div>
 
       {% comment %} Type 3 Collagen {% endcomment %}
-      <div class="collagen-card">
-        <div class="collagen-icons">
+      <div class="cus-ct-collagen-card">
+        <div class="cus-ct-collagen-icons">
           {% if section.settings.type3_image_1 %}
-            <img src="{{ section.settings.type3_image_1 | img_url: '60x60' }}" alt="Type 3 Collagen Icon 1" class="collagen-icon">
+            <img src="{{ section.settings.type3_image_1 | img_url: '60x60' }}" alt="Type 3 Collagen Icon 1" class="cus-ct-collagen-icon">
           {% else %}
-            <div class="collagen-icon placeholder-icon blood-icon"></div>
+            <div class="cus-ct-collagen-icon cus-ct-placeholder-icon cus-ct-blood-icon"></div>
           {% endif %}
           
           {% if section.settings.type3_image_2 %}
-            <img src="{{ section.settings.type3_image_2 | img_url: '60x60' }}" alt="Type 3 Collagen Icon 2" class="collagen-icon">
+            <img src="{{ section.settings.type3_image_2 | img_url: '60x60' }}" alt="Type 3 Collagen Icon 2" class="cus-ct-collagen-icon">
           {% else %}
-            <div class="collagen-icon placeholder-icon vessel-icon"></div>
+            <div class="cus-ct-collagen-icon cus-ct-placeholder-icon cus-ct-vessel-icon"></div>
           {% endif %}
         </div>
         
-        <h3 class="collagen-title">
+        <h3 class="cus-ct-collagen-title">
           {{ section.settings.type3_title | default: 'Type 3 Collagen' }}
         </h3>
         
-        <p class="collagen-description">
+        <p class="cus-ct-collagen-description">
           {{ section.settings.type3_description | default: 'BFFs with Type 1 collagen. That means you would spot Type 3 anywhere you would see Type 1 (your skin, ligaments, blood vessels, & other connective tissues). It may play a crucial role in the body production of Type I collagen.' }}
         </p>
       </div>
@@ -101,82 +101,79 @@
 </section>
 
 <style>
-.collagen-types-section {
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #f0f4ff 0%, #e6f3ff 100%);
-  min-height: 500px;
+.cus-ct-collagen-types-section {
+    padding: 56px;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e6f3ff 100%);
+    min-height: 500px;
+    margin: 56px 0 0 0;
 }
 
-.container {
-  max-width: 1200px;
+.cus-ct-container {
   margin: 0 auto;
 }
 
-.section-header {
+.cus-ct-section-header {
   text-align: center;
   margin-bottom: 50px;
 }
 
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 20px;
-  line-height: 1.2;
+.cus-ct-section-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #001F5F;
+    margin-bottom: 20px;
+    line-height: 100%;
+    font-family: inter;
+    margin-top: 0;
 }
 
-.section-subtitle {
-  font-size: 1.1rem;
-  color: #5a6c7d;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
+.cus-ct-section-subtitle {
+    font-size: 20px;
+    color: #000000;
+    max-width: 850px;
+    margin: 0 auto;
+    line-height: 30px;
+    font-weight: 400;
 }
 
-.collagen-grid {
+.cus-ct-collagen-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   margin-top: 40px;
 }
 
-.collagen-card {
+.cus-ct-collagen-card {
   background: white;
-  border-radius: 20px;
+  border-radius: 32px;
   padding: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
 }
 
-.collagen-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.collagen-icons {
+.cus-ct-collagen-icons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 15px;
   margin-bottom: 25px;
 }
 
-.collagen-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #e8f4f8;
+.cus-ct-collagen-icon {
+    width: 83px;
+    height: 83px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.placeholder-icon {
+.cus-ct-placeholder-icon {
   background: #f8f9fa;
   border: 2px solid #dee2e6;
   position: relative;
 }
 
-.placeholder-icon::before {
+.cus-ct-placeholder-icon::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -189,74 +186,79 @@
   background-position: center;
 }
 
-.skin-icon::before {
+.cus-ct-skin-icon::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6b9d'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E");
 }
 
-.hair-icon::before {
+.cus-ct-hair-icon::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c44569'%3E%3Cpath d='M12 2C8.69 2 6 4.69 6 8v8c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V8c0-3.31-2.69-6-6-6z'/%3E%3C/svg%3E");
 }
 
-.joint-icon::before {
+.cus-ct-joint-icon::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2340407a'%3E%3Cpath d='M17 7h-3c0-1.1-.9-2-2-2s-2 .9-2 2H7c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z'/%3E%3C/svg%3E");
 }
 
-.cartilage-icon::before {
+.cus-ct-cartilage-icon::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23706fd3'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E");
 }
 
-.blood-icon::before {
+.cus-ct-blood-icon::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff3838'%3E%3Cpath d='M12 2l-2 6-6 2 6 2 2 6 2-6 6-2-6-2-2-6z'/%3E%3C/svg%3E");
 }
 
-.vessel-icon::before {
+.cus-ct-vessel-icon::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff9ff3'%3E%3Cpath d='M3 13h2v8H3v-8zm4-6h2v14H7V7zm4-6h2v20h-2V1zm4 4h2v16h-2V5zm4 6h2v10h-2v-10z'/%3E%3C/svg%3E");
 }
 
-.collagen-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 20px;
+.cus-ct-collagen-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #101828;
+    margin-bottom: 20px;
+    text-align: start;
 }
 
-.collagen-description {
-  font-size: 1rem;
-  color: #5a6c7d;
-  line-height: 1.6;
-  text-align: left;
+.cus-ct-collagen-description {
+  font-size: 14px;
+    color: #344054;
+    line-height: 20px;
+    text-align: left;
+    font-weight: 400;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .collagen-types-section {
+  .cus-ct-collagen-types-section {
     padding: 40px 15px;
   }
   
-  .section-title {
-    font-size: 2rem;
+  .cus-ct-section-title {
+    font-size: 30px;
   }
   
-  .collagen-grid {
+  .cus-ct-collagen-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
   
-  .collagen-card {
+  .cus-ct-collagen-card {
     padding: 25px;
   }
+  .cus-ct-section-subtitle {
+    font-size: 14px;
+  }
+  .cus-ct-collagen-icon {
+    width: 80px;
+    height: 80px;
+}
 }
 
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 1.75rem;
+  .cus-ct-section-subtitle {
+    font-size: 14px;
   }
   
-  .section-subtitle {
-    font-size: 1rem;
-  }
-  
-  .collagen-card {
+  .cus-ct-collagen-card {
     padding: 20px;
   }
 }

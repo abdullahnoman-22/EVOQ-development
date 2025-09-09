@@ -1,34 +1,84 @@
 <section class="mission-section">
-  <div class="mission-container">
-    <div class="mission-content">
+  <div class="page-width mission-container">
+    {% if section.settings.show_main_title %}
+    <div class="mission-main-title" style="font-weight: {{ section.settings.main_title_font_weight | default: '500' }};">
+        <p >
+          {{ section.settings.main_title | default: "Our Mission" }}
+        </p>
+    </div>
+    {% endif %}
+    <div class="mission-content {% if section.settings.layout == 'text_first' %}mission-content-reverse{% endif %}" 
+         style="{% if section.settings.custom_bg_color != blank %}background: {{ section.settings.custom_bg_color }};{% endif %}
+                --mission-image-width: {{ section.settings.image_width | default: 440 }}px;
+                --mission-image-height: {{ section.settings.image_height | default: 420 }}px;">
       <div class="mission-text">
         <h2 class="mission-title">
           {{ section.settings.title | default: "Our Mission" }}
         </h2>
 
-        <div class="mission-description">
-          {{ section.settings.description | default: "<p>At The Collagen Co, our mission is to help our customers feel confident, radiant, &amp; unstoppable through the transformative power of Collagen.</p>" }}
-        </div>
-
         <div class="mission-details">
           {{ section.settings.details | default: "<p>We are committed to providing the highest quality, sustainably sourced collagen products that are both delicious &amp; effective. Whether you're looking to boost your glow, strengthen your hair and nails, or support your overall well-being, The Collagen Co has you covered.</p>" }}
         </div>
 
+        <!-- CTA Button -->
+        {% if section.settings.show_cta_button %}
         <div class="mission-cta">
-          {{ section.settings.cta_text | default: "<p>Join us on a journey to unlock your full potential &amp; Experience the Glow with The EVOA</p>" }}
+          <a href="{{ section.settings.cta_url | default: '#' }}" 
+             class="cta-button"
+             {% if section.settings.cta_open_new_tab %}target="_blank"{% endif %}>
+            {{ section.settings.cta_text | default: "Start glowing now" }}
+          </a>
         </div>
+        {% endif %}
+
       </div>
 
       <div class="mission-image">
-        {% if section.settings.product_image %}
+        {% if section.settings.media_type == 'video' and section.settings.video_url %}
+          <video class="mission-media mission-video" 
+                 autoplay 
+                 muted 
+                 loop 
+                 playsinline
+                 preload="metadata">
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% elsif section.settings.product_image %}
           <img src="{{ section.settings.product_image | img_url: '600x600' }}" 
                alt="{{ section.settings.product_image.alt | default: 'Product Image' }}"
-               loading="lazy">
+               loading="lazy"
+               class="mission-media mission-img">
         {% else %}
           <!-- Placeholder for product image -->
           <div class="image-placeholder">
             <span>Product Image</span>
           </div>
+        {% endif %}
+
+        <!-- Image Overlay Content -->
+        {% if section.settings.show_image_overlay %}
+        <div class="image-overlay-content">
+          <div class="overlay-text">
+            <h3>{{ section.settings.overlay_title}}</h3>
+            <p>{{ section.settings.overlay_description }}</p>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Collagen Stats Box -->
+        {% if section.settings.show_collagen_stats %}
+        <div class="collagen-stats">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'stat_item' %}
+                <div class="stat-item">
+                  <span class="stat-label">{{ block.settings.stat_label }}</span>
+                  <span class="stat-value">{{ block.settings.stat_value }}</span>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
         {% endif %}
       </div>
     </div>
@@ -37,76 +87,121 @@
 
 <style>
 .mission-section {
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #e8f4f8 0%, #d1e7f0 100%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding-top: 56px;
+  background: #fff;
 }
 
 .mission-container {
-  max-width: 1200px;
   margin: 0 auto;
 }
 
 .mission-content {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 50px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    background: #E2EDFA;
+    border-radius: 40px;
+    padding: 60px;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+/* Reverse layout class for text first option */
+.mission-content-reverse {
+    flex-direction: row-reverse;
+}
+
+.mission-main-title {
+    font-size: 36px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    color: #001F5F;
+    line-height: 100%;
+    padding: 0 200px;
 }
 
 .mission-text {
   flex: 1;
-  max-width: 500px;
+  max-width: 60%;
 }
 
 .mission-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 24px;
-  line-height: 1.2;
-}
-
-.mission-description {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #34495e;
-  margin-bottom: 20px;
-  font-weight: 500;
+    font-size: 36px;
+    font-weight: 600;
+    color: #001F5F;
+    margin-bottom: 24px;
+    line-height: 44px;
+    font-family: 'Inter' !important;
 }
 
 .mission-details {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #5a6c7d;
-  margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #344054;
+    margin-bottom: 24px;
+    font-weight: 400;
 }
 
+/* CTA Button Styles */
 .mission-cta {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #2980b9;
-  font-weight: 600;
+    margin-top: 24px;
 }
 
+.cta-button {
+    display: inline-block;
+    background: #001F5F;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 2px solid #001F5F;
+}
+
+.cta-button:hover {
+    background: transparent;
+    color: #001F5F;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 31, 95, 0.2);
+}
+
+/* UPDATED: Dynamic mission image with CSS custom properties */
 .mission-image {
-  flex-shrink: 0;
-  width: 300px;
-  height: 350px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    flex-shrink: 0;
+    width: var(--mission-image-width, 440px);
+    height: var(--mission-image-height, 420px);
+    min-width: var(--mission-image-min-width, 200px);
+    min-height: var(--mission-image-min-height, 200px);
+    max-width: var(--mission-image-max-width, 800px);
+    max-height: var(--mission-image-max-height, 600px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-.mission-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 12px;
+/* Responsive image sizing with aspect ratio preservation */
+.mission-image.responsive {
+    width: clamp(300px, var(--mission-image-width, 440px), 80vw);
+    height: clamp(250px, var(--mission-image-height, 420px), 60vh);
+    aspect-ratio: var(--mission-image-aspect-ratio, 440/420);
+}
+
+.mission-media {
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    z-index: 1;
+}
+
+.mission-img {
+    object-fit: contain;
+}
+
+.mission-video {
+    object-fit: contain;
 }
 
 .image-placeholder {
@@ -122,31 +217,267 @@
   font-weight: 500;
 }
 
-/* Responsive Design */
+.mission-details ul {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    justify-content: flex-start;
+    margin: 0;
+    padding-left: 15px;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+::marker {
+    color: #F1C697;
+    baseline-shift: 12px;
+    width: 12px;
+    font-size: 24px;
+}
+
+/* Image Overlay Content Styles */
+.image-overlay-content {
+    position: absolute;
+    bottom: -15px;
+    left: 36px;
+    background: #B0C3FF6B;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 373px;
+    z-index: 0;
+    min-height: 71px;
+}
+
+.overlay-text h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #001F5F;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    font-family: 'Inter', sans-serif;
+}
+
+.overlay-text p {
+    font-size: 14px;
+    color: #344054;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Collagen Stats Box Styles */
+.collagen-stats {
+    position: absolute;
+    right: -20px;
+    top: 60%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    min-width: 200px;
+    z-index: 1;
+    border: 1px solid #ddad74;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    gap: 30px;
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+    font-weight: 600;
+    color: #101828;
+}
+
+.stat-value {
+  font-weight: 400;
+  color: #494949;
+}
+
+/* Utility classes for specific image sizes */
+.mission-image--small {
+    --mission-image-width: 300px;
+    --mission-image-height: 280px;
+}
+
+.mission-image--medium {
+    --mission-image-width: 440px;
+    --mission-image-height: 420px;
+}
+
+.mission-image--large {
+    --mission-image-width: 600px;
+    --mission-image-height: 570px;
+}
+
+.mission-image--xl {
+    --mission-image-width: 800px;
+    --mission-image-height: 760px;
+}
+
+/* Updated Mobile Responsive Design for Collagen Stats */
 @media (max-width: 768px) {
   .mission-section {
-    padding: 40px 16px;
+    padding: 20px 0;
+  }
+  
+  .mission-main-title {
+    padding: 0;
+  }
+  
+  .mission-details ul {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    gap: 0;
+}
+  .mission-content,
+  .mission-content-reverse {
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 10px;
+    border-radius: 20px;
+    /* Override custom image dimensions for mobile */
+    --mission-image-width: 100%;
+    --mission-image-height: auto;
   }
 
-  .mission-content {
+  /* Additional spacing when collagen stats are active */
+  .mission-content:has(.collagen-stats),
+  .mission-content-reverse:has(.collagen-stats) {
     flex-direction: column;
-    gap: 40px;
-    padding: 30px 20px;
+    gap: 150px !important;
+    padding: 10px 10px;
+    border-radius: 20px;
+  }
+  
+  /* Force image first on mobile regardless of desktop layout */
+  .mission-content .mission-image {
+    order: 1;
+  }
+  
+  .mission-content .mission-text {
+    order: 2;
+  }
+  
+  .mission-content-reverse .mission-image {
+    order: 1;
+  }
+  
+  .mission-content-reverse .mission-text {
+    order: 2;
   }
 
   .mission-text {
     max-width: 100%;
-    text-align: center;
+    text-align: start;
+    padding: 0 15px;
   }
 
   .mission-title {
     font-size: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 
   .mission-image {
-    width: 250px;
-    height: 300px;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    position: relative;
+  }
+  
+  .mission-media {
+    border-radius: 10px;
+  }
+
+  /* Updated mobile collagen stats positioning - only when class exists */
+  .mission-image .collagen-stats {
+    min-width: calc(100% - 30px) !important;
+    max-width: calc(100% - 30px) !important;
+    left: 0 !important;
+    margin: 0 auto;
+    right: 0 !important;
+    top: 85% !important;
+    position: absolute;
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    z-index: 2;
+    border: 1px solid #ddad74;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(0); /* Center the box with 15px margin on each side */
+  }
+
+  /* Adjust stat items for mobile - only when collagen-stats is active */
+  .mission-image .collagen-stats .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 11px;
+    gap: 15px;
+  }
+
+  .mission-image .collagen-stats .stat-item:last-child {
+    border-bottom: none;
+  }
+
+  .mission-image .collagen-stats .stat-label {
+    font-weight: 600;
+    color: #101828;
+    font-size: 11px;
+  }
+
+  .mission-image .collagen-stats .stat-value {
+    font-weight: 400;
+    color: #494949;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  /* Updated mobile image overlay positioning */
+  .image-overlay-content {
+    position: absolute;
+    bottom: -15px;
+    left: 15px;
+    right: 15px;
+    margin-top: 0;
+    min-width: calc(100% - 30px);
+    background: #B0C3FF6B;
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .cta-button {
+    font-size: 16px;
+    padding: 14px 28px;
   }
 }
 
@@ -155,15 +486,61 @@
     font-size: 24px;
   }
 
-  .mission-description,
-  .mission-details,
-  .mission-cta {
+  .mission-details {
     font-size: 14px;
   }
 
   .mission-image {
-    width: 200px;
-    height: 250px;
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+  }
+
+  /* Further adjust collagen stats for smaller screens - only when class exists */
+  .mission-image .collagen-stats {
+    min-width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+    left: 0 !important;
+    margin: 0 auto;
+    right: 0 !important;
+    top: 75% !important;
+    padding: 10px;
+    transform: translateX(0); /* Center the box with 10px margin on each side */
+  }
+
+  .mission-image .collagen-stats .stat-item {
+    font-size: 10px;
+    gap: 10px;
+    padding: 5px 0;
+  }
+
+  .mission-image .collagen-stats .stat-label,
+  .mission-image .collagen-stats .stat-value {
+    font-size: 10px;
+  }
+
+  /* Further adjust image overlay for smaller screens */
+     .image-overlay-content {
+        bottom: -20px;
+        left: 10px;
+        right: 10px;
+        min-width: calc(100% - 20px);
+        padding: 12px;
+        border-radius: 12px;
+        z-index: 0;
+    }
+
+  .overlay-text h3 {
+    font-size: 16px;
+  }
+
+  .overlay-text p {
+    font-size: 13px;
+  }
+
+  .cta-button {
+    width: 100%;
+    text-align: center;
   }
 }
 </style>
@@ -175,16 +552,48 @@
   "class": "section",
   "settings": [
     {
+      "type": "checkbox",
+      "id": "show_main_title",
+      "label": "Show Main Title",
+      "default": true,
+      "info": "Toggle to show or hide the main title above the content"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Section Main Title",
+      "default": "Our Mission"
+    },
+    {
+      "type": "select",
+      "id": "main_title_font_weight",
+      "label": "Main Title Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular (400)"
+        },
+        {
+          "value": "500",
+          "label": "Medium (500)"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold (600)"
+        },
+        {
+          "value": "700",
+          "label": "Bold (700)"
+        }
+      ],
+      "default": "500",
+      "info": "Choose the font weight for the main title"
+    },
+    {
       "type": "text",
       "id": "title",
       "label": "Section Title",
       "default": "Our Mission"
-    },
-    {
-      "type": "richtext",
-      "id": "description",
-      "label": "Mission Description",
-      "default": "<p>At The Collagen Co, our mission is to help our customers feel confident, radiant, &amp; unstoppable through the transformative power of Collagen.</p>"
     },
     {
       "type": "richtext",
@@ -193,20 +602,260 @@
       "default": "<p>We are committed to providing the highest quality, sustainably sourced collagen products that are both delicious &amp; effective. Whether you're looking to boost your glow, strengthen your hair and nails, or support your overall well-being, The Collagen Co has you covered.</p>"
     },
     {
-      "type": "richtext",
-      "id": "cta_text",
-      "label": "Call to Action Text",
-      "default": "<p>Join us on a journey to unlock your full potential &amp; Experience the Glow with The EVOA</p>"
+      "type": "header",
+      "content": "Image Dimensions"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Image Width",
+      "default": 440,
+      "info": "Set the width of the image container"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Image Height",
+      "default": 420,
+      "info": "Set the height of the image container"
+    },
+    {
+      "type": "select",
+      "id": "image_size_preset",
+      "label": "Image Size Preset",
+      "options": [
+        {
+          "value": "custom",
+          "label": "Custom (use sliders above)"
+        },
+        {
+          "value": "small",
+          "label": "Small (300×280)"
+        },
+        {
+          "value": "medium",
+          "label": "Medium (440×420)"
+        },
+        {
+          "value": "large",
+          "label": "Large (600×570)"
+        },
+        {
+          "value": "xl",
+          "label": "Extra Large (800×760)"
+        }
+      ],
+      "default": "custom",
+      "info": "Choose a preset size or use custom dimensions"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_responsive_image",
+      "label": "Enable Responsive Image Sizing",
+      "default": false,
+      "info": "Makes image responsive to screen size while maintaining aspect ratio"
+    },
+    {
+      "type": "header",
+      "content": "Media Settings"
+    },
+    {
+      "type": "radio",
+      "id": "media_type",
+      "label": "Media Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Static Image"
+        },
+        {
+          "value": "video",
+          "label": "Video URL"
+        }
+      ],
+      "default": "image"
     },
     {
       "type": "image_picker",
       "id": "product_image",
       "label": "Product Image"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "Enter direct video file URL (mp4, webm, etc.)"
+    },
+    {
+      "type": "color",
+      "id": "custom_bg_color",
+      "label": "Custom Background Color",
+      "info": "Override the default background color for the content area. Leave empty to use default (#E2EDFA)"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Content Layout",
+      "options": [
+        {
+          "value": "image_first",
+          "label": "Image First (Image on Left)"
+        },
+        {
+          "value": "text_first",
+          "label": "Text First (Text on Left)"
+        }
+      ],
+      "default": "image_first",
+      "info": "Choose whether to display the image or text first"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta_button",
+      "label": "Show CTA Button",
+      "default": false,
+      "info": "Toggle to show or hide the call-to-action button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Start glowing now"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL",
+      "info": "Where the button should link to"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_open_new_tab",
+      "label": "Open CTA in New Tab",
+      "default": false,
+      "info": "Check to open the CTA link in a new tab"
+    },
+    {
+      "type": "header",
+      "content": "Image Overlay Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image_overlay",
+      "label": "Show Image Overlay Content",
+      "default": false,
+      "info": "Toggle to show or hide the overlay content on the image"
+    },
+    {
+      "type": "text",
+      "id": "overlay_title",
+      "label": "Overlay Title",
+      "default": "<p> </p>"
+    },
+    {
+      "type": "textarea",
+      "id": "overlay_description",
+      "label": "Overlay Description",
+      "default": "<p> </p>"
+    },
+    {
+      "type": "header",
+      "content": "Collagen Stats Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collagen_stats",
+      "label": "Show Collagen Stats Box",
+      "default": false,
+      "info": "Toggle to show or hide the collagen statistics overlay"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat_item",
+      "name": "Collagen Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Body Part/Tissue",
+          "default": "Bone matrix"
+        },
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Collagen Percentage",
+          "default": "90% collagen"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Mission Section"
+      "name": "Mission Section",
+      "blocks": [
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Bone matrix",
+            "stat_value": "90% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Skin",
+            "stat_value": "75% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Joint cartilage",
+            "stat_value": "70% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Ligaments",
+            "stat_value": "90% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Tendons",
+            "stat_value": "85% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Fascia",
+            "stat_value": "90% collagen"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "stat_label": "Muscle tissue",
+            "stat_value": "6% collagen"
+          }
+        }
+      ]
     }
   ]
 }

@@ -84,7 +84,7 @@ product-info {
 
   .product--medium:not(.product--no-media) .product__info-wrapper,
   .product--small:not(.product--no-media) .product__media-wrapper {
-    max-width: 45%;
+    max-width: 50%;
     width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 }
@@ -363,9 +363,9 @@ a.product__text {
   margin-bottom: 1.2rem;
 }
 
-.product-form__buttons {
+/* .product-form__buttons {
   max-width: 44rem;
-}
+} */
 
 .product--no-media .product__info-container > modal-opener {
   display: block;

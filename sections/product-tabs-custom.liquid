@@ -175,7 +175,7 @@
   margin: 0;
   padding: 0;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  justify-content: space-between;
 }
 
 .tab-item {
@@ -231,7 +231,9 @@
 .product-description, .text-content {
   font-size: {{ section.settings.text_size }}px;
   line-height: 1.6;
-  color: var(--text-color, #555);
+  color: var(--text-color, #344054);
+  height: 100%;
+  align-content: flex-start;
 }
 
 .product-features {
@@ -243,6 +245,7 @@
   align-items: center;
   margin-bottom: 0.75rem;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .feature-icon {
@@ -261,9 +264,9 @@
 }
 
 .product-image {
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .products-grid {
@@ -347,19 +350,104 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-  .text-image-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .product-tabs-container {
+    padding: 0 2rem;
+  }
+  
+  .tab-navigation {
+    border-bottom: none;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tab-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+  
+  .tab-item {
+    flex: none;
+    margin: 0;
   }
   
   .tab-button {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.65rem 0.75rem;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #D0D5DD;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #101828;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border-bottom: 1px solid #D0D5DD; /* Override the transparent border */
+    height: 44px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .tab-button:hover {
+    background: #f8f9fa;
+    border-color: #D0D5DD;
+    color: #333;
+  }
+  
+  .tab-button.active {
+    background: #001F5F;
+    color: #ffffff;
+    border-color: #001F5F;
+    font-weight: 600;
+    border-bottom: 1px solid #001F5F; /* Ensure consistent border */
+  }
+  
+  .text-image-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .product-visual {
+    order: 1;
+  }
+  
+  .product-description {
+    order: 2;
+    font-size: 14px;
+  }
+  
+  .product-image {
+    margin: 0 auto;
+  }
+  
+  .feature-item {
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-icon {
+    margin-right: 0.5rem;
+    font-size: 1rem;
   }
   
   .products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1rem;
+  }
+  
+  .product-card img {
+    height: 150px;
+  }
+  
+  .nutrition-facts {
+    padding: 0;
+  }
+  
+  .nutrition-content {
+    padding: 1rem;
+    font-size: 0.9rem;
   }
 }
 </style>

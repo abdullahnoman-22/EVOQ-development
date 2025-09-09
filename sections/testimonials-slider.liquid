@@ -6,7 +6,7 @@
       <h2 class="cus-testimonials-title">{{ section.settings.section_title }}</h2>
     </div>
 
-    <div class="estimonials-slider" id="testimonialsSlider">
+    <div class="testimonials-slider" id="testimonialsSlider">
       <!-- Profile Images Grid -->
       <div class="cus-profiles-grid">
         {% for block in section.blocks %}
@@ -25,7 +25,7 @@
         <div class="cus-testimonial-slider-wrapper">
           {% for block in section.blocks %}
             <div class="cus-testimonial-slide {% if forloop.first %}cus-active{% endif %}" data-slide="{{ forloop.index0 }}">
-              <div class="cus-quote-icon"><img src="https://cdn.shopify.com/s/files/1/0659/1073/4938/files/fi_7350737.png?v=1753123689" alt="“" loading="lazy"></div>
+              <div class="cus-quote-icon"><img src="https://cdn.shopify.com/s/files/1/0659/1073/4938/files/fi_7350737.png?v=1753123689" alt=""" loading="lazy"></div>
               <h3 class="cus-testimonial-quote">{{ block.settings.quote }}</h3>
               <p class="cus-testimonial-description">{{ block.settings.description }}</p>
               <div class="cus-testimonial-author">
@@ -34,7 +34,7 @@
               </div>
               <div class="cus-testimonial-rating">
                 {% for i in (1..5) %}
-                  <span class="cus-star"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 512 512" fill="white">
+                  <span class="cus-star"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 512 512" fill="#fbbf24">
               <path d="M256 394.6l-148.7 90.7 39.8-172.4-133.1-115.2 175.4-15.1L256 30.4l66.6 152.2 175.4 15.1-133.1 115.2 39.8 172.4z"/>
             </svg></span>
                 {% endfor %}
@@ -70,12 +70,11 @@
 
 <style>
 .cus-testimonials-section {
-  padding: 40px 0;
+  margin: 110px 0;
   min-height: 400px;
 }
 
 .cus-container {
-  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -100,11 +99,10 @@
   margin: 0;
   line-height: 1.2;
   text-align: center;
-   width: 100%;
-  
+  width: 100%;
 }
 
-.cus-testimonials-slider {
+.testimonials-slider {
   position: relative;
 }
 
@@ -119,13 +117,13 @@
 /* Profile image card */
 .cus-profile-image {
   width: 100%;
-  max-width: 125px;
+  max-width: 150px;
   height: 200px;
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0.8;
+  opacity: 1;
   position: relative;
 }
 
@@ -226,7 +224,7 @@
 
 .cus-testimonial-slider-wrapper {
   position: relative;
-  height: 300px;
+  height: auto;
   overflow: hidden;
 }
 
@@ -234,7 +232,7 @@
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -30px);
   width: 100%;
   opacity: 0;
   transition: all 0.5s ease;
@@ -250,26 +248,31 @@
   font-size: 80px;
   color: #6366f1;
   line-height: 1;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   font-family: serif;
 }
 
 .cus-testimonial-quote {
-  font-size: 32px;
+  font-size: clamp(24px, 4vw, 32px);
   font-weight: 600;
   color: #1e293b;
   margin-bottom: 20px;
   line-height: 1.3;
+  word-wrap: break-word;
+  hyphens: auto;
+  margin-top: 0;
 }
 
 .cus-testimonial-description {
-  font-size: 18px;
+  font-size: clamp(16px, 2.5vw, 18px);
   color: #64748b;
   line-height: 1.6;
   margin-bottom: 30px;
-  max-width: 600px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .cus-testimonial-author {
@@ -288,6 +291,7 @@
   color: #6366f1;
   margin: 0;
 }
+
 .cus-testimonial-rating {
   display: flex;
   justify-content: center;
@@ -296,12 +300,11 @@
 }
 
 .cus-star {
-  color: #fbbf24; /* Golden yellow color */
+  color: #fbbf24;
   font-size: 20px;
   line-height: 1;
   display: inline-block;
 }
-
 
 /* Slider Controls */
 .cus-slider-controls {
@@ -309,15 +312,17 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-  margin-top: 40px;
+  margin-top: -70px;
 }
+
 button#prevBtn {
-  transform: translate(-350px, 160px);
+  transform: translate(-380px, 160px);
 }
 
 button#nextBtn {
-  transform: translate(350px, 160px);
+  transform: translate(380px, 160px);
 }
+
 .cus-slider-btn {
   background: white;
   border: 2px solid #e2e8f0;
@@ -334,7 +339,6 @@ button#nextBtn {
   position: absolute;
   top: 0;
 }
-
 
 .cus-slider-btn:hover {
   border-color: #6366f1;
@@ -364,7 +368,7 @@ button#nextBtn {
 /* CTA Button */
 .cus-testimonials-cta {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .cus-cta-button {
@@ -395,182 +399,292 @@ button#nextBtn {
 .cus-cta-button:hover .cus-cta-arrow {
   transform: translateX(5px);
 }
-  /* Mobile Responsive - maintain desktop design principles */
-  @media (max-width: 768px) {
-      .cus-testimonials-section {
-          padding: 40px 15px;
-      }
 
-      .cus-testimonials-title {
-          font-size: 36px;
-          line-height: 1.1;
-      }
-
-      .cus-profiles-grid {
-          grid-template-columns: repeat(5, 1fr);
-          grid-template-rows: repeat(3, 120px);
-          gap: 8px;
-          margin-top: 60px;
-          max-width: 500px;
-          margin-left: auto;
-          margin-right: auto;
-      }
-
-      .cus-profile-image {
-          width: 100%;
-          max-width: 90px;
-          height: 160px;
-      }
-
-      /* Adjust grid positioning for mobile */
-      .cus-profile-image:nth-child(-n+5) {
-          grid-row: 1;
-      }
-      .cus-profile-image:nth-child(6), 
-      .cus-profile-image:nth-child(7), 
-      .cus-profile-image:nth-child(8) {
-          grid-row: 2;
-          grid-column: span 1;
-      }
-      .cus-profile-image:nth-child(6) { grid-column: 2; }
-      .cus-profile-image:nth-child(7) { grid-column: 3; }
-      .cus-profile-image:nth-child(8) { grid-column: 4; }
-
-      .cus-profile-image:nth-child(9), 
-      .cus-profile-image:nth-child(10) {
-          grid-row: 3;
-      }
-      .cus-profile-image:nth-child(9) { grid-column: 1; }
-      .cus-profile-image:nth-child(10) { grid-column: 5; }
-
-      /* Maintain staggered heights on mobile */
-      .cus-profile-image:nth-child(1) { margin-top: 0; }
-      .cus-profile-image:nth-child(2) { margin-top: -40px; }
-      .cus-profile-image:nth-child(3) { margin-top: 10px; }
-      .cus-profile-image:nth-child(4) { margin-top: -40px; }
-      .cus-profile-image:nth-child(5) { margin-top: 0; }
-      .cus-profile-image:nth-child(6) { margin-top: -30px; }
-      .cus-profile-image:nth-child(7) { margin-top: 0; }
-      .cus-profile-image:nth-child(8) { margin-top: -30px; }
-      .cus-profile-image:nth-child(9) { margin-top: 40px; }
-      .cus-profile-image:nth-child(10) { margin-top: 40px; }
-
-      .cus-testimonial-content {
-          margin-top: 40px;
-      }
-
-      .cus-testimonial-quote {
-          font-size: 24px;
-      }
-
-      .cus-testimonial-description {
-          font-size: 16px;
-          padding: 0 10px;
-      }
-
-      .cus-quote-icon img {
-          width: 50px;
-          height: 50px;
-      }
-
-      #prevBtn {
-          left: 0;
-          top: 0;
-      }
-
-      #nextBtn {
-          right: 0;
-          top: 0;
-      }
-
-      .cus-slider-btn {
-          width: 40px;
-          height: 40px;
-          font-size: 20px;
-      }
-  }
-
-  /* Small mobile screens */
-  @media (max-width: 480px) {
-      .cus-testimonials-title {
-          font-size: 28px;
-      }
-
-      .cus-profiles-grid {
-          grid-template-columns: repeat(4, 1fr);
-          grid-template-rows: repeat(3, 100px);
-          gap: 6px;
-          max-width: 320px;
-      }
-
-      .cus-profile-image {
-          max-width: 70px;
-          height: 130px;
-      }
-
-      /* Adjust grid for smaller screens */
-      .cus-profile-image:nth-child(-n+4) {
-          grid-row: 1;
-      }
-      .cus-profile-image:nth-child(5), 
-      .cus-profile-image:nth-child(6), 
-      .cus-profile-image:nth-child(7) {
-          grid-row: 2;
-      }
-      .cus-profile-image:nth-child(5) { grid-column: 1; }
-      .cus-profile-image:nth-child(6) { grid-column: 2; }
-      .cus-profile-image:nth-child(7) { grid-column: 3; }
-
-      .cus-profile-image:nth-child(8), 
-      .cus-profile-image:nth-child(9) {
-          grid-row: 3;
-      }
-      .cus-profile-image:nth-child(8) { grid-column: 2; }
-      .cus-profile-image:nth-child(9) { grid-column: 3; }
-
-      /* Reduce margin variations for small screens */
-      .cus-profile-image:nth-child(1) { margin-top: 0; }
-      .cus-profile-image:nth-child(2) { margin-top: -30px; }
-      .cus-profile-image:nth-child(3) { margin-top: 5px; }
-      .cus-profile-image:nth-child(4) { margin-top: -30px; }
-      .cus-profile-image:nth-child(5) { margin-top: -20px; }
-      .cus-profile-image:nth-child(6) { margin-top: 0; }
-      .cus-profile-image:nth-child(7) { margin-top: -20px; }
-      .cus-profile-image:nth-child(8) { margin-top: 30px; }
-      .cus-profile-image:nth-child(9) { margin-top: 30px; }
-
-        .cus-testimonial-quote {
-        font-size: 20px;
-        }
-        
-        .cus-quote-icon img {
-        width: 40px;
-        height: 40px;
-        }
-        
-        #nextBtn {
-        right: 0;
+ /* Mobile Responsive - Keep desktop design structure with smaller dimensions */
+@media (max-width: 768px) {
+    .cus-testimonials-section {
+        padding: 10px 15px;
+        margin: 0;
+    }
+    .cus-testimonial-author {
+      margin-bottom: 10px;
+    }
+    .cus-testimonials-title {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+      .cus-testimonial-slide {
+        position: absolute;
         top: 0;
+        left: 50%;
+        transform: translate(-50%, -20px);
+        width: 100%;
+        opacity: 0;
+        transition: all 0.5s ease;
+        pointer-events: none;
         }
-        button#nextBtn {
-        transform: translate(40px, 160px);
-        }
-        button#prevBtn {
-        transform: translate(-40px, 160px);
-        }
-        #prevBtn {
-        left: 0;
-        top: 0;
-        }
-        
-        .cus-profile-image.cus-active::after {
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
+    /* Keep same grid structure as desktop - 9 columns, 2 rows */
+    .cus-profiles-grid {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(2, 75px); /* Reduced from 140px */
+        gap: 6px; /* Reduced from 10px */
+        margin-top: 60px; /* Reduced from 100px */
+    }
+
+    .cus-profile-image {
+        width: 100%;
+        max-width: 100%;
+        height: 120px; /* Reduced from 200px */
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 1;
+        position: relative;
+    }
+
+    /* KEEP EXACT SAME GRID POSITIONING AS DESKTOP */
+    .cus-profile-image:nth-child(-n+9) {
+        grid-row: 1;
+    }
+
+    .cus-profile-image:nth-child(10) {
+        grid-row: 2;
+        grid-column: 1;
+    }
+    .cus-profile-image:nth-child(11) {
+        grid-row: 2;
+        grid-column: 2;
+    }
+    .cus-profile-image:nth-child(12) {
+        grid-row: 2;
+        grid-column: 8;
+    }
+    .cus-profile-image:nth-child(13) {
+        grid-row: 2;
+        grid-column: 9;
+    }
+
+    /* KEEP SAME STAGGERED PATTERN AS DESKTOP - just reduce values proportionally */
+    .cus-profile-image:nth-child(1) { margin-top: 0; }
+    .cus-profile-image:nth-child(2) { margin-top: -40px; } /* Reduced from -60px */
+    .cus-profile-image:nth-child(3) { margin-top: 8px; } /* Reduced from 10px */
+    .cus-profile-image:nth-child(4) { margin-top: -40px; } /* Reduced from -60px */
+    .cus-profile-image:nth-child(5) { margin-top: 0; }
+    .cus-profile-image:nth-child(6) { margin-top: -40px; } /* Reduced from -60px */
+    .cus-profile-image:nth-child(7) { margin-top: 8px; } /* Reduced from 10px */
+    .cus-profile-image:nth-child(8) { margin-top: -40px; } /* Reduced from -60px */
+    .cus-profile-image:nth-child(9) { margin-top: 0; }
+    .cus-profile-image:nth-child(10) { margin-top: 40px; } /* Reduced from 60px */
+    .cus-profile-image:nth-child(11) { margin-top: 0; }
+    .cus-profile-image:nth-child(12) { margin-top: 0; }
+    .cus-profile-image:nth-child(13) { margin-top: 40px; } /* Reduced from 60px */
+
+    /* Keep same active state styling with smaller dimensions */
+    .cus-profile-image.cus-active::after {
+        content: "✓";
+        position: absolute;
         top: -6px;
         right: -6px;
-        }
-        }
+        width: 20px; /* Reduced from 24px */
+        height: 20px; /* Reduced from 24px */
+        background: #3b82f6;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px; /* Reduced from 12px */
+        font-weight: bold;
+        border: 1px solid #fff;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        border-radius: 5px;
+    }
+
+    .cus-profile-image.cus-active {
+        opacity: 1;
+        border-color: #6366f1;
+        box-shadow: 0 8px 30px rgba(99, 102, 241, 0.25);
+        z-index: 1;
+        position: relative;
+        overflow: visible;
+        border: 2px solid #6366f1; /* Reduced from 3px */
+    }
+
+    .cus-profile-placeholder {
+        font-size: 18px; /* Reduced from 24px */
+    }
+
+    /* Testimonial content - keep same layout structure */
+    .cus-testimonial-content {
+        margin-top: 40px;
+    }
+
+    .cus-testimonial-quote {
+        font-size: 24px; /* Reduced from 32px */
+        padding: 0 40px;
+    }
+
+    .cus-testimonial-description {
+        font-size: 16px; /* Reduced from 18px */
+        padding: 0 20px;
+    }
+
+    .cus-quote-icon img {
+        width: 60px; /* Reduced from original size */
+        height: 60px;
+    }
+
+    /* Keep same button positioning concept but adjust for mobile */
+    button#prevBtn {
+        transform: translate(-270px, 160px); /* Reduced from -350px */
+    }
+
+    button#nextBtn {
+        transform: translate(270px, 160px); /* Reduced from 350px */
+    }
+
+    .cus-slider-btn {
+        width: 40px; /* Reduced from 50px */
+        height: 40px; /* Reduced from 50px */
+        font-size: 18px; /* Reduced from 24px */
+    }
+}
+
+/* Small mobile screens - further proportional reduction while keeping desktop shape */
+@media (max-width: 480px) {
+    .testimonials-slider {
+        margin: 0 -45px;
+    }
+    .cus-testimonial-description {
+        font-size: 16px; /* Reduced from 18px */
+        padding: 0 65px;
+    }
+    .cus-testimonials-title {
+        font-size: 24px;
+    }
+
+    .cus-profiles-grid {
+        grid-template-rows: repeat(2, 55px); /* Further reduced height */
+        gap: 4px;
+        margin-top: 40px;
+    }
+
+    .cus-profile-image {
+        height: 90px; /* Further reduced but maintaining proportions */
+    }
+
+    /* Keep same staggered pattern - just reduce values further */
+    .cus-profile-image:nth-child(1) { margin-top: 0; }
+    .cus-profile-image:nth-child(2) { margin-top: -30px; } /* Reduced from -40px */
+    .cus-profile-image:nth-child(3) { margin-top: 6px; } /* Reduced from 8px */
+    .cus-profile-image:nth-child(4) { margin-top: -30px; } /* Reduced from -40px */
+    .cus-profile-image:nth-child(5) { margin-top: 0; }
+    .cus-profile-image:nth-child(6) { margin-top: -30px; } /* Reduced from -40px */
+    .cus-profile-image:nth-child(7) { margin-top: 6px; } /* Reduced from 8px */
+    .cus-profile-image:nth-child(8) { margin-top: -30px; } /* Reduced from -40px */
+    .cus-profile-image:nth-child(9) { margin-top: 0; }
+    .cus-profile-image:nth-child(10) { margin-top: 30px; } /* Reduced from 40px */
+    .cus-profile-image:nth-child(11) { margin-top: 0; }
+    .cus-profile-image:nth-child(12) { margin-top: 0; }
+    .cus-profile-image:nth-child(13) { margin-top: 30px; } /* Reduced from 40px */
+
+    .cus-profile-placeholder {
+        font-size: 16px; /* Reduced from 18px */
+    }
+
+    .cus-testimonial-quote {
+        font-size: 20px;
+        padding: 0 40px;
+    }
+    
+    .cus-quote-icon img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Keep same button positioning concept but adjust for mobile */
+    button#nextBtn {
+        transform: translate(165px, 160px);
+    }
+    button#prevBtn {
+        transform: translate(-165px, 160px);
+    }
+    
+    .cus-profile-image.cus-active::after {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+        top: -5px;
+        right: -5px;
+    }
+
+    .cus-profile-image.cus-active {
+        border: 2px solid #6366f1;
+    }
+}
+
+/* Ultra small screens - maintain desktop proportions */
+@media (max-width: 360px) {
+    .testimonials-slider {
+        margin: 0 -70px;
+    }
+
+    .cus-profiles-grid {
+        gap: 3px;
+        grid-template-rows: repeat(2, 70px);
+        margin-top: 35px;
+    }
+
+    .cus-profile-image {
+        height: 80px;
+    }
+
+    /* Keep same staggered pattern - smallest values */
+    .cus-profile-image:nth-child(1) { margin-top: 0; }
+    .cus-profile-image:nth-child(2) { margin-top: -25px; }
+    .cus-profile-image:nth-child(3) { margin-top: 5px; }
+    .cus-profile-image:nth-child(4) { margin-top: -25px; }
+    .cus-profile-image:nth-child(5) { margin-top: 0; }
+    .cus-profile-image:nth-child(6) { margin-top: -25px; }
+    .cus-profile-image:nth-child(7) { margin-top: 5px; }
+    .cus-profile-image:nth-child(8) { margin-top: -25px; }
+    .cus-profile-image:nth-child(9) { margin-top: 0; }
+    .cus-profile-image:nth-child(10) { margin-top: 25px; }
+    .cus-profile-image:nth-child(11) { margin-top: 0; }
+    .cus-profile-image:nth-child(12) { margin-top: 0; }
+    .cus-profile-image:nth-child(13) { margin-top: 25px; }
+
+    .cus-profile-placeholder {
+        font-size: 14px;
+    }
+
+    .cus-testimonial-quote {
+        font-size: 18px;
+        padding: 0 5px;
+    }
+
+    .cus-testimonial-description {
+        font-size: 14px;
+        padding: 0 5px;
+    }
+
+    button#nextBtn {
+        transform: translate(100px, 160px);
+    }
+    button#prevBtn {
+        transform: translate(-100px, 160px);
+    }
+
+    .cus-profile-image.cus-active::after {
+        width: 16px;
+        height: 16px;
+        font-size: 8px;
+        top: -4px;
+        right: -4px;
+    }
+}
 </style>
 
 <script>
@@ -584,12 +698,16 @@ document.addEventListener('DOMContentLoaded', function() {
     init() {
       this.bindEvents();
       this.startAutoPlay();
+      this.updateSliderHeight();
     },
 
     bindEvents() {
       // Navigation buttons
-      document.getElementById('prevBtn').addEventListener('click', () => this.prevSlide());
-      document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      if (prevBtn) prevBtn.addEventListener('click', () => this.prevSlide());
+      if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
 
       // Dot navigation
       document.querySelectorAll('.cus-dot').forEach((dot, index) => {
@@ -603,8 +721,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Pause auto-play on hover
       const sliderElement = document.getElementById('testimonialsSlider');
-      sliderElement.addEventListener('mouseenter', () => this.stopAutoPlay());
-      sliderElement.addEventListener('mouseleave', () => this.startAutoPlay());
+      if (sliderElement) {
+        sliderElement.addEventListener('mouseenter', () => this.stopAutoPlay());
+        sliderElement.addEventListener('mouseleave', () => this.startAutoPlay());
+      }
+
+      // Handle window resize
+      window.addEventListener('resize', () => this.updateSliderHeight());
+    },
+
+    updateSliderHeight() {
+      const activeSlide = document.querySelector('.cus-testimonial-slide.cus-active');
+      const sliderWrapper = document.querySelector('.cus-testimonial-slider-wrapper');
+      
+      if (activeSlide && sliderWrapper) {
+        // Auto-fit content height for all screen sizes
+        const slideHeight = activeSlide.scrollHeight;
+        const minHeight = window.innerWidth <= 768 ? 250 : 350;
+        const finalHeight = Math.max(slideHeight + 40, minHeight);
+        sliderWrapper.style.height = finalHeight + 'px';
+      }
     },
 
     goToSlide(slideIndex) {
@@ -623,6 +759,9 @@ document.addEventListener('DOMContentLoaded', function() {
         targetDot.classList.add('cus-active');
         targetProfile.classList.add('cus-active');
         this.currentSlide = slideIndex;
+        
+        // Update height for mobile
+        setTimeout(() => this.updateSliderHeight(), 50);
       }
     },
 

@@ -2069,7 +2069,7 @@ input[type='checkbox'] {
 }
 
 /* component-cart-count-bubble */
-.cart-count-bubble:empty {
+.cart-count-bubble {
   display: none;
 }
 
@@ -3595,10 +3595,10 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
-/* extra css */
+/* extra css
 @import url(https://db.onlinewebfonts.com/c/ad26818d844de4534fd78bb03028ca79?family=Shopify+Sans+Web+Medium+Regular);
 h1, h2{
   font-family: "Shopify Sans Web" !important;
-  font-weight: 600; /* Medium */
+  font-weight: 600; 
   font-style: normal;
-}
+} */

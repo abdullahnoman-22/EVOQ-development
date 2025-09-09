@@ -3,42 +3,42 @@
   Shows customer rewards with tabbed interface
 {% endcomment %}
 
-<div class="rewards-section" data-section-id="{{ section.id }}">
-  <div class="container">
-    <h2 class="rewards-title">{{ section.settings.heading | default: 'Select your reward & add it to your next order' }}</h2>
+<div class="cus-rw-rewards-section" data-section-id="{{ section.id }}">
+  <div class="page-width cus-rw-container">
+    <h2 class="cus-rw-rewards-title">{{ section.settings.heading | default: 'Select your reward & add it to your next order' }}</h2>
     
     <!-- Tab Navigation -->
-    <div class="rewards-tabs">
-      <button class="tab-btn active" data-tab="how-it-works">
+    <div class="cus-rw-rewards-tabs">
+      <button class="cus-rw-tab-btn cus-rw-active" data-tab="how-it-works">
         {{ section.settings.tab_1_title | default: 'How it works' }}
       </button>
-      <button class="tab-btn" data-tab="earn-points">
+      <button class="cus-rw-tab-btn" data-tab="earn-points">
         {{ section.settings.tab_2_title | default: 'Earn points' }}
       </button>
-      <button class="tab-btn" data-tab="tiers">
+      <button class="cus-rw-tab-btn" data-tab="tiers">
         {{ section.settings.tab_3_title | default: 'Tiers' }}
       </button>
-      <button class="tab-btn" data-tab="faqs">
+      <button class="cus-rw-tab-btn" data-tab="faqs">
         {{ section.settings.tab_4_title | default: 'FAQs' }}
       </button>
     </div>
 
     <!-- Tab Content -->
-    <div class="tab-content active" id="how-it-works">
-      <div class="rewards-grid">
+    <div class="cus-rw-tab-content cus-rw-active" id="how-it-works">
+      <div class="cus-rw-rewards-grid">
         {% for block in section.blocks %}
           {% if block.type == 'reward_item' %}
-            <div class="reward-voucher" {{ block.shopify_attributes }}>
+            <div class="cus-rw-reward-voucher" {{ block.shopify_attributes }}>
               {% if block.settings.reward_image != blank %}
-                <div class="voucher-image">
+                <div class="cus-rw-voucher-image">
                   <img src="{{ block.settings.reward_image | image_url: width: 350 }}" 
                        alt="{{ block.settings.reward_image.alt | default: block.settings.reward_title }}"
                        loading="lazy">
                 </div>
               {% endif %}
-              <div class="voucher-perforations">
+              <div class="cus-rw-voucher-perforations">
                 {% for i in (1..12) %}
-                  <div class="perforation"></div>
+                  <div class="cus-rw-perforation"></div>
                 {% endfor %}
               </div>
             </div>
@@ -47,10 +47,10 @@
       </div>
     </div>
 
-    <div class="tab-content" id="earn-points">
-      <div class="points-info">
+    <div class="cus-rw-tab-content" id="earn-points">
+      <div class="cus-rw-points-info">
         <h3>{{ section.settings.earn_points_heading | default: 'How to Earn Points' }}</h3>
-        <div class="points-methods">
+        <div class="cus-rw-points-methods">
           {% if section.settings.earn_points_content != blank %}
             {{ section.settings.earn_points_content }}
           {% else %}
@@ -66,22 +66,22 @@
       </div>
     </div>
 
-    <div class="tab-content" id="tiers">
-      <div class="tiers-info">
+    <div class="cus-rw-tab-content" id="tiers">
+      <div class="cus-rw-tiers-info">
         <h3>{{ section.settings.tiers_heading | default: 'Membership Tiers' }}</h3>
-        <div class="tiers-content">
+        <div class="cus-rw-tiers-content">
           {% if section.settings.tiers_content != blank %}
             {{ section.settings.tiers_content }}
           {% else %}
-            <div class="tier">
+            <div class="cus-rw-tier">
               <h4>Bronze (0-999 points)</h4>
               <p>Standard rewards and benefits</p>
             </div>
-            <div class="tier">
+            <div class="cus-rw-tier">
               <h4>Silver (1,000-4,999 points)</h4>
               <p>15% bonus points on purchases</p>
             </div>
-            <div class="tier">
+            <div class="cus-rw-tier">
               <h4>Gold (5,000+ points)</h4>
               <p>25% bonus points + exclusive rewards</p>
             </div>
@@ -90,22 +90,22 @@
       </div>
     </div>
 
-    <div class="tab-content" id="faqs">
-      <div class="faqs-info">
+    <div class="cus-rw-tab-content" id="faqs">
+      <div class="cus-rw-faqs-info">
         <h3>{{ section.settings.faqs_heading | default: 'Frequently Asked Questions' }}</h3>
-        <div class="faqs-content">
+        <div class="cus-rw-faqs-content">
           {% if section.settings.faqs_content != blank %}
             {{ section.settings.faqs_content }}
           {% else %}
-            <div class="faq-item">
+            <div class="cus-rw-faq-item">
               <h4>How do I redeem my points?</h4>
               <p>Points can be redeemed at checkout or through your account dashboard.</p>
             </div>
-            <div class="faq-item">
+            <div class="cus-rw-faq-item">
               <h4>Do points expire?</h4>
               <p>Points expire 12 months after they are earned.</p>
             </div>
-            <div class="faq-item">
+            <div class="cus-rw-faq-item">
               <h4>Can I combine rewards?</h4>
               <p>Only one reward can be used per order.</p>
             </div>
@@ -117,93 +117,85 @@
 </div>
 
 <style>
-.rewards-section {
-  padding: 60px 0;
-  background: #f8f9fa;
+.cus-rw-rewards-section {
+  margin-top: 110px;
 }
 
-.container {
-  max-width: 1200px;
+.cus-rw-container {
   margin: 0 auto;
-  padding: 0 20px;
 }
 
-.rewards-title {
-  text-align: center;
-  font-size: 32px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 40px;
+.cus-rw-rewards-title {
+    line-height: 44px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    color: #001F5F;
+    margin: 20px 0;
+    font-family: 'Inter' !important;
 }
 
-.rewards-tabs {
+.cus-rw-rewards-tabs {
   display: flex;
   justify-content: center;
-  gap: 2px;
-  margin-bottom: 40px;
-  background: #e9ecef;
+  gap: 10px;
+  margin-bottom: 20px;
   border-radius: 8px;
   padding: 4px;
 }
 
-.tab-btn {
-  padding: 12px 24px;
-  background: transparent;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #6c757d;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.cus-rw-tab-btn {
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.tab-btn.active,
-.tab-btn:hover {
+.cus-rw-tab-btn.cus-rw-active,
+.cus-rw-tab-btn:hover {
   background: #1a1a1a;
   color: white;
 }
 
-.tab-content {
+.cus-rw-tab-content {
   display: none;
 }
 
-.tab-content.active {
+.cus-rw-tab-content.cus-rw-active {
   display: block;
 }
 
-.rewards-grid {
+.cus-rw-rewards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 24px;
-  max-width: 1100px;
   margin: 0 auto;
 }
 
-.reward-voucher {
-  background: linear-gradient(135deg, #e8d5ff 0%, #f0e6ff 100%);
-  border: 2px dashed #9333ea;
-  border-radius: 12px;
+.cus-rw-reward-voucher {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16/9;
-  min-height: 200px;
 }
 
-.voucher-image {
+.cus-rw-voucher-image {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-.voucher-image img {
+.cus-rw-voucher-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
 
-.voucher-perforations {
+.cus-rw-voucher-perforations {
   position: absolute;
   left: 0;
   top: 0;
@@ -216,7 +208,7 @@
   padding: 0 -6px;
 }
 
-.perforation {
+.cus-rw-perforation {
   width: 12px;
   height: 12px;
   background: #f8f9fa;
@@ -224,34 +216,34 @@
   border: 2px solid #e9ecef;
 }
 
-.points-info,
-.tiers-info,
-.faqs-info {
+.cus-rw-points-info,
+.cus-rw-tiers-info,
+.cus-rw-faqs-info {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
-.points-info h3,
-.tiers-info h3,
-.faqs-info h3 {
+.cus-rw-points-info h3,
+.cus-rw-tiers-info h3,
+.cus-rw-faqs-info h3 {
   font-size: 28px;
   margin-bottom: 24px;
   color: #1a1a1a;
 }
 
-.points-methods ul {
+.cus-rw-points-methods ul {
   text-align: left;
   max-width: 400px;
   margin: 20px auto;
 }
 
-.points-methods li {
+.cus-rw-points-methods li {
   margin-bottom: 8px;
   font-size: 16px;
 }
 
-.tier {
+.cus-rw-tier {
   background: white;
   padding: 24px;
   border-radius: 8px;
@@ -259,12 +251,12 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.tier h4 {
+.cus-rw-tier h4 {
   color: #9333ea;
   margin-bottom: 8px;
 }
 
-.faq-item {
+.cus-rw-faq-item {
   background: white;
   padding: 24px;
   border-radius: 8px;
@@ -273,53 +265,71 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.faq-item h4 {
+.cus-rw-faq-item h4 {
   color: #1a1a1a;
   margin-bottom: 12px;
 }
 
 @media (max-width: 768px) {
-  .rewards-grid {
-    grid-template-columns: 1fr;
+  .cus-rw-rewards-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 0 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
   
-  .rewards-tabs {
+  .cus-rw-rewards-grid::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .cus-rw-reward-voucher {
+    flex: 0 0 280px;
+    aspect-ratio: 16/9;
+    min-height: 160px;
+    scroll-snap-align: start;
+  }
+
+  .cus-rw-voucher-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+  
+  .cus-rw-rewards-tabs {
     flex-wrap: wrap;
     justify-content: center;
   }
   
-  .tab-btn {
+  .cus-rw-tab-btn {
     padding: 10px 16px;
     font-size: 13px;
-  }
-  
-  .reward-voucher {
-    aspect-ratio: 16/9;
-    min-height: 150px;
   }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-content');
+  const tabBtns = document.querySelectorAll('.cus-rw-tab-btn');
+  const tabContents = document.querySelectorAll('.cus-rw-tab-content');
   
   tabBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       const targetTab = this.getAttribute('data-tab');
       
       // Remove active class from all buttons and contents
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabContents.forEach(c => c.classList.remove('active'));
+      tabBtns.forEach(b => b.classList.remove('cus-rw-active'));
+      tabContents.forEach(c => c.classList.remove('cus-rw-active'));
       
       // Add active class to clicked button
-      this.classList.add('active');
+      this.classList.add('cus-rw-active');
       
       // Show corresponding content
       const targetContent = document.getElementById(targetTab);
       if (targetContent) {
-        targetContent.classList.add('active');
+        targetContent.classList.add('cus-rw-active');
       }
     });
   });
@@ -330,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
 {
   "name": "Rewards Program",
   "tag": "section",
-  "class": "rewards-section",
+  "class": "cus-rw-rewards-section",
   "settings": [
     {
       "type": "text",
@@ -405,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "image_picker",
           "id": "reward_image",
           "label": "Reward Image"
-        },
+        }
       ]
     }
   ],

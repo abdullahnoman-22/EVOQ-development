@@ -1,1 +1,669 @@
-{"sections":{"auto_image_slider_AFhrhE":{"type":"auto-image-slider","blocks":{"slide_Q8pnCd":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/image_75.png","cus_image":"shopify:\/\/shop_images\/Group_1171276765_2.png","heading":"<p><strong>More Than Anti<br\/><\/strong><em>Ageing<\/em><\/p>","heading_size":"h1","caption":"","text_style":"subtitle","text_size":"medium","text":"<p><em>A Wellness Retreat with Evoq collagen that nourishes your health from the inside out.<\/em><\/p>","button_label":"Shop All","button_link":"shopify:\/\/collections","button_style_secondary":false}},"slide_GUpyBM":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/image_75.png","cus_image":"shopify:\/\/shop_images\/Group_1171276765_2.png","heading":"<p><strong>It’s not magic <\/strong><br\/><em>It’s collagen<\/em><\/p>","heading_size":"h1","caption":"","text_style":"subtitle","text_size":"medium","text":"<p><em>Clinically crafted Evoq vegan collagen can deliver real results within weeks.<\/em><\/p>","button_label":"Shop All","button_link":"shopify:\/\/collections","button_style_secondary":false}},"slide_bAEALR":{"type":"slide","settings":{"slide_image":"shopify:\/\/shop_images\/image_75.png","cus_image":"shopify:\/\/shop_images\/Group_1171276765_2.png","heading":"<p><strong>Healthier You<\/strong><br\/><em>By nature<\/em><\/p>","heading_size":"h1","caption":"","text_style":"subtitle","text_size":"medium","text":"<p><em>Evoq Collagen Powder supports smoother skin and stronger confidence.<\/em><\/p>","button_label":"Shop All","button_link":"shopify:\/\/collections","button_style_secondary":false}}},"block_order":["slide_Q8pnCd","slide_GUpyBM","slide_bAEALR"],"name":"Auto Image Slider","settings":{"slide_duration":5000,"height":"adapt","desktop_image_width":"medium","layout":"text_first","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"top","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"","padding_top":0,"padding_bottom":0}},"brand_logo_slider_qDQNwG":{"type":"brand-logo-slider","blocks":{"logo_iQ88Xa":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Vogue_Business.png"}},"logo_f8fJj8":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/BOF.png"}},"logo_BtqAPA":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/WWD.png"}},"logo_qzVMUP":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Glossy.png"}},"logo_FMrLjC":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Beauty_Independent.png"}},"logo_aXMVQb":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Allure.png"}},"logo_VmmqWT":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Cosmetics_Business.png"}},"logo_qJUdVK":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Beauty_Business_Jurnal.png"}}},"block_order":["logo_iQ88Xa","logo_f8fJj8","logo_BtqAPA","logo_qzVMUP","logo_FMrLjC","logo_aXMVQb","logo_VmmqWT","logo_qJUdVK"],"name":"Brand Logo Slider","settings":{"animation_speed":45,"background_color":"#efeae1"}},"collagen_elegance_custom_iGbFN4":{"type":"collagen-elegance-custom","blocks":{"product_card_FFg7UW":{"type":"product_card","settings":{"brand_name":"SLIGHTLY WORK","heading":"Plant Based ​Collagen Supplement","description":"Evoq Collagen Supplement harnesses the power of plants to support your body’s natural collagen production. Nourish your life with vegan-friendly wellness.","button_text":"Shop All","button_link":"shopify:\/\/products\/blueberry","main_image":"shopify:\/\/shop_images\/122352135_ASSET-15689.png"}},"product_card_9pT8QQ":{"type":"product_card","settings":{"brand_name":"SLIGHTLY WORK","heading":"Evoq Collagen Supplement for Whole Body","description":"Reclaim your glow wIth our premium collagen. Supporting hormonal health, reducing aging signs. and enhancing skin elasticity bringing confidence and radiance.","button_text":"Shop All","button_link":"shopify:\/\/collections\/all","main_image":"shopify:\/\/shop_images\/product-mockup.png"}}},"block_order":["product_card_FFg7UW","product_card_9pT8QQ"],"name":"Collagen Elegance","settings":{}},"promotional_banner_7XGUaV":{"type":"promotional-banner","name":"Promotional Banner","settings":{"offer_text":"Save up to 25%","offer_subtitle":"with personalised bundles","days":"191","hours":"12","minutes":"05","seconds":"20","countdown_end_date":"2025-12-20","cta_text":"Shop Now","cta_url":"shopify:\/\/collections\/all","review_count":"141"}},"health_benefits_banner_AVzwXe":{"type":"health-benefits-banner","blocks":{"benefit_4Jn6br":{"type":"benefit","settings":{"icon":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"32\" height=\"32\" viewbox=\"0 0 32 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.8601 4.37189L7.23794 18.324H14.8215C15.8605 18.324 16.6462 19.2643 16.4617 20.2867L15.1403 27.6096L24.7625 13.6574H17.1789C16.1399 13.6574 15.3542 12.7172 15.5387 11.6948L16.8601 4.37189ZM16.0903 1.96528C17.1087 0.488698 19.4211 1.44228 19.1026 3.20748L17.5778 11.6574H25.3973C26.7403 11.6574 27.5318 13.1647 26.7693 14.2703L15.9101 30.0162C14.8917 31.4928 12.5793 30.5392 12.8978 28.774L14.4226 20.324H6.60312C5.26006 20.324 4.4686 18.8168 5.23111 17.7112L16.0903 1.96528Z\" fill=\"#0C0C0D\"><\/path>\n<\/svg>","text":"Stronger Hair"}},"benefit_mNAjER":{"type":"benefit","settings":{"icon":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"33\" height=\"32\" viewbox=\"0 0 33 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.5774 5.42579C26.0402 5.39372 25.5099 5.55965 25.0869 5.8922C24.7302 6.17252 24.2294 6.17764 23.8671 5.90467C23.6246 5.72193 23.3469 5.59139 23.0514 5.52125C22.7559 5.45113 22.4491 5.44293 22.1503 5.49717C21.8515 5.55143 21.5671 5.66695 21.3153 5.83647C21.0633 6.00599 20.8491 6.22584 20.6863 6.48217C20.4313 6.88375 19.9285 7.05001 19.4843 6.87972C19.1125 6.73717 18.7089 6.69825 18.3166 6.76708C17.9243 6.83592 17.5581 7.00995 17.257 7.2706C16.9558 7.53125 16.7311 7.86875 16.6069 8.24709C16.4825 8.62543 16.4631 9.03043 16.551 9.41889C16.6118 9.68845 16.5585 9.97121 16.4035 10.2C16.2549 10.4195 16.0257 10.5705 15.7665 10.6209C15.6983 10.6421 15.6283 10.6558 15.5579 10.662C15.0799 10.7786 14.6529 11.0526 14.3473 11.4427C14.0049 11.8797 13.8404 12.43 13.8867 12.9833C13.9331 13.5365 14.187 14.0518 14.5974 14.4257C14.9966 14.7894 15.5154 14.9933 16.0545 14.9993H16.1069H16.1113H17.8546L22.8951 9.95887C23.2857 9.56835 23.9187 9.56835 24.3093 9.95887C24.6998 10.3494 24.6998 10.9826 24.3093 11.3731L20.6831 14.9993H26.571C26.5597 14.9252 26.5447 14.8514 26.5262 14.7784C26.3999 14.2802 26.6718 13.7674 27.155 13.5924C27.4785 13.4752 27.7701 13.2837 28.0062 13.0334C28.2423 12.783 28.4163 12.4807 28.5145 12.1509C28.6126 11.821 28.6318 11.4727 28.5709 11.134C28.5099 10.7953 28.3703 10.4757 28.1633 10.2008C27.8905 9.83844 27.8957 9.33792 28.1759 8.98136C28.5085 8.55827 28.6745 8.02795 28.6423 7.49076C28.6103 6.95357 28.3825 6.44677 28.0019 6.06624C27.6214 5.68572 27.1146 5.45787 26.5774 5.42579ZM27.5173 16.9993C27.5302 16.9996 27.5431 16.9996 27.5559 16.9993H27.8901C27.6573 19.55 26.5395 21.9516 24.7137 23.7774C22.6509 25.8404 19.8529 26.9993 16.9355 26.9993C14.0182 26.9993 11.2203 25.8404 9.15737 23.7774C7.33151 21.9516 6.21381 19.55 5.98107 16.9993H6.97151C6.98369 16.9996 6.99591 16.9996 7.00812 16.9993H16.0449C16.0677 16.9994 16.0903 16.9994 16.1131 16.9993H27.5173ZM12.5013 14.9993C12.1596 14.4436 11.9492 13.8112 11.8937 13.1504C11.8052 12.0942 12.1192 11.0436 12.7729 10.2092C12.9974 9.92264 13.2563 9.66885 13.5419 9.45239C13.222 9.29024 12.8814 9.16769 12.5275 9.08891C11.6803 8.90028 10.7958 8.97128 9.98941 9.29267C9.18307 9.61404 8.49223 10.1709 8.00695 10.8906C7.52167 11.6103 7.26447 12.4595 7.26887 13.3276L7.26889 13.3326C7.26888 13.9228 7.38969 14.4838 7.60663 14.9993H12.5013ZM5.49417 14.9993C5.3484 14.4705 5.26911 13.913 5.26888 13.3352C5.26296 12.0662 5.6392 10.8247 6.34867 9.77251C7.05861 8.71957 8.06929 7.90493 9.24896 7.43477C10.4286 6.96463 11.7226 6.86075 12.9621 7.13669C13.5589 7.26955 14.1297 7.48745 14.6582 7.78107C14.6733 7.72801 14.6895 7.6752 14.7067 7.62264C14.9442 6.90035 15.3731 6.25604 15.9481 5.75844C16.5229 5.26084 17.2219 4.92861 17.9709 4.79719C18.4673 4.71007 18.9733 4.71336 19.4647 4.80477C19.6839 4.56863 19.9301 4.35787 20.1987 4.17708C20.6798 3.85345 21.2226 3.63291 21.793 3.52935C22.3634 3.42579 22.9491 3.44144 23.5133 3.57532C23.8414 3.65321 24.1581 3.77012 24.4567 3.92299C25.139 3.55604 25.9139 3.38261 26.6966 3.42935C27.7222 3.49057 28.6897 3.92557 29.4162 4.65203C30.1426 5.37849 30.5775 6.34601 30.6389 7.37156C30.6855 8.15428 30.5121 8.92936 30.1451 9.61164C30.3326 9.97829 30.4658 10.3717 30.5391 10.7796C30.6557 11.4262 30.6187 12.0911 30.4315 12.7208C30.2443 13.3506 29.9119 13.9276 29.4613 14.4056C29.2505 14.629 29.0165 14.828 28.7641 14.9993H28.9355C29.2007 14.9993 29.4551 15.1046 29.6426 15.2922C29.8302 15.4797 29.9355 15.7341 29.9355 15.9993C29.9355 19.4472 28.5659 22.7537 26.1279 25.1917C25.4262 25.8934 24.6526 26.5065 23.8243 27.0241C24.2697 27.125 24.6022 27.5233 24.6022 27.9993C24.6022 28.5516 24.1545 28.9993 23.6022 28.9993H10.2689C9.7166 28.9993 9.26888 28.5516 9.26888 27.9993C9.26888 27.5233 9.60137 27.125 10.0467 27.0241C9.21848 26.5065 8.44484 25.8934 7.74316 25.1917C5.30519 22.7537 3.93555 19.4472 3.93555 15.9993C3.93555 15.7341 4.04091 15.4797 4.22844 15.2922C4.41597 15.1046 4.67033 14.9993 4.93555 14.9993H5.49417Z\" fill=\"#0C0C0D\"><\/path>\n<\/svg>","text":"Glowing Skin"}},"benefit_dmm6nj":{"type":"benefit","settings":{"icon":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"33\" height=\"32\" viewbox=\"0 0 33 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.3812 3.79958C13.9518 5.91985 10.3967 7.66857 7.40853 7.66857C7.32013 7.66857 7.23534 7.70369 7.17282 7.7662C7.11032 7.82872 7.0752 7.91349 7.0752 8.0019V17.3352C7.0752 20.4046 8.13765 22.6546 9.81902 24.3766C11.5276 26.1266 13.9206 27.375 16.6283 28.31L16.6509 28.3182C16.7219 28.3446 16.7996 28.346 16.8715 28.3224C19.5711 27.3808 21.9593 26.1296 23.6657 24.379C25.3461 22.655 26.4085 20.4044 26.4085 17.3352V8.0019C26.4085 7.91349 26.3735 7.8287 26.3109 7.7662C26.2484 7.70369 26.1636 7.66857 26.0752 7.66857C23.0879 7.66857 19.546 5.9339 17.1024 3.79949C17.0015 3.71457 16.8739 3.66797 16.7419 3.66797C16.6099 3.66797 16.4821 3.71461 16.3812 3.79958ZM15.0789 2.2816C15.5425 1.88556 16.1321 1.66797 16.7419 1.66797C17.3516 1.66797 17.9412 1.88556 18.4048 2.2816L18.4135 2.28901C20.6363 4.23242 23.7315 5.66857 26.0752 5.66857C26.694 5.66857 27.2875 5.9144 27.7251 6.35198C28.1627 6.78957 28.4085 7.38306 28.4085 8.0019V17.3352C28.4085 20.9327 27.1376 23.6822 25.098 25.7748C23.0855 27.8396 20.3692 29.2212 17.5244 30.2128L17.5161 30.2158C17.0121 30.3866 16.4651 30.3798 15.9656 30.1971C13.1168 29.2123 10.4004 27.8348 8.38804 25.7739C6.34608 23.6826 5.0752 20.9327 5.0752 17.3352V8.0019C5.0752 7.38306 5.32104 6.78957 5.75861 6.35198C6.1962 5.9144 6.78969 5.66857 7.40853 5.66857C9.75158 5.66857 12.8601 4.2198 15.0707 2.28878L15.0789 2.2816ZM16.7419 11.0019C17.2941 11.0019 17.7419 11.4496 17.7419 12.0019V15.0019H20.7419C21.2941 15.0019 21.7419 15.4496 21.7419 16.0019C21.7419 16.5542 21.2941 17.0019 20.7419 17.0019H17.7419V20.0019C17.7419 20.5542 17.2941 21.0019 16.7419 21.0019C16.1896 21.0019 15.7419 20.5542 15.7419 20.0019V17.0019H12.7419C12.1896 17.0019 11.7419 16.5542 11.7419 16.0019C11.7419 15.4496 12.1896 15.0019 12.7419 15.0019H15.7419V12.0019C15.7419 11.4496 16.1896 11.0019 16.7419 11.0019Z\" fill=\"#0C0C0D\"><\/path>\n<\/svg>","text":"Nails Growth"}},"benefit_CBKdLF":{"type":"benefit","settings":{"icon":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"32\" height=\"32\" viewbox=\"0 0 32 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.8601 4.37189L7.23794 18.324H14.8215C15.8605 18.324 16.6462 19.2643 16.4617 20.2867L15.1403 27.6096L24.7625 13.6574H17.1789C16.1399 13.6574 15.3542 12.7172 15.5387 11.6948L16.8601 4.37189ZM16.0903 1.96528C17.1087 0.488698 19.4211 1.44228 19.1026 3.20748L17.5778 11.6574H25.3973C26.7403 11.6574 27.5318 13.1647 26.7693 14.2703L15.9101 30.0162C14.8917 31.4928 12.5793 30.5392 12.8978 28.774L14.4226 20.324H6.60312C5.26006 20.324 4.4686 18.8168 5.23111 17.7112L16.0903 1.96528Z\" fill=\"#0C0C0D\"><\/path>\n<\/svg>","text":"Balanced Gut"}},"benefit_mdgVRr":{"type":"benefit","settings":{"icon":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"33\" height=\"32\" viewbox=\"0 0 33 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.5774 5.42579C26.0402 5.39372 25.5099 5.55965 25.0869 5.8922C24.7302 6.17252 24.2294 6.17764 23.8671 5.90467C23.6246 5.72193 23.3469 5.59139 23.0514 5.52125C22.7559 5.45113 22.4491 5.44293 22.1503 5.49717C21.8515 5.55143 21.5671 5.66695 21.3153 5.83647C21.0633 6.00599 20.8491 6.22584 20.6863 6.48217C20.4313 6.88375 19.9285 7.05001 19.4843 6.87972C19.1125 6.73717 18.7089 6.69825 18.3166 6.76708C17.9243 6.83592 17.5581 7.00995 17.257 7.2706C16.9558 7.53125 16.7311 7.86875 16.6069 8.24709C16.4825 8.62543 16.4631 9.03043 16.551 9.41889C16.6118 9.68845 16.5585 9.97121 16.4035 10.2C16.2549 10.4195 16.0257 10.5705 15.7665 10.6209C15.6983 10.6421 15.6283 10.6558 15.5579 10.662C15.0799 10.7786 14.6529 11.0526 14.3473 11.4427C14.0049 11.8797 13.8404 12.43 13.8867 12.9833C13.9331 13.5365 14.187 14.0518 14.5974 14.4257C14.9966 14.7894 15.5154 14.9933 16.0545 14.9993H16.1069H16.1113H17.8546L22.8951 9.95887C23.2857 9.56835 23.9187 9.56835 24.3093 9.95887C24.6998 10.3494 24.6998 10.9826 24.3093 11.3731L20.6831 14.9993H26.571C26.5597 14.9252 26.5447 14.8514 26.5262 14.7784C26.3999 14.2802 26.6718 13.7674 27.155 13.5924C27.4785 13.4752 27.7701 13.2837 28.0062 13.0334C28.2423 12.783 28.4163 12.4807 28.5145 12.1509C28.6126 11.821 28.6318 11.4727 28.5709 11.134C28.5099 10.7953 28.3703 10.4757 28.1633 10.2008C27.8905 9.83844 27.8957 9.33792 28.1759 8.98136C28.5085 8.55827 28.6745 8.02795 28.6423 7.49076C28.6103 6.95357 28.3825 6.44677 28.0019 6.06624C27.6214 5.68572 27.1146 5.45787 26.5774 5.42579ZM27.5173 16.9993C27.5302 16.9996 27.5431 16.9996 27.5559 16.9993H27.8901C27.6573 19.55 26.5395 21.9516 24.7137 23.7774C22.6509 25.8404 19.8529 26.9993 16.9355 26.9993C14.0182 26.9993 11.2203 25.8404 9.15737 23.7774C7.33151 21.9516 6.21381 19.55 5.98107 16.9993H6.97151C6.98369 16.9996 6.99591 16.9996 7.00812 16.9993H16.0449C16.0677 16.9994 16.0903 16.9994 16.1131 16.9993H27.5173ZM12.5013 14.9993C12.1596 14.4436 11.9492 13.8112 11.8937 13.1504C11.8052 12.0942 12.1192 11.0436 12.7729 10.2092C12.9974 9.92264 13.2563 9.66885 13.5419 9.45239C13.222 9.29024 12.8814 9.16769 12.5275 9.08891C11.6803 8.90028 10.7958 8.97128 9.98941 9.29267C9.18307 9.61404 8.49223 10.1709 8.00695 10.8906C7.52167 11.6103 7.26447 12.4595 7.26887 13.3276L7.26889 13.3326C7.26888 13.9228 7.38969 14.4838 7.60663 14.9993H12.5013ZM5.49417 14.9993C5.3484 14.4705 5.26911 13.913 5.26888 13.3352C5.26296 12.0662 5.6392 10.8247 6.34867 9.77251C7.05861 8.71957 8.06929 7.90493 9.24896 7.43477C10.4286 6.96463 11.7226 6.86075 12.9621 7.13669C13.5589 7.26955 14.1297 7.48745 14.6582 7.78107C14.6733 7.72801 14.6895 7.6752 14.7067 7.62264C14.9442 6.90035 15.3731 6.25604 15.9481 5.75844C16.5229 5.26084 17.2219 4.92861 17.9709 4.79719C18.4673 4.71007 18.9733 4.71336 19.4647 4.80477C19.6839 4.56863 19.9301 4.35787 20.1987 4.17708C20.6798 3.85345 21.2226 3.63291 21.793 3.52935C22.3634 3.42579 22.9491 3.44144 23.5133 3.57532C23.8414 3.65321 24.1581 3.77012 24.4567 3.92299C25.139 3.55604 25.9139 3.38261 26.6966 3.42935C27.7222 3.49057 28.6897 3.92557 29.4162 4.65203C30.1426 5.37849 30.5775 6.34601 30.6389 7.37156C30.6855 8.15428 30.5121 8.92936 30.1451 9.61164C30.3326 9.97829 30.4658 10.3717 30.5391 10.7796C30.6557 11.4262 30.6187 12.0911 30.4315 12.7208C30.2443 13.3506 29.9119 13.9276 29.4613 14.4056C29.2505 14.629 29.0165 14.828 28.7641 14.9993H28.9355C29.2007 14.9993 29.4551 15.1046 29.6426 15.2922C29.8302 15.4797 29.9355 15.7341 29.9355 15.9993C29.9355 19.4472 28.5659 22.7537 26.1279 25.1917C25.4262 25.8934 24.6526 26.5065 23.8243 27.0241C24.2697 27.125 24.6022 27.5233 24.6022 27.9993C24.6022 28.5516 24.1545 28.9993 23.6022 28.9993H10.2689C9.7166 28.9993 9.26888 28.5516 9.26888 27.9993C9.26888 27.5233 9.60137 27.125 10.0467 27.0241C9.21848 26.5065 8.44484 25.8934 7.74316 25.1917C5.30519 22.7537 3.93555 19.4472 3.93555 15.9993C3.93555 15.7341 4.04091 15.4797 4.22844 15.2922C4.41597 15.1046 4.67033 14.9993 4.93555 14.9993H5.49417Z\" fill=\"#0C0C0D\"><\/path>\n<\/svg>","text":"Steady Energy"}},"benefit_eDUi7V":{"type":"benefit","settings":{"icon":"<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"33\" height=\"32\" viewbox=\"0 0 33 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.3812 3.79958C13.9518 5.91985 10.3967 7.66857 7.40853 7.66857C7.32013 7.66857 7.23534 7.70369 7.17282 7.7662C7.11032 7.82872 7.0752 7.91349 7.0752 8.0019V17.3352C7.0752 20.4046 8.13765 22.6546 9.81902 24.3766C11.5276 26.1266 13.9206 27.375 16.6283 28.31L16.6509 28.3182C16.7219 28.3446 16.7996 28.346 16.8715 28.3224C19.5711 27.3808 21.9593 26.1296 23.6657 24.379C25.3461 22.655 26.4085 20.4044 26.4085 17.3352V8.0019C26.4085 7.91349 26.3735 7.8287 26.3109 7.7662C26.2484 7.70369 26.1636 7.66857 26.0752 7.66857C23.0879 7.66857 19.546 5.9339 17.1024 3.79949C17.0015 3.71457 16.8739 3.66797 16.7419 3.66797C16.6099 3.66797 16.4821 3.71461 16.3812 3.79958ZM15.0789 2.2816C15.5425 1.88556 16.1321 1.66797 16.7419 1.66797C17.3516 1.66797 17.9412 1.88556 18.4048 2.2816L18.4135 2.28901C20.6363 4.23242 23.7315 5.66857 26.0752 5.66857C26.694 5.66857 27.2875 5.9144 27.7251 6.35198C28.1627 6.78957 28.4085 7.38306 28.4085 8.0019V17.3352C28.4085 20.9327 27.1376 23.6822 25.098 25.7748C23.0855 27.8396 20.3692 29.2212 17.5244 30.2128L17.5161 30.2158C17.0121 30.3866 16.4651 30.3798 15.9656 30.1971C13.1168 29.2123 10.4004 27.8348 8.38804 25.7739C6.34608 23.6826 5.0752 20.9327 5.0752 17.3352V8.0019C5.0752 7.38306 5.32104 6.78957 5.75861 6.35198C6.1962 5.9144 6.78969 5.66857 7.40853 5.66857C9.75158 5.66857 12.8601 4.2198 15.0707 2.28878L15.0789 2.2816ZM16.7419 11.0019C17.2941 11.0019 17.7419 11.4496 17.7419 12.0019V15.0019H20.7419C21.2941 15.0019 21.7419 15.4496 21.7419 16.0019C21.7419 16.5542 21.2941 17.0019 20.7419 17.0019H17.7419V20.0019C17.7419 20.5542 17.2941 21.0019 16.7419 21.0019C16.1896 21.0019 15.7419 20.5542 15.7419 20.0019V17.0019H12.7419C12.1896 17.0019 11.7419 16.5542 11.7419 16.0019C11.7419 15.4496 12.1896 15.0019 12.7419 15.0019H15.7419V12.0019C15.7419 11.4496 16.1896 11.0019 16.7419 11.0019Z\" fill=\"#0C0C0D\"><\/path>\n<\/svg>","text":"Menopause Support"}}},"block_order":["benefit_4Jn6br","benefit_mNAjER","benefit_dmm6nj","benefit_CBKdLF","benefit_mdgVRr","benefit_eDUi7V"],"name":"Health Benefits Banner","settings":{"custom_health_image":"shopify:\/\/shop_images\/Mask_group.png","title":"From Hair to Hormones - Fueling MoreThan Just Glow","button_text":"Explore All Evoq Benefits","button_link":"shopify:\/\/collections\/frontpage"}},"collagen_product_showcase_4nQUDR":{"type":"collagen-product-showcase","name":"Collagen Product Showcase","settings":{"heading":"Transformation Starts after a few Weeks","subheading":"Try these fresh collagen powder available in delicious flavours and mix it up with your  daily wellness routine.","product1_title":"Vanilla","product1_image":"shopify:\/\/shop_images\/Group_1171277505.png","product1_link":"shopify:\/\/products\/blueberry","product2_title":"Chocolate","product2_image":"shopify:\/\/shop_images\/Group_1171277507.png","product2_link":"","product3_title":"Strawberry","product3_image":"shopify:\/\/shop_images\/Group_1171277509.png","product3_link":"","product4_title":"Blueberry","product4_image":"shopify:\/\/shop_images\/Group_1171277508.png","product4_link":"","product5_title":"Mango","product5_image":"shopify:\/\/shop_images\/Group_1171277506.png","product5_link":""}},"collagen_before_after_JjzzzK":{"type":"collagen-before-after","name":"Collagen Before\/After","settings":{"before_image":"shopify:\/\/shop_images\/Rectangle_96.png","before_label":"Before Evoq Collagen","after_image":"shopify:\/\/shop_images\/image_3.png","after_label":"After Evoq Collagen","background_color":"rgba(0,0,0,0)","heading_color":"#333333","text_color":"#121212","before_label_color":"#121212","after_label_color":"#121212","slider_color":"#ffffff","slider_icon_color":"#666666","button_text":"Shop Now","button_url":"","button_color":"#0066cc","button_text_color":"#ffffff","padding_top":80,"padding_bottom":80}},"custom_testimonials_RkyQg7":{"type":"custom-testimonials","blocks":{"testimonial_ipGf6J":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/image_3.png","name":"Jhony Jackyan","title":"Clinically Studied","testimonial_text":"Evoq Collagen Supplement is formulated using ingredients proven in clinical studies to support skin elasticity, hydration, and firmness. With regular use, users report smoother skin, stronger nails, and reduced signs of aging results that go beyond surface level.","verified":true}},"testimonial_BKWaGA":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/image_4.png","name":"Samiul Budry","title":"Recommended by Nutritionists","testimonial_text":"Evoq is designed to support total body wellness not just beauty. Developed in collaboration with certified nutritionists. From gut health to joint mobility, each serving fits seamlessly into a health professional’s toolkit for daily vitality.","verified":true}},"testimonial_MKyTFa":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/image_5.png","name":"Jara ninia","title":"Science-Backed","testimonial_text":"Every ingredient in Evoq Collagen Supplement is chosen for its efficacy, purity, and purpose. Free from fillers, GMOs, and artificial additives, it's a clean formula with real science behind it. Approved by health experts and trusted by conscious consumers.","verified":true}}},"block_order":["testimonial_ipGf6J","testimonial_BKWaGA","testimonial_MKyTFa"],"name":"Custom Testimonials","settings":{"title":"Every Scoop of Evoq Backed by Science","subtitle":"Evoq Collagen Supplement is crafted with precision, guided by nutritional science and validated in clinical settings."}},"testimonials_slider_hqLRaf":{"type":"testimonials-slider","blocks":{"testimonial_P98GKc":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_110.png","name":"Jara nina","title":"Beauty & Wellness Influencer","quote":"I feel like I have gotten younger","description":"I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"}},"testimonial_hBAeaP":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_115.png","name":"Sarah Johnson","title":"Fitness Enthusiast","quote":"Amazing transformation in just weeks","description":"The results speak for themselves. I've never felt more confident and energized in my daily routine."}},"testimonial_YU9kBJ":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_118.png","name":"Sarah Johnson","title":"Fitness Enthusiast","quote":"Amazing transformation in just weeks","description":"The results speak for themselves. I've never felt more confident and energized in my daily routine."}},"testimonial_CBRMTz":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_120.png","name":"Mike Chen","title":"Busy Professional","quote":"Perfect solution for my lifestyle","description":"As someone with a hectic schedule, this has been a game-changer for maintaining my health and wellness."}},"testimonial_wmX7k6":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_124.png","name":"Mike Chen","title":"Busy Professional","quote":"Perfect solution for my lifestyle","description":"As someone with a hectic schedule, this has been a game-changer for maintaining my health and wellness."}},"testimonial_74pnmX":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_119.png","name":"Mike Chen","title":"Busy Professional","quote":"Perfect solution for my lifestyle","description":"As someone with a hectic schedule, this has been a game-changer for maintaining my health and wellness."}},"testimonial_gPayEP":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_117.png","name":"Customer Name","title":"Customer Title","quote":"I feel like I have gotten younger","description":"I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"}},"testimonial_apBTzp":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_121.png","name":"Customer Name","title":"Customer Title","quote":"I feel like I have gotten younger","description":"I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"}},"testimonial_HzXgQ9":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_122.png","name":"Customer Name","title":"Customer Title","quote":"I feel like I have gotten younger","description":"I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"}},"testimonial_4rXKDY":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_114.png","name":"Customer Name","title":"Customer Title","quote":"I feel like I have gotten younger","description":"I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"}},"testimonial_HdKRdH":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_116.png","name":"Customer Name","title":"Customer Title","quote":"I feel like I have gotten younger","description":"I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"}},"testimonial_nVWKCi":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_123.png","name":"Customer Name","title":"Customer Title","quote":"I feel like I have gotten younger","description":"I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"}},"testimonial_n8W68C":{"type":"testimonial","settings":{"image":"shopify:\/\/shop_images\/Rectangle_125.png","name":"Customer Name","title":"Customer Title","quote":"I feel like I have gotten younger","description":"I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"}}},"block_order":["testimonial_P98GKc","testimonial_hBAeaP","testimonial_YU9kBJ","testimonial_CBRMTz","testimonial_wmX7k6","testimonial_74pnmX","testimonial_gPayEP","testimonial_apBTzp","testimonial_HzXgQ9","testimonial_4rXKDY","testimonial_HdKRdH","testimonial_nVWKCi","testimonial_n8W68C"],"name":"Testimonials Slider","settings":{"section_title":"The voice of Our Happy Customers","section_subtitle":"99% of customers agree our products taste better than other brands.","cta_text":"Join Our Community","cta_url":"shopify:\/\/collections","auto_play_speed":7}},"faq_accordion_custom_Abi9qD":{"type":"faq-accordion-custom","blocks":{"faq_item_TwTVi4":{"type":"faq_item","settings":{"question":"Who can use EVOQ collagen powder?","answer":"<p>EVOO collagen powder is formulated for both men and women looking to support their skin, hair, nails, and overall health. It's perfect for anyone over the age of 18.<\/p>"}},"faq_item_MtqyND":{"type":"faq_item","settings":{"question":"How do I use EVOQ collagen powder?","answer":"<p>Simply mix one scoop of EVOQ collagen powder into your favorite<\/p><p>beverage, such as water, coffee, smoothies, or juice. It dissolves easily<\/p><p>with water and comes with different flavors, making it a versatile addition to your daily routine.<\/p>"}},"faq_item_q64gt9":{"type":"faq_item","settings":{"question":"Is EVOQ collagen powder safe?","answer":"<p>Yes, EVOQ collagen powder is made from high-quality, carefully sourced natural ingredients and is free from harmful additives. However, if you have any<\/p><p>specific medical conditions or allergies, we recommend consulting your<\/p><p>healthcare provider before use.<\/p>"}},"faq_item_fNMbEJ":{"type":"faq_item","settings":{"question":"Is EVOQ collagen powder suitable for vegetarians or vegans?","answer":"<p>Our collagen powder is derived from Soya and Peas, making it suitable for<\/p><p>vegetarians or vegans.<\/p>"}},"faq_item_GR9MCC":{"type":"faq_item","settings":{"question":"Are your products Halal certified?","answer":"<p>es, our collagen products are Halal certified.<\/p>"}},"faq_item_GDNEre":{"type":"faq_item","settings":{"question":"How long does it take to see results?","answer":"<p>Results may vary depending on individual factors such as age, lifestyle, and<\/p><p>consistency of use- Most people notice improvements in their skin, hair,<\/p><p>nails and joints within 4—8 weeks of daily use.<\/p>"}}},"block_order":["faq_item_TwTVi4","faq_item_MtqyND","faq_item_q64gt9","faq_item_fNMbEJ","faq_item_GR9MCC","faq_item_GDNEre"],"name":"FAQ Accordion","settings":{"title":"<p><strong>Need to know more?<\/strong> Don't forget to ask!<\/p>","image":"shopify:\/\/shop_images\/122352135_ASSET-15689.png","title_color":"#ffffff","text_color":"#ffffff","background_gradient":"#001E5F","padding_top":0,"padding_bottom":0,"title_size":"2.5rem"}},"brand_logo_slider_yhxaTG":{"type":"brand-logo-slider","blocks":{"logo_BqqWej":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Vogue_Business.png"}},"logo_z7nneY":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/BOF.png"}},"logo_ADP89t":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/WWD.png"}},"logo_acrfT6":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Glossy.png"}},"logo_k93j6E":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Beauty_Independent.png"}},"logo_ajExzG":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Allure.png"}},"logo_P79GE8":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Cosmetics_Business.png"}},"logo_NWD8Eq":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Beauty_Business_Jurnal.png"}}},"block_order":["logo_BqqWej","logo_z7nneY","logo_ADP89t","logo_acrfT6","logo_k93j6E","logo_ajExzG","logo_P79GE8","logo_NWD8Eq"],"name":"Brand Logo Slider","settings":{"animation_speed":45,"background_color":"#efeae1"}}},"order":["auto_image_slider_AFhrhE","brand_logo_slider_qDQNwG","collagen_elegance_custom_iGbFN4","promotional_banner_7XGUaV","health_benefits_banner_AVzwXe","collagen_product_showcase_4nQUDR","collagen_before_after_JjzzzK","custom_testimonials_RkyQg7","testimonials_slider_hqLRaf","faq_accordion_custom_Abi9qD","brand_logo_slider_yhxaTG"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "auto_image_slider_AFhrhE": {
+      "type": "auto-image-slider",
+      "blocks": {
+        "slide_Q8pnCd": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/image_75.png",
+            "cus_image": "shopify://shop_images/Group_1171276765_2.png",
+            "heading": "<p><strong>More Than Anti<br/></strong><em>Ageing</em></p>",
+            "heading_size": "h1",
+            "caption": "",
+            "text_style": "subtitle",
+            "text_size": "medium",
+            "text": "<p><em>A Wellness Retreat with Evoq collagen that nourishes your health from the inside out.</em></p>",
+            "button_label": "Shop All",
+            "button_link": "shopify://collections/shop",
+            "button_style_secondary": false
+          }
+        },
+        "slide_GUpyBM": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/image_75.png",
+            "cus_image": "shopify://shop_images/Group_1171276765_2.png",
+            "heading": "<p><strong>It’s not magic </strong><br/><em>It’s collagen</em></p>",
+            "heading_size": "h1",
+            "caption": "",
+            "text_style": "subtitle",
+            "text_size": "medium",
+            "text": "<p><em>Clinically crafted Evoq vegan collagen can deliver real results within weeks.</em></p>",
+            "button_label": "Shop All",
+            "button_link": "shopify://collections/shop",
+            "button_style_secondary": false
+          }
+        },
+        "slide_bAEALR": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/image_75.png",
+            "cus_image": "shopify://shop_images/Group_1171276765_2.png",
+            "heading": "<p><strong>Healthier You</strong><br/><em>By nature</em></p>",
+            "heading_size": "h1",
+            "caption": "",
+            "text_style": "subtitle",
+            "text_size": "medium",
+            "text": "<p><em>Evoq Collagen Powder supports smoother skin and stronger confidence.</em></p>",
+            "button_label": "Shop All",
+            "button_link": "shopify://collections/shop",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "slide_Q8pnCd",
+        "slide_GUpyBM",
+        "slide_bAEALR"
+      ],
+      "name": "Auto Image Slider",
+      "settings": {
+        "slide_duration": 5000,
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "brand_logo_slider_qDQNwG": {
+      "type": "brand-logo-slider",
+      "blocks": {
+        "logo_iQ88Xa": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Vogue_Business.png"
+          }
+        },
+        "logo_f8fJj8": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOF.png"
+          }
+        },
+        "logo_e9GpNq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Global_Cosmetics_news.png"
+          }
+        },
+        "logo_BtqAPA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/WWD.png"
+          }
+        },
+        "logo_qzVMUP": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Glossy.png"
+          }
+        },
+        "logo_FMrLjC": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Independent.png"
+          }
+        },
+        "logo_aXMVQb": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Allure.png"
+          }
+        },
+        "logo_VmmqWT": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Cosmetics_Business.png"
+          }
+        },
+        "logo_qJUdVK": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Business_Jurnal.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_iQ88Xa",
+        "logo_f8fJj8",
+        "logo_e9GpNq",
+        "logo_BtqAPA",
+        "logo_qzVMUP",
+        "logo_FMrLjC",
+        "logo_aXMVQb",
+        "logo_VmmqWT",
+        "logo_qJUdVK"
+      ],
+      "name": "Brand Logo Slider",
+      "settings": {
+        "animation_speed": 45,
+        "background_color": "#efeae1"
+      }
+    },
+    "collagen_elegance_custom_iGbFN4": {
+      "type": "collagen-elegance-custom",
+      "blocks": {
+        "product_card_FFg7UW": {
+          "type": "product_card",
+          "settings": {
+            "brand_name": "",
+            "heading": "Plant Based ​Collagen Supplement",
+            "description": "Evoq Collagen Supplement harnesses the power of plants to support your body’s natural collagen production. Nourish your life with vegan-friendly wellness.",
+            "button_text": "Shop All",
+            "button_link": "shopify://collections/shop",
+            "main_image": "shopify://shop_images/122352135_ASSET-15689.png"
+          }
+        },
+        "product_card_9pT8QQ": {
+          "type": "product_card",
+          "settings": {
+            "brand_name": "",
+            "heading": "Evoq Collagen Supplement for Whole Body",
+            "description": "Reclaim your glow wIth our premium collagen. Supporting hormonal health, reducing aging signs. and enhancing skin elasticity bringing confidence and radiance.",
+            "button_text": "Shop All",
+            "button_link": "shopify://collections/shop",
+            "main_image": "shopify://shop_images/product-mockup.png"
+          }
+        }
+      },
+      "block_order": [
+        "product_card_FFg7UW",
+        "product_card_9pT8QQ"
+      ],
+      "name": "Collagen Elegance",
+      "settings": {}
+    },
+    "promotional_banner_7XGUaV": {
+      "type": "promotional-banner",
+      "name": "Promotional Banner",
+      "settings": {
+        "offer_text": "Save up to 25%",
+        "offer_subtitle": "with personalised bundles",
+        "days": "191",
+        "hours": "12",
+        "minutes": "05",
+        "seconds": "20",
+        "countdown_end_date": "2025-12-20",
+        "cta_text": "Shop Now",
+        "cta_url": "shopify://collections/shop",
+        "review_count": "141"
+      }
+    },
+    "health_benefits_banner_AVzwXe": {
+      "type": "health-benefits-banner",
+      "blocks": {
+        "benefit_4Jn6br": {
+          "type": "benefit",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewbox=\"0 0 32 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.8601 4.37189L7.23794 18.324H14.8215C15.8605 18.324 16.6462 19.2643 16.4617 20.2867L15.1403 27.6096L24.7625 13.6574H17.1789C16.1399 13.6574 15.3542 12.7172 15.5387 11.6948L16.8601 4.37189ZM16.0903 1.96528C17.1087 0.488698 19.4211 1.44228 19.1026 3.20748L17.5778 11.6574H25.3973C26.7403 11.6574 27.5318 13.1647 26.7693 14.2703L15.9101 30.0162C14.8917 31.4928 12.5793 30.5392 12.8978 28.774L14.4226 20.324H6.60312C5.26006 20.324 4.4686 18.8168 5.23111 17.7112L16.0903 1.96528Z\" fill=\"#0C0C0D\"></path>\n</svg>",
+            "text": "Stronger Hair"
+          }
+        },
+        "benefit_mNAjER": {
+          "type": "benefit",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"33\" height=\"32\" viewbox=\"0 0 33 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.5774 5.42579C26.0402 5.39372 25.5099 5.55965 25.0869 5.8922C24.7302 6.17252 24.2294 6.17764 23.8671 5.90467C23.6246 5.72193 23.3469 5.59139 23.0514 5.52125C22.7559 5.45113 22.4491 5.44293 22.1503 5.49717C21.8515 5.55143 21.5671 5.66695 21.3153 5.83647C21.0633 6.00599 20.8491 6.22584 20.6863 6.48217C20.4313 6.88375 19.9285 7.05001 19.4843 6.87972C19.1125 6.73717 18.7089 6.69825 18.3166 6.76708C17.9243 6.83592 17.5581 7.00995 17.257 7.2706C16.9558 7.53125 16.7311 7.86875 16.6069 8.24709C16.4825 8.62543 16.4631 9.03043 16.551 9.41889C16.6118 9.68845 16.5585 9.97121 16.4035 10.2C16.2549 10.4195 16.0257 10.5705 15.7665 10.6209C15.6983 10.6421 15.6283 10.6558 15.5579 10.662C15.0799 10.7786 14.6529 11.0526 14.3473 11.4427C14.0049 11.8797 13.8404 12.43 13.8867 12.9833C13.9331 13.5365 14.187 14.0518 14.5974 14.4257C14.9966 14.7894 15.5154 14.9933 16.0545 14.9993H16.1069H16.1113H17.8546L22.8951 9.95887C23.2857 9.56835 23.9187 9.56835 24.3093 9.95887C24.6998 10.3494 24.6998 10.9826 24.3093 11.3731L20.6831 14.9993H26.571C26.5597 14.9252 26.5447 14.8514 26.5262 14.7784C26.3999 14.2802 26.6718 13.7674 27.155 13.5924C27.4785 13.4752 27.7701 13.2837 28.0062 13.0334C28.2423 12.783 28.4163 12.4807 28.5145 12.1509C28.6126 11.821 28.6318 11.4727 28.5709 11.134C28.5099 10.7953 28.3703 10.4757 28.1633 10.2008C27.8905 9.83844 27.8957 9.33792 28.1759 8.98136C28.5085 8.55827 28.6745 8.02795 28.6423 7.49076C28.6103 6.95357 28.3825 6.44677 28.0019 6.06624C27.6214 5.68572 27.1146 5.45787 26.5774 5.42579ZM27.5173 16.9993C27.5302 16.9996 27.5431 16.9996 27.5559 16.9993H27.8901C27.6573 19.55 26.5395 21.9516 24.7137 23.7774C22.6509 25.8404 19.8529 26.9993 16.9355 26.9993C14.0182 26.9993 11.2203 25.8404 9.15737 23.7774C7.33151 21.9516 6.21381 19.55 5.98107 16.9993H6.97151C6.98369 16.9996 6.99591 16.9996 7.00812 16.9993H16.0449C16.0677 16.9994 16.0903 16.9994 16.1131 16.9993H27.5173ZM12.5013 14.9993C12.1596 14.4436 11.9492 13.8112 11.8937 13.1504C11.8052 12.0942 12.1192 11.0436 12.7729 10.2092C12.9974 9.92264 13.2563 9.66885 13.5419 9.45239C13.222 9.29024 12.8814 9.16769 12.5275 9.08891C11.6803 8.90028 10.7958 8.97128 9.98941 9.29267C9.18307 9.61404 8.49223 10.1709 8.00695 10.8906C7.52167 11.6103 7.26447 12.4595 7.26887 13.3276L7.26889 13.3326C7.26888 13.9228 7.38969 14.4838 7.60663 14.9993H12.5013ZM5.49417 14.9993C5.3484 14.4705 5.26911 13.913 5.26888 13.3352C5.26296 12.0662 5.6392 10.8247 6.34867 9.77251C7.05861 8.71957 8.06929 7.90493 9.24896 7.43477C10.4286 6.96463 11.7226 6.86075 12.9621 7.13669C13.5589 7.26955 14.1297 7.48745 14.6582 7.78107C14.6733 7.72801 14.6895 7.6752 14.7067 7.62264C14.9442 6.90035 15.3731 6.25604 15.9481 5.75844C16.5229 5.26084 17.2219 4.92861 17.9709 4.79719C18.4673 4.71007 18.9733 4.71336 19.4647 4.80477C19.6839 4.56863 19.9301 4.35787 20.1987 4.17708C20.6798 3.85345 21.2226 3.63291 21.793 3.52935C22.3634 3.42579 22.9491 3.44144 23.5133 3.57532C23.8414 3.65321 24.1581 3.77012 24.4567 3.92299C25.139 3.55604 25.9139 3.38261 26.6966 3.42935C27.7222 3.49057 28.6897 3.92557 29.4162 4.65203C30.1426 5.37849 30.5775 6.34601 30.6389 7.37156C30.6855 8.15428 30.5121 8.92936 30.1451 9.61164C30.3326 9.97829 30.4658 10.3717 30.5391 10.7796C30.6557 11.4262 30.6187 12.0911 30.4315 12.7208C30.2443 13.3506 29.9119 13.9276 29.4613 14.4056C29.2505 14.629 29.0165 14.828 28.7641 14.9993H28.9355C29.2007 14.9993 29.4551 15.1046 29.6426 15.2922C29.8302 15.4797 29.9355 15.7341 29.9355 15.9993C29.9355 19.4472 28.5659 22.7537 26.1279 25.1917C25.4262 25.8934 24.6526 26.5065 23.8243 27.0241C24.2697 27.125 24.6022 27.5233 24.6022 27.9993C24.6022 28.5516 24.1545 28.9993 23.6022 28.9993H10.2689C9.7166 28.9993 9.26888 28.5516 9.26888 27.9993C9.26888 27.5233 9.60137 27.125 10.0467 27.0241C9.21848 26.5065 8.44484 25.8934 7.74316 25.1917C5.30519 22.7537 3.93555 19.4472 3.93555 15.9993C3.93555 15.7341 4.04091 15.4797 4.22844 15.2922C4.41597 15.1046 4.67033 14.9993 4.93555 14.9993H5.49417Z\" fill=\"#0C0C0D\"></path>\n</svg>",
+            "text": "Glowing Skin"
+          }
+        },
+        "benefit_dmm6nj": {
+          "type": "benefit",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"33\" height=\"32\" viewbox=\"0 0 33 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.3812 3.79958C13.9518 5.91985 10.3967 7.66857 7.40853 7.66857C7.32013 7.66857 7.23534 7.70369 7.17282 7.7662C7.11032 7.82872 7.0752 7.91349 7.0752 8.0019V17.3352C7.0752 20.4046 8.13765 22.6546 9.81902 24.3766C11.5276 26.1266 13.9206 27.375 16.6283 28.31L16.6509 28.3182C16.7219 28.3446 16.7996 28.346 16.8715 28.3224C19.5711 27.3808 21.9593 26.1296 23.6657 24.379C25.3461 22.655 26.4085 20.4044 26.4085 17.3352V8.0019C26.4085 7.91349 26.3735 7.8287 26.3109 7.7662C26.2484 7.70369 26.1636 7.66857 26.0752 7.66857C23.0879 7.66857 19.546 5.9339 17.1024 3.79949C17.0015 3.71457 16.8739 3.66797 16.7419 3.66797C16.6099 3.66797 16.4821 3.71461 16.3812 3.79958ZM15.0789 2.2816C15.5425 1.88556 16.1321 1.66797 16.7419 1.66797C17.3516 1.66797 17.9412 1.88556 18.4048 2.2816L18.4135 2.28901C20.6363 4.23242 23.7315 5.66857 26.0752 5.66857C26.694 5.66857 27.2875 5.9144 27.7251 6.35198C28.1627 6.78957 28.4085 7.38306 28.4085 8.0019V17.3352C28.4085 20.9327 27.1376 23.6822 25.098 25.7748C23.0855 27.8396 20.3692 29.2212 17.5244 30.2128L17.5161 30.2158C17.0121 30.3866 16.4651 30.3798 15.9656 30.1971C13.1168 29.2123 10.4004 27.8348 8.38804 25.7739C6.34608 23.6826 5.0752 20.9327 5.0752 17.3352V8.0019C5.0752 7.38306 5.32104 6.78957 5.75861 6.35198C6.1962 5.9144 6.78969 5.66857 7.40853 5.66857C9.75158 5.66857 12.8601 4.2198 15.0707 2.28878L15.0789 2.2816ZM16.7419 11.0019C17.2941 11.0019 17.7419 11.4496 17.7419 12.0019V15.0019H20.7419C21.2941 15.0019 21.7419 15.4496 21.7419 16.0019C21.7419 16.5542 21.2941 17.0019 20.7419 17.0019H17.7419V20.0019C17.7419 20.5542 17.2941 21.0019 16.7419 21.0019C16.1896 21.0019 15.7419 20.5542 15.7419 20.0019V17.0019H12.7419C12.1896 17.0019 11.7419 16.5542 11.7419 16.0019C11.7419 15.4496 12.1896 15.0019 12.7419 15.0019H15.7419V12.0019C15.7419 11.4496 16.1896 11.0019 16.7419 11.0019Z\" fill=\"#0C0C0D\"></path>\n</svg>",
+            "text": "Nails Growth"
+          }
+        },
+        "benefit_CBKdLF": {
+          "type": "benefit",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewbox=\"0 0 32 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.8601 4.37189L7.23794 18.324H14.8215C15.8605 18.324 16.6462 19.2643 16.4617 20.2867L15.1403 27.6096L24.7625 13.6574H17.1789C16.1399 13.6574 15.3542 12.7172 15.5387 11.6948L16.8601 4.37189ZM16.0903 1.96528C17.1087 0.488698 19.4211 1.44228 19.1026 3.20748L17.5778 11.6574H25.3973C26.7403 11.6574 27.5318 13.1647 26.7693 14.2703L15.9101 30.0162C14.8917 31.4928 12.5793 30.5392 12.8978 28.774L14.4226 20.324H6.60312C5.26006 20.324 4.4686 18.8168 5.23111 17.7112L16.0903 1.96528Z\" fill=\"#0C0C0D\"></path>\n</svg>",
+            "text": "Balanced Gut"
+          }
+        },
+        "benefit_mdgVRr": {
+          "type": "benefit",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"33\" height=\"32\" viewbox=\"0 0 33 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.5774 5.42579C26.0402 5.39372 25.5099 5.55965 25.0869 5.8922C24.7302 6.17252 24.2294 6.17764 23.8671 5.90467C23.6246 5.72193 23.3469 5.59139 23.0514 5.52125C22.7559 5.45113 22.4491 5.44293 22.1503 5.49717C21.8515 5.55143 21.5671 5.66695 21.3153 5.83647C21.0633 6.00599 20.8491 6.22584 20.6863 6.48217C20.4313 6.88375 19.9285 7.05001 19.4843 6.87972C19.1125 6.73717 18.7089 6.69825 18.3166 6.76708C17.9243 6.83592 17.5581 7.00995 17.257 7.2706C16.9558 7.53125 16.7311 7.86875 16.6069 8.24709C16.4825 8.62543 16.4631 9.03043 16.551 9.41889C16.6118 9.68845 16.5585 9.97121 16.4035 10.2C16.2549 10.4195 16.0257 10.5705 15.7665 10.6209C15.6983 10.6421 15.6283 10.6558 15.5579 10.662C15.0799 10.7786 14.6529 11.0526 14.3473 11.4427C14.0049 11.8797 13.8404 12.43 13.8867 12.9833C13.9331 13.5365 14.187 14.0518 14.5974 14.4257C14.9966 14.7894 15.5154 14.9933 16.0545 14.9993H16.1069H16.1113H17.8546L22.8951 9.95887C23.2857 9.56835 23.9187 9.56835 24.3093 9.95887C24.6998 10.3494 24.6998 10.9826 24.3093 11.3731L20.6831 14.9993H26.571C26.5597 14.9252 26.5447 14.8514 26.5262 14.7784C26.3999 14.2802 26.6718 13.7674 27.155 13.5924C27.4785 13.4752 27.7701 13.2837 28.0062 13.0334C28.2423 12.783 28.4163 12.4807 28.5145 12.1509C28.6126 11.821 28.6318 11.4727 28.5709 11.134C28.5099 10.7953 28.3703 10.4757 28.1633 10.2008C27.8905 9.83844 27.8957 9.33792 28.1759 8.98136C28.5085 8.55827 28.6745 8.02795 28.6423 7.49076C28.6103 6.95357 28.3825 6.44677 28.0019 6.06624C27.6214 5.68572 27.1146 5.45787 26.5774 5.42579ZM27.5173 16.9993C27.5302 16.9996 27.5431 16.9996 27.5559 16.9993H27.8901C27.6573 19.55 26.5395 21.9516 24.7137 23.7774C22.6509 25.8404 19.8529 26.9993 16.9355 26.9993C14.0182 26.9993 11.2203 25.8404 9.15737 23.7774C7.33151 21.9516 6.21381 19.55 5.98107 16.9993H6.97151C6.98369 16.9996 6.99591 16.9996 7.00812 16.9993H16.0449C16.0677 16.9994 16.0903 16.9994 16.1131 16.9993H27.5173ZM12.5013 14.9993C12.1596 14.4436 11.9492 13.8112 11.8937 13.1504C11.8052 12.0942 12.1192 11.0436 12.7729 10.2092C12.9974 9.92264 13.2563 9.66885 13.5419 9.45239C13.222 9.29024 12.8814 9.16769 12.5275 9.08891C11.6803 8.90028 10.7958 8.97128 9.98941 9.29267C9.18307 9.61404 8.49223 10.1709 8.00695 10.8906C7.52167 11.6103 7.26447 12.4595 7.26887 13.3276L7.26889 13.3326C7.26888 13.9228 7.38969 14.4838 7.60663 14.9993H12.5013ZM5.49417 14.9993C5.3484 14.4705 5.26911 13.913 5.26888 13.3352C5.26296 12.0662 5.6392 10.8247 6.34867 9.77251C7.05861 8.71957 8.06929 7.90493 9.24896 7.43477C10.4286 6.96463 11.7226 6.86075 12.9621 7.13669C13.5589 7.26955 14.1297 7.48745 14.6582 7.78107C14.6733 7.72801 14.6895 7.6752 14.7067 7.62264C14.9442 6.90035 15.3731 6.25604 15.9481 5.75844C16.5229 5.26084 17.2219 4.92861 17.9709 4.79719C18.4673 4.71007 18.9733 4.71336 19.4647 4.80477C19.6839 4.56863 19.9301 4.35787 20.1987 4.17708C20.6798 3.85345 21.2226 3.63291 21.793 3.52935C22.3634 3.42579 22.9491 3.44144 23.5133 3.57532C23.8414 3.65321 24.1581 3.77012 24.4567 3.92299C25.139 3.55604 25.9139 3.38261 26.6966 3.42935C27.7222 3.49057 28.6897 3.92557 29.4162 4.65203C30.1426 5.37849 30.5775 6.34601 30.6389 7.37156C30.6855 8.15428 30.5121 8.92936 30.1451 9.61164C30.3326 9.97829 30.4658 10.3717 30.5391 10.7796C30.6557 11.4262 30.6187 12.0911 30.4315 12.7208C30.2443 13.3506 29.9119 13.9276 29.4613 14.4056C29.2505 14.629 29.0165 14.828 28.7641 14.9993H28.9355C29.2007 14.9993 29.4551 15.1046 29.6426 15.2922C29.8302 15.4797 29.9355 15.7341 29.9355 15.9993C29.9355 19.4472 28.5659 22.7537 26.1279 25.1917C25.4262 25.8934 24.6526 26.5065 23.8243 27.0241C24.2697 27.125 24.6022 27.5233 24.6022 27.9993C24.6022 28.5516 24.1545 28.9993 23.6022 28.9993H10.2689C9.7166 28.9993 9.26888 28.5516 9.26888 27.9993C9.26888 27.5233 9.60137 27.125 10.0467 27.0241C9.21848 26.5065 8.44484 25.8934 7.74316 25.1917C5.30519 22.7537 3.93555 19.4472 3.93555 15.9993C3.93555 15.7341 4.04091 15.4797 4.22844 15.2922C4.41597 15.1046 4.67033 14.9993 4.93555 14.9993H5.49417Z\" fill=\"#0C0C0D\"></path>\n</svg>",
+            "text": "Steady Energy"
+          }
+        },
+        "benefit_eDUi7V": {
+          "type": "benefit",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"33\" height=\"32\" viewbox=\"0 0 33 32\" fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.3812 3.79958C13.9518 5.91985 10.3967 7.66857 7.40853 7.66857C7.32013 7.66857 7.23534 7.70369 7.17282 7.7662C7.11032 7.82872 7.0752 7.91349 7.0752 8.0019V17.3352C7.0752 20.4046 8.13765 22.6546 9.81902 24.3766C11.5276 26.1266 13.9206 27.375 16.6283 28.31L16.6509 28.3182C16.7219 28.3446 16.7996 28.346 16.8715 28.3224C19.5711 27.3808 21.9593 26.1296 23.6657 24.379C25.3461 22.655 26.4085 20.4044 26.4085 17.3352V8.0019C26.4085 7.91349 26.3735 7.8287 26.3109 7.7662C26.2484 7.70369 26.1636 7.66857 26.0752 7.66857C23.0879 7.66857 19.546 5.9339 17.1024 3.79949C17.0015 3.71457 16.8739 3.66797 16.7419 3.66797C16.6099 3.66797 16.4821 3.71461 16.3812 3.79958ZM15.0789 2.2816C15.5425 1.88556 16.1321 1.66797 16.7419 1.66797C17.3516 1.66797 17.9412 1.88556 18.4048 2.2816L18.4135 2.28901C20.6363 4.23242 23.7315 5.66857 26.0752 5.66857C26.694 5.66857 27.2875 5.9144 27.7251 6.35198C28.1627 6.78957 28.4085 7.38306 28.4085 8.0019V17.3352C28.4085 20.9327 27.1376 23.6822 25.098 25.7748C23.0855 27.8396 20.3692 29.2212 17.5244 30.2128L17.5161 30.2158C17.0121 30.3866 16.4651 30.3798 15.9656 30.1971C13.1168 29.2123 10.4004 27.8348 8.38804 25.7739C6.34608 23.6826 5.0752 20.9327 5.0752 17.3352V8.0019C5.0752 7.38306 5.32104 6.78957 5.75861 6.35198C6.1962 5.9144 6.78969 5.66857 7.40853 5.66857C9.75158 5.66857 12.8601 4.2198 15.0707 2.28878L15.0789 2.2816ZM16.7419 11.0019C17.2941 11.0019 17.7419 11.4496 17.7419 12.0019V15.0019H20.7419C21.2941 15.0019 21.7419 15.4496 21.7419 16.0019C21.7419 16.5542 21.2941 17.0019 20.7419 17.0019H17.7419V20.0019C17.7419 20.5542 17.2941 21.0019 16.7419 21.0019C16.1896 21.0019 15.7419 20.5542 15.7419 20.0019V17.0019H12.7419C12.1896 17.0019 11.7419 16.5542 11.7419 16.0019C11.7419 15.4496 12.1896 15.0019 12.7419 15.0019H15.7419V12.0019C15.7419 11.4496 16.1896 11.0019 16.7419 11.0019Z\" fill=\"#0C0C0D\"></path>\n</svg>",
+            "text": "Menopause Support"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_4Jn6br",
+        "benefit_mNAjER",
+        "benefit_dmm6nj",
+        "benefit_CBKdLF",
+        "benefit_mdgVRr",
+        "benefit_eDUi7V"
+      ],
+      "name": "Health Benefits Banner",
+      "settings": {
+        "custom_health_image": "shopify://shop_images/Mask_group.png",
+        "title": "From Hair to Hormones - Fueling MoreThan Just Glow",
+        "button_text": "Explore All Evoq Benefits",
+        "button_link": "shopify://pages/what-is-collagen"
+      }
+    },
+    "collagen_product_showcase_4nQUDR": {
+      "type": "collagen-product-showcase",
+      "name": "Collagen Product Showcase",
+      "settings": {
+        "heading": "Transformation Starts after a few Weeks",
+        "subheading": "Try these fresh collagen powder available in delicious flavours and mix it up with your  daily wellness routine.",
+        "product1_title": "Vanilla",
+        "product1_image": "shopify://shop_images/Group_1171277506.png",
+        "product1_link": "https://developevoq.myshopify.com/products/blueberry?variant=42110940020826",
+        "product2_title": "Chocolate",
+        "product2_image": "shopify://shop_images/Group_1171277507.png",
+        "product2_link": "https://developevoq.myshopify.com/products/blueberry?variant=42110940151898",
+        "product3_title": "Strawberry",
+        "product3_image": "shopify://shop_images/Group_1171277509.png",
+        "product3_link": "https://developevoq.myshopify.com/products/blueberry?variant=42110940086362",
+        "product4_title": "Blueberry",
+        "product4_image": "shopify://shop_images/Group_1171277508.png",
+        "product4_link": "https://developevoq.myshopify.com/products/blueberry?variant=42166223241306",
+        "product5_title": "Mango",
+        "product5_image": "shopify://shop_images/Group_1171277505.png",
+        "product5_link": "https://developevoq.myshopify.com/products/blueberry?variant=42110940217434"
+      }
+    },
+    "collagen_before_after_JjzzzK": {
+      "type": "collagen-before-after",
+      "name": "Collagen Before/After",
+      "settings": {
+        "before_image": "shopify://shop_images/Rectangle_96.png",
+        "before_label": "Before Evoq Collagen",
+        "after_image": "shopify://shop_images/image_3.png",
+        "after_label": "After Evoq Collagen",
+        "background_color": "rgba(0,0,0,0)",
+        "heading_color": "#333333",
+        "text_color": "#ffffff",
+        "before_label_color": "#001f5f",
+        "after_label_color": "#001f5f",
+        "slider_color": "#ffffff",
+        "slider_icon_color": "#666666",
+        "button_text": "Shop Now",
+        "button_url": "",
+        "button_color": "#0066cc",
+        "button_text_color": "#ffffff",
+        "padding_top": 110,
+        "padding_bottom": 110
+      }
+    },
+    "custom_testimonials_RkyQg7": {
+      "type": "custom-testimonials",
+      "blocks": {
+        "testimonial_ipGf6J": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/image_3.png",
+            "name": "Jhony Jackyan",
+            "title": "Clinically Studied",
+            "testimonial_text": "Evoq Collagen Supplement is formulated using ingredients proven in clinical studies to support skin elasticity, hydration, and firmness. With regular use, users report smoother skin, stronger nails, and reduced signs of aging results that go beyond surface level.",
+            "verified": true
+          }
+        },
+        "testimonial_BKWaGA": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/image_4.png",
+            "name": "Samiul Budry",
+            "title": "Recommended by Nutritionists",
+            "testimonial_text": "Evoq is designed to support total body wellness not just beauty. Developed in collaboration with certified nutritionists. From gut health to joint mobility, each serving fits seamlessly into a health professional’s toolkit for daily vitality.",
+            "verified": true
+          }
+        },
+        "testimonial_MKyTFa": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/image_5.png",
+            "name": "Jara ninia",
+            "title": "Science-Backed",
+            "testimonial_text": "Every ingredient in Evoq Collagen Supplement is chosen for its efficacy, purity, and purpose. Free from fillers, GMOs, and artificial additives, it's a clean formula with real science behind it. Approved by health experts and trusted by conscious consumers.",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_ipGf6J",
+        "testimonial_BKWaGA",
+        "testimonial_MKyTFa"
+      ],
+      "name": "Custom Testimonials",
+      "settings": {
+        "title": "Every Scoop of Evoq Backed by Science",
+        "subtitle": "Evoq Collagen Supplement is crafted with precision, guided by nutritional science and validated in clinical settings."
+      }
+    },
+    "testimonials_slider_hqLRaf": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_P98GKc": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_110.png",
+            "name": "Esha",
+            "title": "Skin & Anti-Aging",
+            "quote": "I feel like I have gotten younger",
+            "description": "I’ve been using Evoq collagen powder for about 6 weeks now, and I can actually see the difference in my skin. It looks brighter, more even-toned, and noticeably firmer - especially around my eyes and jawline. It’s hands-down one of the best vegan collagen supplements for anti-aging. Plus, the chocolate flavor is a total treat!"
+          }
+        },
+        "testimonial_hBAeaP": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_115.png",
+            "name": "Nirmala",
+            "title": "Skin & Anti-Aging",
+            "quote": "Amazing transformation in just weeks",
+            "description": "After turning 50, I noticed my skin losing elasticity and my joints feeling stiff. EVOQ collagen powder has been a lifesaver! My skin feels firmer, and my joints are more flexible. Highly recommend it!"
+          }
+        },
+        "testimonial_YU9kBJ": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_118.png",
+            "name": "Sarah Johnson",
+            "title": "Hair Loss",
+            "quote": "Amazing transformation in just weeks",
+            "description": "I was skeptical at first, but after 3 months of using EVOQ collagen powder, I’m blown away by the results. My hair is thicker, my skin is smoother, and even my friends have noticed the difference!"
+          }
+        },
+        "testimonial_CBRMTz": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_120.png",
+            "name": "Mike Chen",
+            "title": "Busy Professional",
+            "quote": "Perfect solution for my lifestyle",
+            "description": "As someone with a hectic schedule, this has been a game-changer for maintaining my health and wellness."
+          }
+        },
+        "testimonial_wmX7k6": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_124.png",
+            "name": "Neha",
+            "title": "Hair Loss",
+            "quote": "Perfect solution for my lifestyle",
+            "description": "Postpartum hair fall was one of the most frustrating things I dealt with. A friend recommended Evoq, and I’m so glad I tried it. Within a month, my hair felt stronger and I noticed far less shedding in the shower. It’s honestly the best collagen for postpartum hair loss that I’ve come across—clean, plant-based, and effective."
+          }
+        },
+        "testimonial_74pnmX": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_119.png",
+            "name": "Mike Chen",
+            "title": "Busy Professional",
+            "quote": "Perfect solution for my lifestyle",
+            "description": "As someone with a hectic schedule, this has been a game-changer for maintaining my health and wellness."
+          }
+        },
+        "testimonial_gPayEP": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_117.png",
+            "name": "Meenal",
+            "title": "Menopause",
+            "quote": "I feel like I have gotten younger",
+            "description": "Menopause brought on everything from dry skin to joint aches and mood swings. Since starting Evoq, I feel more balanced and energetic. My skin is less dry, my nails are growing again, and even my hot flashes seem milder. I love that it’s a collagen whole body supplement that supports menopause wellness naturally and safely."
+          }
+        },
+        "testimonial_apBTzp": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_121.png",
+            "name": "Customer Name",
+            "title": "Customer Title",
+            "quote": "I feel like I have gotten younger",
+            "description": "I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"
+          }
+        },
+        "testimonial_HzXgQ9": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_122.png",
+            "name": "Customer Name",
+            "title": "Customer Title",
+            "quote": "I feel like I have gotten younger",
+            "description": "I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"
+          }
+        },
+        "testimonial_4rXKDY": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_114.png",
+            "name": "Customer Name",
+            "title": "Customer Title",
+            "quote": "I feel like I have gotten younger",
+            "description": "I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"
+          }
+        },
+        "testimonial_HdKRdH": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_116.png",
+            "name": "Customer Name",
+            "title": "Customer Title",
+            "quote": "I feel like I have gotten younger",
+            "description": "I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"
+          }
+        },
+        "testimonial_nVWKCi": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_123.png",
+            "name": "Sanya",
+            "title": "Mood Enhancement",
+            "quote": "I feel like I have gotten younger",
+            "description": "I initially took Evoq for skin benefits but was surprised at how much calmer and clearer I started to feel. I’ve read that collagen supports neurotransmitter health, and I really believe it now. My mood has lifted, and I feel more emotionally stable during stressful weeks. If you’re looking for a vegan collagen for hair and skin with added mood support—this is it!"
+          }
+        },
+        "testimonial_n8W68C": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_125.png",
+            "name": "Customer Name",
+            "title": "Customer Title",
+            "quote": "I feel like I have gotten younger",
+            "description": "I simply feel like I have more energy to do everything. This is like a caffeine jolt without any of the side effects. I am hap!"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_P98GKc",
+        "testimonial_hBAeaP",
+        "testimonial_YU9kBJ",
+        "testimonial_CBRMTz",
+        "testimonial_wmX7k6",
+        "testimonial_74pnmX",
+        "testimonial_gPayEP",
+        "testimonial_apBTzp",
+        "testimonial_HzXgQ9",
+        "testimonial_4rXKDY",
+        "testimonial_HdKRdH",
+        "testimonial_nVWKCi",
+        "testimonial_n8W68C"
+      ],
+      "name": "Testimonials Slider",
+      "settings": {
+        "section_title": "The voice of Our Happy Customers",
+        "section_subtitle": "99% of customers agree our products taste better than other brands.",
+        "cta_text": "Join Our Community",
+        "cta_url": "shopify://collections",
+        "auto_play_speed": 7
+      }
+    },
+    "faq_accordion_custom_Abi9qD": {
+      "type": "faq-accordion-custom",
+      "blocks": {
+        "faq_item_TwTVi4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who can use EVOQ collagen powder?",
+            "answer": "<p>EVOO collagen powder is formulated for both men and women looking to support their skin, hair, nails, and overall health. It's perfect for anyone over the age of 18.</p>"
+          }
+        },
+        "faq_item_MtqyND": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I use EVOQ collagen powder?",
+            "answer": "<p>Simply mix one scoop of EVOQ collagen powder into your favorite</p><p>beverage, such as water, coffee, smoothies, or juice. It dissolves easily</p><p>with water and comes with different flavors, making it a versatile addition to your daily routine.</p>"
+          }
+        },
+        "faq_item_q64gt9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is EVOQ collagen powder safe?",
+            "answer": "<p>Yes, EVOQ collagen powder is made from high-quality, carefully sourced natural ingredients and is free from harmful additives. However, if you have any</p><p>specific medical conditions or allergies, we recommend consulting your</p><p>healthcare provider before use.</p>"
+          }
+        },
+        "faq_item_fNMbEJ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is EVOQ collagen powder suitable for vegetarians or vegans?",
+            "answer": "<p>Our collagen powder is derived from Soya and Peas, making it suitable for</p><p>vegetarians or vegans.</p>"
+          }
+        },
+        "faq_item_GR9MCC": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products Halal certified?",
+            "answer": "<p>es, our collagen products are Halal certified.</p>"
+          }
+        },
+        "faq_item_GDNEre": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does it take to see results?",
+            "answer": "<p>Results may vary depending on individual factors such as age, lifestyle, and</p><p>consistency of use- Most people notice improvements in their skin, hair,</p><p>nails and joints within 4—8 weeks of daily use.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_TwTVi4",
+        "faq_item_MtqyND",
+        "faq_item_q64gt9",
+        "faq_item_fNMbEJ",
+        "faq_item_GR9MCC",
+        "faq_item_GDNEre"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "title": "<p><strong>Need to know more?</strong> Don't forget to ask!</p>",
+        "image": "shopify://shop_images/122352135_ASSET-15689.png",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "background_gradient": "#001E5F",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "title_size": "2.5rem"
+      }
+    },
+    "brand_logo_slider_yhxaTG": {
+      "type": "brand-logo-slider",
+      "blocks": {
+        "logo_BqqWej": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Vogue_Business.png"
+          }
+        },
+        "logo_z7nneY": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOF.png"
+          }
+        },
+        "logo_ADP89t": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/WWD.png"
+          }
+        },
+        "logo_acrfT6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Glossy.png"
+          }
+        },
+        "logo_k93j6E": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Independent.png"
+          }
+        },
+        "logo_ajExzG": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Allure.png"
+          }
+        },
+        "logo_P79GE8": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Cosmetics_Business.png"
+          }
+        },
+        "logo_NWD8Eq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Business_Jurnal.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_BqqWej",
+        "logo_z7nneY",
+        "logo_ADP89t",
+        "logo_acrfT6",
+        "logo_k93j6E",
+        "logo_ajExzG",
+        "logo_P79GE8",
+        "logo_NWD8Eq"
+      ],
+      "name": "Brand Logo Slider",
+      "settings": {
+        "animation_speed": 45,
+        "background_color": "#efeae1"
+      }
+    }
+  },
+  "order": [
+    "auto_image_slider_AFhrhE",
+    "brand_logo_slider_qDQNwG",
+    "collagen_elegance_custom_iGbFN4",
+    "promotional_banner_7XGUaV",
+    "health_benefits_banner_AVzwXe",
+    "collagen_product_showcase_4nQUDR",
+    "collagen_before_after_JjzzzK",
+    "custom_testimonials_RkyQg7",
+    "testimonials_slider_hqLRaf",
+    "faq_accordion_custom_Abi9qD",
+    "brand_logo_slider_yhxaTG"
+  ]
+}

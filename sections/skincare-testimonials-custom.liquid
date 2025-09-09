@@ -1,5 +1,5 @@
 {% comment %}
-  Skincare Testimonials Section with Before/After Image Comparison
+  Skincare Testimonials Section with Interactive Before/After Image Comparison
   Usage: Include this in your product template or as a section
 {% endcomment %}
 
@@ -15,15 +15,6 @@
         {% if block.type == 'testimonial' %}
           <button class="cus-tst-testimonial-tab {% if forloop.first %}cus-tst-active{% endif %}" 
                   data-testimonial="{{ forloop.index0 }}">
-            {% if block.settings.avatar %}
-              <img src="{{ block.settings.avatar | img_url: '40x40' }}" 
-                   alt="{{ block.settings.name }}" 
-                   class="cus-tst-testimonial-avatar">
-            {% else %}
-              <div class="cus-tst-testimonial-avatar-placeholder">
-                {{ block.settings.name | slice: 0 }}
-              </div>
-            {% endif %}
             <span class="cus-tst-testimonial-name">{{ block.settings.name }}</span>
           </button>
         {% endif %}
@@ -36,16 +27,18 @@
           <div class="cus-tst-testimonial-item {% if forloop.first %}cus-tst-active{% endif %}" 
                data-testimonial="{{ forloop.index0 }}">
             
-            <!-- Before/After Image Comparison -->
+            <!-- Interactive Before/After Image Comparison -->
             <div class="cus-tst-image-comparison-wrapper">
-              <div class="cus-tst-image-comparison-container">
+              <div class="cus-tst-image-comparison-container" id="imageComparison-{{ section.id }}-{{ forloop.index0 }}">
                 
-                <!-- Before Image (Left Half) -->
+                <!-- Before Image (Full Width) -->
                 <div class="cus-tst-image-before">
                   {% if block.settings.before_image %}
                     <img src="{{ block.settings.before_image | img_url: '800x' }}" 
                          alt="{{ block.settings.name }} before" 
-                         loading="lazy">
+                         loading="lazy"
+                         onload="checkImagesLoaded('{{ section.id }}-{{ forloop.index0 }}')"
+                         class="cus-tst-comparison-image">
                   {% else %}
                     <div class="cus-tst-placeholder-image">
                       <span>Before Image</span>
@@ -53,12 +46,14 @@
                   {% endif %}
                 </div>
                 
-                <!-- After Image (Right Half) -->
+                <!-- After Image (Clipped) -->
                 <div class="cus-tst-image-after">
                   {% if block.settings.after_image %}
                     <img src="{{ block.settings.after_image | img_url: '800x' }}" 
                          alt="{{ block.settings.name }} after" 
-                         loading="lazy">
+                         loading="lazy"
+                         onload="checkImagesLoaded('{{ section.id }}-{{ forloop.index0 }}')"
+                         class="cus-tst-comparison-image">
                   {% else %}
                     <div class="cus-tst-placeholder-image">
                       <span>After Image</span>
@@ -66,18 +61,18 @@
                   {% endif %}
                 </div>
                 
-                <!-- Fixed Slider Divider -->
-                <div class="cus-tst-slider-divider"></div>
-                
-                <!-- Fixed Slider Handle -->
-                <div class="cus-tst-slider-handle">
-                  <div class="cus-tst-slider-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512" fill="currentColor">
-                      <rect x="96" y="64" width="32" height="384" />
-                      <rect x="240" y="64" width="32" height="384" />
-                      <rect x="384" y="64" width="32" height="384" />
-                    </svg>
+                <!-- Interactive Slider Control -->
+                <div class="cus-tst-slider-control">
+                  <div class="cus-tst-slider-handle">
+                    <div class="cus-tst-slider-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512" fill="currentColor">
+                        <rect x="96" y="64" width="32" height="384" />
+                        <rect x="240" y="64" width="32" height="384" />
+                        <rect x="384" y="64" width="32" height="384" />
+                      </svg>
+                    </div>
                   </div>
+                  <div class="cus-tst-slider-line"></div>
                 </div>
               </div>
             </div>
@@ -85,6 +80,9 @@
             <!-- Testimonial Text -->
             <div class="cus-tst-testimonial-text">
               <h3 class="cus-tst-testimonial-title">{{ block.settings.name }}</h3>
+              {% if block.settings.subtitle != blank %}
+                <p class="cus-tst-testimonial-subtitle">{{ block.settings.subtitle }}</p>
+              {% endif %}
               <div class="cus-tst-testimonial-description">
                 {{ block.settings.testimonial_text | newline_to_br }}
               </div>
@@ -147,7 +145,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 5px;
+  padding: 10px 20px;
   background: white;
   border: 2px solid #e1e8ed;
   border-radius: 5px;
@@ -162,30 +160,6 @@
   background: #062662;
   border-color: #062662;
   color: white;
-}
-
-.cus-tst-testimonial-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.cus-tst-testimonial-avatar.cus-tst-active {
-  border-radius: 0;
-}
-
-.cus-tst-testimonial-avatar-placeholder {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: {{ section.settings.tab_active_color | default: '#3498db' }};
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.9rem;
 }
 
 .cus-tst-testimonials-content {
@@ -203,7 +177,7 @@
   display: grid;
 }
 
-/* Fixed Image Comparison Styles */
+/* Interactive Image Comparison Styles */
 .cus-tst-image-comparison-wrapper {
   position: relative;
   overflow: hidden;
@@ -217,33 +191,47 @@
   height: 500px;
   overflow: hidden;
   border-radius: 12px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cus-tst-image-comparison-container.loaded {
+  opacity: 1;
+}
+
+.cus-tst-image-comparison-container:active {
+  cursor: grabbing;
 }
 
 .cus-tst-image-before,
 .cus-tst-image-after {
   position: absolute;
   top: 0;
-  width: 50%;
+  left: 0;
+  width: 100%;
   height: 100%;
 }
 
-.cus-tst-image-before {
-  left: 0;
-  z-index: 1;
-}
-
-.cus-tst-image-after {
-  right: 0;
-  z-index: 1;
-}
-
-.cus-tst-image-before img,
-.cus-tst-image-after img {
+.cus-tst-comparison-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   border-radius: 12px;
+  /* Force GPU acceleration for smoother rendering */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.cus-tst-image-after {
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+  /* Remove transition for smoother real-time updates */
+  will-change: clip-path;
+  transform: translateZ(0);
 }
 
 .cus-tst-placeholder-image {
@@ -258,16 +246,28 @@
   border-radius: 12px;
 }
 
-.cus-tst-slider-divider {
+.cus-tst-slider-control {
   position: absolute;
   top: 0;
   left: 50%;
   height: 100%;
-  width: 4px;
-  background: {{ section.settings.slider_color | default: '#ffffff' }};
   transform: translateX(-50%);
   z-index: 3;
+  pointer-events: none;
+  will-change: left;
+  transform: translateZ(0);
+}
+
+.cus-tst-slider-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: {{ section.settings.slider_color | default: '#ffffff' }};
+  transform: translateX(-50%);
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  opacity: 0.8;
 }
 
 .cus-tst-slider-handle {
@@ -275,8 +275,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  pointer-events: all;
+  cursor: grab;
   z-index: 4;
-  pointer-events: none;
+}
+
+.cus-tst-slider-handle:active {
+  cursor: grabbing;
 }
 
 .cus-tst-slider-circle {
@@ -289,6 +294,12 @@
   justify-content: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   border: 3px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.cus-tst-slider-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
 }
 
 .cus-tst-slider-circle svg {
@@ -310,17 +321,25 @@
   font-size: 30px;
   font-weight: 600;
   color: #101828;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   margin-top: 15px;
   line-height: 38px;
-   font-family: 'Inter' !important;
-  
+  font-family: 'Inter' !important;
+}
+
+.cus-tst-testimonial-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #667085;
+  margin-bottom: 10px;
+  font-family: 'Inter' !important;
+  margin-top: 0;
 }
 
 .cus-tst-testimonial-description {
   font-size: 14px;
   line-height: 20px;
-  color: #344054
+  color: #344054;
   font-weight: 400;
 }
 
@@ -369,6 +388,11 @@
   .cus-tst-testimonial-item {
     gap: 30px;
   }
+  
+  .cus-tst-slider-circle {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 /* Mobile Design */
@@ -382,16 +406,21 @@
   }
   
   .cus-tst-testimonials-title {
-    font-size: 2rem;
+    font-size: 36px;
   }
   
   .cus-tst-testimonials-nav {
     gap: 8px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    justify-content: flex-start;
   }
-  
+   
   .cus-tst-testimonial-tab {
     padding: 10px 16px;
-    font-size: 0.9rem;
+    font-size: 20px;
   }
   
   .cus-tst-testimonial-item {
@@ -404,8 +433,7 @@
     border-radius: 8px;
   }
   
-  .cus-tst-image-before img,
-  .cus-tst-image-after img {
+  .cus-tst-comparison-image {
     border-radius: 8px;
   }
   
@@ -424,7 +452,7 @@
   }
   
   .cus-tst-testimonial-title {
-    font-size: 1.5rem;
+    font-size: 24px;
   }
   
   .cus-tst-btn {
@@ -435,24 +463,13 @@
 
 /* Small Mobile Design */
 @media (max-width: 480px) {
-  .cus-tst-testimonials-nav {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .cus-tst-testimonial-tab {
-    width: 100%;
-    max-width: 250px;
-    justify-content: center;
-  }
   
   .cus-tst-image-comparison-container {
     height: 300px;
     border-radius: 6px;
   }
   
-  .cus-tst-image-before img,
-  .cus-tst-image-after img {
+  .cus-tst-comparison-image {
     border-radius: 6px;
   }
   
@@ -466,13 +483,28 @@
     height: 12px;
   }
   
-  .cus-tst-slider-divider {
+  .cus-tst-slider-line {
     width: 2px;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .cus-tst-slider-handle {
+    padding: 10px;
+  }
+  
+  .cus-tst-slider-circle {
+    transform: scale(1.1);
   }
 }
 
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
+  .cus-tst-image-after {
+    transition: none;
+  }
+  
   .cus-tst-slider-circle {
     transition: none;
   }
@@ -480,10 +512,210 @@
   .cus-tst-btn {
     transition: none;
   }
+  
+  .cus-tst-image-comparison-container {
+    transition: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.cus-tst-slider-handle:focus {
+  outline: 2px solid {{ section.settings.slider_color | default: '#ffffff' }};
+  outline-offset: 2px;
+}
+
+.cus-tst-slider-handle:focus .cus-tst-slider-circle {
+  box-shadow: 0 0 0 3px rgba(0, 100, 200, 0.3);
 }
 </style>
 
 <script>
+// Global variable to track loaded images per section
+window.cusImageComparisonLoaded = window.cusImageComparisonLoaded || {};
+
+function checkImagesLoaded(sectionId) {
+  const slider = document.getElementById(`imageComparison-${sectionId}`);
+  if (!slider) return;
+  
+  const images = slider.querySelectorAll('.cus-tst-comparison-image');
+  let loadedCount = 0;
+  
+  images.forEach(img => {
+    if (img.complete && img.naturalHeight !== 0) {
+      loadedCount++;
+    }
+  });
+  
+  // Only initialize when both images are loaded
+  if (loadedCount === images.length) {
+    slider.classList.add('loaded');
+    if (!window.cusImageComparisonLoaded[sectionId]) {
+      initializeCusSlider(sectionId);
+      window.cusImageComparisonLoaded[sectionId] = true;
+    }
+  }
+}
+
+function initializeCusSlider(sectionId) {
+  const slider = document.getElementById(`imageComparison-${sectionId}`);
+  if (!slider) return;
+  
+  const afterImage = slider.querySelector('.cus-tst-image-after');
+  const sliderControl = slider.querySelector('.cus-tst-slider-control');
+  const sliderHandle = slider.querySelector('.cus-tst-slider-handle');
+  
+  let isDragging = false;
+  let currentPosition = 50; // Start at 50%
+  let animationId = null;
+  
+  function updateSlider(percentage) {
+    // Cancel any pending animation frame
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+    
+    animationId = requestAnimationFrame(() => {
+      // Clamp percentage between 0 and 100
+      percentage = Math.max(0, Math.min(100, percentage));
+      currentPosition = percentage;
+      
+      // Update clip-path for after image using transform for better performance
+      afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+      
+      // Update slider position
+      sliderControl.style.left = `${percentage}%`;
+      
+      // Update ARIA value
+      sliderHandle.setAttribute('aria-valuenow', Math.round(percentage));
+    });
+  }
+  
+  function getPercentageFromEvent(event) {
+    const rect = slider.getBoundingClientRect();
+    const clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+    const x = clientX - rect.left;
+    return (x / rect.width) * 100;
+  }
+  
+  // Throttle function for better performance
+  function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    }
+  }
+  
+  // Mouse events
+  slider.addEventListener('mousedown', function(event) {
+    isDragging = true;
+    slider.classList.add('dragging');
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  });
+  
+  const throttledMouseMove = throttle(function(event) {
+    if (!isDragging) return;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+  }, 16); // ~60fps
+  
+  document.addEventListener('mousemove', throttledMouseMove);
+  
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+    slider.classList.remove('dragging');
+  });
+  
+  // Enhanced touch events for mobile
+  let touchStartX = 0;
+  
+  slider.addEventListener('touchstart', function(event) {
+    isDragging = true;
+    slider.classList.add('dragging');
+    touchStartX = event.touches[0].clientX;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  }, { passive: false });
+  
+  const throttledTouchMove = throttle(function(event) {
+    if (!isDragging) return;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  }, 16); // ~60fps
+  
+  document.addEventListener('touchmove', throttledTouchMove, { passive: false });
+  
+  document.addEventListener('touchend', function(event) {
+    isDragging = false;
+    slider.classList.remove('dragging');
+    event.preventDefault();
+  });
+  
+  // Prevent scrolling when interacting with slider on mobile
+  slider.addEventListener('touchmove', function(event) {
+    if (isDragging) {
+      event.preventDefault();
+    }
+  }, { passive: false });
+  
+  // Keyboard accessibility
+  sliderHandle.addEventListener('keydown', function(event) {
+    let step = 5;
+    // Smaller steps on mobile for finer control
+    if (window.innerWidth <= 768) {
+      step = 2;
+    }
+    
+    switch(event.key) {
+      case 'ArrowLeft':
+        updateSlider(currentPosition - step);
+        event.preventDefault();
+        break;
+      case 'ArrowRight':
+        updateSlider(currentPosition + step);
+        event.preventDefault();
+        break;
+      case 'Home':
+        updateSlider(0);
+        event.preventDefault();
+        break;
+      case 'End':
+        updateSlider(100);
+        event.preventDefault();
+        break;
+    }
+  });
+  
+  // Make handle focusable with proper ARIA attributes
+  sliderHandle.setAttribute('tabindex', '0');
+  sliderHandle.setAttribute('role', 'slider');
+  sliderHandle.setAttribute('aria-label', 'Image comparison slider');
+  sliderHandle.setAttribute('aria-valuemin', '0');
+  sliderHandle.setAttribute('aria-valuemax', '100');
+  sliderHandle.setAttribute('aria-valuenow', currentPosition);
+  
+  // Handle resize events
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      updateSlider(currentPosition);
+    }, 100);
+  });
+  
+  // Initialize slider position
+  updateSlider(currentPosition);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize tabs functionality
   const tabs = document.querySelectorAll('.cus-tst-testimonial-tab');
@@ -501,8 +733,21 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('cus-tst-active');
       const activeTestimonial = document.querySelector(`[data-testimonial="${targetIndex}"].cus-tst-testimonial-item`);
       activeTestimonial.classList.add('cus-tst-active');
+      
+      // Initialize slider for the active testimonial
+      initializeCusSlider(`{{ section.id }}-${targetIndex}`);
     });
   });
+  
+  // Check if images are already loaded
+  const sliders = document.querySelectorAll('[id^="imageComparison-{{ section.id }}-"]');
+  sliders.forEach(slider => {
+    const sectionId = slider.id.replace('imageComparison-', '');
+    checkImagesLoaded(sectionId);
+  });
+  
+  // Initialize slider for the first active testimonial
+  initializeCusSlider('{{ section.id }}-0');
 });
 </script>
 
@@ -632,9 +877,10 @@ document.addEventListener('DOMContentLoaded', function() {
           "default": "Customer Name"
         },
         {
-          "type": "image_picker",
-          "id": "avatar",
-          "label": "Customer Avatar (Optional)"
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Age 35, Mother of 3"
         },
         {
           "type": "image_picker",
@@ -663,6 +909,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "testimonial",
           "settings": {
             "name": "Caitlin B.",
+            "subtitle": "Age 35, Mother of 3",
             "testimonial_text": "As a mother of 3 children, has lost over 14kg in total. She wants to show her kids that it's possible to be a busy parent and still take care of oneself. Caitlin is very happy with the results she has achieved again. The shakes she uses are described as delicious and filling, and they do not affect her milk supply (as she is exclusively breastfeeding her 5-month-old child). Most importantly, the shakes have been effective for Caitlin."
           }
         }

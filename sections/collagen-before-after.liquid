@@ -7,9 +7,11 @@
           <!-- Before Image -->
           <div class="image-before">
             {% if section.settings.before_image != blank %}
-              <img src="{{ section.settings.before_image | img_url: '800x' }}" 
+              <img src="{{ section.settings.before_image | img_url: '1200x' }}" 
                    alt="{{ section.settings.before_label | default: 'Before' }}"
-                   loading="lazy">
+                   loading="eager"
+                   onload="checkImagesLoaded('{{ section.id }}')"
+                   class="comparison-image">
             {% else %}
               <div class="placeholder-image">
                 <span>Before Image</span>
@@ -23,9 +25,11 @@
           <!-- After Image -->
           <div class="image-after">
             {% if section.settings.after_image != blank %}
-              <img src="{{ section.settings.after_image | img_url: '800x' }}" 
+              <img src="{{ section.settings.after_image | img_url: '1200x' }}" 
                    alt="{{ section.settings.after_label | default: 'After' }}"
-                   loading="lazy">
+                   loading="eager"
+                   onload="checkImagesLoaded('{{ section.id }}')"
+                   class="comparison-image">
             {% else %}
               <div class="placeholder-image">
                 <span>After Image</span>
@@ -105,6 +109,12 @@
   user-select: none;
   touch-action: none;
   border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-comparison-slider.loaded {
+  opacity: 1;
 }
 
 .image-comparison-slider:active {
@@ -120,13 +130,16 @@
   height: 100%;
 }
 
-.image-before img,
-.image-after img {
+.comparison-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   border-radius: 8px;
+  /* Force GPU acceleration for smoother rendering */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .placeholder-image {
@@ -143,17 +156,21 @@
 
 .image-after {
   clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
-  transition: clip-path 0.1s ease;
+  /* Remove transition for smoother real-time updates */
+  will-change: clip-path;
+  transform: translateZ(0);
 }
 
 .image-label {
   position: absolute;
   border-radius: 20px;
   padding: 8px 16px;
-  font-size: 24px;
-  font-weight: 500;
-  color: #333;
+  font-size: 36px;
+  font-weight: 600;
+  color: #001F5F;
   z-index: 1;
+  /* Improve rendering performance */
+  transform: translateZ(0);
 }
 
 .before-label {
@@ -177,6 +194,8 @@
   z-index: 2;
   pointer-events: none;
   border: 1px solid #fafafa;
+  will-change: left;
+  transform: translateZ(0);
 }
 
 .slider-line {
@@ -276,8 +295,7 @@
     border-radius: 6px;
   }
   
-  .image-before img,
-  .image-after img {
+  .comparison-image {
     border-radius: 6px;
   }
   
@@ -334,8 +352,7 @@
     border-radius: 4px;
   }
   
-  .image-before img,
-  .image-after img {
+  .comparison-image {
     border-radius: 4px;
   }
   
@@ -425,14 +442,13 @@
   }
   
   .image-label {
-    font-weight: 500;
+    font-weight: 600;
   }
 }
 
 /* High DPI displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .image-before img,
-  .image-after img {
+  .comparison-image {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
@@ -452,15 +468,15 @@
 
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
-  .image-after {
-    transition: none;
-  }
-  
   .slider-circle {
     transition: none;
   }
   
   .btn {
+    transition: none;
+  }
+  
+  .image-comparison-slider {
     transition: none;
   }
 }
@@ -477,8 +493,34 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const slider = document.getElementById('imageComparison-{{ section.id }}');
+// Global variable to track loaded images per section
+window.imageComparisonLoaded = window.imageComparisonLoaded || {};
+
+function checkImagesLoaded(sectionId) {
+  const slider = document.getElementById(`imageComparison-${sectionId}`);
+  if (!slider) return;
+  
+  const images = slider.querySelectorAll('.comparison-image');
+  let loadedCount = 0;
+  
+  images.forEach(img => {
+    if (img.complete && img.naturalHeight !== 0) {
+      loadedCount++;
+    }
+  });
+  
+  // Only initialize when both images are loaded
+  if (loadedCount === images.length) {
+    slider.classList.add('loaded');
+    if (!window.imageComparisonLoaded[sectionId]) {
+      initializeImageComparison(sectionId);
+      window.imageComparisonLoaded[sectionId] = true;
+    }
+  }
+}
+
+function initializeImageComparison(sectionId) {
+  const slider = document.getElementById(`imageComparison-${sectionId}`);
   if (!slider) return;
   
   const afterImage = slider.querySelector('.image-after');
@@ -487,20 +529,28 @@ document.addEventListener('DOMContentLoaded', function() {
   
   let isDragging = false;
   let currentPosition = 50; // Start at 50%
+  let animationId = null;
   
   function updateSlider(percentage) {
-    // Clamp percentage between 0 and 100
-    percentage = Math.max(0, Math.min(100, percentage));
-    currentPosition = percentage;
+    // Cancel any pending animation frame
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
     
-    // Update clip-path for after image
-    afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
-    
-    // Update slider position
-    sliderControl.style.left = `${percentage}%`;
-    
-    // Update ARIA value
-    sliderHandle.setAttribute('aria-valuenow', Math.round(percentage));
+    animationId = requestAnimationFrame(() => {
+      // Clamp percentage between 0 and 100
+      percentage = Math.max(0, Math.min(100, percentage));
+      currentPosition = percentage;
+      
+      // Update clip-path for after image using transform for better performance
+      afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+      
+      // Update slider position
+      sliderControl.style.left = `${percentage}%`;
+      
+      // Update ARIA value
+      sliderHandle.setAttribute('aria-valuenow', Math.round(percentage));
+    });
   }
   
   function getPercentageFromEvent(event) {
@@ -510,22 +560,40 @@ document.addEventListener('DOMContentLoaded', function() {
     return (x / rect.width) * 100;
   }
   
+  // Throttle function for better performance
+  function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    }
+  }
+  
   // Mouse events
   slider.addEventListener('mousedown', function(event) {
     isDragging = true;
+    slider.classList.add('dragging');
     const percentage = getPercentageFromEvent(event);
     updateSlider(percentage);
     event.preventDefault();
   });
   
-  document.addEventListener('mousemove', function(event) {
+  const throttledMouseMove = throttle(function(event) {
     if (!isDragging) return;
     const percentage = getPercentageFromEvent(event);
     updateSlider(percentage);
-  });
+  }, 16); // ~60fps
+  
+  document.addEventListener('mousemove', throttledMouseMove);
   
   document.addEventListener('mouseup', function() {
     isDragging = false;
+    slider.classList.remove('dragging');
   });
   
   // Enhanced touch events for mobile
@@ -533,27 +601,33 @@ document.addEventListener('DOMContentLoaded', function() {
   
   slider.addEventListener('touchstart', function(event) {
     isDragging = true;
+    slider.classList.add('dragging');
     touchStartX = event.touches[0].clientX;
     const percentage = getPercentageFromEvent(event);
     updateSlider(percentage);
     event.preventDefault();
   }, { passive: false });
   
-  document.addEventListener('touchmove', function(event) {
+  const throttledTouchMove = throttle(function(event) {
     if (!isDragging) return;
     const percentage = getPercentageFromEvent(event);
     updateSlider(percentage);
     event.preventDefault();
-  }, { passive: false });
+  }, 16); // ~60fps
+  
+  document.addEventListener('touchmove', throttledTouchMove, { passive: false });
   
   document.addEventListener('touchend', function(event) {
     isDragging = false;
+    slider.classList.remove('dragging');
     event.preventDefault();
   });
   
   // Prevent scrolling when interacting with slider on mobile
   slider.addEventListener('touchmove', function(event) {
-    event.preventDefault();
+    if (isDragging) {
+      event.preventDefault();
+    }
   }, { passive: false });
   
   // Keyboard accessibility
@@ -603,6 +677,16 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize slider position
   updateSlider(currentPosition);
+}
+
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if images are already loaded
+  const sliders = document.querySelectorAll('[id^="imageComparison-"]');
+  sliders.forEach(slider => {
+    const sectionId = slider.id.replace('imageComparison-', '');
+    checkImagesLoaded(sectionId);
+  });
 });
 </script>
 
@@ -728,7 +812,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "padding_top",
       "label": "Top Padding",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 5,
       "unit": "px",
       "default": 50
@@ -738,7 +822,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "padding_bottom",
       "label": "Bottom Padding",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 5,
       "unit": "px",
       "default": 50

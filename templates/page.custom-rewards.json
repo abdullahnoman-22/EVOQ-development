@@ -1,0 +1,855 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_main_bPkrpf": {
+      "type": "image-with-text-main",
+      "blocks": {
+        "heading_idT9ed": {
+          "type": "heading",
+          "settings": {
+            "heading": "EVOQ Rewards",
+            "heading_size": "h1"
+          }
+        },
+        "text_QHzxT3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Join Evoq, earn points effortlessly, and unlock exclusive rewards!</p>",
+            "text_style": "body"
+          }
+        },
+        "button_J7U83a": {
+          "type": "button",
+          "settings": {
+            "button_label": "Start growing now",
+            "button_link": "shopify://collections/shop",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_idT9ed",
+        "text_QHzxT3",
+        "button_J7U83a"
+      ],
+      "name": "Image with text main",
+      "settings": {
+        "image": "shopify://shop_images/Group_1171277521.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "mobile_layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rewards_login_banner_JLKpi9": {
+      "type": "rewards-login-banner",
+      "name": "Rewards Login Banner",
+      "settings": {
+        "banner_text": "Login to redeem your exclusive rewards:",
+        "button_text": "Login",
+        "background_color": "#d9eafb",
+        "text_color": "#101828",
+        "button_bg_color": "#001f5f",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "rewards_tab_section_4TH8Ak": {
+      "type": "rewards-tab-section",
+      "blocks": {
+        "reward_item_bBn6e3": {
+          "type": "reward_item",
+          "settings": {
+            "reward_image": "shopify://shop_images/10144259_1_5.png"
+          }
+        },
+        "reward_item_HmpQgL": {
+          "type": "reward_item",
+          "settings": {
+            "reward_image": "shopify://shop_images/10144259_1_4.png"
+          }
+        },
+        "reward_item_NPaFyg": {
+          "type": "reward_item",
+          "settings": {
+            "reward_image": "shopify://shop_images/10144259_1_3.png"
+          }
+        }
+      },
+      "block_order": [
+        "reward_item_bBn6e3",
+        "reward_item_HmpQgL",
+        "reward_item_NPaFyg"
+      ],
+      "name": "Rewards Program",
+      "settings": {
+        "heading": "Choose your Evoq reward & add it to your order",
+        "tab_1_title": "How it works",
+        "tab_2_title": "Earn points",
+        "tab_3_title": "Tiers",
+        "tab_4_title": "FAQs",
+        "earn_points_heading": "How to Earn Points",
+        "earn_points_content": "",
+        "tiers_heading": "Membership Tiers",
+        "tiers_content": "",
+        "faqs_heading": "Frequently Asked Questions",
+        "faqs_content": ""
+      }
+    },
+    "mission_section_custom_QNKEAd": {
+      "type": "mission-section-custom",
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": false,
+        "main_title": "Our Mission",
+        "main_title_font_weight": "500",
+        "title": "Loyalty That Loves You Back",
+        "details": "<p>Evoq Rewards is more than points - it's our way of saying thank you for choosing wellness every day.</p><p>From exclusive discounts to early access on launches, your loyalty unlocks perks that glow just as much as you do.</p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/Group_1171277522.png",
+        "video_url": "",
+        "custom_bg_color": "#fff6ed",
+        "layout": "text_first",
+        "show_cta_button": true,
+        "cta_text": "Start glowing now",
+        "cta_url": "shopify://collections/shop",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "Premium Quality",
+        "overlay_description": "Sourced from the finest ingredients",
+        "show_collagen_stats": false
+      }
+    },
+    "custom_product_grid_hHz6jA": {
+      "type": "custom-product-grid",
+      "blocks": {
+        "product_fDbXKA": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42166223241306",
+            "variant_id": "42166223241306",
+            "custom_image": "shopify://shop_images/Group_1171277508.png",
+            "custom_title": "Collagen  Powder - Blueberry",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42166223241306",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_KB7mQq": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42110940151898",
+            "variant_id": "42110940151898",
+            "custom_image": "shopify://shop_images/Group_1171277507.png",
+            "custom_title": "Collagen Powder - Chocolate",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940151898",
+            "custom_price": 95,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_DmQVVC": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42110940217434",
+            "variant_id": "42110940086362",
+            "custom_image": "shopify://shop_images/Group_1171277509.png",
+            "custom_title": "Collagen Powder - Strawberry",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940086362",
+            "custom_price": 85,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_9ghPpL": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "blueberry-variant-42110940086362",
+            "variant_id": "42110940020826",
+            "custom_image": "shopify://shop_images/Group_1171277506.png",
+            "custom_title": "Collagen Powder - Vanilla",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940020826",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_99TrCT": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "blueberry-variant-42110940020826",
+            "variant_id": "42110940217434",
+            "custom_image": "shopify://shop_images/Group_1171277505.png",
+            "custom_title": "Collagen Powder - Mango",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940217434",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_j9MMzF": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "collagen-powder",
+            "variant_id": "",
+            "custom_title": "",
+            "custom_link": "shopify://products/collagen-powder",
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        }
+      },
+      "block_order": [
+        "product_fDbXKA",
+        "product_KB7mQq",
+        "product_DmQVVC",
+        "product_9ghPpL",
+        "product_99TrCT",
+        "product_j9MMzF"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_sort": false
+      }
+    },
+    "how_it_works_custom_bY6rLN": {
+      "type": "how-it-works-custom",
+      "blocks": {
+        "step_PiJCX8": {
+          "type": "step",
+          "settings": {
+            "title": "Earn points",
+            "description": "\"Earn rewards effortlessly with every Evoq purchase - for every Dhs. 5.07 spent, you’ll collect 1000+ points!\""
+          }
+        },
+        "connecting_line_KAQyxd": {
+          "type": "connecting_line",
+          "settings": {}
+        },
+        "step_cjt4Pi": {
+          "type": "step",
+          "settings": {
+            "title": "Higher tier",
+            "description": "Climb higher tiers for greater perks: exclusive discounts, double points, and early access to new products and sales"
+          }
+        },
+        "connecting_line_4WkURm": {
+          "type": "connecting_line",
+          "settings": {}
+        },
+        "step_4Xkqhf": {
+          "type": "step",
+          "settings": {
+            "title": "Reach",
+            "description": "Collect points to unlock Silver, Gold, and VIP loyalty tiers."
+          }
+        }
+      },
+      "block_order": [
+        "step_PiJCX8",
+        "connecting_line_KAQyxd",
+        "step_cjt4Pi",
+        "connecting_line_4WkURm",
+        "step_4Xkqhf"
+      ],
+      "name": "How It Works",
+      "settings": {
+        "heading": "How It Works",
+        "image": "shopify://shop_images/image_26.png",
+        "background_color": "#ffffff",
+        "content_background_color": "#c9d2ed",
+        "steps_background_color": "#f5faff",
+        "heading_color": "#1e3a8a",
+        "text_color": "#1e3a8a",
+        "description_color": "#6b7280"
+      }
+    },
+    "mission_section_custom_HQ36VM": {
+      "type": "mission-section-custom",
+      "name": "Mission Section",
+      "settings": {
+        "show_main_title": false,
+        "main_title": "Two things behind this decline",
+        "main_title_font_weight": "500",
+        "title": "Limited-edition exclusives",
+        "details": "<p>Reserved exclusively for our program members</p>",
+        "image_width": 440,
+        "image_height": 420,
+        "image_size_preset": "custom",
+        "enable_responsive_image": false,
+        "media_type": "image",
+        "product_image": "shopify://shop_images/Group_1171277508_66a2e63e-44fd-4a0c-9fe5-0468816d08f6.png",
+        "video_url": "",
+        "custom_bg_color": "#e2edfa",
+        "layout": "image_first",
+        "show_cta_button": true,
+        "cta_text": "Start glowing now",
+        "cta_url": "shopify://collections/shop",
+        "cta_open_new_tab": false,
+        "show_image_overlay": false,
+        "overlay_title": "",
+        "overlay_description": "",
+        "show_collagen_stats": false
+      }
+    },
+    "custom_product_grid_Gqf7EX": {
+      "type": "custom-product-grid",
+      "blocks": {
+        "product_AiKiNa": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42166223241306",
+            "variant_id": "42166223241306",
+            "custom_image": "shopify://shop_images/Group_1171277508.png",
+            "custom_title": "Collagen  Powder - Blueberry",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42166223241306",
+            "custom_price": 90,
+            "currency": "$",
+            "show_badge": true,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_4ngNgp": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "blueberry-variant-42110940151898",
+            "variant_id": "42110940151898",
+            "custom_image": "shopify://shop_images/Group_1171277507.png",
+            "custom_title": "Collagen Powder - Chocolate",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940151898",
+            "custom_price": 95,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_Cirh8k": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42110940217434",
+            "variant_id": "42110940086362",
+            "custom_image": "shopify://shop_images/Group_1171277509.png",
+            "custom_title": "Collagen Powder - Strawberry",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940086362",
+            "custom_price": 85,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_XfHipJ": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42110940086362",
+            "variant_id": "42110940020826",
+            "custom_image": "shopify://shop_images/Group_1171277506.png",
+            "custom_title": "Collagen Powder - Vanilla",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940020826",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": true,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_BKCWpm": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "blueberry-variant-42110940020826",
+            "variant_id": "42110940217434",
+            "custom_image": "shopify://shop_images/Group_1171277505.png",
+            "custom_title": "Collagen Powder - Mango",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940217434",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_rje3jd": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "collagen-powder",
+            "variant_id": "",
+            "custom_title": "",
+            "custom_link": "shopify://products/collagen-powder",
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        }
+      },
+      "block_order": [
+        "product_AiKiNa",
+        "product_4ngNgp",
+        "product_Cirh8k",
+        "product_XfHipJ",
+        "product_BKCWpm",
+        "product_rje3jd"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_sort": false
+      }
+    },
+    "earn_points_section_cWkTDy": {
+      "type": "earn-points-section",
+      "blocks": {
+        "earn_action_DhQ9qA": {
+          "type": "earn_action",
+          "settings": {
+            "row": "top",
+            "title": "Shop & Earn",
+            "points": "1000",
+            "currency": "$1.38",
+            "icon": "cart"
+          }
+        },
+        "earn_action_9kxBLp": {
+          "type": "earn_action",
+          "settings": {
+            "row": "top",
+            "title": "Create an account",
+            "points": "1000",
+            "currency": "$1.38",
+            "icon": "user"
+          }
+        },
+        "earn_action_37MMDJ": {
+          "type": "earn_action",
+          "settings": {
+            "row": "top",
+            "title": "Refer a Friend",
+            "points": "1000",
+            "currency": "$1.38",
+            "icon": "thumbs-up"
+          }
+        },
+        "earn_action_Qg9LNb": {
+          "type": "earn_action",
+          "settings": {
+            "row": "top",
+            "title": "Follow & Engage",
+            "points": "1000",
+            "currency": "$1.38",
+            "icon": "heart"
+          }
+        },
+        "earn_action_eJfkRF": {
+          "type": "earn_action",
+          "settings": {
+            "row": "bottom",
+            "title": "Sign up to mailing list",
+            "points": "1000",
+            "currency": "$1.38",
+            "icon": "mail"
+          }
+        },
+        "earn_action_WzHLqd": {
+          "type": "earn_action",
+          "settings": {
+            "row": "bottom",
+            "title": "Birthday Bonus",
+            "points": "1000",
+            "currency": "$1.38",
+            "icon": "star"
+          }
+        },
+        "earn_action_rF4YFf": {
+          "type": "earn_action",
+          "settings": {
+            "row": "bottom",
+            "title": "Leave a Review",
+            "points": "1000",
+            "currency": "$1.38",
+            "icon": "star"
+          }
+        }
+      },
+      "block_order": [
+        "earn_action_DhQ9qA",
+        "earn_action_9kxBLp",
+        "earn_action_37MMDJ",
+        "earn_action_Qg9LNb",
+        "earn_action_eJfkRF",
+        "earn_action_WzHLqd",
+        "earn_action_rF4YFf"
+      ],
+      "name": "Earn Points Section",
+      "settings": {
+        "heading": "More Ways to Earn Evoq Rewards"
+      }
+    },
+    "image_with_text_main_Y6HCqN": {
+      "type": "image-with-text-main",
+      "blocks": {
+        "heading_MqBnrm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get $13.81 OFF",
+            "heading_size": "h1"
+          }
+        },
+        "text_r9QPYq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Invite a <strong>friend</strong> and they'll <strong>enjoy 20% OFF</strong><br/></p>",
+            "text_style": "body"
+          }
+        },
+        "button_d9m4cg": {
+          "type": "button",
+          "settings": {
+            "button_label": "Already a Member? Log In",
+            "button_link": "https://shopify.com/65910734938/account?locale=en&region_country=AE",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_MqBnrm",
+        "text_r9QPYq",
+        "button_d9m4cg"
+      ],
+      "name": "Image with text main",
+      "settings": {
+        "image": "shopify://shop_images/Group_1171277528.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "mobile_layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rewards_tiers_custom_UL6qnA": {
+      "type": "rewards-tiers-custom",
+      "blocks": {
+        "tier_Xm3XEx": {
+          "type": "tier",
+          "settings": {
+            "tier_level": "new",
+            "tier_name": "New Member",
+            "points_required": "",
+            "free_gifts": true,
+            "discounts": true,
+            "early_products": false,
+            "exclusive_sales": false,
+            "double_points": false
+          }
+        },
+        "tier_djp3Uw": {
+          "type": "tier",
+          "settings": {
+            "tier_level": "silver",
+            "tier_name": "Silver",
+            "points_required": "50,000",
+            "free_gifts": true,
+            "discounts": true,
+            "early_products": false,
+            "exclusive_sales": false,
+            "double_points": false
+          }
+        },
+        "tier_9Yxf8p": {
+          "type": "tier",
+          "settings": {
+            "tier_level": "gold",
+            "tier_name": "Gold",
+            "points_required": "125,000",
+            "free_gifts": true,
+            "discounts": true,
+            "early_products": false,
+            "exclusive_sales": false,
+            "double_points": false
+          }
+        },
+        "tier_Ez7iJL": {
+          "type": "tier",
+          "settings": {
+            "tier_level": "vip",
+            "tier_name": "VIP",
+            "points_required": "250,000",
+            "free_gifts": true,
+            "discounts": true,
+            "early_products": true,
+            "exclusive_sales": true,
+            "double_points": true
+          }
+        }
+      },
+      "block_order": [
+        "tier_Xm3XEx",
+        "tier_djp3Uw",
+        "tier_9Yxf8p",
+        "tier_Ez7iJL"
+      ],
+      "name": "Rewards Tiers",
+      "settings": {
+        "title": "Higher tier – more rewards",
+        "header_description": "<p> </p>"
+      }
+    },
+    "brand_logo_slider_4kaJiE": {
+      "type": "brand-logo-slider",
+      "blocks": {
+        "logo_Xw6ggX": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Vogue_Business.png"
+          }
+        },
+        "logo_imthjH": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOF.png"
+          }
+        },
+        "logo_K3GjfM": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Global_Cosmetics_news.png"
+          }
+        },
+        "logo_ntwt7J": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/WWD.png"
+          }
+        },
+        "logo_GBXHCW": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Glossy.png"
+          }
+        },
+        "logo_wFGAAd": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Independent.png"
+          }
+        },
+        "logo_XYBNMJ": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Cosmetics_Business.png"
+          }
+        },
+        "logo_WCYFk9": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Allure.png"
+          }
+        },
+        "logo_UUAMkg": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Business_Jurnal.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_Xw6ggX",
+        "logo_imthjH",
+        "logo_K3GjfM",
+        "logo_ntwt7J",
+        "logo_GBXHCW",
+        "logo_wFGAAd",
+        "logo_XYBNMJ",
+        "logo_WCYFk9",
+        "logo_UUAMkg"
+      ],
+      "name": "Brand Logo Slider",
+      "settings": {
+        "animation_speed": 30,
+        "background_color": "#efeae1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_main_bPkrpf",
+    "rewards_login_banner_JLKpi9",
+    "rewards_tab_section_4TH8Ak",
+    "mission_section_custom_QNKEAd",
+    "custom_product_grid_hHz6jA",
+    "how_it_works_custom_bY6rLN",
+    "mission_section_custom_HQ36VM",
+    "custom_product_grid_Gqf7EX",
+    "earn_points_section_cWkTDy",
+    "image_with_text_main_Y6HCqN",
+    "rewards_tiers_custom_UL6qnA",
+    "brand_logo_slider_4kaJiE"
+  ]
+}

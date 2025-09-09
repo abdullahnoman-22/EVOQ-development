@@ -29,19 +29,21 @@
           {{ section.settings.title | default: "Fueling the goals of over 4 million" }}
         </h2>
         
-        <div class="cus-h-benefits-grid">
-          {% for block in section.blocks %}
-            {% if block.type == 'benefit' %}
-              <div class="cus-h-benefit-item">
-                {% if block.settings.icon %}
-                  <div class="cus-h-benefit-icon">
-                    {{ block.settings.icon }}
-                  </div>
-                {% endif %}
-                <span class="cus-h-benefit-text">{{ block.settings.text }}</span>
-              </div>
-            {% endif %}
-          {% endfor %}
+        <div class="cus-h-benefits-wrapper">
+          <div class="cus-h-benefits-grid">
+            {% for block in section.blocks %}
+              {% if block.type == 'benefit' %}
+                <div class="cus-h-benefit-item">
+                  {% if block.settings.icon %}
+                    <div class="cus-h-benefit-icon">
+                      {{ block.settings.icon }}
+                    </div>
+                  {% endif %}
+                  <span class="cus-h-benefit-text">{{ block.settings.text }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
         </div>
         
         {% if section.settings.button_text != blank %}
@@ -57,7 +59,7 @@
 <style>
   .cus-h-health-benefits-banner {
     background: #EFE8E1;
-    margin: 80px 0;
+    margin: 110px 0;
     position: relative;
     overflow: hidden;
   }
@@ -108,28 +110,49 @@
   
   .cus-h-banner-title {
     font-size: 56px;
-    font-weight: 400;
+    font-weight: 600;
     color: #001F5F;
     margin-bottom: 40px;
     line-height: 1.2;
     font-family: 'Inter' !important;
   }
   
- .cus-h-benefits-grid {
-    display: grid;
-    gap: 30px 0px;
+  .cus-h-benefits-wrapper {
+    border-radius: 12px;
     margin-bottom: 40px;
     width: 500px;
-    justify-items: start;
+    overflow: hidden;
+  }
+  
+  .cus-h-benefits-grid {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-}
+    grid-template-rows: 1fr 1fr;
+  }
   
   .cus-h-benefit-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
+    padding: 25px 15px;
+    border-right: 1px solid #d1d5db;  /* consistent thickness */
+    border-bottom: 1px solid #d1d5db; /* consistent thickness */
+    min-height: 100px;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.cus-h-benefit-item:nth-child(3),
+.cus-h-benefit-item:nth-child(6) {
+    border-right: none;
+}
+
+.cus-h-benefit-item:nth-child(4),
+.cus-h-benefit-item:nth-child(5),
+.cus-h-benefit-item:nth-child(6) {
+    border-bottom: none;
+}
   
   .cus-h-benefit-icon {
     width: 48px;
@@ -198,16 +221,19 @@
       margin-bottom: 30px;
     }
     
-    .cus-h-benefits-grid {
-     grid-template-columns: 1fr 2fr 2fr;
-      gap: 20px;
-      
+    .cus-h-benefits-wrapper {
+      width: 100%;
     }
+    
     .cus-h-benefits-grid {
-    display: grid;
-    margin-bottom: 40px;
-    width: 100%;
-    justify-items: center
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    
+    .cus-h-benefit-item {
+      padding: 20px 10px;
+      min-height: 80px;
+    }
   }
   
   @media (max-width: 480px) {
@@ -230,9 +256,18 @@
     .cus-h-benefit-text {
     font-size: 12px;
 }
+    .cus-h-benefits-wrapper {
+      width: 100%;
+    }
+    
+    .cus-h-benefit-item {
+      padding: 15px 8px;
+      min-height: 70px;
+    }
+    
     .cus-h-benefits-grid {
-      grid-template-columns: 1fr 2fr 2fr;
-      gap: 20px;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
     }
   }
 </style>
