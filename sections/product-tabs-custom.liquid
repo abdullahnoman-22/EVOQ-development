@@ -1,7 +1,7 @@
 <!-- sections/product-tabs.liquid -->
 
 <!-- Product Tabs Section -->
-<div class="product-tabs-container section-{{ section.id }}" 
+<div class="page-width product-tabs-container section-{{ section.id }}" 
      style="--primary-color: {{ section.settings.primary_color }}; --text-color: {{ section.settings.text_color }};">
   
   <!-- Tab Navigation -->
@@ -159,9 +159,7 @@
 
 <style>
 .product-tabs-container {
-  max-width: {{ section.settings.max_width }}px;
   margin: {{ section.settings.section_margin_top }}px auto {{ section.settings.section_margin_bottom }}px;
-  padding: 0 1rem;
 }
 
 .tab-navigation {

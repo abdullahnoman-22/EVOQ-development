@@ -637,6 +637,10 @@ function initializeCusSlider(sectionId) {
   let touchStartX = 0;
   
   slider.addEventListener('touchstart', function(event) {
+    // Only prevent default if the touch is on the slider handle or control
+    const target = event.target.closest('.cus-tst-slider-handle, .cus-tst-slider-control');
+    if (!target) return;
+    
     isDragging = true;
     slider.classList.add('dragging');
     touchStartX = event.touches[0].clientX;
@@ -649,23 +653,20 @@ function initializeCusSlider(sectionId) {
     if (!isDragging) return;
     const percentage = getPercentageFromEvent(event);
     updateSlider(percentage);
+    // Only prevent default when actively dragging the slider
     event.preventDefault();
   }, 16); // ~60fps
   
-  document.addEventListener('touchmove', throttledTouchMove, { passive: false });
+  slider.addEventListener('touchmove', throttledTouchMove, { passive: false });
   
   document.addEventListener('touchend', function(event) {
+    if (!isDragging) return;
     isDragging = false;
     slider.classList.remove('dragging');
-    event.preventDefault();
+    // Don't prevent default on touchend to allow other interactions
   });
   
-  // Prevent scrolling when interacting with slider on mobile
-  slider.addEventListener('touchmove', function(event) {
-    if (isDragging) {
-      event.preventDefault();
-    }
-  }, { passive: false });
+  // Note: touchmove handling moved to main throttled function above
   
   // Keyboard accessibility
   sliderHandle.addEventListener('keydown', function(event) {
