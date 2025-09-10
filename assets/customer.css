@@ -23,14 +23,6 @@
 
 .customer button {
   margin: 4rem 0 1.5rem;
-  min-height: 44px;
-  padding: 12px 24px;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-  cursor: pointer;
-  border: none;
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
 }
 
 .customer ul {
@@ -341,11 +333,6 @@
   display: block;
   margin: 0 auto;
   width: fit-content;
-  min-height: 44px;
-  padding: 8px 16px;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-  cursor: pointer;
 }
 
 .login a[href='#recover'] {
@@ -765,53 +752,4 @@ li[data-address] > h2 {
 .addresses form > div:nth-of-type(7),
 .addresses form > div:nth-of-type(7) + div[id] {
   margin-top: 1.5rem;
-}
-
-/* Mobile-specific fixes for touch events */
-@media screen and (max-width: 749px) {
-  .customer button,
-  .customer a,
-  .login button,
-  .login a,
-  .button,
-  .button--primary,
-  .button--secondary,
-  .cus-e-shop-all-btn,
-  .cus-pro-cta-button,
-  .cus-h-cta-button,
-  .cus-h-cta-button-2,
-  a[class*="cus-"],
-  a[class*="button"] {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0.2);
-    touch-action: manipulation;
-    min-height: 44px;
-    padding: 12px 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .customer button:active,
-  .customer a:active,
-  .login button:active,
-  .login a:active,
-  .button:active,
-  .button--primary:active,
-  .button--secondary:active,
-  .cus-e-shop-all-btn:active,
-  .cus-pro-cta-button:active,
-  .cus-h-cta-button:active,
-  .cus-h-cta-button-2:active,
-  a[class*="cus-"]:active,
-  a[class*="button"]:active {
-    transform: scale(0.98);
-    transition: transform 0.1s ease;
-  }
 }
