@@ -1,0 +1,1265 @@
+{% comment %}
+  Product Feature Section with Product Blocks
+  Displays products with navigation between them
+{% endcomment %}
+
+<div class="cus-pf-product-feature-section" data-bg-color="{{ section.settings.background_color }}" data-padding-top="{{ section.settings.padding_top }}" data-padding-bottom="{{ section.settings.padding_bottom }}">
+  <div class="page-width cus-pf-container">
+    
+    {% if section.blocks.size > 0 %}
+      <div class="cus-pf-product-carousel" data-total-products="{{ section.blocks.size }}">
+        
+        {% for block in section.blocks %}
+          <div class="cus-pf-product-slide{% if forloop.first %} cus-pf-active{% endif %}" 
+               data-product-index="{{ forloop.index0 }}" 
+               {{ block.shopify_attributes }}>
+            
+            <!-- Product Image -->
+            <div class="cus-pf-product-image-wrapper">
+              {% if block.settings.product_image %}
+                <img src="{{ block.settings.product_image | img_url: '500x500' }}" 
+                     alt="{{ block.settings.product_title }}"
+                     class="cus-pf-product-image">
+              {% else %}
+                <div class="cus-pf-product-image-placeholder">
+                  <span>Product Image</span>
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Product Details -->
+            <div class="cus-pf-product-details">
+              
+              <!-- Product Title -->
+              {% if block.settings.product_title != blank %}
+                <h2 class="cus-pf-product-title" data-color="{{ section.settings.title_color }}">
+                  {{ block.settings.product_title }}
+                </h2>
+              {% endif %}
+
+              <!-- Rating -->
+              {% if section.settings.show_rating and block.settings.rating > 0 %}
+                <div class="cus-pf-product-rating">
+                  <div class="cus-pf-stars">
+                    {% for i in (1..5) %}
+                      {% if i <= block.settings.rating %}
+                        <span class="cus-pf-star cus-pf-filled">★</span>
+                      {% else %}
+                        <span class="cus-pf-star cus-pf-empty">★</span>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                  <span class="cus-pf-rating-text">
+                    {{ block.settings.rating }} ({{ block.settings.review_count }} reviews)
+                  </span>
+                  {% if block.settings.sold_count > 0 %}
+                    <span class="cus-pf-sold-count">• {{ block.settings.sold_count }} Sold</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              <!-- Price -->
+              {% if block.settings.product_price != blank %}
+                <div class="cus-pf-product-price">
+                  <span class="cus-pf-price" data-color="{{ section.settings.price_color }}">
+                    {{ block.settings.product_price }}{{ section.settings.currency }}
+                  </span>
+                </div>
+              {% endif %}
+
+              <!-- Tags/Categories -->
+              {% if section.settings.show_tags and block.settings.product_tags != blank %}
+                <div class="cus-pf-product-tags">
+                  {% assign tags = block.settings.product_tags | split: ',' %}
+                  {% for tag in tags %}
+                    {% assign clean_tag = tag | strip %}
+                    {% if clean_tag != blank %}
+                      <span class="cus-pf-tag" data-bg="{{ section.settings.tag_background }}" data-color="{{ section.settings.tag_color }}">
+                        {{ clean_tag }}
+                      </span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              <!-- Product Description with Read More -->
+              {% if block.settings.product_description != blank %}
+                <div class="cus-pf-product-description" data-color="{{ section.settings.description_color }}">
+                  <div class="cus-pf-description-wrapper">
+                    <div class="cus-pf-description-content">
+                      <span class="cus-pf-description-short">{{ block.settings.product_description }}</span>
+                      {% if block.settings.product_description_full != blank %}
+                        <span class="cus-pf-description-dots">... </span>
+                        <span class="cus-pf-read-more-link" onclick="toggleReadMore(this, event)">Read more</span>
+                        <span class="cus-pf-description-full"> {{ block.settings.product_description_full }} </span>
+                        <span class="cus-pf-read-less-link" onclick="toggleReadMore(this, event)">Read less</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+
+              <!-- Feature Links -->
+              {% if section.settings.show_links %}
+                <div class="cus-pf-product-links">
+                  {% if block.settings.ingredients_text != blank %}
+                    <a href="{{ block.settings.ingredients_link | default: '#' }}" 
+                       class="cus-pf-product-link" data-color="{{ section.settings.link_color }}">
+                      {{ block.settings.ingredients_text }}
+                    </a>
+                  {% endif %}
+                  {% if block.settings.additional_link_text != blank %}
+                    <a href="{{ block.settings.additional_link | default: '#' }}" 
+                       class="cus-pf-product-link" data-color="{{ section.settings.link_color }}">
+                      {{ block.settings.additional_link_text }}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              <!-- Call to Action Button with Enhanced Add to Cart -->
+              {% if block.settings.cta_text != blank %}
+                <div class="cus-pf-cta-wrapper">
+                  {% comment %} Enhanced Add to Cart Logic with Variant Support {% endcomment %}
+                  {% if block.settings.product and block.settings.cta_link == blank %}
+                    {% assign selected_product = block.settings.product %}
+                    {% assign variant_id = block.settings.variant_id | plus: 0 %}
+                    {% assign selected_variant = selected_product.variants | where: "id", variant_id | first %}
+                    {% if selected_variant == blank %}
+                      {% assign selected_variant = selected_product.selected_or_first_available_variant %}
+                    {% endif %}
+                    
+                    {% if selected_product.variants.size > 1 and block.settings.variant_id == blank %}
+                      <!-- Multiple variants and no specific variant selected - go to product page -->
+                      <a href="{{ selected_product.url }}" class="cus-pf-btn-primary cus-pf-add-to-cart">
+                        {{ block.settings.cta_text }}
+                      </a>
+                    {% else %}
+                      <!-- Single variant or specific variant selected - direct add to cart -->
+                      <button data-add-to-cart 
+                              class="cus-pf-btn-primary cus-pf-add-to-cart"
+                              data-product-id="{{ selected_product.id }}"
+                              data-variant-id="{{ selected_variant.id }}">
+                        {{ block.settings.cta_text }}
+                      </button>
+                    {% endif %}
+                  {% else %}
+                    <!-- Custom link or no product - just link to custom URL -->
+                    <a href="{{ block.settings.cta_link | default: '#' }}" 
+                       class="cus-pf-btn-primary cus-pf-add-to-cart">
+                      {{ block.settings.cta_text }}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <!-- Navigation arrows -->
+      {% if section.blocks.size > 1 %}
+        <div class="cus-pf-navigation-arrows">
+          <button id="prevBtn" onclick="changeProduct(-1)" 
+                  class="cus-pf-nav-button"
+                  data-bg="{{ section.settings.nav_background }}" 
+                  data-color="{{ section.settings.nav_color }}"
+                  data-hover-bg="{{ section.settings.button_hover_background }}">
+            <span class="cus-pf-nav-arrow">‹</span>
+          </button>
+          <button id="nextBtn" onclick="changeProduct(1)" 
+                  class="cus-pf-nav-button"
+                  data-bg="{{ section.settings.nav_background }}" 
+                  data-color="{{ section.settings.nav_color }}"
+                  data-hover-bg="{{ section.settings.button_hover_background }}">
+            <span class="cus-pf-nav-arrow">›</span>
+          </button>
+        </div>
+      {% endif %}
+
+    {% else %}
+      <!-- Empty state -->
+      <div class="cus-pf-empty-state">
+        <h3>No products added</h3>
+        <p>Add product blocks to display your featured products.</p>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<style>
+  /* Main Section Styles */
+  .cus-pf-product-feature-section {
+    background-color: var(--bg-color, #ffffff);
+  }
+
+  .cus-pf-product-feature-section .cus-pf-container {
+    margin: 0 auto;
+  }
+
+  /* Product Carousel */
+  .cus-pf-product-slide {
+    display: none;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    transition: opacity 0.3s ease;
+  }
+
+  .cus-pf-product-carousel {
+    border: 1px solid #dddddd;
+    margin: 40px 0;
+    border-radius: 20px;
+  }
+
+  .cus-pf-product-slide.cus-pf-active {
+    display: flex;
+  }
+
+  /* Product Image */
+  .cus-pf-product-image-wrapper {
+    flex: 1;
+    width: 100%;
+    height: -webkit-fill-available;
+  }
+
+  .cus-pf-product-image {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+  }
+
+  .cus-pf-product-image-placeholder {
+    width: 100%;
+    height: 400px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+  }
+
+  /* Product Details */
+  .cus-pf-product-details {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .cus-pf-product-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: #001F5F;
+    font-family: "Inter" !important;
+  }
+
+  /* Rating Styles */
+  .cus-pf-product-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .cus-pf-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .cus-pf-star.cus-pf-filled {
+    color: #ffa500;
+    font-size: 16px;
+  }
+
+  .cus-pf-star.cus-pf-empty {
+    color: #ddd;
+    font-size: 16px;
+  }
+
+  .cus-pf-rating-text,
+  .cus-pf-sold-count {
+    color: #666;
+    font-size: 14px;
+  }
+
+  /* Price Styles */
+  .cus-pf-product-price {
+    margin-bottom: 16px;
+  }
+
+  .cus-pf-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--price-color, #000000);
+  }
+
+  /* Tags Styles */
+  .cus-pf-product-tags {
+    margin-bottom: 16px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .cus-pf-tag {
+    border: 1px solid #001F5F;
+    background: #ffffff;
+    color: #101828;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* Description Styles with Improved Read More */
+  .cus-pf-product-description {
+    margin-bottom: 20px;
+    color: var(--description-color, #666666);
+    line-height: 1.6;
+    width: 60%;
+    position: relative;
+  }
+
+  .cus-pf-description-wrapper {
+    position: relative;
+  }
+
+  .cus-pf-description-content {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Default state - show short description and "Read more" */
+  .cus-pf-description-full {
+    display: none;
+  }
+
+  .cus-pf-description-dots {
+    display: inline;
+  }
+
+  .cus-pf-read-more-link {
+    display: inline;
+    color: var(--link-color, #101828);
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .cus-pf-read-less-link {
+    display: none;
+    color: var(--link-color, #101828);
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 4px;
+    transition: color 0.2s ease;
+  }
+
+  /* Expanded state */
+  .cus-pf-description-wrapper.cus-pf-expanded .cus-pf-description-full {
+    display: inline;
+  }
+
+  .cus-pf-description-wrapper.cus-pf-expanded .cus-pf-description-dots {
+    display: none;
+  }
+
+  .cus-pf-description-wrapper.cus-pf-expanded .cus-pf-read-more-link {
+    display: none;
+  }
+
+  .cus-pf-description-wrapper.cus-pf-expanded .cus-pf-read-less-link {
+    display: inline;
+  }
+
+  .cus-pf-read-more-link:hover,
+  .cus-pf-read-less-link:hover {
+    color: #101828;
+  }
+
+  /* Links Styles */
+  .cus-pf-product-links {
+    margin-bottom: 24px;
+  }
+
+  .cus-pf-product-link {
+    color: var(--link-color, #101828);
+    text-decoration: underline;
+    margin-right: 16px;
+    font-size: 14px;
+  }
+
+  .cus-pf-product-link:last-child {
+    margin-right: 0;
+  }
+
+  /* Updated CTA Button Styles - Similar to Product Grid */
+  .cus-pf-btn-primary, .cus-pf-btn-secondary {
+    display: inline-block;
+    padding: 8px 20px;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+  }
+
+  .cus-pf-btn-primary.cus-pf-add-to-cart {
+    background: #001F5F;
+    color: white;
+    border: none;
+  }
+
+  .cus-pf-btn-primary.cus-pf-add-to-cart:hover {
+    background: #fff !important;
+    border: 1px solid #001F5F;
+    color: #000;
+  }
+
+  .cus-pf-btn-secondary {
+    background: transparent;
+    color: #101828;
+    border: 1px solid #ddd;
+  }
+
+  .cus-pf-btn-secondary:hover {
+    background: #001F5F;
+    color: white;
+  }
+
+  /* Add to cart button specific styles */
+  .cus-pf-btn-primary.cus-pf-add-to-cart:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* Navigation Styles */
+  .cus-pf-navigation-arrows {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .cus-pf-nav-button {
+    background: #101828;
+    border: none;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    margin: 0 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .cus-pf-nav-arrow {
+    color: var(--nav-color, #ffffff);
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .cus-pf-nav-button:hover {
+    background: var(--nav-hover-bg, #303f9f) !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+  }
+
+  .cus-pf-nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  /* Empty State */
+  .cus-pf-empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+  }
+
+  .cus-pf-empty-state h3 {
+    margin: 0 0 10px 0;
+  }
+
+  .cus-pf-empty-state p {
+    margin: 0;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .cus-pf-product-slide {
+      flex-direction: column !important;
+      text-align: start;
+    }
+    
+    .cus-pf-product-title {
+      font-size: 24px !important;
+    }
+    
+    .cus-pf-price {
+      font-size: 20px !important;
+    }
+
+    .cus-pf-navigation-arrows {
+      margin-top: 20px !important;
+    }
+
+    .cus-pf-nav-button {
+      width: 45px !important;
+      height: 45px !important;
+    }
+
+    .cus-pf-product-description {
+      width: 100% !important;
+    }
+    
+    .cus-pf-product-details {
+      padding: 0 10px 15px;
+    }
+    
+    .cus-pf-btn-primary.cus-pf-add-to-cart {
+      width: 100%;
+      font-size: 14px;
+    }
+  }
+
+  /* Toast notification styles */
+  .cus-pf-cart-success-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    z-index: 10000;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+</style>
+
+<script>
+  // Set CSS custom properties from data attributes
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.cus-pf-product-feature-section');
+    if (section) {
+      const root = document.documentElement;
+      
+      // Set section-level variables
+      root.style.setProperty('--bg-color', section.dataset.bgColor);
+      root.style.setProperty('--padding-top', section.dataset.paddingTop + 'px');
+      root.style.setProperty('--padding-bottom', section.dataset.paddingBottom + 'px');
+      
+      // Set color variables for each element
+      section.querySelectorAll('[data-color]').forEach(el => {
+        const property = getColorProperty(el);
+        if (property) {
+          el.style.setProperty(property, el.dataset.color);
+        }
+      });
+
+function getColorProperty(element) {
+  if (element.classList.contains('cus-pf-product-title')) return '--title-color';
+  if (element.classList.contains('cus-pf-price')) return '--price-color';
+  if (element.classList.contains('cus-pf-product-description')) return '--description-color';
+  if (element.classList.contains('cus-pf-product-link')) return '--link-color';
+  if (element.classList.contains('cus-pf-tag')) return '--tag-color';
+  if (element.classList.contains('cus-pf-btn-primary')) return '--button-color';
+  if (element.classList.contains('cus-pf-nav-arrow')) return '--nav-color';
+  if (element.classList.contains('cus-pf-read-more-link') || element.classList.contains('cus-pf-read-less-link')) return '--link-color';
+  return null;
+}
+      
+      // Set background variables
+      section.querySelectorAll('[data-bg]').forEach(el => {
+        el.style.setProperty('--button-bg', el.dataset.bg);
+        el.style.setProperty('--nav-bg', el.dataset.bg);
+        el.style.setProperty('--tag-bg', el.dataset.bg);
+      });
+      
+      // Set hover backgrounds
+      section.querySelectorAll('[data-hover-bg]').forEach(el => {
+        el.style.setProperty('--button-hover-bg', el.dataset.hoverBg);
+        el.style.setProperty('--nav-hover-bg', el.dataset.hoverBg);
+      });
+    }
+
+    // Initialize add to cart functionality
+    initializeAddToCartButtons();
+  });
+  
+  function getColorProperty(element) {
+    if (element.classList.contains('cus-pf-product-title')) return '--title-color';
+    if (element.classList.contains('cus-pf-price')) return '--price-color';
+    if (element.classList.contains('cus-pf-product-description')) return '--description-color';
+    if (element.classList.contains('cus-pf-product-link')) return '--link-color';
+    if (element.classList.contains('cus-pf-tag')) return '--tag-color';
+    if (element.classList.contains('cus-pf-btn-primary')) return '--button-color';
+    if (element.classList.contains('cus-pf-nav-arrow')) return '--nav-color';
+    if (element.classList.contains('cus-pf-read-more-link') || element.classList.contains('cus-pf-read-less-link')) return '--link-color';
+    return null;
+  }
+
+  // Enhanced Add to Cart Functionality with Variant ID Support
+  function initializeAddToCartButtons() {
+    const addToCartButtons = document.querySelectorAll('.cus-pf-add-to-cart[data-variant-id]');
+   
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+       
+        // Prevent multiple clicks
+        if (button.disabled) return;
+        
+        // Disable button temporarily to prevent double-clicking
+        button.disabled = true;
+        const originalText = button.textContent;
+        button.textContent = 'Adding...';
+       
+        const variantId = this.dataset.variantId;
+        const productId = this.dataset.productId;
+        
+        // Validate variant ID
+        if (!variantId || variantId === 'undefined' || variantId === '0') {
+          console.error('Invalid variant ID:', variantId);
+          resetButton();
+          alert('Please select a valid product variant');
+          return;
+        }
+       
+        // Add to cart via Shopify Ajax API
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify({
+            id: parseInt(variantId), // Ensure it's a number
+            quantity: 1,
+            properties: {} // Add any custom properties if needed
+          })
+        })
+        .then(response => {
+          if (!response.ok) {
+            return response.json().then(err => Promise.reject(err));
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Product added to cart:', data);
+          
+          // Update cart count immediately
+          updateCartCount();
+          
+          // Update and open cart drawer
+          updateAndOpenCartDrawer();
+          
+          // Reset button after successful add
+          resetButton();
+          
+          // Optional: Show success message
+          {% comment %} showSuccessMessage('Product added to cart!'); {% endcomment %}
+        })
+        .catch(error => {
+          console.error('Error adding to cart:', error);
+          resetButton();
+          
+          // Handle specific error messages
+          let errorMessage = 'Error adding product to cart';
+          if (error.message) {
+            errorMessage = error.message;
+          } else if (error.description) {
+            errorMessage = error.description;
+          }
+          
+          alert(errorMessage);
+        });
+        
+        function resetButton() {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
+      });
+    });
+  }
+
+  // Enhanced function to update cart count
+  function updateCartCount() {
+    return fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        const itemCount = cart.item_count;
+        
+        // Update all possible cart count elements
+        const cartCountSelectors = [
+          '.cart-count',
+          '[data-cart-count]',
+          '[cart-count-number-id]',
+          '#cart-count-bubble span[aria-hidden="true"]',
+          '.cart-count-bubble span[aria-hidden="true"]',
+          '.cart-count-number',
+          '#cart-icon-bubble .cart-count',
+          'cart-icon-bubble .cart-count'
+        ];
+        
+        cartCountSelectors.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(element => {
+            element.textContent = itemCount;
+          });
+        });
+        
+        // Update visually-hidden cart count text
+        const hiddenCartCount = document.querySelector('.cart-count-bubble .visually-hidden');
+        if (hiddenCartCount) {
+          hiddenCartCount.textContent = `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
+        }
+        
+        // Show/hide cart count bubble based on item count
+        const cartCountBubbles = document.querySelectorAll('#cart-count-bubble, .cart-count-bubble');
+        cartCountBubbles.forEach(bubble => {
+          if (itemCount > 0) {
+            bubble.style.display = '';
+            bubble.classList.remove('hidden');
+          } else {
+            bubble.style.display = 'none';
+            bubble.classList.add('hidden');
+          }
+        });
+        
+        // Trigger custom event for other scripts
+        document.dispatchEvent(new CustomEvent('cart:updated', {
+          detail: { cart: cart, itemCount: itemCount }
+        }));
+        
+        return cart;
+      })
+      .catch(error => {
+        console.error('Error fetching cart:', error);
+      });
+  }
+
+  // Enhanced function to update and open cart drawer
+  function updateAndOpenCartDrawer() {
+    const cartDrawer = document.querySelector('cart-drawer');
+    const cartDrawerAlternative = document.querySelector('#CartDrawer');
+    
+    if (cartDrawer || cartDrawerAlternative) {
+      // Remove empty state
+      if (cartDrawer) {
+        cartDrawer.classList.remove('is-empty');
+      }
+      
+      // Fetch updated cart drawer content
+      fetch('/cart?view=drawer', {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+        .then(response => response.text())
+        .then(html => {
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = html;
+          
+          // Try different selectors for cart drawer content
+          const newDrawerContent = tempDiv.querySelector('#CartDrawer') || 
+                                 tempDiv.querySelector('.cart-drawer-content') ||
+                                 tempDiv.querySelector('cart-drawer');
+          
+          const existingDrawer = document.querySelector('#CartDrawer') || 
+                               document.querySelector('.cart-drawer-content') ||
+                               cartDrawer;
+          
+          if (newDrawerContent && existingDrawer) {
+            // Update drawer content
+            if (existingDrawer.id === 'CartDrawer') {
+              existingDrawer.innerHTML = newDrawerContent.innerHTML;
+            } else {
+              existingDrawer.replaceWith(newDrawerContent);
+            }
+          }
+          
+          // Open the cart drawer with multiple methods
+          openCartDrawer();
+        })
+        .catch(error => {
+          console.error('Error updating cart drawer:', error);
+          // Still try to open the drawer even if update fails
+          openCartDrawer();
+        });
+    } else {
+      // No cart drawer found, redirect to cart page
+      console.log('No cart drawer found, redirecting to cart page');
+      window.location.href = '/cart';
+    }
+  }
+
+  // Function to open cart drawer with multiple fallback methods
+  function openCartDrawer() {
+    const cartDrawer = document.querySelector('cart-drawer');
+    const cartDrawerAlternative = document.querySelector('#CartDrawer');
+    
+    // Method 1: Try the standard cart drawer open method
+    if (cartDrawer && typeof cartDrawer.open === 'function') {
+      cartDrawer.open();
+      return;
+    }
+    
+    // Method 2: Try triggering click on cart icon
+    const cartIcon = document.querySelector('#cart-icon-bubble, .cart-icon, [data-cart-drawer-toggle]');
+    if (cartIcon) {
+      cartIcon.click();
+      return;
+    }
+    
+    // Method 3: Try adding active class and overflow hidden
+    if (cartDrawer) {
+      cartDrawer.classList.add('active');
+      document.body.classList.add('overflow-hidden');
+      return;
+    }
+    
+    // Method 4: Try opening with CSS classes
+    if (cartDrawerAlternative) {
+      cartDrawerAlternative.classList.add('active', 'open');
+      document.body.classList.add('overflow-hidden');
+      return;
+    }
+    
+    // Method 5: Dispatch custom event that theme might be listening for
+    document.dispatchEvent(new CustomEvent('cart:open'));
+    
+    // Method 6: Try finding and triggering any cart toggle elements
+    const cartToggles = document.querySelectorAll('[data-cart-toggle], .cart-toggle, .js-cart-toggle');
+    if (cartToggles.length > 0) {
+      cartToggles[0].click();
+    }
+  }
+
+  // Optional: Success message function
+  function showSuccessMessage(message) {
+    // Create a simple toast notification
+    const toast = document.createElement('div');
+    toast.className = 'cus-pf-cart-success-toast';
+    toast.textContent = message;
+    
+    document.body.appendChild(toast);
+    
+    // Fade in
+    setTimeout(() => {
+      toast.style.opacity = '1';
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 300);
+    }, 3000);
+  }
+
+  // Additional helper function to manually trigger add to cart (can be called from other scripts)
+  function addToCartWithVariant(variantId, quantity = 1) {
+    return fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: JSON.stringify({
+        id: parseInt(variantId),
+        quantity: quantity
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(err => Promise.reject(err));
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Update cart count
+      document.dispatchEvent(new CustomEvent('cart:item-added', {
+        detail: { item: data }
+      }));
+      return data;
+    });
+  }
+
+  // Improved Read More Toggle Function
+  function toggleReadMore(link, event) {
+    event.preventDefault();
+    
+    const wrapper = link.closest('.cus-pf-description-wrapper');
+    const isExpanded = wrapper.classList.contains('cus-pf-expanded');
+    
+    if (isExpanded) {
+      // Collapse
+      wrapper.classList.remove('cus-pf-expanded');
+    } else {
+      // Expand
+      wrapper.classList.add('cus-pf-expanded');
+    }
+  }
+
+  let currentProductIndex = 0;
+  const totalProducts = {{ section.blocks.size }};
+
+  function changeProduct(direction) {
+    const slides = document.querySelectorAll('.cus-pf-product-slide');
+    const counter = document.getElementById('productCounter');
+    
+    // Hide current slide
+    slides[currentProductIndex].classList.remove('cus-pf-active');
+    
+    // Calculate new index
+    currentProductIndex += direction;
+    
+    // Loop around if needed
+    if (currentProductIndex >= totalProducts) {
+      currentProductIndex = 0;
+    } else if (currentProductIndex < 0) {
+      currentProductIndex = totalProducts - 1;
+    }
+    
+    // Show new slide
+    slides[currentProductIndex].classList.add('cus-pf-active');
+    
+    // Update counter
+    if (counter) {
+      counter.textContent = `${currentProductIndex + 1} / ${totalProducts}`;
+    }
+    
+    // Reset any expanded descriptions when changing products
+    const newSlide = slides[currentProductIndex];
+    const expandedWrappers = newSlide.querySelectorAll('.cus-pf-description-wrapper.cus-pf-expanded');
+    expandedWrappers.forEach(wrapper => {
+      wrapper.classList.remove('cus-pf-expanded');
+    });
+
+    // Re-initialize add to cart buttons for the new slide
+    initializeAddToCartButtons();
+  }
+
+  function updateButtonStates() {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (prevBtn) prevBtn.disabled = currentProductIndex === 0;
+    if (nextBtn) nextBtn.disabled = currentProductIndex === totalProducts - 1;
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {
+      changeProduct(-1);
+    } else if (e.key === 'ArrowRight') {
+      changeProduct(1);
+    }
+  });
+
+  // Auto-play (uncomment if needed)
+  /*
+  setInterval(function() {
+    if (totalProducts > 1) {
+      changeProduct(1);
+    }
+  }, 5000); // Change every 5 seconds
+  */
+</script>
+
+{% schema %}
+{
+  "name": "Product Feature Carousel",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "text",
+      "id": "currency",
+      "label": "Currency Symbol",
+      "default": " USD"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show Ratings",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show Product Tags",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_links",
+      "label": "Show Product Links",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "color",
+      "id": "tag_background",
+      "label": "Tag Background Color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "tag_color",
+      "label": "Tag Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button Background Color",
+      "default": "#1a237e"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button Hover Background Color",
+      "default": "#303f9f"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_background",
+      "label": "Navigation Background Color",
+      "default": "#1a237e"
+    },
+    {
+      "type": "color",
+      "id": "nav_color",
+      "label": "Navigation Arrow Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product Selection"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product (optional)",
+          "info": "Choose a product from your store for enhanced add to cart functionality"
+        },
+        {
+          "type": "text",
+          "id": "variant_id",
+          "label": "Variant ID (optional)",
+          "info": "Paste the specific variant ID you want to add. If empty, first available variant will be used."
+        },
+        {
+          "type": "header",
+          "content": "Product Information"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title",
+          "default": "Product Name"
+        },
+        {
+          "type": "textarea",
+          "id": "product_description",
+          "label": "Product Description (Preview)",
+          "default": "Product description goes here...",
+          "info": "This is the short description shown initially (3 lines max)"
+        },
+        {
+          "type": "textarea",
+          "id": "product_description_full",
+          "label": "Full Product Description (Optional)",
+          "info": "If provided, this will show when 'Read more' is clicked. Leave empty if you don't need the read more functionality."
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price",
+          "default": "99.99"
+        },
+        {
+          "type": "text",
+          "id": "product_tags",
+          "label": "Product Tags (comma separated)",
+          "default": "Tag1, Tag2, Tag3"
+        },
+        {
+          "type": "header",
+          "content": "Rating & Reviews"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating (1-5 stars)",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "default": 4.0
+        },
+        {
+          "type": "number",
+          "id": "review_count",
+          "label": "Number of Reviews",
+          "default": 100
+        },
+        {
+          "type": "number",
+          "id": "sold_count",
+          "label": "Items Sold",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Links"
+        },
+        {
+          "type": "text",
+          "id": "ingredients_text",
+          "label": "First Link Text",
+          "default": "See full ingredient list"
+        },
+        {
+          "type": "url",
+          "id": "ingredients_link",
+          "label": "First Link URL"
+        },
+        {
+          "type": "text",
+          "id": "additional_link_text",
+          "label": "Second Link Text"
+        },
+        {
+          "type": "url",
+          "id": "additional_link",
+          "label": "Second Link URL"
+        },
+        {
+          "type": "header",
+          "content": "Call to Action"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Button Text",
+          "default": "Add to Bundle"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "Button Link (optional)",
+          "info": "If left empty and a product is selected above, will use enhanced add to cart functionality"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Feature Carousel",
+      "category": "Product",
+      "blocks": [
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,291 @@
+<!-- sections/community-recipes.liquid -->
+<div class="cus-rec-community-recipes-section">
+  <div class="page-width cus-rec-container">
+    <!-- Section Header -->
+    <div class="cus-rec-section-header">
+      <h2 class="cus-rec-section-title">{{ section.settings.title | default: 'Recipes from our community' }}</h2>
+      <p class="cus-rec-section-description">{{ section.settings.description | default: 'Real creations, real results. Discover delicious, collagen-powered recipes shared by our amazing community — made with love and glow.' }}</p>
+    </div>
+
+    <!-- Recipe Grid -->
+    <div class="cus-rec-recipe-grid">
+      {% for block in section.blocks %}
+        <div class="cus-rec-recipe-card" {{ block.shopify_attributes }}>
+          {% if block.settings.image %}
+            <div class="cus-rec-recipe-image">
+              <img 
+                src="{{ block.settings.image | img_url: '400x400' }}" 
+                alt="{{ block.settings.image.alt | default: block.settings.title }}"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+          
+          {% if block.settings.title %}
+            <h3 class="cus-rec-recipe-title">{{ block.settings.title }}</h3>
+          {% endif %}
+          
+          {% if block.settings.description %}
+            <p class="cus-rec-recipe-description">{{ block.settings.description }}</p>
+          {% endif %}
+          
+          {% if block.settings.link_url %}
+            <a href="{{ block.settings.link_url }}" class="cus-rec-recipe-link">
+              {{ block.settings.link_text | default: 'View Recipe' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.cus-rec-community-recipes-section {
+  padding: 60px 0;
+}
+
+.cus-rec-container {
+  margin: 0 auto;
+}
+
+.cus-rec-section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.cus-rec-section-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #001F5F;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  font-family: 'Inter' !important;
+}
+
+.cus-rec-section-description {
+  font-size: 20px;
+  color: #344054;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-family: 'Inter';
+  font-weight: 400;
+}
+
+.cus-rec-recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.cus-rec-recipe-card {
+  background: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  height: 372px; 
+}
+
+.cus-rec-recipe-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cus-rec-recipe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.cus-rec-recipe-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333333;
+  margin: 20px 20px 10px;
+  line-height: 1.3;
+}
+
+.cus-rec-recipe-description {
+  color: #666666;
+  margin: 0 20px 20px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.cus-rec-recipe-link {
+  display: inline-block;
+  margin: 0 20px 20px;
+  color: {{ section.settings.link_color | default: '#2c5aa0' }};
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.cus-rec-recipe-link:hover {
+  color: {{ section.settings.link_hover_color | default: '#1e3f73' }};
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cus-rec-community-recipes-section {
+    padding: 40px 0;
+  }
+  
+  .cus-rec-section-title {
+    font-size: 36px;
+  }
+  
+  .cus-rec-section-description {
+    font-size: 14px;
+  }
+  
+  .cus-rec-recipe-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .cus-rec-recipe-image {
+    height: 372px;
+    margin: 0 auto;
+    width: 302px;
+    border-radius: 20px;
+    border: 1px solid #d3d3d3;
+  }
+}
+
+@media (max-width: 480px) {
+  .cus-rec-container {
+    padding: 0 15px;
+  }
+  
+  .cus-rec-section-title {
+    font-size: 36px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Community Recipes",
+  "tag": "section",
+  "class": "cus-rec-community-recipes-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Recipes from our community"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Real creations, real results. Discover delicious, collagen-powered recipes shared by our amazing community — made with love and glow."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#2c5aa0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#2c5aa0"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link Hover Color",
+      "default": "#1e3f73"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "recipe",
+      "name": "Recipe Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Recipe Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Recipe Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Recipe Description"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Recipe Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "View Recipe"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community Recipes",
+      "blocks": [
+        {
+          "type": "recipe",
+          "settings": {
+            "title": "Watermelon Smoothie",
+            "description": "A refreshing collagen-boosted smoothie perfect for summer days."
+          }
+        },
+        {
+          "type": "recipe",
+          "settings": {
+            "title": "Golden Collagen Latte",
+            "description": "Start your morning with this warming, healthy collagen drink."
+          }
+        },
+        {
+          "type": "recipe",
+          "settings": {
+            "title": "Iced Coffee Delight",
+            "description": "Cool down with this protein-packed iced coffee recipe."
+          }
+        },
+        {
+          "type": "recipe",
+          "settings": {
+            "title": "Green Goddess Smoothie",
+            "description": "A nutrient-dense green smoothie with added collagen benefits."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

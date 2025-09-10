@@ -1,0 +1,436 @@
+<section class="cus-slider-auto-slider-banner" data-section-type="slider-banner" data-section-id="{{ section.id }}">
+  <div class="page-width cus-slider-slider-container">
+    <div class="cus-slider-slider-wrapper" id="slider-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="cus-slider-slide {% if forloop.first %}cus-slider-active{% endif %}"
+             data-slide="{{ forloop.index0 }}"
+             {{ block.shopify_attributes }}>
+          <div class="cus-slider-slide-content">
+            <div class="cus-slider-slide-image">
+              {% if block.settings.image %}
+                <img src="{{ block.settings.image | img_url: '1200x600' }}"
+                     alt="{{ block.settings.image.alt | default: block.settings.title }}"
+                     loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+              {% else %}
+                <div class="cus-slider-placeholder-image">
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'cus-slider-placeholder-svg' }}
+                </div>
+              {% endif %}
+            </div>
+            <div class="cus-slider-slide-text">
+              {% if block.settings.title %}
+                <h2 class="cus-slider-slide-title">{{ block.settings.title }}</h2>
+              {% endif %}
+              {% if block.settings.description %}
+                <p class="cus-slider-slide-description">{{ block.settings.description }}</p>
+              {% endif %}
+              {% if block.settings.button_text and block.settings.button_url %}
+                <a href="{{ block.settings.button_url }}" class="cus-slider-slide-button cus-slider-btn">
+                  {{ block.settings.button_text }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+      <!-- Navigation Dots -->
+    {% if section.blocks.size > 1 %}
+      <div class="cus-slider-slider-dots">
+        {% for block in section.blocks %}
+          <button class="cus-slider-dot {% if forloop.first %}cus-slider-active{% endif %}"
+                  data-slide="{{ forloop.index0 }}"
+                  aria-label="Go to slide {{ forloop.index }}"></button>
+        {% endfor %}
+      </div>
+    {% endif %}
+   
+  </div>
+</section>
+
+<style>
+.cus-slider-auto-slider-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 0 110px;
+}
+
+.cus-slider-slider-container {
+  position: relative;
+  margin: 0 auto;
+}
+
+.cus-slider-slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 385px;
+  overflow: hidden;
+}
+
+.cus-slider-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.cus-slider-slide.cus-slider-active {
+  opacity: 1;
+}
+
+.cus-slider-slide-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 40px;
+  background: #FCF0E3;
+  border-radius: 25px;
+}
+
+.cus-slider-slide-image {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cus-slider-slide-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.cus-slider-placeholder-image {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0e0e0;
+  border-radius: 12px;
+}
+
+.cus-slider-placeholder-image svg {
+  width: 60px;
+  height: 60px;
+  opacity: 0.5;
+}
+
+.cus-slider-slide-text {
+  flex: 1;
+  padding: 20px;
+  text-align: left;
+}
+
+.cus-slider-slide-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #001F5F;
+  margin-bottom: 20px;
+  line-height: 44px;
+  font-family: 'Inter' !important;
+}
+
+.cus-slider-slide-description {
+  font-size: 20px;
+  color: #344054;
+  line-height: 30px;
+  margin-bottom: 30px;
+  max-width: 400px;
+  font-family: 'Inter';
+}
+
+.cus-slider-slide-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cus-slider-slide-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.cus-slider-slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+.cus-slider-dot {
+  width: 40px;
+  height: 3px;
+  border: none;
+  background: rgba(179, 171, 171, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cus-slider-dot.cus-slider-active {
+  background: #000;
+}
+
+/* Responsive Design - Maintaining left image, right text layout */
+@media (max-width: 768px) {
+  .cus-slider-auto-slider-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0 40px;
+}
+  .cus-slider-slider-container {
+    padding: 0 15px;
+}
+  .cus-slider-slider-wrapper {
+    height: 176px;
+  }
+ 
+  .cus-slider-slide-content {
+    gap: 10px;
+    padding: 0 15px;
+    /* Keep flex-direction: row for consistent layout */
+  }
+ 
+  .cus-slider-slide-image {
+    height: 100%;
+  }
+
+  .cus-slider-slide-image img {
+    margin-top: 10px;
+  }
+
+  .cus-slider-slide-text {
+    flex: 1.2;
+    padding: 10px;
+  }
+ 
+  .cus-slider-slide-title {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 15px;
+  }
+ 
+  .cus-slider-slide-description {
+    font-size: 12px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+
+  .cus-slider-slide-button {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cus-slider-auto-slider-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0 40px;
+}
+  .cus-slider-slider-wrapper {
+    height: 176px;
+  }
+ 
+  .cus-slider-slide-content {
+    gap: 10px;
+    padding: 0 12px;
+  }
+
+  .cus-slider-slide-text {
+    flex: 1.3;
+    padding: 8px;
+  }
+ 
+  .cus-slider-slide-title {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 12px;
+  }
+ 
+  .cus-slider-slide-description {
+    font-size: 10px;
+    line-height: 18px;
+    margin-bottom: 15px;
+  }
+ 
+  .cus-slider-slide-button {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sliders = document.querySelectorAll('.cus-slider-auto-slider-banner');
+ 
+  sliders.forEach(function(sliderSection) {
+    const slider = sliderSection.querySelector('.cus-slider-slider-wrapper');
+    const slides = slider.querySelectorAll('.cus-slider-slide');
+    const dots = sliderSection.querySelectorAll('.cus-slider-dot');
+    let currentSlide = 0;
+    let slideInterval;
+   
+    // Auto slide function
+    function nextSlide() {
+      slides[currentSlide].classList.remove('cus-slider-active');
+      if (dots[currentSlide]) dots[currentSlide].classList.remove('cus-slider-active');
+     
+      currentSlide = (currentSlide + 1) % slides.length;
+     
+      slides[currentSlide].classList.add('cus-slider-active');
+      if (dots[currentSlide]) dots[currentSlide].classList.add('cus-slider-active');
+    }
+   
+    // Go to specific slide
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove('cus-slider-active');
+      if (dots[currentSlide]) dots[currentSlide].classList.remove('cus-slider-active');
+     
+      currentSlide = index;
+     
+      slides[currentSlide].classList.add('cus-slider-active');
+      if (dots[currentSlide]) dots[currentSlide].classList.add('cus-slider-active');
+    }
+   
+    // Start auto slider
+    function startAutoSlide() {
+      if (slides.length > 1) {
+        slideInterval = setInterval(nextSlide, {{ section.settings.slide_duration | default: 5000 }});
+      }
+    }
+   
+    // Stop auto slider
+    function stopAutoSlide() {
+      clearInterval(slideInterval);
+    }
+   
+    // Dot navigation
+    dots.forEach(function(dot, index) {
+      dot.addEventListener('click', function() {
+        goToSlide(index);
+        stopAutoSlide();
+        setTimeout(startAutoSlide, 3000); // Restart after 3 seconds
+      });
+    });
+   
+    // Pause on hover
+    slider.addEventListener('mouseenter', stopAutoSlide);
+    slider.addEventListener('mouseleave', startAutoSlide);
+   
+    // Initialize
+    startAutoSlide();
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Auto Slider Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "slide_duration",
+      "min": 3000,
+      "max": 9000,
+      "step": 1000,
+      "unit": "ms",
+      "label": "Slide Duration",
+      "default": 5000
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Backed by real research"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Formulas with over 500+ clinical studies and research papers supporting the benefits of ingredients used in Feel products"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Auto Slider Banner",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Backed by real research",
+            "description": "Formulas with over 500+ clinical studies and research papers supporting the benefits of ingredients used in Feel products",
+            "button_text": "Shop Now"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Premium Quality Ingredients",
+            "description": "We source only the highest quality, scientifically-proven ingredients for maximum effectiveness and safety",
+            "button_text": "Learn More"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Trusted by Thousands",
+            "description": "Join our community of satisfied customers who have experienced the benefits of our research-backed formulations",
+            "button_text": "Read Reviews"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

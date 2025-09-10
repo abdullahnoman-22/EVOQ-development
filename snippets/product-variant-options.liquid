@@ -1,0 +1,492 @@
+{% comment %}
+  Renders product variant options
+  Accepts:
+  - product: {Object} product object.
+  - option: {Object} current product_option object.
+  - block: {Object} block object.
+  - picker_type: {String} type of picker to dispay
+  Usage:
+  {% render 'product-variant-options',
+    product: product,
+    option: option,
+    block: block
+    picker_type: picker_type
+  %}
+{% endcomment %}
+
+<style>
+  .product__info-container.product__column-sticky {
+  font-size: 18px !important;
+}
+
+label.quantity__label.form__label {
+  font-size: 25px;
+}
+
+legend.form__label {
+  font-size: 20px;
+  color: #101828;
+  font-weight: 600;
+  font-family: 'Inter' !important;
+}
+
+/* Variant Description Styles */
+.variant-description {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.variant-description p {
+  margin: 0 0 0.5rem 0;
+}
+
+.variant-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Flavour Variant - No Radio Buttons */
+.variant-option-with-image {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.variant-option-with-image input[type="radio"] {
+  display: none;
+}
+
+.variant-option-with-image label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e4e4e4;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.variant-option-with-image img.variant-thumb {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.variant-option-with-image .variant-title {
+  font-size: 14px;
+  color: #000;
+  line-height: 1.2;
+}
+
+.variant-option-with-image:hover label {
+  border-color: #c4ff56;
+}
+
+.variant-option-with-image input[type="radio"]:checked + label {
+  border-color: #ddd;
+  background-color: #000;
+  color: white;
+}
+
+.variant-option-with-image input.disabled + label {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.variant-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: #7fe233;
+  color: #000;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+/* Size/Volume Variant - With Radio Buttons */
+.product-form__input--pill {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.product-form__input--pill input[type=radio] {
+  display: none;
+}
+
+.product-form__input--pill input[type=radio] + label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+}
+
+.product-form__input--pill input[type=radio] + label::before,
+.product-form__input--pill .custom-radio {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  background: white;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.product-form__input--pill input[type=radio] + label:hover {
+  border-color: #d1d5db;
+}
+
+.product-form__input--pill input[type=radio] + label:hover::before,
+.product-form__input--pill input[type=radio] + label:hover .custom-radio {
+  border-color: #6b7280;
+}
+
+.product-form__input--pill input[type=radio]:checked + label {
+  border-color: #ddd;
+  background-color: white;
+  color: #fff !important;
+}
+
+.product-form__input--pill input[type=radio]:checked + label::before,
+.product-form__input--pill input[type=radio]:checked + label .custom-radio {
+  border-color: #000;
+  background-color: #000;
+  box-shadow: inset 0 0 0 4px white;
+}
+
+.product-form__input--pill .variant-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.product-form__input--pill .variant-title {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+  color: #000;
+}
+
+.product-form__input--pill .variant-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: normal;
+}
+
+.product-form__input--pill input.disabled + label {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Flavour-specific hover and checked states */
+.Flavour input[type=radio] + label:hover {
+  border-color: #d1d5db;
+  background-color: #001F5F;
+  color: #fff !important;
+}
+
+.Flavour label:hover .variant-title {
+  color: #fff !important;
+}
+
+.Flavour input[type=radio]:checked + label {
+  border-color: #000;
+  background-color: #001F5F !important;
+  color: #fff !important;
+}
+
+.Flavour input[type=radio]:checked + label .variant-title {
+  color: #fff !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  label.quantity__label.form__label {
+    font-size: 20px;
+  }
+  legend.form__label {
+    font-size: 20px;
+  }
+  .variant-description {
+    padding: 0.75rem;
+    font-size: 13px;
+  }
+  .variant-option-with-image {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  .variant-option-with-image label {
+    padding: 0.4rem 0.8rem;
+    font-size: 13px;
+  }
+  .variant-option-with-image img.variant-thumb {
+    width: 18px;
+    height: 18px;
+  }
+  .product-form__input--pill input[type=radio] + label {
+    padding: 0.8rem;
+    font-size: 15px;
+  }
+  .product-form__input--pill input[type=radio] + label::before,
+  .product-form__input--pill .custom-radio {
+    width: 18px;
+    height: 18px;
+  }
+}
+</style>
+
+{%- liquid
+  assign product_form_id = 'product-form-' | append: section.id
+  assign option_index = option.position | minus: 1
+-%}
+
+{%- if option.position == 1 -%}
+  <!-- First option with images (like Flavour) -->
+  
+  
+
+  {%- for value in option.values -%}
+    {%- assign option_disabled = true -%}
+    {%- if value.available -%}
+      {%- assign option_disabled = false -%}
+    {%- endif -%}
+
+    {%- capture input_id -%}
+      {{ section.id }}-{{ option.position }}-{{ forloop.index0 }}
+    {%- endcapture -%}
+
+    {%- capture input_name -%}
+      {{ option.name }}-{{ option.position }}
+    {%- endcapture -%}
+
+    {%- capture input_dataset -%}
+      data-product-url="{{ value.product_url }}"
+      data-option-value-id="{{ value.id }}"
+    {%- endcapture -%}
+
+    {%- capture label_unavailable -%}
+      <span class="visually-hidden label-unavailable">
+        {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
+      </span>
+    {%- endcapture -%}
+
+    {%- assign matched_variant = null -%}
+    {%- assign variant_image = null -%}
+    {%- assign most_popular = null -%}
+    {%- assign value_handle = value | handleize -%}
+    
+    {%- for variant in product.variants -%}
+      {%- if variant.options[option_index] == value -%}
+        {%- assign matched_variant = variant -%}
+        {%- assign variant_image = variant.metafields.custom.variant_image -%}
+        {%- if variant.metafields.custom.most_popular -%}
+          {%- assign most_popular = variant.metafields.custom.most_popular.value -%}
+        {%- endif -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if picker_type == 'button' -%}
+      <div class="variant-option-with-image" data-variant-description="{{ matched_variant.metafields.custom.variant_description | escape }}">
+        <input
+          type="radio"
+          id="{{ input_id }}"
+          name="{{ input_name | escape }}"
+          value="{{ value | escape }}"
+          form="{{ product_form_id }}"
+          {% if value.selected %}checked{% endif %}
+          {% if option_disabled %}class="disabled"{% endif %}
+          {{ input_dataset }}
+        >
+        <label for="{{ input_id }}">
+          {%- if variant_image and variant_image != blank -%}
+            <img src="{{ variant_image | image_url: width: 100 }}" alt="{{ value | escape }}" class="variant-thumb" />
+          {%- elsif matched_variant and matched_variant.image -%}
+            <img src="{{ matched_variant.image | img_url: '100x100' }}" alt="{{ value | escape }}" class="variant-thumb" />
+          {%- endif -%}
+
+          {%- if most_popular and most_popular != blank -%}
+            <div class="variant-badge">
+              {{ most_popular }}
+            </div>
+          {%- endif -%}
+
+          <span class="variant-title">{{ value }}</span>
+          {{ label_unavailable }}
+        </label>
+      </div>
+
+    {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+      <option
+        id="{{ input_id }}"
+        value="{{ value | escape }}"
+        {% if value.selected %}selected="selected"{% endif %}
+        {{ input_dataset }}
+      >
+        {%- if option_disabled -%}
+          {{- 'products.product.value_unavailable' | t: option_value: value -}}
+        {%- else -%}
+          {{- value -}}
+        {%- endif %}
+      </option>
+
+    {%- else -%}
+      <div>{{ value }}</div>
+    {%- endif -%}
+  {%- endfor -%}
+
+{%- else -%}
+  <!-- Second and subsequent options - simple buttons (like Size/Volume) -->
+  <div class="product-form__input--pill">
+    {%- for value in option.values -%}
+      {%- liquid
+        assign swatch_focal_point = null
+        if value.swatch.image
+          assign image_url = value.swatch.image | image_url: width: 50
+          assign swatch_value = 'url(' | append: image_url | append: ')'
+          assign swatch_focal_point = value.swatch.image.presentation.focal_point
+        elsif value.swatch.color
+          assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+        else
+          assign swatch_value = null
+        endif
+        assign option_disabled = true
+        if value.available
+          assign option_disabled = false
+        endif
+      -%}
+      {%- capture input_id -%}
+        {{ section.id }}-{{ option.position }}-{{ forloop.index0 -}}
+      {%- endcapture -%}
+      {%- capture input_name -%}
+        {{ option.name }}-{{ option.position }}
+      {%- endcapture -%}
+      {%- capture input_dataset -%}
+        data-product-url="{{ value.product_url }}"
+        data-option-value-id="{{ value.id }}"
+      {%- endcapture -%}
+      {%- capture label_unavailable -%}
+        <span class="visually-hidden label-unavailable">
+          {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
+        </span>
+      {%- endcapture -%}
+
+      {%- if picker_type == 'button' -%}
+     <input
+          type="radio"
+          id="{{ input_id }}"
+          name="{{ input_name | escape }}"
+          value="{{ value | escape }}"
+          form="{{ product_form_id }}"
+          {% if value.selected %}checked{% endif %}
+          {% if option_disabled %}class="disabled"{% endif %}
+          {{ input_dataset }}
+        >
+        <label for="{{ input_id }}">
+          <span class="custom-radio"></span>
+          <div class="variant-details">
+            <span class="variant-title">{{ value }}</span>
+            <span class="variant-subtitle">30 Servings</span>
+          </div>
+          {{ label_unavailable }}
+             </label>
+
+      {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+        <option
+          id="{{ input_id }}"
+          value="{{ value | escape }}"
+          {% if value.selected %}selected="selected"{% endif %}
+          {% if swatch_value and picker_type == 'swatch_dropdown' %}
+            data-option-swatch-value="{{ swatch_value }}"
+            {% if swatch_focal_point %}
+              data-option-swatch-focal-point="{{ swatch_focal_point }}"
+            {% endif %}
+          {% endif %}
+          {{ input_dataset }}
+        >
+          {% if option_disabled -%}
+            {{- 'products.product.value_unavailable' | t: option_value: value -}}
+          {%- else -%}
+            {{- value -}}
+          {%- endif %}
+        </option>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+<script>
+(function() {
+  'use strict';
+  
+  function updateVariantDescription() {
+    const vDescElement = document.getElementById('v_desc');
+    if (!vDescElement) return;
+    
+    // Find the checked variant option
+    const checkedOption = document.querySelector('.variant-option-with-image input[type="radio"]:checked');
+    if (checkedOption) {
+      const parentDiv = checkedOption.closest('.variant-option-with-image');
+      const description = parentDiv.getAttribute('data-variant-description');
+      
+      if (description && description.trim() !== '') {
+        vDescElement.innerHTML = description;
+      } else {
+        vDescElement.innerHTML = '';
+      }
+    }
+  }
+  
+  function init() {
+    // Update description on page load
+    updateVariantDescription();
+    
+    // Add event listeners to all variant radio buttons
+    const variantOptions = document.querySelectorAll('.variant-option-with-image input[type="radio"]');
+    
+    variantOptions.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        if (this.checked) {
+          updateVariantDescription();
+        }
+      });
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

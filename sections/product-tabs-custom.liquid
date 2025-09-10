@@ -1,0 +1,789 @@
+<!-- sections/product-tabs.liquid -->
+
+<!-- Product Tabs Section -->
+<div class="product-tabs-container section-{{ section.id }}" 
+     style="--primary-color: {{ section.settings.primary_color }}; --text-color: {{ section.settings.text_color }};">
+  
+  <!-- Tab Navigation -->
+  <div class="tab-navigation">
+    <ul class="tab-list" role="tablist">
+      {% for block in section.blocks %}
+        {% assign index = forloop.index0 %}
+        {% assign is_first = forloop.first %}
+        <li class="tab-item">
+          <button class="tab-button {% if is_first %}active{% endif %}" 
+                  data-tab="tab-{{ block.id }}" 
+                  role="tab" 
+                  aria-selected="{% if is_first %}true{% else %}false{% endif %}" 
+                  aria-controls="tab-{{ block.id }}-panel">
+            {{ block.settings.tab_title }}
+          </button>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Tab Content Panels -->
+  <div class="tab-content">
+    {% for block in section.blocks %}
+      {% assign is_first = forloop.first %}
+      <div class="tab-panel {% if is_first %}active{% endif %}" 
+           id="tab-{{ block.id }}-panel" 
+           role="tabpanel" 
+           aria-labelledby="tab-{{ block.id }}"
+           {{ block.shopify_attributes }}>
+        
+        {% case block.type %}
+          {% when 'text_with_image' %}
+            <div class="tab-content-wrapper text-image-layout">
+              <div class="product-description">
+                {% if block.settings.content != blank %}
+                  {{ block.settings.content }}
+                {% endif %}
+
+                {% if block.settings.show_features %}
+                  <div class="product-features">
+                    {% if block.settings.feature_1 != blank %}
+                      <div class="feature-item">
+                        <span class="feature-icon">{{ block.settings.feature_1_icon }}</span>
+                        <span class="feature-text">{{ block.settings.feature_1 }}</span>
+                      </div>
+                    {% endif %}
+                    
+                    {% if block.settings.feature_2 != blank %}
+                      <div class="feature-item">
+                        <span class="feature-icon">{{ block.settings.feature_2_icon }}</span>
+                        <span class="feature-text">{{ block.settings.feature_2 }}</span>
+                      </div>
+                    {% endif %}
+                    
+                    {% if block.settings.feature_3 != blank %}
+                      <div class="feature-item">
+                        <span class="feature-icon">{{ block.settings.feature_3_icon }}</span>
+                        <span class="feature-text">{{ block.settings.feature_3 }}</span>
+                      </div>
+                    {% endif %}
+                    
+                    {% if block.settings.feature_4 != blank %}
+                      <div class="feature-item">
+                        <span class="feature-icon">{{ block.settings.feature_4_icon }}</span>
+                        <span class="feature-text">{{ block.settings.feature_4 }}</span>
+                      </div>
+                    {% endif %}
+                    
+                    {% if block.settings.feature_5 != blank %}
+                      <div class="feature-item">
+                        <span class="feature-icon">{{ block.settings.feature_5_icon }}</span>
+                        <span class="feature-text">{{ block.settings.feature_5 }}</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+
+              {% if block.settings.image != blank %}
+                <div class="product-visual">
+                  <img src="{{ block.settings.image | img_url: '600x600' }}" 
+                       alt="{{ block.settings.image.alt | default: block.settings.tab_title }}"
+                       class="product-image"
+                       loading="lazy">
+                </div>
+              {% endif %}
+            </div>
+
+          {% when 'text_only' %}
+            <div class="tab-content-wrapper text-only-layout">
+              <div class="text-content">
+                {% if block.settings.content != blank %}
+                  {{ block.settings.content }}
+                {% endif %}
+              </div>
+            </div>
+
+          {% when 'product_grid' %}
+            <div class="tab-content-wrapper">
+              {% if block.settings.collection != blank %}
+                <div class="products-grid">
+                  {% assign collection = collections[block.settings.collection] %}
+                  {% for product in collection.products limit: block.settings.products_limit %}
+                    <div class="product-card {% if block.settings.show_limited_badge %}limited{% endif %}">
+                      <a href="{{ product.url }}">
+                        {% if product.featured_image %}
+                          <img src="{{ product.featured_image | img_url: '300x300' }}" 
+                               alt="{{ product.title }}"
+                               loading="lazy">
+                        {% endif %}
+                        <h4>{{ product.title }}</h4>
+                        <p class="price">
+                          {% if product.compare_at_price > product.price %}
+                            <span class="price-compare">{{ product.compare_at_price | money }}</span>
+                          {% endif %}
+                          {{ product.price | money }}
+                        </p>
+                        {% if block.settings.show_limited_badge %}
+                          <span class="limited-badge">{{ block.settings.badge_text | default: 'Limited Edition' }}</span>
+                        {% endif %}
+                      </a>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <p>{{ block.settings.fallback_text | default: 'No products to display.' }}</p>
+              {% endif %}
+            </div>
+
+          {% when 'nutrition_facts' %}
+            <div class="tab-content-wrapper">
+              <div class="nutrition-facts">
+                {% if block.settings.nutrition_title != blank %}
+                  <h3>{{ block.settings.nutrition_title }}</h3>
+                {% endif %}
+                
+                {% if block.settings.serving_info != blank %}
+                  <p class="serving-info">{{ block.settings.serving_info }}</p>
+                {% endif %}
+                
+                {% if block.settings.nutrition_content != blank %}
+                  <div class="nutrition-content">
+                    {{ block.settings.nutrition_content }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.product-tabs-container {
+  max-width: {{ section.settings.max_width }}px;
+  margin: {{ section.settings.section_margin_top }}px auto {{ section.settings.section_margin_bottom }}px;
+  padding: 0 1rem;
+}
+
+.tab-navigation {
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 2rem;
+}
+
+.tab-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  justify-content: space-between;
+}
+
+.tab-item {
+  flex-shrink: 0;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  font-size: 16px;
+  color: #001F5F;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  color: #333;
+}
+
+.tab-button.active {
+  color: #001F5F;
+  border-bottom-color: #001F5F;
+  font-weight: 600;
+}
+
+.tab-content {
+  position: relative;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.text-image-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.text-only-layout {
+  max-width: 800px;
+}
+
+.product-description, .text-content {
+  font-size: {{ section.settings.text_size }}px;
+  line-height: 1.6;
+  color: var(--text-color, #344054);
+  height: 100%;
+  align-content: flex-start;
+}
+
+.product-features {
+  margin-top: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.feature-icon {
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.feature-text {
+  color: #333;
+}
+
+.product-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  text-align: center;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.product-card h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.price {
+  font-weight: 600;
+  color: var(--primary-color, #007bff);
+}
+
+.price-compare {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 0.5rem;
+}
+
+.limited-badge {
+  display: inline-block;
+  background: #ff6b6b;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+}
+
+.nutrition-facts {
+  max-width: 600px;
+}
+
+.nutrition-facts h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.serving-info {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.nutrition-content {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .product-tabs-container {
+    padding: 0 2rem;
+  }
+  
+  .tab-navigation {
+    border-bottom: none;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tab-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+  
+  .tab-item {
+    flex: none;
+    margin: 0;
+  }
+  
+  .tab-button {
+    padding: 0.65rem 0.75rem;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #D0D5DD;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #101828;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border-bottom: 1px solid #D0D5DD; /* Override the transparent border */
+    height: 44px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .tab-button:hover {
+    background: #f8f9fa;
+    border-color: #D0D5DD;
+    color: #333;
+  }
+  
+  .tab-button.active {
+    background: #001F5F;
+    color: #ffffff;
+    border-color: #001F5F;
+    font-weight: 600;
+    border-bottom: 1px solid #001F5F; /* Ensure consistent border */
+  }
+  
+  .text-image-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .product-visual {
+    order: 1;
+  }
+  
+  .product-description {
+    order: 2;
+    font-size: 14px;
+  }
+  
+  .product-image {
+    margin: 0 auto;
+  }
+  
+  .feature-item {
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-icon {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+  
+  .product-card img {
+    height: 150px;
+  }
+  
+  .nutrition-facts {
+    padding: 0;
+  }
+  
+  .nutrition-content {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.querySelector('.section-{{ section.id }}');
+  if (!container) return;
+  
+  const tabButtons = container.querySelectorAll('.tab-button');
+  const tabPanels = container.querySelectorAll('.tab-panel');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+      
+      // Remove active class from all buttons and panels
+      tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      
+      tabPanels.forEach(panel => {
+        panel.classList.remove('active');
+      });
+      
+      // Add active class to clicked button and corresponding panel
+      this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
+      
+      const targetPanel = container.querySelector('#' + targetTab + '-panel');
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Product Tabs",
+  "tag": "section",
+  "class": "product-tabs-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary color",
+      "default": "#007bff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_with_image",
+      "name": "Text with Image",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title",
+          "default": "Tab Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add your content here.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_features",
+          "label": "Show feature list",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1",
+          "info": "Leave blank to hide"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_icon",
+          "label": "Feature 1 icon",
+          "default": "✨",
+          "info": "Use emoji or symbol"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_icon",
+          "label": "Feature 2 icon",
+          "default": "🌱"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_icon",
+          "label": "Feature 3 icon",
+          "default": "🍉"
+        },
+        {
+          "type": "text",
+          "id": "feature_4",
+          "label": "Feature 4"
+        },
+        {
+          "type": "text",
+          "id": "feature_4_icon",
+          "label": "Feature 4 icon",
+          "default": "❌"
+        },
+        {
+          "type": "text",
+          "id": "feature_5",
+          "label": "Feature 5"
+        },
+        {
+          "type": "text",
+          "id": "feature_5_icon",
+          "label": "Feature 5 icon",
+          "default": "♻️"
+        }
+      ]
+    },
+    {
+      "type": "text_only",
+      "name": "Text Only",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title",
+          "default": "Tab Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add your content here.</p>"
+        }
+      ]
+    },
+    {
+      "type": "product_grid",
+      "name": "Product Grid",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title",
+          "default": "Products"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "range",
+          "id": "products_limit",
+          "min": 2,
+          "max": 12,
+          "step": 1,
+          "label": "Number of products to show",
+          "default": 6
+        },
+        {
+          "type": "checkbox",
+          "id": "show_limited_badge",
+          "label": "Show limited edition badge",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "default": "Limited Edition"
+        },
+        {
+          "type": "text",
+          "id": "fallback_text",
+          "label": "Fallback text",
+          "default": "No products to display.",
+          "info": "Shown when no collection is selected"
+        }
+      ]
+    },
+    {
+      "type": "nutrition_facts",
+      "name": "Nutrition Facts",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title",
+          "default": "Nutrition Information"
+        },
+        {
+          "type": "text",
+          "id": "nutrition_title",
+          "label": "Title",
+          "default": "Nutrition Facts"
+        },
+        {
+          "type": "text",
+          "id": "serving_info",
+          "label": "Serving information",
+          "default": "Serving Size: 1 scoop (10g)"
+        },
+        {
+          "type": "richtext",
+          "id": "nutrition_content",
+          "label": "Nutrition content",
+          "default": "<p>Add nutrition facts here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Tabs",
+      "blocks": [
+        {
+          "type": "text_with_image",
+          "settings": {
+            "tab_title": "Meal Replacements",
+            "content": "<p>Say hello to your new daily beauty ritual. Our Watermelon Collagen Powder blends the power of premium marine collagen with the freshness of real watermelon flavor — so you can nourish your skin, hair, nails, and joints from the inside out.</p>",
+            "show_features": true,
+            "feature_1": "Tasty Watermelon Flavor",
+            "feature_1_icon": "🍉",
+            "feature_2": "Boosts Skin, Hair & Nails",
+            "feature_2_icon": "✨",
+            "feature_3": "Vegan & Halal",
+            "feature_3_icon": "🌱",
+            "feature_4": "No Sugar, Gluten-Free",
+            "feature_4_icon": "❌",
+            "feature_5": "Eco-Friendly Packaging",
+            "feature_5_icon": "♻️"
+          }
+        },
+        {
+          "type": "text_only",
+          "settings": {
+            "tab_title": "Premium collagen",
+            "content": "<p>Our premium marine collagen is sourced from the finest ingredients to support your beauty routine from within.</p>"
+          }
+        },
+        {
+          "type": "text_only",
+          "settings": {
+            "tab_title": "Super beauty greens",
+            "content": "<p>Packed with superfoods and antioxidants to enhance your natural glow and support overall wellness.</p>"
+          }
+        },
+        {
+          "type": "nutrition_facts",
+          "settings": {
+            "tab_title": "Nutrition information"
+          }
+        },
+        {
+          "type": "product_grid",
+          "settings": {
+            "tab_title": "Best sellers"
+          }
+        },
+        {
+          "type": "product_grid",
+          "settings": {
+            "tab_title": "Limited edition",
+            "show_limited_badge": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

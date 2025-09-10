@@ -1,0 +1,173 @@
+<!-- Brand Logo Auto-Slider Section -->
+<div class="brand-slider-container" style="background: {{ section.settings.background_color }};">
+  <div class="page-width brand-slider-wrapper">
+    <div class="brand-slider-track" style="animation-duration: {{ section.settings.animation_speed }}s;">
+      {% for block in section.blocks %}
+        {% if block.settings.logo %}
+          <div class="brand-logo">
+            <img src="{{ block.settings.logo | img_url: '200x' }}" alt="Brand Logo {{ forloop.index }}" loading="lazy">
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <!-- Duplicate for seamless infinite loop -->
+      {% for block in section.blocks %}
+        {% if block.settings.logo %}
+          <div class="brand-logo">
+            <img src="{{ block.settings.logo | img_url: '200x' }}" alt="Brand Logo {{ forloop.index }}" loading="lazy">
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.brand-slider-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+}
+
+.brand-slider-wrapper {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.brand-slider-track {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  animation: slide linear infinite;
+  width: max-content;
+}
+
+.brand-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  min-width: 120px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.brand-logo:hover {
+  opacity: 1;
+}
+
+.brand-logo img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.brand-logo:hover img {
+  filter: grayscale(0%);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.brand-slider-container:hover .brand-slider-track {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .brand-slider-track {
+    gap: 40px;
+  }
+
+  .brand-logo {
+    min-width: 100px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-slider-track {
+    gap: 30px;
+  }
+
+  .brand-logo {
+    min-width: 80px;
+    height: 40px;
+  }
+
+  .brand-slider-container {
+    padding: 30px 0;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Brand Logo Slider",
+  "settings": [
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Animation Speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30,
+      "unit": "s"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Brand Logo Slider",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

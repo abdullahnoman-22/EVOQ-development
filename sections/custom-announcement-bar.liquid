@@ -1,0 +1,330 @@
+<!-- sections/announcement-bar.liquid -->
+<div class="announcement-bar" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="page-width announcement-bar__container">
+    {% if section.settings.show_shipping_text and section.settings.shipping_text != blank %}
+      <div class="announcement-bar__item">
+        {% if section.settings.shipping_icon %}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+        {% endif %}
+        <span>{{ section.settings.shipping_text }}</span>
+      </div>
+    {% endif %}
+    <div class="custom-bar-border"> </div>
+    {% if section.settings.show_reviews and section.settings.reviews_text != blank %}
+      <div class="announcement-bar__item">
+        {% if section.settings.reviews_stars %}
+          <div class="announcement-bar__stars">
+            {% for i in (1..5) %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 512 512" fill="white">
+              <path d="M256 394.6l-148.7 90.7 39.8-172.4-133.1-115.2 175.4-15.1L256 30.4l66.6 152.2 175.4 15.1-133.1 115.2 39.8 172.4z"/>
+            </svg>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <span>{{ section.settings.reviews_text }}</span>
+      </div>
+    {% endif %}
+    <div class="custom-bar-border"> </div>
+    {% if section.settings.show_recommendation and section.settings.recommendation_text != blank %}
+      <div class="announcement-bar__item">
+        {% if section.settings.recommendation_icon %}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        {% endif %}
+        <span>{{ section.settings.recommendation_text }}</span>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Mobile scrolling container -->
+  <div class="announcement-bar__mobile-scroll">
+    <div class="announcement-bar__mobile-content">
+      <!-- First set of items -->
+      {% if section.settings.show_shipping_text and section.settings.shipping_text != blank %}
+        <div class="announcement-bar__mobile-item">
+          {% if section.settings.shipping_icon %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          {% endif %}
+          <span>{{ section.settings.shipping_text }}</span>
+        </div>
+      {% endif %}
+       <div class="custom-bar-border"> </div>
+      {% if section.settings.show_reviews and section.settings.reviews_text != blank %}
+        <div class="announcement-bar__mobile-item">
+          {% if section.settings.reviews_stars %}
+            <div class="announcement-bar__stars">
+              {% for i in (1..5) %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="white">
+                <path d="M256 394.6l-148.7 90.7 39.8-172.4-133.1-115.2 175.4-15.1L256 30.4l66.6 152.2 175.4 15.1-133.1 115.2 39.8 172.4z"/>
+              </svg>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <span>{{ section.settings.reviews_text }}</span>
+        </div>
+      {% endif %}
+       <div class="custom-bar-border"> </div>
+      {% if section.settings.show_recommendation and section.settings.recommendation_text != blank %}
+        <div class="announcement-bar__mobile-item">
+          {% if section.settings.recommendation_icon %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          {% endif %}
+          <span>{{ section.settings.recommendation_text }}</span>
+        </div>
+      {% endif %}
+       <div class="custom-bar-border"> </div>
+      <!-- Duplicate set for infinite loop -->
+      {% if section.settings.show_shipping_text and section.settings.shipping_text != blank %}
+        <div class="announcement-bar__mobile-item">
+          {% if section.settings.shipping_icon %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          {% endif %}
+          <span>{{ section.settings.shipping_text }}</span>
+        </div>
+      {% endif %}
+       <div class="custom-bar-border"> </div>
+      {% if section.settings.show_reviews and section.settings.reviews_text != blank %}
+        <div class="announcement-bar__mobile-item">
+          {% if section.settings.reviews_stars %}
+            <div class="announcement-bar__stars">
+              {% for i in (1..5) %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="white">
+                <path d="M256 394.6l-148.7 90.7 39.8-172.4-133.1-115.2 175.4-15.1L256 30.4l66.6 152.2 175.4 15.1-133.1 115.2 39.8 172.4z"/>
+              </svg>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <span>{{ section.settings.reviews_text }}</span>
+        </div>
+      {% endif %}
+       <div class="custom-bar-border"> </div>
+      {% if section.settings.show_recommendation and section.settings.recommendation_text != blank %}
+        <div class="announcement-bar__mobile-item">
+          {% if section.settings.recommendation_icon %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          {% endif %}
+          <span>{{ section.settings.recommendation_text }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .announcement-bar {
+    padding: 8px 0;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .announcement-bar__container {
+    display: flex;
+    gap: 2rem;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .custom-bar-border{
+    border: 1px solid #fff;
+  }
+
+  .announcement-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  .announcement-bar__stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .announcement-bar__item svg {
+    flex-shrink: 0;
+  }
+
+  /* Mobile scrolling container - hidden by default */
+  .announcement-bar__mobile-scroll {
+    display: none;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .announcement-bar__mobile-content {
+    display: flex;
+    gap: 3rem;
+    animation: scroll-horizontal 20s linear infinite;
+  }
+
+  .announcement-bar__mobile-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll-horizontal {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pause animation on hover */
+  .announcement-bar__mobile-scroll:hover .announcement-bar__mobile-content {
+    animation-play-state: paused;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .announcement-bar__container {
+      display: none; /* Hide desktop version on mobile */
+    }
+    
+    .announcement-bar__mobile-scroll {
+      display: block; /* Show mobile scrolling version */
+    }
+    
+    .announcement-bar__mobile-item {
+      font-size: 12px;
+    }
+    
+    .announcement-bar__mobile-item svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .announcement-bar__mobile-item .announcement-bar__stars svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .announcement-bar {
+      padding: 8px 15px;
+    }
+    
+    .announcement-bar__mobile-item span {
+      font-size: 12px;
+    }
+
+    .announcement-bar__mobile-content {
+      gap: 2rem;
+      animation-duration: 15s; /* Slower on smaller screens */
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#1e3a8a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Shipping Message"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_text",
+      "label": "Show shipping message",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shipping_text",
+      "label": "Shipping Text",
+      "default": "Free shipping over $200"
+    },
+    {
+      "type": "checkbox",
+      "id": "shipping_icon",
+      "label": "Show shipping icon",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Reviews"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show reviews",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "reviews_text",
+      "label": "Reviews Text",
+      "default": "13,841 reviews"
+    },
+    {
+      "type": "checkbox",
+      "id": "reviews_stars",
+      "label": "Show star rating",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Recommendation"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_recommendation",
+      "label": "Show recommendation",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "recommendation_text",
+      "label": "Recommendation Text",
+      "default": "Recommended by over 200+ expert nutritionists"
+    },
+    {
+      "type": "checkbox",
+      "id": "recommendation_icon",
+      "label": "Show recommendation icon",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "cus Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

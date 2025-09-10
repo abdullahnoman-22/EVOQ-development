@@ -1,0 +1,999 @@
+<!-- sections/product-grid.liquid -->
+<div class="cus-pg-product-grid-section" 
+     style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width cus-container">
+    {% if section.settings.show_sort %}
+      <div class="cus-pg-sort-container">
+        <select class="cus-pg-sort-select" onchange="sortProducts(this.value)">
+          <option value="">Sort by</option>
+          <option value="price-low-high">Price: Low to High</option>
+          <option value="price-high-low">Price: High to Low</option>
+          <option value="name-a-z">Name: A-Z</option>
+          <option value="name-z-a">Name: Z-A</option>
+        </select>
+      </div>
+    {% endif %}
+
+    <div class="cus-pg-product-grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'product' %}
+            {% assign product = collections[block.settings.collection].products[block.settings.product_index] | default: block.settings.product %}
+            {% if product or block.settings.custom_image != blank %}
+              {% comment %} Determine which image to use {% endcomment %}
+              {% if block.settings.custom_image != blank %}
+                {% assign product_image = block.settings.custom_image %}
+              {% elsif product.featured_image %}
+                {% assign product_image = product.featured_image %}
+              {% else %}
+                {% assign product_image = null %}
+              {% endif %}
+
+              {% comment %} Determine which title to use {% endcomment %}
+              {% if block.settings.custom_title != blank %}
+                {% assign product_title = block.settings.custom_title %}
+              {% elsif product.title %}
+                {% assign product_title = product.title %}
+              {% else %}
+                {% assign product_title = "Product Name" %}
+              {% endif %}
+
+              {% comment %} Determine which link to use {% endcomment %}
+              {% if block.settings.custom_link != blank %}
+                {% assign product_link = block.settings.custom_link %}
+              {% elsif product.url %}
+                {% assign product_link = product.url %}
+              {% else %}
+                {% assign product_link = "#" %}
+              {% endif %}
+
+              {% comment %} Determine price {% endcomment %}
+              {% if block.settings.custom_price and block.settings.custom_price > 0 %}
+                {% assign product_price = block.settings.custom_price %}
+                {% assign display_price = product_price %}
+              {% elsif product.price %}
+                {% assign product_price = product.price %}
+                {% assign display_price = product.price | divided_by: 100 %}
+              {% else %}
+                {% assign product_price = 0 %}
+                {% assign display_price = 0 %}
+              {% endif %}
+
+              {% comment %} Variant selection - NEW ADDITION {% endcomment %}
+              {% assign variant_id = block.settings.variant_id | plus: 0 %}
+              {% assign selected_variant = product.variants | where: "id", variant_id | first %}
+              {% if selected_variant == blank %}
+                {% assign selected_variant = product.selected_or_first_available_variant %}
+              {% endif %}
+
+              <div class="cus-pg-product-card" data-price="{{ product_price }}" data-name="{{ product_title }}">
+                <div class="cus-pg-product-image">
+                  {% if product_image %}
+                    {% if block.settings.custom_image != blank %}
+                      <img src="{{ product_image | img_url: '300x300' }}"
+                           alt="{{ block.settings.custom_image.alt | default: product_title }}"
+                           loading="lazy">
+                    {% else %}
+                      <img src="{{ product_image | img_url: '300x300' }}"
+                           alt="{{ product_image.alt | default: product_title }}"
+                           loading="lazy">
+                    {% endif %}
+                  {% else %}
+                    <div class="cus-pg-placeholder-image">
+                      <svg width="300" height="300" viewBox="0 0 300 300">
+                        <rect width="300" height="300" fill="#f5f5f5"/>
+                        <text x="150" y="150" text-anchor="middle" fill="#999">No Image</text>
+                      </svg>
+                    </div>
+                  {% endif %}
+                  
+                  <!-- Product Badge -->
+                  {% if block.settings.show_badge and block.settings.badge_text != blank %}
+                    <div class="cus-pg-product-badge cus-pg-{{ block.settings.badge_style }}">
+                      {{ block.settings.badge_text }}
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="cus-pg-product-info">
+                  <h3 class="cus-pg-product-title">{{ product_title }}</h3>
+                 
+                  {% if block.settings.show_timeline %}
+                    <div class="cus-pg-product-timeline">
+                      <a href="#" class="cus-pg-timeline-label">{{ block.settings.timeline_label | default: 'Health improvement timeline' }}</a>
+                      <a href="#" class="cus-pg-view-ingredients">{{ block.settings.ingredients_label | default: 'View ingredients' }}</a>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.show_rating %}
+                    <div class="cus-pg-product-rating">
+                      <div class="cus-pg-stars">
+                        {% assign rating = block.settings.rating | default: 4.6 %}
+                        {% assign full_stars = rating | floor %}
+                        {% assign has_half_star = rating | modulo: 1 %}
+                        {% assign next_star = full_stars | plus: 1 %}
+                       
+                        {% for i in (1..5) %}
+                          {% if i <= full_stars %}
+                            <span class="cus-pg-star cus-pg-filled">★</span>
+                          {% elsif i == next_star and has_half_star >= 0.5 %}
+                            <span class="cus-pg-star cus-pg-half">★</span>
+                          {% else %}
+                            <span class="cus-pg-star">☆</span>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                      <span class="cus-pg-rating-number">{{ rating }}</span>
+                      <span class="cus-pg-review-count">({{ block.settings.review_count | default: 1573 }} reviews)</span>
+                    </div>
+                  {% endif %}
+
+                  <div class="cus-pg-product-price">
+                    <span class="cus-pg-currency">{{ block.settings.currency | default: '$' }}</span>
+                    <span class="cus-pg-price">{{ display_price }}</span>
+                  </div>
+
+                  <div class="cus-pg-product-actions">
+                    {% comment %} Enhanced Add to Cart Logic with Variant Support {% endcomment %}
+                    {% if product and block.settings.custom_link == blank %}
+                      {% if product.variants.size > 1 and block.settings.variant_id == blank %}
+                        <!-- Multiple variants and no specific variant selected - go to product page -->
+                        <a href="{{ product.url }}" class="cus-pg-btn-primary cus-pg-add-to-cart">
+                          {{ block.settings.add_to_cart_text | default: 'Add to cart' }}
+                        </a>
+                      {% else %}
+                        <!-- Single variant or specific variant selected - direct add to cart -->
+                        <button data-add-to-cart class="cus-pg-btn-primary cus-pg-add-to-cart"
+                                data-product-id="{{ product.id }}"
+                                data-variant-id="{{ selected_variant.id }}">
+                          {{ block.settings.add_to_cart_text | default: 'Add to cart' }}
+                        </button>
+                      {% endif %}
+                    {% else %}
+                      <!-- Custom link or no product - just link to custom URL -->
+                      <a href="{{ product_link }}" class="cus-pg-btn-primary cus-pg-add-to-cart" data-variant-id="{{ variant_id }}" {{ selected_variant }}>
+                        {{ block.settings.add_to_cart_text | default: 'Add to cart' }}
+                      </a>
+                    {% endif %}
+                    
+                    {% if block.settings.show_learn_more %}
+                      <a href="{{ product_link }}" class="cus-pg-btn-secondary cus-pg-learn-more">
+                        {{ block.settings.learn_more_text | default: 'Learn More' }}
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.cus-pg-product-grid-section {
+    margin: 110px 0;
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 768px) {
+  .cus-pg-product-grid-section {
+    padding-top: {{ section.settings.padding_top | divided_by: 2 }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px !important;
+    margin: 56px 0;
+  }
+}
+
+.cus-pg-sort-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.cus-pg-sort-select {
+    padding: 8px 0px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 400;
+    width: 100px;
+    font-family: inter !important;
+}
+
+.cus-pg-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  align-items: start;
+}
+
+.cus-pg-product-card {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cus-pg-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+
+.cus-pg-product-image {
+    width: 100%;
+    height: 350px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    position: relative;
+}
+
+.cus-pg-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cus-pg-placeholder-image svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Product Badge Styles */
+.cus-pg-product-badge {
+    position: absolute;
+    top: 80px;
+    right: 120px;
+    padding: 10px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.cus-pg-product-badge.cus-pg-new {
+  background: #000000;
+  color: white;
+}
+
+.cus-pg-product-badge.cus-pg-sale {
+  background: #EF4444;
+  color: white;
+}
+
+.cus-pg-product-badge.cus-pg-bestseller {
+  background: #F59E0B;
+  color: white;
+}
+
+.cus-pg-product-badge.cus-pg-limited {
+  background: #8B5CF6;
+  color: white;
+}
+
+.cus-pg-product-badge.cus-pg-featured {
+  background: #3B82F6;
+  color: white;
+}
+
+.cus-pg-product-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #101828;
+  line-height: 30px;
+  font-family: 'Inter';
+}
+
+.cus-pg-product-timeline {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 12px;
+    gap: 15px;
+}
+
+.cus-pg-timeline-label {
+  color:#101828;
+}
+
+.cus-pg-view-ingredients {
+  color: #101828;
+  text-decoration: underline;
+}
+
+.cus-pg-product-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.cus-pg-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.cus-pg-star {
+  color: #ddd;
+  font-size: 16px;
+}
+
+.cus-pg-star.cus-pg-filled {
+  color: #101828;
+}
+
+.cus-pg-star.cus-pg-half {
+  background: linear-gradient(90deg,rgb(56, 54, 54) 50%, #ddd 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cus-pg-rating-number {
+  font-weight: 400;
+  color: #101828;
+}
+
+.cus-pg-review-count {
+  color:#101828;
+}
+
+.cus-pg-product-price {
+  font-weight: 600;
+  color: #101828;
+}
+
+ .cus-pg-product-price .cus-pg-price {
+  font-size: 32px;
+}
+.cus-pg-currency {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.cus-pg-product-actions {
+  display: flex;
+}
+
+.cus-pg-btn-primary, .cus-pg-btn-secondary {
+  flex: 1;
+  padding: 8px 20px;
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cus-pg-btn-primary.cus-pg-add-to-cart {
+  border-radius: 6px;
+}
+
+.cus-pg-btn-secondary.cus-pg-learn-more {
+  border-radius: 6px;
+  margin-left: 8px;
+}
+
+/* When both buttons are present */
+.cus-pg-product-actions .cus-pg-btn-primary + .cus-pg-btn-secondary {
+  border-radius: 0 6px 6px 0;
+  margin-left: 0;
+}
+
+.cus-pg-product-actions .cus-pg-btn-primary:not(:only-child) {
+  border-radius: 6px 0 0 6px;
+}
+
+.cus-pg-btn-primary {
+  background: #001F5F;
+  color: white;
+}
+
+.cus-pg-btn-primary:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+}
+
+.cus-pg-btn-secondary {
+  background: transparent;
+  color: #101828;
+  border: 1px solid #ddd;
+}
+
+.cus-pg-btn-secondary:hover {
+  background: #001F5F;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .cus-pg-product-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+ 
+  /* Keep mobile buttons same as desktop - side by side layout */
+  .cus-pg-product-actions {
+    display: flex; /* Keep flex layout on mobile */
+  }
+
+  /* Mobile buttons maintain same styling as desktop */
+  .cus-pg-product-actions .cus-pg-btn-primary,
+  .cus-pg-product-actions .cus-pg-btn-secondary {
+    flex: 1;
+    padding: 8px 20px; /* Same padding as desktop */
+    font-size: 14px; /* Slightly smaller font for mobile */
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  /* Mobile specific button styling - same connected look */
+  .cus-pg-btn-primary.cus-pg-add-to-cart {
+    border-radius: 6px;
+  }
+
+  .cus-pg-btn-secondary.cus-pg-learn-more {
+    border-radius: 6px;
+    margin-left: 8px;
+  }
+
+  /* When both buttons are present on mobile */
+  .cus-pg-product-actions .cus-pg-btn-primary + .cus-pg-btn-secondary {
+    border-radius: 0 6px 6px 0;
+    margin-left: 0;
+  }
+
+  .cus-pg-product-actions .cus-pg-btn-primary:not(:only-child) {
+    border-radius: 6px 0 0 6px;
+  }
+}
+</style>
+
+<script>
+// Enhanced Add to Cart Functionality with Variant ID Support
+document.addEventListener('DOMContentLoaded', function() {
+  const addToCartButtons = document.querySelectorAll('.cus-pg-add-to-cart[data-variant-id]');
+ 
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+     
+      // Prevent multiple clicks
+      if (button.disabled) return;
+      
+      // Disable button temporarily to prevent double-clicking
+      button.disabled = true;
+      const originalText = button.textContent;
+      button.textContent = 'Adding...';
+     
+      const variantId = this.dataset.variantId;
+      const productId = this.dataset.productId;
+      
+      // Validate variant ID
+      if (!variantId || variantId === 'undefined' || variantId === '0') {
+        console.error('Invalid variant ID:', variantId);
+        resetButton();
+        alert('Please select a valid product variant');
+        return;
+      }
+     
+      // Add to cart via Shopify Ajax API
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({
+          id: parseInt(variantId), // Ensure it's a number
+          quantity: 1,
+          properties: {} // Add any custom properties if needed
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => Promise.reject(err));
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Product added to cart:', data);
+        
+        // Update cart count immediately
+        updateCartCount();
+        
+        // Update and open cart drawer
+        updateAndOpenCartDrawer();
+        
+        // Reset button after successful add
+        resetButton();
+        
+        
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error);
+        resetButton();
+        
+        // Handle specific error messages
+        let errorMessage = 'Error adding product to cart';
+        if (error.message) {
+          errorMessage = error.message;
+        } else if (error.description) {
+          errorMessage = error.description;
+        }
+        
+        alert(errorMessage);
+      });
+      
+      function resetButton() {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    });
+  });
+
+  // Enhanced function to update cart count
+  function updateCartCount() {
+    return fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        const itemCount = cart.item_count;
+        
+        // Update all possible cart count elements
+        const cartCountSelectors = [
+          '.cart-count',
+          '[data-cart-count]',
+          '[cart-count-number-id]',
+          '#cart-count-bubble span[aria-hidden="true"]',
+          '.cart-count-bubble span[aria-hidden="true"]',
+          '.cart-count-number',
+          '#cart-icon-bubble .cart-count',
+          'cart-icon-bubble .cart-count'
+        ];
+        
+        cartCountSelectors.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(element => {
+            element.textContent = itemCount;
+          });
+        });
+        
+        // Update visually-hidden cart count text
+        const hiddenCartCount = document.querySelector('.cart-count-bubble .visually-hidden');
+        if (hiddenCartCount) {
+          hiddenCartCount.textContent = `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
+        }
+        
+        // Show/hide cart count bubble based on item count
+        const cartCountBubbles = document.querySelectorAll('#cart-count-bubble, .cart-count-bubble');
+        cartCountBubbles.forEach(bubble => {
+          if (itemCount > 0) {
+            bubble.style.display = '';
+            bubble.classList.remove('hidden');
+          } else {
+            bubble.style.display = 'none';
+            bubble.classList.add('hidden');
+          }
+        });
+        
+        // Trigger custom event for other scripts
+        document.dispatchEvent(new CustomEvent('cart:updated', {
+          detail: { cart: cart, itemCount: itemCount }
+        }));
+        
+        return cart;
+      })
+      .catch(error => {
+        console.error('Error fetching cart:', error);
+      });
+  }
+
+  // Enhanced function to update and open cart drawer
+  function updateAndOpenCartDrawer() {
+    const cartDrawer = document.querySelector('cart-drawer');
+    const cartDrawerAlternative = document.querySelector('#CartDrawer');
+    
+    if (cartDrawer || cartDrawerAlternative) {
+      // Remove empty state
+      if (cartDrawer) {
+        cartDrawer.classList.remove('is-empty');
+      }
+      
+      // Fetch updated cart drawer content
+      fetch('/cart?view=drawer', {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+        .then(response => response.text())
+        .then(html => {
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = html;
+          
+          // Try different selectors for cart drawer content
+          const newDrawerContent = tempDiv.querySelector('#CartDrawer') || 
+                                 tempDiv.querySelector('.cart-drawer-content') ||
+                                 tempDiv.querySelector('cart-drawer');
+          
+          const existingDrawer = document.querySelector('#CartDrawer') || 
+                               document.querySelector('.cart-drawer-content') ||
+                               cartDrawer;
+          
+          if (newDrawerContent && existingDrawer) {
+            // Update drawer content
+            if (existingDrawer.id === 'CartDrawer') {
+              existingDrawer.innerHTML = newDrawerContent.innerHTML;
+            } else {
+              existingDrawer.replaceWith(newDrawerContent);
+            }
+          }
+          
+          // Open the cart drawer with multiple methods
+          openCartDrawer();
+        })
+        .catch(error => {
+          console.error('Error updating cart drawer:', error);
+          // Still try to open the drawer even if update fails
+          openCartDrawer();
+        });
+    } else {
+      // No cart drawer found, redirect to cart page
+      console.log('No cart drawer found, redirecting to cart page');
+      window.location.href = '/cart';
+    }
+  }
+
+  // Function to open cart drawer with multiple fallback methods
+  function openCartDrawer() {
+    const cartDrawer = document.querySelector('cart-drawer');
+    const cartDrawerAlternative = document.querySelector('#CartDrawer');
+    
+    // Method 1: Try the standard cart drawer open method
+    if (cartDrawer && typeof cartDrawer.open === 'function') {
+      cartDrawer.open();
+      return;
+    }
+    
+    // Method 2: Try triggering click on cart icon
+    const cartIcon = document.querySelector('#cart-icon-bubble, .cart-icon, [data-cart-drawer-toggle]');
+    if (cartIcon) {
+      cartIcon.click();
+      return;
+    }
+    
+    // Method 3: Try adding active class and overflow hidden
+    if (cartDrawer) {
+      cartDrawer.classList.add('active');
+      document.body.classList.add('overflow-hidden');
+      return;
+    }
+    
+    // Method 4: Try opening with CSS classes
+    if (cartDrawerAlternative) {
+      cartDrawerAlternative.classList.add('active', 'open');
+      document.body.classList.add('overflow-hidden');
+      return;
+    }
+    
+    // Method 5: Dispatch custom event that theme might be listening for
+    document.dispatchEvent(new CustomEvent('cart:open'));
+    
+    // Method 6: Try finding and triggering any cart toggle elements
+    const cartToggles = document.querySelectorAll('[data-cart-toggle], .cart-toggle, .js-cart-toggle');
+    if (cartToggles.length > 0) {
+      cartToggles[0].click();
+    }
+  }
+
+  // Optional: Success message function
+  function showSuccessMessage(message) {
+    // Create a simple toast notification
+    const toast = document.createElement('div');
+    toast.className = 'cart-success-toast';
+    toast.textContent = message;
+    toast.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 4px;
+      z-index: 10000;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Fade in
+    setTimeout(() => {
+      toast.style.opacity = '1';
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 300);
+    }, 3000);
+  }
+});
+
+// Additional helper function to manually trigger add to cart (can be called from other scripts)
+function addToCartWithVariant(variantId, quantity = 1) {
+  return fetch('/cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    body: JSON.stringify({
+      id: parseInt(variantId),
+      quantity: quantity
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(err => Promise.reject(err));
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Update cart count
+    document.dispatchEvent(new CustomEvent('cart:item-added', {
+      detail: { item: data }
+    }));
+    return data;
+  });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Sort Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sort",
+      "label": "Show sort dropdown",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product Selection"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product (optional)",
+          "info": "Choose a product from your store, or use custom options below"
+        },
+        {
+          "type": "text",
+          "id": "variant_id",
+          "label": "Variant ID (optional)",
+          "info": "Paste the variant ID you want to add. If empty, first available variant will be used."
+        },
+        {
+          "type": "header",
+          "content": "Custom Overrides"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Product Image",
+          "info": "Override the product's featured image with a custom image"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title",
+          "info": "Override the product title with custom text"
+        },
+        {
+          "type": "url",
+          "id": "custom_link",
+          "label": "Custom Link",
+          "info": "Override where the product links to (e.g., external site, custom page)"
+        },
+        {
+          "type": "number",
+          "id": "custom_price",
+          "label": "Custom Price",
+          "info": "Override the product price with a custom price"
+        },
+        {
+          "type": "text",
+          "id": "currency",
+          "label": "Currency Symbol",
+          "default": "$"
+        },
+        {
+          "type": "header",
+          "content": "Product Badge"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_badge",
+          "label": "Show product badge",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "New"
+        },
+        {
+          "type": "select",
+          "id": "badge_style",
+          "label": "Badge Style",
+          "options": [
+            {
+              "value": "new",
+              "label": "New (Black)"
+            },
+            {
+              "value": "sale",
+              "label": "Sale (Red)"
+            },
+            {
+              "value": "bestseller",
+              "label": "Bestseller (Orange)"
+            },
+            {
+              "value": "limited",
+              "label": "Limited (Purple)"
+            },
+            {
+              "value": "featured",
+              "label": "Featured (Blue)"
+            }
+          ],
+          "default": "new"
+        },
+        {
+          "type": "header",
+          "content": "Timeline & Ingredients"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_timeline",
+          "label": "Show timeline info",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "timeline_label",
+          "label": "Timeline Label",
+          "default": "Health improvement timeline"
+        },
+        {
+          "type": "text",
+          "id": "ingredients_label",
+          "label": "Ingredients Link Text",
+          "default": "View ingredients"
+        },
+        {
+          "type": "header",
+          "content": "Rating"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show rating",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 0.1,
+          "default": 4.6
+        },
+        {
+          "type": "number",
+          "id": "review_count",
+          "label": "Review Count",
+          "default": 1573
+        },
+        {
+          "type": "header",
+          "content": "Buttons"
+        },
+        {
+          "type": "text",
+          "id": "add_to_cart_text",
+          "label": "Add to Cart Button Text",
+          "default": "Add to cart"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_learn_more",
+          "label": "Show Learn More button",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "learn_more_text",
+          "label": "Learn More Button Text",
+          "default": "Learn More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,361 @@
+<!-- Promotional Banner Section -->
+<section class="cus-pro-promo-banner">
+  <div class="page-width cus-pro-promo-container">
+    <!-- Left side - Offer text -->
+    <div class="cus-pro-promo-offer">
+      <h2 class="cus-pro-promo-title">{{ section.settings.offer_text | default: 'Save up to 25%' }}</h2>
+      <p class="cus-pro-promo-subtitle">{{ section.settings.offer_subtitle | default: 'with personalised bundles' }}</p>
+    </div>
+    
+    <!-- Center - Countdown timer -->
+    <div class="cus-pro-countdown-timer" data-end-date="{{ section.settings.countdown_end_date }}">
+      <div class="cus-pro-timer-item">
+        <span class="cus-pro-timer-number" id="days">{{ section.settings.days | default: '191' }}</span>
+        <span class="cus-pro-timer-label">Days</span>
+      </div>
+      <div class="cus-pro-timer-separator"> </div>
+      <div class="cus-pro-timer-item">
+        <span class="cus-pro-timer-number" id="hours">{{ section.settings.hours | default: '12' }}</span>
+        <span class="cus-pro-timer-label">Hours</span>
+      </div>
+      <div class="cus-pro-timer-separator"> </div>
+      <div class="cus-pro-timer-item">
+        <span class="cus-pro-timer-number" id="minutes">{{ section.settings.minutes | default: '05' }}</span>
+        <span class="cus-pro-timer-label">Minutes</span>
+      </div>
+      <div class="cus-pro-timer-separator"> </div>
+      <div class="cus-pro-timer-item">
+        <span class="cus-pro-timer-number" id="seconds">{{ section.settings.seconds | default: '20' }}</span>
+        <span class="cus-pro-timer-label">Seconds</span>
+      </div>
+    </div>
+    
+    <!-- Right side - CTA and reviews -->
+    <div class="cus-pro-promo-cta">
+      <a href="{{ section.settings.cta_url | default: '/collections/all' }}" class="cus-pro-cta-button">
+        {{ section.settings.cta_text | default: 'Shop Now' }}
+      </a>
+      <div class="cus-pro-reviews-section">
+        <div class="cus-pro-stars">
+          {% for i in (1..5) %}
+            <span class="cus-pro-star"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="21" viewBox="0 0 512 512" fill="white">
+              <path d="M256 394.6l-148.7 90.7 39.8-172.4-133.1-115.2 175.4-15.1L256 30.4l66.6 152.2 175.4 15.1-133.1 115.2 39.8 172.4z"/>
+            </svg></span>
+          {% endfor %}
+        </div>
+        <span class="cus-pro-review-count">({{ section.settings.review_count | default: '141' }} reviews)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.cus-pro-promo-banner {
+  background: #001E5F;
+  padding: 20px 0;
+  color: white;
+}
+
+.cus-pro-promo-container {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.cus-pro-promo-offer {
+  flex: 1;
+}
+
+.cus-pro-promo-title {
+  font-size: 36px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  line-height: 44px;
+  color: #fff;
+}
+
+.cus-pro-promo-subtitle {
+  font-size: 20px;
+  margin: 0;
+  opacity: 0.9;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.cus-pro-countdown-timer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+.cus-pro-timer-item {
+  text-align: center;
+  min-width: 60px;
+}
+
+.cus-pro-timer-number {
+  display: block;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.cus-pro-timer-label {
+  display: block;
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+.cus-pro-timer-separator {
+ border: 1px solid #fff;
+  height: 40px;
+}
+
+.cus-pro-promo-cta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.cus-pro-cta-button {
+  background: white;
+  color: #1e3a8a;
+  padding: 6px 40px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+  margin-right: 75px;
+  line-height: 24px;
+}
+
+.cus-pro-cta-button:hover {
+  background: transparent;
+  color: white;
+  border-color: white;
+}
+
+.cus-pro-reviews-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cus-pro-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.cus-pro-star {
+  color: #fff;
+  font-size: 5px;
+}
+
+.cus-pro-review-count {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cus-pro-promo-container {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    height: 360px;
+  }
+  .cus-pro-cta-button {
+  margin-right: 0;
+}
+  .cus-pro-promo-cta {
+    align-items: center;
+  }
+
+  .cus-pro-promo-offer {
+    flex: 1;
+    margin-top: 10px;
+}
+  .cus-pro-promo-title {
+    font-size: 5rem;
+  }
+  .cus-pro-promo-subtitle {
+    font-size: 2.4rem;
+}
+  .cus-pro-timer-number {
+    font-size: 7rem;
+  }
+  .cus-pro-timer-separator {
+    border: 1px solid #fff;
+    height: 70px;
+}
+  .cus-pro-timer-label {
+    display: block;
+    font-size: 2rem;
+    text-transform: capitalize;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+  .cus-pro-countdown-timer {
+    gap: 32px;
+  }
+  
+  .cus-pro-timer-item {
+    min-width: 50px;
+  }
+  .cus-pro-review-count {
+  font-size: 1.6rem;
+  opacity: 0.9;
+}
+  .cus-pro-star {
+  color: #fff;
+  font-size: 10px;
+}
+}
+
+@media (max-width: 480px) {
+  .cus-pro-promo-title {
+    font-size: 3.2rem;
+  }
+  .cus-pro-promo-subtitle {
+    font-size: 2.1rem;
+}
+   .cus-pro-promo-offer {
+    flex: 1;
+    margin-top: 50px;
+}
+  .cus-pro-timer-number {
+    font-size: 3.2rem;
+  }
+  
+  .cus-pro-timer-label {
+    font-size: 1.6rem;
+  }
+  
+  .cus-pro-countdown-timer {
+    gap: 20px;
+  }
+  
+  .cus-pro-timer-item {
+    min-width: 40px;
+  }
+  .cus-pro-timer-separator {
+   border: 1px solid #fff;
+   height: 50px;
+}
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const countdownElement = document.querySelector('.cus-pro-countdown-timer');
+  const endDate = countdownElement.getAttribute('data-end-date');
+  
+  // If no end date is set, use the current values as static
+  if (!endDate) return;
+  
+  const countdownDate = new Date(endDate).getTime();
+  
+  const timer = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+    
+    if (distance < 0) {
+      clearInterval(timer);
+      return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  }, 1000);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Promotional Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "offer_text",
+      "label": "Offer Text",
+      "default": "Save up to 25%"
+    },
+    {
+      "type": "text",
+      "id": "offer_subtitle",
+      "label": "Offer Subtitle",
+      "default": "with personalised bundles"
+    },
+    {
+      "type": "text",
+      "id": "days",
+      "label": "Days",
+      "default": "191"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Hours",
+      "default": "12"
+    },
+    {
+      "type": "text",
+      "id": "minutes",
+      "label": "Minutes",
+      "default": "05"
+    },
+    {
+      "type": "text",
+      "id": "seconds",
+      "label": "Seconds",
+      "default": "20"
+    },
+    {
+      "type": "text",
+      "id": "countdown_end_date",
+      "label": "Countdown End Date",
+      "info": "Format: YYYY-MM-DD HH:MM:SS (leave empty for static timer)"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review Count",
+      "default": "141"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotional Banner"
+    }
+  ]
+}
+{% endschema %}

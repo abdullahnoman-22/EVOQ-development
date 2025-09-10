@@ -1,0 +1,920 @@
+{% comment %}
+  Skincare Testimonials Section with Interactive Before/After Image Comparison
+  Usage: Include this in your product template or as a section
+{% endcomment %}
+
+<div class="cus-tst-testimonials-section" id="section-{{ section.id }}">
+  <div class="page-width cus-tst-container">
+    <div class="cus-tst-testimonials-header">
+      <h2 class="cus-tst-testimonials-title">{{ section.settings.main_title | default: 'Radiant skin at any age' }}</h2>
+      <p class="cus-tst-testimonials-subtitle">{{ section.settings.subtitle | default: 'Clinically shown to diminish fine lines and wrinkles in just 28 days' }}</p>
+    </div>
+
+    <div class="cus-tst-testimonials-nav">
+      {% for block in section.blocks %}
+        {% if block.type == 'testimonial' %}
+          <button class="cus-tst-testimonial-tab {% if forloop.first %}cus-tst-active{% endif %}" 
+                  data-testimonial="{{ forloop.index0 }}">
+            <span class="cus-tst-testimonial-name">{{ block.settings.name }}</span>
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="cus-tst-testimonials-content">
+      {% for block in section.blocks %}
+        {% if block.type == 'testimonial' %}
+          <div class="cus-tst-testimonial-item {% if forloop.first %}cus-tst-active{% endif %}" 
+               data-testimonial="{{ forloop.index0 }}">
+            
+            <!-- Interactive Before/After Image Comparison -->
+            <div class="cus-tst-image-comparison-wrapper">
+              <div class="cus-tst-image-comparison-container" id="imageComparison-{{ section.id }}-{{ forloop.index0 }}">
+                
+                <!-- Before Image (Full Width) -->
+                <div class="cus-tst-image-before">
+                  {% if block.settings.before_image %}
+                    <img src="{{ block.settings.before_image | img_url: '800x' }}" 
+                         alt="{{ block.settings.name }} before" 
+                         loading="lazy"
+                         onload="checkImagesLoaded('{{ section.id }}-{{ forloop.index0 }}')"
+                         class="cus-tst-comparison-image">
+                  {% else %}
+                    <div class="cus-tst-placeholder-image">
+                      <span>Before Image</span>
+                    </div>
+                  {% endif %}
+                </div>
+                
+                <!-- After Image (Clipped) -->
+                <div class="cus-tst-image-after">
+                  {% if block.settings.after_image %}
+                    <img src="{{ block.settings.after_image | img_url: '800x' }}" 
+                         alt="{{ block.settings.name }} after" 
+                         loading="lazy"
+                         onload="checkImagesLoaded('{{ section.id }}-{{ forloop.index0 }}')"
+                         class="cus-tst-comparison-image">
+                  {% else %}
+                    <div class="cus-tst-placeholder-image">
+                      <span>After Image</span>
+                    </div>
+                  {% endif %}
+                </div>
+                
+                <!-- Interactive Slider Control -->
+                <div class="cus-tst-slider-control">
+                  <div class="cus-tst-slider-handle">
+                    <div class="cus-tst-slider-circle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512" fill="currentColor">
+                        <rect x="96" y="64" width="32" height="384" />
+                        <rect x="240" y="64" width="32" height="384" />
+                        <rect x="384" y="64" width="32" height="384" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="cus-tst-slider-line"></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial Text -->
+            <div class="cus-tst-testimonial-text">
+              <h3 class="cus-tst-testimonial-title">{{ block.settings.name }}</h3>
+              {% if block.settings.subtitle != blank %}
+                <p class="cus-tst-testimonial-subtitle">{{ block.settings.subtitle }}</p>
+              {% endif %}
+              <div class="cus-tst-testimonial-description">
+                {{ block.settings.testimonial_text | newline_to_br }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.button_text != blank and section.settings.button_url != blank %}
+      <div class="cus-tst-section-footer cus-tst-text-center">
+        <a href="{{ section.settings.button_url }}" class="cus-tst-btn cus-tst-btn-primary">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.cus-tst-testimonials-section {
+  padding: {{ section.settings.padding_top | default: 60 }}px 0 {{ section.settings.padding_bottom | default: 60 }}px;
+  background-color: {{ section.settings.background_color | default: '#f8f9fa' }};
+}
+
+.cus-tst-container {
+  margin: 0 auto;
+}
+
+.cus-tst-testimonials-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cus-tst-testimonials-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #001E5F;
+  margin-bottom: 10px;
+  font-family: 'Inter' !important;
+}
+
+.cus-tst-testimonials-subtitle {
+  font-size: 20px;
+  color: #344054;
+  margin: 0;
+  font-family: 'Inter' !important;
+  font-weight: 400;
+}
+
+.cus-tst-testimonials-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.cus-tst-testimonial-tab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 20px;
+  background: white;
+  border: 2px solid #e1e8ed;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cus-tst-testimonial-tab:hover,
+.cus-tst-testimonial-tab.cus-tst-active {
+  background: #062662;
+  border-color: #062662;
+  color: white;
+}
+
+.cus-tst-testimonials-content {
+  position: relative;
+}
+
+.cus-tst-testimonial-item {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.cus-tst-testimonial-item.cus-tst-active {
+  display: grid;
+}
+
+/* Interactive Image Comparison Styles */
+.cus-tst-image-comparison-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.cus-tst-image-comparison-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cus-tst-image-comparison-container.loaded {
+  opacity: 1;
+}
+
+.cus-tst-image-comparison-container:active {
+  cursor: grabbing;
+}
+
+.cus-tst-image-before,
+.cus-tst-image-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cus-tst-comparison-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  /* Force GPU acceleration for smoother rendering */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.cus-tst-image-after {
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+  /* Remove transition for smoother real-time updates */
+  will-change: clip-path;
+  transform: translateZ(0);
+}
+
+.cus-tst-placeholder-image {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1.1rem;
+  border-radius: 12px;
+}
+
+.cus-tst-slider-control {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+  will-change: left;
+  transform: translateZ(0);
+}
+
+.cus-tst-slider-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: {{ section.settings.slider_color | default: '#ffffff' }};
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  opacity: 0.8;
+}
+
+.cus-tst-slider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: all;
+  cursor: grab;
+  z-index: 4;
+}
+
+.cus-tst-slider-handle:active {
+  cursor: grabbing;
+}
+
+.cus-tst-slider-circle {
+  width: 50px;
+  height: 50px;
+  background: {{ section.settings.slider_color | default: '#ffffff' }};
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.cus-tst-slider-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.cus-tst-slider-circle svg {
+  width: 16px;
+  height: 16px;
+  color: {{ section.settings.slider_icon_color | default: '#666666' }};
+}
+
+/* Testimonial Text */
+.cus-tst-testimonial-text {
+    height: 100%;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cus-tst-testimonial-title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #101828;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  line-height: 38px;
+  font-family: 'Inter' !important;
+}
+
+.cus-tst-testimonial-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #667085;
+  margin-bottom: 10px;
+  font-family: 'Inter' !important;
+  margin-top: 0;
+}
+
+.cus-tst-testimonial-description {
+  font-size: 14px;
+  line-height: 20px;
+  color: #344054;
+  font-weight: 400;
+}
+
+/* Button Styles */
+.cus-tst-section-footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.cus-tst-text-center {
+  text-align: center;
+}
+
+.cus-tst-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
+
+.cus-tst-btn-primary {
+  background-color: {{ section.settings.button_color | default: '#3498db' }};
+  color: {{ section.settings.button_text_color | default: '#ffffff' }};
+}
+
+.cus-tst-btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Tablet Design */
+@media (max-width: 1024px) {
+  .cus-tst-image-comparison-container {
+    height: 400px;
+  }
+  
+  .cus-tst-testimonials-title {
+    font-size: 2.2rem;
+  }
+  
+  .cus-tst-testimonial-item {
+    gap: 30px;
+  }
+  
+  .cus-tst-slider-circle {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Mobile Design */
+@media (max-width: 768px) {
+  .cus-tst-testimonials-section {
+    padding: {{ section.settings.padding_top | default: 60 | divided_by: 1.5 }}px 0 {{ section.settings.padding_bottom | default: 60 | divided_by: 1.5 }}px;
+  }
+  
+  .cus-tst-container {
+    padding: 0 15px;
+  }
+  
+  .cus-tst-testimonials-title {
+    font-size: 36px;
+  }
+  
+  .cus-tst-testimonials-nav {
+    gap: 8px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    justify-content: flex-start;
+  }
+   
+  .cus-tst-testimonial-tab {
+    padding: 10px 16px;
+    font-size: 20px;
+  }
+  
+  .cus-tst-testimonial-item {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .cus-tst-image-comparison-container {
+    height: 350px;
+    border-radius: 8px;
+  }
+  
+  .cus-tst-comparison-image {
+    border-radius: 8px;
+  }
+  
+  .cus-tst-slider-circle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .cus-tst-slider-circle svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .cus-tst-testimonial-text {
+    text-align: center;
+  }
+  
+  .cus-tst-testimonial-title {
+    font-size: 24px;
+  }
+  
+  .cus-tst-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Small Mobile Design */
+@media (max-width: 480px) {
+  
+  .cus-tst-image-comparison-container {
+    height: 300px;
+    border-radius: 6px;
+  }
+  
+  .cus-tst-comparison-image {
+    border-radius: 6px;
+  }
+  
+  .cus-tst-slider-circle {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .cus-tst-slider-circle svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .cus-tst-slider-line {
+    width: 2px;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .cus-tst-slider-handle {
+    padding: 10px;
+  }
+  
+  .cus-tst-slider-circle {
+    transform: scale(1.1);
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .cus-tst-image-after {
+    transition: none;
+  }
+  
+  .cus-tst-slider-circle {
+    transition: none;
+  }
+  
+  .cus-tst-btn {
+    transition: none;
+  }
+  
+  .cus-tst-image-comparison-container {
+    transition: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.cus-tst-slider-handle:focus {
+  outline: 2px solid {{ section.settings.slider_color | default: '#ffffff' }};
+  outline-offset: 2px;
+}
+
+.cus-tst-slider-handle:focus .cus-tst-slider-circle {
+  box-shadow: 0 0 0 3px rgba(0, 100, 200, 0.3);
+}
+</style>
+
+<script>
+// Global variable to track loaded images per section
+window.cusImageComparisonLoaded = window.cusImageComparisonLoaded || {};
+
+function checkImagesLoaded(sectionId) {
+  const slider = document.getElementById(`imageComparison-${sectionId}`);
+  if (!slider) return;
+  
+  const images = slider.querySelectorAll('.cus-tst-comparison-image');
+  let loadedCount = 0;
+  
+  images.forEach(img => {
+    if (img.complete && img.naturalHeight !== 0) {
+      loadedCount++;
+    }
+  });
+  
+  // Only initialize when both images are loaded
+  if (loadedCount === images.length) {
+    slider.classList.add('loaded');
+    if (!window.cusImageComparisonLoaded[sectionId]) {
+      initializeCusSlider(sectionId);
+      window.cusImageComparisonLoaded[sectionId] = true;
+    }
+  }
+}
+
+function initializeCusSlider(sectionId) {
+  const slider = document.getElementById(`imageComparison-${sectionId}`);
+  if (!slider) return;
+  
+  const afterImage = slider.querySelector('.cus-tst-image-after');
+  const sliderControl = slider.querySelector('.cus-tst-slider-control');
+  const sliderHandle = slider.querySelector('.cus-tst-slider-handle');
+  
+  let isDragging = false;
+  let currentPosition = 50; // Start at 50%
+  let animationId = null;
+  
+  function updateSlider(percentage) {
+    // Cancel any pending animation frame
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+    
+    animationId = requestAnimationFrame(() => {
+      // Clamp percentage between 0 and 100
+      percentage = Math.max(0, Math.min(100, percentage));
+      currentPosition = percentage;
+      
+      // Update clip-path for after image using transform for better performance
+      afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+      
+      // Update slider position
+      sliderControl.style.left = `${percentage}%`;
+      
+      // Update ARIA value
+      sliderHandle.setAttribute('aria-valuenow', Math.round(percentage));
+    });
+  }
+  
+  function getPercentageFromEvent(event) {
+    const rect = slider.getBoundingClientRect();
+    const clientX = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+    const x = clientX - rect.left;
+    return (x / rect.width) * 100;
+  }
+  
+  // Throttle function for better performance
+  function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    }
+  }
+  
+  // Mouse events
+  slider.addEventListener('mousedown', function(event) {
+    isDragging = true;
+    slider.classList.add('dragging');
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  });
+  
+  const throttledMouseMove = throttle(function(event) {
+    if (!isDragging) return;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+  }, 16); // ~60fps
+  
+  document.addEventListener('mousemove', throttledMouseMove);
+  
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+    slider.classList.remove('dragging');
+  });
+  
+  // Enhanced touch events for mobile
+  let touchStartX = 0;
+  
+  slider.addEventListener('touchstart', function(event) {
+    isDragging = true;
+    slider.classList.add('dragging');
+    touchStartX = event.touches[0].clientX;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  }, { passive: false });
+  
+  const throttledTouchMove = throttle(function(event) {
+    if (!isDragging) return;
+    const percentage = getPercentageFromEvent(event);
+    updateSlider(percentage);
+    event.preventDefault();
+  }, 16); // ~60fps
+  
+  document.addEventListener('touchmove', throttledTouchMove, { passive: false });
+  
+  document.addEventListener('touchend', function(event) {
+    isDragging = false;
+    slider.classList.remove('dragging');
+    event.preventDefault();
+  });
+  
+  // Prevent scrolling when interacting with slider on mobile
+  slider.addEventListener('touchmove', function(event) {
+    if (isDragging) {
+      event.preventDefault();
+    }
+  }, { passive: false });
+  
+  // Keyboard accessibility
+  sliderHandle.addEventListener('keydown', function(event) {
+    let step = 5;
+    // Smaller steps on mobile for finer control
+    if (window.innerWidth <= 768) {
+      step = 2;
+    }
+    
+    switch(event.key) {
+      case 'ArrowLeft':
+        updateSlider(currentPosition - step);
+        event.preventDefault();
+        break;
+      case 'ArrowRight':
+        updateSlider(currentPosition + step);
+        event.preventDefault();
+        break;
+      case 'Home':
+        updateSlider(0);
+        event.preventDefault();
+        break;
+      case 'End':
+        updateSlider(100);
+        event.preventDefault();
+        break;
+    }
+  });
+  
+  // Make handle focusable with proper ARIA attributes
+  sliderHandle.setAttribute('tabindex', '0');
+  sliderHandle.setAttribute('role', 'slider');
+  sliderHandle.setAttribute('aria-label', 'Image comparison slider');
+  sliderHandle.setAttribute('aria-valuemin', '0');
+  sliderHandle.setAttribute('aria-valuemax', '100');
+  sliderHandle.setAttribute('aria-valuenow', currentPosition);
+  
+  // Handle resize events
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      updateSlider(currentPosition);
+    }, 100);
+  });
+  
+  // Initialize slider position
+  updateSlider(currentPosition);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize tabs functionality
+  const tabs = document.querySelectorAll('.cus-tst-testimonial-tab');
+  const testimonials = document.querySelectorAll('.cus-tst-testimonial-item');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetIndex = this.dataset.testimonial;
+      
+      // Remove active class from all tabs and testimonials
+      tabs.forEach(t => t.classList.remove('cus-tst-active'));
+      testimonials.forEach(t => t.classList.remove('cus-tst-active'));
+      
+      // Add active class to clicked tab and corresponding testimonial
+      this.classList.add('cus-tst-active');
+      const activeTestimonial = document.querySelector(`[data-testimonial="${targetIndex}"].cus-tst-testimonial-item`);
+      activeTestimonial.classList.add('cus-tst-active');
+      
+      // Initialize slider for the active testimonial
+      initializeCusSlider(`{{ section.id }}-${targetIndex}`);
+    });
+  });
+  
+  // Check if images are already loaded
+  const sliders = document.querySelectorAll('[id^="imageComparison-{{ section.id }}-"]');
+  sliders.forEach(slider => {
+    const sectionId = slider.id.replace('imageComparison-', '');
+    checkImagesLoaded(sectionId);
+  });
+  
+  // Initialize slider for the first active testimonial
+  initializeCusSlider('{{ section.id }}-0');
+});
+</script>
+
+{% schema %}
+{
+  "name": "Skincare Testimonials",
+  "tag": "section",
+  "class": "section-testimonials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "Radiant skin at any age"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Clinically shown to diminish fine lines and wrinkles in just 28 days"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#5a6c7d"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Active Tab Color",
+      "default": "#3498db"
+    },
+    {
+      "type": "color",
+      "id": "slider_color",
+      "label": "Slider Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "slider_icon_color",
+      "label": "Slider Icon Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#3498db"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Age 35, Mother of 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Before Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "After Image"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial Text",
+          "default": "Add customer testimonial text here..."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skincare Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Caitlin B.",
+            "subtitle": "Age 35, Mother of 3",
+            "testimonial_text": "As a mother of 3 children, has lost over 14kg in total. She wants to show her kids that it's possible to be a busy parent and still take care of oneself. Caitlin is very happy with the results she has achieved again. The shakes she uses are described as delicious and filling, and they do not affect her milk supply (as she is exclusively breastfeeding her 5-month-old child). Most importantly, the shakes have been effective for Caitlin."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

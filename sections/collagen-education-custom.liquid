@@ -1,0 +1,621 @@
+{% comment %}
+  Collagen Education Section
+  Save as: sections/collagen-education.liquid
+{% endcomment %}
+
+<div class="page-width collagen-education-wrapper section-{{ section.id }}-padding">
+  <div class="collagen-education">
+    <div class="education-header">
+      <h3 class="education-title">
+        {{ section.settings.main_title | default: "Fight back against ageing & oxidative damage" }}<br>
+        <span class="title-highlight">{{ section.settings.sub_title | default: "with hydrolysed collagen peptides" }}</span>
+      </h3>
+    </div>
+
+    <!-- Desktop Layout -->
+    <div class="education-content desktop-layout">
+      <div class="questions-sidebar">
+        {% for block in section.blocks %}
+          <div class="question-item {% if forloop.first %}active{% endif %}" data-question="{{ forloop.index }}">
+            <div class="question-number">{{ forloop.index | prepend: '0' }}</div>
+            <div class="question-text">{{ block.settings.question }}</div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="answer-content">
+        {% for block in section.blocks %}
+          <div class="answer {% if forloop.first %}active{% endif %}" data-answer="{{ forloop.index }}">
+            {{ block.settings.answer }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Mobile Accordion Layout -->
+    <div class="education-content mobile-layout">
+      {% for block in section.blocks %}
+        <div class="accordion-item {% if forloop.first %}active{% endif %}">
+          <div class="accordion-header" data-accordion="{{ forloop.index }}">
+            <div class="question-number">{{ forloop.index | prepend: '0' }}</div>
+            <div class="question-text">{{ block.settings.question }}</div>
+            <div class="accordion-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="accordion-content" data-accordion-content="{{ forloop.index }}">
+            <div class="accordion-answer">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.collagen-education-wrapper {
+  margin: 0 auto;
+}
+
+.collagen-education {
+  background: linear-gradient(135deg, {{ section.settings.background_gradient_start | default: '#f8fafc' }} 0%, {{ section.settings.background_gradient_end | default: '#e2e8f0' }} 100%);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.education-header {
+  background: linear-gradient(135deg, {{ section.settings.header_bg_start | default: '#1e293b' }} 0%, {{ section.settings.header_bg_end | default: '#334155' }} 100%);
+  padding: 40px;
+  text-align: center;
+  color: {{ section.settings.header_text_color | default: '#ffffff' }};
+}
+
+.education-title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 44px;
+    margin: 0;
+}
+
+.title-highlight {
+  color: {{ section.settings.highlight_color | default: '#60a5fa' }};
+  font-weight: 600;
+}
+
+/* Desktop Layout */
+.mobile-layout {
+  display: none;
+}
+
+.desktop-layout {
+  display: flex;
+  gap: 20px;
+  background: #fff;
+}
+
+.questions-sidebar {
+  background: {{ section.settings.sidebar_bg | default: '#1e293b' }};
+  width: 350px;
+  padding: 0;
+}
+
+.question-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid {{ section.settings.border_color | default: '#334155' }};
+  color: {{ section.settings.question_text_color | default: '#94a3b8' }};
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.question-item:hover,
+.question-item.active {
+  background: {{ section.settings.question_hover_bg | default: '#334155' }};
+  color: {{ section.settings.question_active_color | default: '#ffffff' }};
+}
+
+.question-item.active {
+  background: {{ section.settings.question_active_bg | default: '#475569' }};
+  border-radius: 15px;
+}
+
+.question-number {
+  background: {{ section.settings.highlight_color | default: '#60a5fa' }};
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 20px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.question-item.active .question-number, 
+.question-item:hover .question-number {
+  background: #fff;
+  color: #101828;
+}
+
+.question-text {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.answer-content {
+  flex: 1;
+  padding: 20px;
+  background: {{ section.settings.answer_bg | default: '#E4E7EC' }};
+  position: relative;
+  border: 1px solid #ddd;
+  height: fit-content;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+}
+
+.answer {
+  display: none;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.answer.active {
+  display: block;
+}
+
+.answer p {
+  font-size: 18px;
+  line-height: 32px;
+  margin-bottom: 20px;
+  font-weight: 400;
+  color: {{ section.settings.answer_text_color | default: '#374151' }};
+}
+
+.answer p:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile Accordion Styles */
+.accordion-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  background: {{ section.settings.sidebar_bg | default: '#1e293b' }};
+  color: {{ section.settings.question_text_color | default: '#94a3b8' }};
+  transition: all 0.3s ease;
+}
+
+.accordion-item.active .accordion-header {
+  background: {{ section.settings.question_active_bg | default: '#475569' }};
+  color: {{ section.settings.question_active_color | default: '#ffffff' }};
+}
+
+.accordion-header .question-number {
+  margin-right: 15px;
+}
+
+.accordion-item.active .accordion-header .question-number {
+  background: #fff;
+  color: #101828;
+}
+
+.accordion-header .question-text {
+  flex: 1;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.accordion-icon {
+  margin-left: 15px;
+  transition: transform 0.3s ease;
+  color: currentColor;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 20px;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 1000px;
+  padding: 0 20px 20px 20px;
+}
+
+.accordion-answer {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.accordion-answer p {
+  font-size: 16px;
+  line-height: 28px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  color: {{ section.settings.answer_text_color | default: '#374151' }};
+}
+
+.accordion-answer p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .collagen-education-wrapper {
+    padding: 0 15px;
+  }
+
+  .accordion-item {
+  background: unset;
+  border: unset;
+  border-radius: unset;
+  }
+
+  .education-title {
+    font-size: 30px;
+    line-height: 36px;
+  }
+  
+  .education-header {
+    padding: 30px 20px;
+  }
+  
+  .desktop-layout {
+    display: none;
+  }
+  
+  .mobile-layout {
+    display: block;
+    padding: 20px;
+    background: #fdfdfd;
+  }
+  
+  .accordion-header .question-text {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .accordion-header .question-number {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    margin-right: 12px;
+  }
+  .accordion-header {
+    border-radius: 16px;
+    border: 1px solid #ddd;
+  }
+  .accordion-answer {
+    border: 1px solid #ddd;
+  }
+}
+
+@media (max-width: 480px) {
+  .education-title {
+    font-size: 26px;
+    line-height: 32px;
+  }
+  
+  .education-header {
+    padding: 25px 15px;
+  }
+  
+  .mobile-layout {
+    padding: 15px;
+  }
+  
+  .accordion-header {
+    padding: 15px;
+    border-radius: 16px;
+  }
+  
+  .accordion-content {
+    padding: 0 15px;
+  }
+  
+  .accordion-item.active .accordion-content {
+    padding: 0;
+  }
+  
+  .accordion-answer {
+    padding: 15px;
+    margin-top: 12px;
+  }
+  
+  .accordion-header .question-text {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  
+  .accordion-header .question-number {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+    margin-right: 10px;
+  }
+  
+  .accordion-answer p {
+    font-size: 15px;
+    line-height: 26px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  
+  // Desktop functionality
+  const questionItems = document.querySelectorAll('.section-' + sectionId + '-padding .question-item');
+  const answers = document.querySelectorAll('.section-' + sectionId + '-padding .answer');
+  
+  questionItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const questionNumber = this.getAttribute('data-question');
+      
+      // Remove active class from all questions and answers
+      questionItems.forEach(q => q.classList.remove('active'));
+      answers.forEach(a => a.classList.remove('active'));
+      
+      // Add active class to clicked question and corresponding answer
+      this.classList.add('active');
+      document.querySelector('.section-' + sectionId + '-padding [data-answer="' + questionNumber + '"]').classList.add('active');
+    });
+  });
+  
+  // Mobile accordion functionality
+  const accordionHeaders = document.querySelectorAll('.section-' + sectionId + '-padding .accordion-header');
+  const accordionItems = document.querySelectorAll('.section-' + sectionId + '-padding .accordion-item');
+  
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', function() {
+      const accordionNumber = this.getAttribute('data-accordion');
+      const accordionItem = this.closest('.accordion-item');
+      
+      // Check if this accordion is currently active
+      const isActive = accordionItem.classList.contains('active');
+      
+      // Close all accordions
+      accordionItems.forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // If it wasn't active, open this one
+      if (!isActive) {
+        accordionItem.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Collagen Education",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "Fight back against ageing & oxidative damage"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub Title",
+      "default": "with hydrolysed collagen peptides"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#60a5fa"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_start",
+      "label": "Background Gradient Start",
+      "default": "#f8fafc"
+    },
+    {
+      "type": "color",
+      "id": "background_gradient_end",
+      "label": "Background Gradient End",
+      "default": "#e2e8f0"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_start",
+      "label": "Header Background Start",
+      "default": "#1e293b"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_end",
+      "label": "Header Background End",
+      "default": "#334155"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_bg",
+      "label": "Sidebar Background",
+      "default": "#1e293b"
+    },
+    {
+      "type": "color",
+      "id": "answer_bg",
+      "label": "Answer Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "answer_text_color",
+      "label": "Answer Text Color",
+      "default": "#374151"
+    },
+    {
+      "type": "color",
+      "id": "question_text_color",
+      "label": "Question Text Color",
+      "default": "#94a3b8"
+    },
+    {
+      "type": "color",
+      "id": "question_active_color",
+      "label": "Active Question Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "question_hover_bg",
+      "label": "Question Hover Background",
+      "default": "#334155"
+    },
+    {
+      "type": "color",
+      "id": "question_active_bg",
+      "label": "Active Question Background",
+      "default": "#475569"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#334155"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question & Answer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What are hydrolysed collagen peptides?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Remember what we said about the structure of a single collagen protein? That's right: it's a triple helix of 3 amino acid chains. But what we didn't mention was that each of these chains is over 1,400 amino acids long. Meaning? Collagen is a HUGE (yes, all-caps) molecule. And due to its size, your body may have difficulties absorbing collagen.</p><p>This, in turn, limits the extent of wellness benefits you'd see from collagen supplementation. So how can we change that? Answer: using hydrolysis to make collagen molecules smaller.</p><p>This process uses water and enzymes to break the chemical bonds between proteins chopping collagen molecules into shorter, easily absorbed amino acids. And there you have it: hydrolysed collagen peptides.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collagen Education",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "What are hydrolysed collagen peptides?",
+            "answer": "<p>Remember what we said about the structure of a single collagen protein? That's right: it's a triple helix of 3 amino acid chains. But what we didn't mention was that each of these chains is over 1,400 amino acids long. Meaning? Collagen is a HUGE (yes, all-caps) molecule. And due to its size, your body may have difficulties absorbing collagen.</p><p>This, in turn, limits the extent of wellness benefits you'd see from collagen supplementation. So how can we change that? Answer: using hydrolysis to make collagen molecules smaller.</p><p>This process uses water and enzymes to break the chemical bonds between proteins chopping collagen molecules into shorter, easily absorbed amino acids. And there you have it: hydrolysed collagen peptides.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Do they even get to where they need to be?",
+            "answer": "<p>One of the most common concerns about collagen supplementation is bioavailability - whether the collagen peptides actually reach the tissues where they're needed most, like your skin, joints, and bones.</p><p>The good news is that hydrolysed collagen peptides are specifically designed to overcome this challenge. Their smaller molecular size allows for better absorption through the intestinal wall and into the bloodstream.</p><p>Research shows that these peptides can stimulate your body's own collagen production by signaling to fibroblasts - the cells responsible for creating new collagen in your tissues.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Well, where's the proof?",
+            "answer": "<p>Clinical studies have demonstrated significant improvements in skin elasticity, hydration, and wrinkle reduction after 8-12 weeks of consistent collagen peptide supplementation.</p><p>Joint health studies show reduced joint pain and improved mobility in both athletes and individuals with joint concerns. Bone density studies indicate improved bone strength markers in postmenopausal women.</p><p>The evidence consistently points to hydrolysed collagen peptides being an effective supplement for supporting your body's natural collagen production and maintaining healthy aging.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

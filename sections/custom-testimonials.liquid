@@ -1,0 +1,374 @@
+<!-- Testimonials Section -->
+<div class="cus-t-testimonials-section">
+  <div class="page-width cus-container cus-t-cus-container">
+    <div class="cus-t-testimonials-header">
+      <h2 class="cus-t-testimonials-title">{{ section.settings.title | default: 'Recommended by top performers and nutrition experts' }}</h2>
+      <p class="cus-t-testimonials-subtitle">{{ section.settings.subtitle | default: 'Discover the best vegan collagen supplements with effectiveness & taste!' }}</p>
+    </div>
+    
+    <div class="cus-t-testimonials-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'testimonial' %}
+          <div class="cus-t-testimonial-card" {{ block.shopify_attributes }}>
+            <div class="cus-t-testimonial-image">
+              {% if block.settings.image %}
+                <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.name }}" loading="lazy">
+              {% else %}
+                <div class="cus-t-testimonial-placeholder"></div>
+              {% endif %}
+            </div>
+            
+            <div class="cus-t-testimonial-content">
+              <p class="cus-t-testimonial-text">{{ block.settings.testimonial_text }}</p>
+              
+              <div class="cus-t-testimonial-author">
+                <h4 class="cus-t-author-name">
+                  {{ block.settings.name }}
+                  {% if block.settings.verified %}
+                    <span class="cus-t-verified-badge">✓</span>
+                  {% endif %}
+                </h4>
+                <p class="cus-t-author-title">{{ block.settings.title }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.cus-t-testimonials-section {
+  padding: 0;
+}
+
+.cus-t-cus-container {
+  margin: 0 auto;
+}
+
+.cus-t-testimonials-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.cus-t-testimonials-title {
+  font-size: 40px;
+  font-weight: 600;
+  color: #001F5F;
+  margin-bottom: 15px;
+  line-height: 120%;
+  text-align: start;
+  width: 70%;
+  margin-top: 0;
+}
+
+.cus-t-testimonials-subtitle {
+  font-size: 16px;
+  color: #2D2D2E;
+  margin: 0 auto;
+  text-align: start;
+  font-weight: 400;
+  line-height: 22.4px;
+}
+
+.cus-t-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.cus-t-testimonial-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cus-t-testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.cus-t-testimonial-image {
+  margin-bottom: 20px;
+}
+
+.cus-t-testimonial-image img {
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+}
+
+.cus-t-testimonial-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cus-t-testimonial-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+}
+
+.cus-t-testimonial-text {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: #34495e;
+  margin-bottom: 20px;
+  padding: 0 30px;
+  font-weight: 400;
+}
+
+.cus-t-testimonial-author {
+  padding: 0 30px 10px;
+}
+
+.cus-t-author-name {
+  font-size: 24px;
+  font-weight: 500;
+  color: #2c3e50;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cus-t-verified-badge {
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.cus-t-author-title {
+  font-size: 16px;
+  color: #7f8c8d;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .cus-t-testimonials-section {
+    padding: 30px 0;
+  }
+  
+  .cus-t-cus-container {
+    padding: 0 15px;
+  }
+  
+  .cus-t-testimonials-header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .cus-t-testimonials-title {
+    font-size: 28px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  
+  .cus-t-testimonials-subtitle {
+    font-size: 16px;
+    text-align: center;
+    padding: 0 10px;
+  }
+  
+  .cus-t-testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 30px;
+  }
+  
+  .cus-t-testimonial-card {
+    margin: 0 10px;
+    border-radius: 16px;
+  }
+  
+  .cus-t-testimonial-image img {
+    height: 200px;
+    border-radius: 16px 16px 0 0;
+  }
+  
+  .cus-t-testimonial-content {
+    min-height: auto;
+    padding: 20px 0;
+  }
+  
+  .cus-t-testimonial-text {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 0 25px;
+    margin-bottom: 25px;
+  }
+  
+  .cus-t-testimonial-author {
+    padding: 0 25px 20px;
+  }
+  
+  .cus-t-author-name {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  
+  .cus-t-author-title {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .cus-t-verified-badge {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cus-t-cus-container {
+    padding: 0 10px;
+  }
+  
+  .cus-t-testimonials-title {
+    font-size: 24px;
+    line-height: 1.4;
+  }
+  
+  .cus-t-testimonials-subtitle {
+    font-size: 15px;
+  }
+  
+  .cus-t-testimonial-card {
+    margin: 0 5px;
+  }
+  
+  .cus-t-testimonial-image img {
+    height: 180px;
+  }
+  
+  .cus-t-testimonial-text {
+    font-size: 15px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+  }
+  
+  .cus-t-testimonial-author {
+    padding: 0 20px 15px;
+  }
+  
+  .cus-t-author-name {
+    font-size: 18px;
+  }
+  
+  .cus-t-author-title {
+    font-size: 13px;
+  }
+}
+</style>
+
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Recommended by top performers and nutrition experts"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Discover the best vegan collagen supplements with effectiveness & taste!"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Profile Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title/Role",
+          "default": "Customer Title"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial Text",
+          "default": "Add your testimonial text here..."
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Show Verified Badge",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jhony Jackyan",
+            "title": "Clinical Nutritionist",
+            "testimonial_text": "Collagen supplementation can be a game-changer for skin, joints, and hormonal balance — I often recommend plant-based blends like this for women over 30.",
+            "verified": true
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Samiul Budry",
+            "title": "Performance Coach & Athlete",
+            "testimonial_text": "As a trainer, recovery and joint health are critical. I've personally used this collagen blend and seen a difference in flexibility and energy.",
+            "verified": true
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jara ninia",
+            "title": "Beauty & Wellness Influencer",
+            "testimonial_text": "Plant-based collagen is a smart choice for women 30+, helping with skin glow, joint strength, and hormonal balance.",
+            "verified": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

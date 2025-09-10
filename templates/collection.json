@@ -1,0 +1,397 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "health_goals_custom_zfWbjf": {
+      "type": "health-goals-custom",
+      "blocks": {
+        "health_goal_LAJkPQ": {
+          "type": "health_goal",
+          "settings": {
+            "image": "shopify://shop_images/Group_1171277505.png",
+            "title": "Skin and anti-aging",
+            "description": "",
+            "link": "shopify://collections/shop"
+          }
+        },
+        "health_goal_diHYEJ": {
+          "type": "health_goal",
+          "settings": {
+            "image": "shopify://shop_images/Group_1171277507.png",
+            "title": "Nails",
+            "description": "",
+            "link": "shopify://collections/shop"
+          }
+        },
+        "health_goal_XgnNtD": {
+          "type": "health_goal",
+          "settings": {
+            "image": "shopify://shop_images/Group_1171277509.png",
+            "title": "Hair Loss",
+            "description": "",
+            "link": "shopify://collections/shop"
+          }
+        },
+        "health_goal_JqhzLP": {
+          "type": "health_goal",
+          "settings": {
+            "image": "shopify://shop_images/Group_1171277506.png",
+            "title": "Joints and Bones",
+            "description": "",
+            "link": "shopify://collections/shop"
+          }
+        }
+      },
+      "block_order": [
+        "health_goal_LAJkPQ",
+        "health_goal_diHYEJ",
+        "health_goal_XgnNtD",
+        "health_goal_JqhzLP"
+      ],
+      "name": "Health Goals",
+      "settings": {
+        "heading": "Shop Evoq With a Goal",
+        "show_bundle_button": true,
+        "bundle_text": "Bundle and Save 25%",
+        "bundle_link": "https://developevoq.myshopify.com/pages/bundle/#cus-bp-bundle-builder"
+      }
+    },
+    "custom_product_grid_hHz6jA": {
+      "type": "custom-product-grid",
+      "blocks": {
+        "product_fDbXKA": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42166223241306",
+            "variant_id": "42166223241306",
+            "custom_image": "shopify://shop_images/Group_1171277508.png",
+            "custom_title": "Collagen  Powder - Blueberry",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42166223241306",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_KB7mQq": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42110940151898",
+            "variant_id": "42110940151898",
+            "custom_image": "shopify://shop_images/Group_1171277507.png",
+            "custom_title": "Collagen Powder - Chocolate",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940151898",
+            "custom_price": 95,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_DmQVVC": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42110940217434",
+            "variant_id": "42110940086362",
+            "custom_image": "shopify://shop_images/Group_1171277509.png",
+            "custom_title": "Collagen Powder - Strawberry",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940086362",
+            "custom_price": 85,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_9ghPpL": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42110940086362",
+            "variant_id": "42110940020826",
+            "custom_image": "shopify://shop_images/Group_1171277506.png",
+            "custom_title": "Collagen Powder - Vanilla",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940020826",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_99TrCT": {
+          "type": "product",
+          "settings": {
+            "product": "blueberry-variant-42110940020826",
+            "variant_id": "42110940217434",
+            "custom_image": "shopify://shop_images/Group_1171277505.png",
+            "custom_title": "Collagen Powder - Mango",
+            "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940217434",
+            "custom_price": 80,
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 5,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        },
+        "product_j9MMzF": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "collagen-powder",
+            "variant_id": "",
+            "custom_title": "",
+            "custom_link": "shopify://products/collagen-powder",
+            "currency": "$",
+            "show_badge": false,
+            "badge_text": "New",
+            "badge_style": "new",
+            "show_timeline": true,
+            "timeline_label": "Health improvement timeline",
+            "ingredients_label": "View ingredients",
+            "show_rating": true,
+            "rating": 4.6,
+            "review_count": 1573,
+            "add_to_cart_text": "Add to cart",
+            "show_learn_more": true,
+            "learn_more_text": "Learn More"
+          }
+        }
+      },
+      "block_order": [
+        "product_fDbXKA",
+        "product_KB7mQq",
+        "product_DmQVVC",
+        "product_9ghPpL",
+        "product_99TrCT",
+        "product_j9MMzF"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_sort": true
+      }
+    },
+    "auto_slider_banner_custom_NiFbrM": {
+      "type": "auto-slider-banner-custom",
+      "blocks": {
+        "slide_ATBeUB": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/image_25.png",
+            "title": "Glowing skin starts with a glass",
+            "description": "Mix, sip, and glow. It's that simple. With every serving of Evoq Collagen, you're nourishing your body from the inside out. Shop Evoq now and start your daily ritual of beauty and wellness.",
+            "button_text": "Shop Now",
+            "button_url": ""
+          }
+        },
+        "slide_3fzpJ8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/image_25.png",
+            "title": "Collagen you can feel",
+            "description": "Fuel your hair, skin, nails, and energy in one refreshing sip. Clean, clinically backed, and effortlessly effective. Shop Evoq and make every glass count.",
+            "button_text": "Shop Now",
+            "button_url": ""
+          }
+        },
+        "slide_xrnLKA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/image_25.png",
+            "title": "Premium Quality Ingredients",
+            "description": "We source only the highest quality, scientifically-proven ingredients for maximum effectiveness and safety",
+            "button_text": "Learn More",
+            "button_url": ""
+          }
+        },
+        "slide_4y7KYg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/image_25.png",
+            "title": "Trusted by Thousands",
+            "description": "Join our community of satisfied customers who have experienced the benefits of our research-backed formulations",
+            "button_text": "Read Reviews",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_ATBeUB",
+        "slide_3fzpJ8",
+        "slide_xrnLKA",
+        "slide_4y7KYg"
+      ],
+      "name": "Auto Slider Banner",
+      "settings": {
+        "slide_duration": 5000
+      }
+    },
+    "brand_logo_slider_Q4P964": {
+      "type": "brand-logo-slider",
+      "blocks": {
+        "logo_pxckC8": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Vogue_Business.png"
+          }
+        },
+        "logo_7eCWUC": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/BOF.png"
+          }
+        },
+        "logo_PpKfJR": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Global_Cosmetics_news.png"
+          }
+        },
+        "logo_eaGemz": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/WWD.png"
+          }
+        },
+        "logo_Ank3Xy": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Glossy.png"
+          }
+        },
+        "logo_hJYrJr": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Independent.png"
+          }
+        },
+        "logo_gzLwtG": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Allure.png"
+          }
+        },
+        "logo_NHVAPN": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Cosmetics_Business.png"
+          }
+        },
+        "logo_6DceKH": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Beauty_Business_Jurnal.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_pxckC8",
+        "logo_7eCWUC",
+        "logo_PpKfJR",
+        "logo_eaGemz",
+        "logo_Ank3Xy",
+        "logo_hJYrJr",
+        "logo_gzLwtG",
+        "logo_NHVAPN",
+        "logo_6DceKH"
+      ],
+      "name": "Brand Logo Slider",
+      "settings": {
+        "animation_speed": 30,
+        "background_color": "#efeae1"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "health_goals_custom_zfWbjf",
+    "custom_product_grid_hHz6jA",
+    "auto_slider_banner_custom_NiFbrM",
+    "brand_logo_slider_Q4P964"
+  ]
+}

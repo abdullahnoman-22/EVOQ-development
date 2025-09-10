@@ -1,0 +1,379 @@
+<!-- How to Use Section -->
+<section class=" htu-section">
+  <div class="page-width htu-container">
+    <div class="htu-header">
+      <h2 class="htu-title">{{ section.settings.title | default: 'How to Use' }}</h2>
+      <p class="htu-subtitle">
+        {{ section.settings.subtitle | default: 'Sure! Here&#39;s a short and real-feel version of the subtext for &#34;How to Use&#34; &#8212; ideal for packaging, website, or social' }}
+      </p>
+    </div>
+
+    <div class="htu-grid">
+      {% for block in section.blocks %}
+        <div class="htu-step" {{ block.shopify_attributes }}>
+          {% if block.settings.media_type == 'image' and block.settings.image %}
+            <div class="htu-step-image">
+              {{ block.settings.image | image_url: width: 400 | image_tag: 
+                alt: block.settings.image_alt,
+                loading: 'lazy',
+                class: 'htu-step-img htu-static-media'
+              }}
+            </div>
+          {% elsif block.settings.media_type == 'video' and block.settings.video_url %}
+            <div class="htu-step-image">
+              <video class="htu-step-img htu-video-media" 
+                     autoplay 
+                     muted 
+                     loop 
+                     playsinline
+                     preload="metadata">
+                <source src="{{ block.settings.video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          {% elsif block.settings.image %}
+            <!-- Fallback to image if media_type is not set -->
+            <div class="htu-step-image">
+              {{ block.settings.image | image_url: width: 400 | image_tag: 
+                alt: block.settings.image_alt,
+                loading: 'lazy',
+                class: 'htu-step-img htu-static-media'
+              }}
+            </div>
+          {% endif %}
+          
+          <div class="htu-step-content">
+            {% if block.settings.step_title %}
+              <h3 class="htu-step-title">{{ block.settings.step_title }}</h3>
+            {% endif %}
+            
+            {% if block.settings.step_description %}
+              <div class="htu-step-description">{{ block.settings.step_description }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .htu-section {
+    padding: 60px 0;
+  }
+
+  .htu-container {
+    margin: 0 auto;
+  }
+
+  .htu-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .htu-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: {{ section.settings.title_color | default: '#001F5F' }};
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-family: 'Inter' !important;
+  }
+
+  .htu-subtitle {
+    font-size: 20px;
+    color: {{ section.settings.subtitle_color | default: '#666666' }};
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 30px;
+    font-weight: 400;
+    font-family: 'Inter' !important;
+  }
+
+  .htu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    align-items: start;
+  }
+
+  .htu-step {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .htu-step-image {
+    width: 100%;
+    height: 580px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  .htu-step-img,
+  .htu-video-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.3s ease;
+    border-radius: 5px;
+  }
+
+  /* Specific styles for static images */
+  .htu-static-media {
+    filter: brightness(1);
+    transition: scale 0.3s ease, filter 0.3s ease;
+  }
+
+  /* Specific styles for video media */
+  .htu-video-media {
+    object-fit: cover;
+    transition: scale 0.3s ease;
+  }
+
+  .htu-step:hover .htu-step-img,
+  .htu-step:hover .htu-video-media {
+    border-radius: 5px;
+  }
+
+  .htu-step:hover .htu-static-media {
+    filter: brightness(1.1);
+  }
+
+  .htu-step-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: {{ section.settings.step_title_color | default: '#333333' }};
+    margin-bottom: 12px;
+    line-height: 20px;
+    padding: 15px 0;
+  }
+
+  .htu-step-description {
+    font-size: 14px;
+    color: {{ section.settings.step_description_color | default: '#666666' }};
+    line-height: 20px;
+    margin: 0;
+    padding: 15px 0;
+    font-weight: 400;
+  }
+
+  /* Style richtext content within step description */
+  .htu-step-description p {
+    margin: 0 0 10px 0;
+  }
+
+  .htu-step-description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .htu-step-description strong {
+    font-weight: 600;
+  }
+
+  .htu-step-description em {
+    font-style: italic;
+  }
+
+  .htu-step-description ul,
+  .htu-step-description ol {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+
+  .htu-step-description li {
+    margin-bottom: 5px;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .htu-section {
+      padding: 40px 0;
+    }
+
+    .htu-title {
+      font-size: 36px;
+    }
+
+    .htu-subtitle {
+      font-size: 14px;
+    }
+
+    .htu-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+      padding: 0 50px;
+    }
+
+    .htu-step-content {
+      padding: 0;
+    }
+    
+    .htu-step-img,
+    .htu-video-media {
+      border-radius: 20px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .htu-container {
+      padding: 0 15px;
+    }
+
+    .htu-title {
+      font-size: 36px;
+    }
+
+    .htu-step-image {
+      height: 336px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How to Use",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "How to Use"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Sure! Here&#39;s a short and real-feel version of the subtext for &#34;How to Use&#34; &#8212; ideal for packaging, website, or social"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "step_title_color",
+      "label": "Step Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "step_description_color",
+      "label": "Step Description Color",
+      "default": "#666666"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "How-to Step",
+      "settings": [
+        {
+          "type": "radio",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Static Image"
+            },
+            {
+              "value": "video",
+              "label": "Video URL"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Image"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "Enter direct video file URL (mp4, webm, etc.)"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt Text"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "richtext",
+          "id": "step_description",
+          "label": "Step Description",
+          "default": "<p>Add your step description here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to Use",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "media_type": "image",
+            "step_title": "For Tea or Coffee",
+            "step_description": "<p>Add 2 heaped scoops (1 serving) to your tea or coffee.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "media_type": "image",
+            "step_title": "For Smoothies or Oatmeal",
+            "step_description": "<p>You can also mix it into your smoothies or oatmeal.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "media_type": "video",
+            "step_title": "Mixing and Consuming",
+            "step_description": "<p>Mix the product in thoroughly. For best results, consume 1 serving per day.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "media_type": "image",
+            "step_title": "Storage",
+            "step_description": "<p>Store the product in a cool, dark location away from direct sunlight.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

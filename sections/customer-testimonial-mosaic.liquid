@@ -1,0 +1,872 @@
+{% liquid
+  assign heading = section.settings.heading | default: 'The voice of Our Happy Customers'
+  assign subtext = section.settings.subtext | default: '99% of customers agree our products taste better than other brands.'
+  assign instagram_handle = section.settings.instagram_handle | default: '@Evoqcollagen.co'
+  assign instagram_url = section.settings.instagram_url
+  assign facebook_url = section.settings.facebook_url
+  assign tiktok_url = section.settings.tiktok_url
+  assign youtube_url = section.settings.youtube_url
+%}
+
+<style>
+  /* Desktop Layout Styles */
+  .desktop-testimonial-layout {
+    margin: 0 auto 40px auto;
+    display: grid;
+    grid-template-columns: 160px 1.4fr 1fr 1fr;
+    grid-template-rows: 280px 280px;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .desktop-testimonial-layout .testimonial-mosaic__item {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #f4f4f4;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .desktop-testimonial-layout .testimonial-mosaic__item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+  
+  .desktop-testimonial-layout .testimonial-mosaic__item video:active,
+  .desktop-testimonial-layout .testimonial-mosaic__item video:focus {
+    outline: none;
+    filter: brightness(0.93);
+  }
+  
+  /* Center large item (3) */
+  .desktop-testimonial-layout .testimonial-mosaic__item.center {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2;
+    min-height: 384px;
+  }
+  
+  /* Tall item right (6) */
+  .desktop-testimonial-layout .testimonial-mosaic__item.tall {
+    grid-column: 4 / span 1;
+    grid-row: 1 / span 2;
+    min-height: 384px;
+  }
+  
+  /* Bottom row (5) */
+  .desktop-testimonial-layout .testimonial-mosaic__item.bottom {
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+  }
+  
+  /* Top right (4) */
+  .desktop-testimonial-layout .testimonial-mosaic__item.top {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+  }
+  
+  /* Mobile Layout Styles */
+  .mobile-testimonial-layout {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px;
+    max-width: 100%;
+  }
+  
+  /* Group 1: Items 1, 2, 4 - 1fr 2fr layout */
+  .mobile-testimonial-layout .testimonial-group-1 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 180px 180px;
+    gap: 8px;
+    margin: 0;
+  }
+  
+  .mobile-testimonial-layout .testimonial-group-1 .testimonial-mosaic__item:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .mobile-testimonial-layout .testimonial-group-1 .testimonial-mosaic__item:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .mobile-testimonial-layout .testimonial-group-1 .center-item {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-height: 368px;
+  }
+  
+  /* Group 2: Items 3, 5, 6 - 1fr 1fr layout */
+  .mobile-testimonial-layout .testimonial-group-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 180px 180px;
+    gap: 8px;
+    margin: 0;
+  }
+  
+  .mobile-testimonial-layout .testimonial-group-2 .testimonial-mosaic__item:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .mobile-testimonial-layout .testimonial-group-2 .testimonial-mosaic__item:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  
+  .mobile-testimonial-layout .testimonial-group-2 .full-width-item {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .mobile-testimonial-layout .testimonial-mosaic__item {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #f4f4f4;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.1);
+    min-height: 180px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .mobile-testimonial-layout .testimonial-mosaic__item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+  
+  .mobile-testimonial-layout .testimonial-mosaic__item video:active,
+  .mobile-testimonial-layout .testimonial-mosaic__item video:focus {
+    outline: none;
+    filter: brightness(0.93);
+  }
+  
+  /* Section styling */
+  .people-spoken-banner {
+    background: #fff;
+    max-width: 600px;
+    margin: 110px auto 40px auto;
+    padding: 0;
+    border-radius: 4px;
+    text-align: center;
+    display: block;
+  }
+  
+  .people-spoken-banner .people-spoken-title {
+    color: #001F5F;
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -2px;
+    line-height: 44px;
+  }
+  
+  .people-spoken-banner .people-spoken-subtext {
+    color: #344054;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: inherit;
+    margin-bottom: 0;
+    letter-spacing: normal;
+    line-height: 30px;
+    font-style: italic;
+  }
+  
+  /* Fixed Social Bar Styles - Desktop and Mobile */
+  .social-bar-collagen {
+    width: 100%;
+    background: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 110px;
+    clear: both;
+    display: block !important;
+    visibility: visible !important;
+  }
+  
+  .social-bar-collagen .social-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .social-bar-collagen .handle {
+    color: #3366b3;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    margin-right: 8px;
+    display: inline-block;
+  }
+  
+  .social-bar-collagen .icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #3366b3;
+    font-size: 22px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 50%;
+    background: transparent;
+  }
+  
+  .social-bar-collagen .icon-link:hover {
+    color: #234a7d;
+    background: rgba(51, 102, 179, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .social-bar-collagen .icon-link svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+  }
+  
+  /* Responsive Breakpoints */
+  @media (max-width: 900px) {
+    .desktop-testimonial-layout {
+      display: none !important;
+    }
+    
+    .mobile-testimonial-layout {
+      display: flex !important;
+    }
+    
+    .people-spoken-banner {
+      margin: 60px auto 30px auto;
+      padding: 0 16px;
+    }
+    
+    .people-spoken-banner .people-spoken-title {
+      font-size: 36px;
+      line-height: 44px;
+      letter-spacing: -1px;
+    }
+    
+    .people-spoken-banner .people-spoken-subtext {
+      font-size: 14px;
+      line-height: 24px;
+    }
+    
+    .social-bar-collagen {
+      margin-bottom: 60px;
+      padding: 16px;
+    }
+    
+    .social-bar-collagen .social-content {
+      gap: 8px;
+    }
+    
+    .social-bar-collagen .handle {
+      font-size: 16px;
+      margin-right: 8px;
+    }
+    
+    .social-bar-collagen .icon-link {
+      padding: 8px;
+    }
+    
+    .social-bar-collagen .icon-link svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .mobile-testimonial-layout .testimonial-group-1,
+    .mobile-testimonial-layout .testimonial-group-2 {
+      grid-template-rows: repeat(2, 220px);
+      gap: 6px;
+    }
+    
+    .mobile-testimonial-layout .testimonial-mosaic__item {
+      border-radius: 18px;
+    }
+    
+    .mobile-testimonial-layout .testimonial-group-1 .testimonial-mosaic__item:nth-child(1),
+    .mobile-testimonial-layout .testimonial-group-1 .testimonial-mosaic__item:nth-child(2),
+    .mobile-testimonial-layout .testimonial-group-2 .testimonial-mosaic__item:nth-child(1),
+    .mobile-testimonial-layout .testimonial-group-2 .full-width-item {
+      min-height: 160px;
+    }
+    
+    .mobile-testimonial-layout .testimonial-group-1 .center-item,
+    .mobile-testimonial-layout .testimonial-group-2 .testimonial-mosaic__item:nth-child(2) {
+      min-height: 326px;
+    }
+    
+    .people-spoken-banner {
+      margin: 40px auto 20px auto;
+      padding: 0 12px;
+    }
+    
+    .people-spoken-banner .people-spoken-title {
+      font-size: 36px;
+      line-height: 44px;
+      margin-bottom: 8px;
+    }
+    
+    .people-spoken-banner .people-spoken-subtext {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    
+    .social-bar-collagen {
+      margin-bottom: 40px;
+      padding: 12px;
+    }
+    
+    .social-bar-collagen .handle {
+      font-size: 14px;
+      margin-right: 6px;
+    }
+    
+    .social-bar-collagen .icon-link {
+      padding: 6px;
+    }
+    
+    .social-bar-collagen .icon-link svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .mobile-testimonial-layout .testimonial-group-1,
+    .mobile-testimonial-layout .testimonial-group-2 {
+      grid-template-rows: repeat(2, 140px);
+      gap: 5px;
+    }
+    
+    .mobile-testimonial-layout .testimonial-mosaic__item {
+      border-radius: 16px;
+    }
+    
+    .mobile-testimonial-layout .testimonial-group-1 .testimonial-mosaic__item:nth-child(1),
+    .mobile-testimonial-layout .testimonial-group-1 .testimonial-mosaic__item:nth-child(2),
+    .mobile-testimonial-layout .testimonial-group-2 .testimonial-mosaic__item:nth-child(1),
+    .mobile-testimonial-layout .testimonial-group-2 .full-width-item {
+      min-height: 140px;
+    }
+    
+    .mobile-testimonial-layout .testimonial-group-1 .center-item,
+    .mobile-testimonial-layout .testimonial-group-2 .testimonial-mosaic__item:nth-child(2) {
+      min-height: 285px;
+    }
+    
+    .people-spoken-banner {
+      margin: 25px auto 15px auto;
+      padding: 12px;
+    }
+    
+    .people-spoken-banner .people-spoken-title {
+      font-size: 36px;
+      line-height: 44px;
+      margin-bottom: 4px;
+    }
+    
+    .people-spoken-banner .people-spoken-subtext {
+      font-size: 14px;
+      line-height: 16px;
+    }
+    
+    .social-bar-collagen {
+      margin-bottom: 25px;
+      padding: 8px;
+    }
+    
+    .social-bar-collagen .handle {
+      font-size: 12px;
+      margin-right: 4px;
+    }
+    
+    .social-bar-collagen .icon-link {
+      padding: 4px;
+    }
+    
+    .social-bar-collagen .icon-link svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+</style>
+
+<div class="people-spoken-banner">
+  <div class="people-spoken-title">{{ heading }}</div>
+  <div class="people-spoken-subtext">{{ subtext }}</div>
+</div>
+
+<!-- Desktop Layout - Static Layout Like Reference Image -->
+<div class="page-width desktop-testimonial-layout">
+  <!-- 1 (top-left small) -->
+  {% assign block1 = section.blocks[0] %}
+  {% if block1 %}
+    <div class="testimonial-mosaic__item" {{ block1.shopify_attributes }}>
+      {% if block1.settings.video_url != blank %}
+        <video
+          src="{{ block1.settings.video_url }}"
+          {% if block1.settings.poster_image != blank %}poster="{{ block1.settings.poster_image | image_url }}"{% endif %}
+          muted
+          loop
+          preload="none"
+          playsinline
+          data-video-id="{{ block1.id }}"
+        ></video>
+      {% else %}
+        <div style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+          Add video URL in theme editor
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <!-- 2 (bottom-left small) -->
+  {% assign block2 = section.blocks[1] %}
+  {% if block2 %}
+    <div class="testimonial-mosaic__item" style="grid-row: 2 / span 1;" {{ block2.shopify_attributes }}>
+      {% if block2.settings.video_url != blank %}
+        <video
+          src="{{ block2.settings.video_url }}"
+          {% if block2.settings.poster_image != blank %}poster="{{ block2.settings.poster_image | image_url }}"{% endif %}
+          muted
+          loop
+          preload="none"
+          playsinline
+          data-video-id="{{ block2.id }}"
+        ></video>
+      {% else %}
+        <div style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+          Add video URL in theme editor
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <!-- 3 (center large) -->
+  {% assign block3 = section.blocks[2] %}
+  {% if block3 %}
+    <div class="testimonial-mosaic__item center" {{ block3.shopify_attributes }}>
+      {% if block3.settings.video_url != blank %}
+        <video
+          src="{{ block3.settings.video_url }}"
+          {% if block3.settings.poster_image != blank %}poster="{{ block3.settings.poster_image | image_url }}"{% endif %}
+          muted
+          loop
+          preload="none"
+          playsinline
+          data-video-id="{{ block3.id }}"
+        ></video>
+      {% else %}
+        <div style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+          Add video URL in theme editor
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <!-- 4 (top right) -->
+  {% assign block4 = section.blocks[3] %}
+  {% if block4 %}
+    <div class="testimonial-mosaic__item top" {{ block4.shopify_attributes }}>
+      {% if block4.settings.video_url != blank %}
+        <video
+          src="{{ block4.settings.video_url }}"
+          {% if block4.settings.poster_image != blank %}poster="{{ block4.settings.poster_image | image_url }}"{% endif %}
+          muted
+          loop
+          preload="none"
+          playsinline
+          data-video-id="{{ block4.id }}"
+        ></video>
+      {% else %}
+        <div style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+          Add video URL in theme editor
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <!-- 5 (bottom right) -->
+  {% assign block5 = section.blocks[4] %}
+  {% if block5 %}
+    <div class="testimonial-mosaic__item bottom" {{ block5.shopify_attributes }}>
+      {% if block5.settings.video_url != blank %}
+        <video
+          src="{{ block5.settings.video_url }}"
+          {% if block5.settings.poster_image != blank %}poster="{{ block5.settings.poster_image | image_url }}"{% endif %}
+          muted
+          loop
+          preload="none"
+          playsinline
+          data-video-id="{{ block5.id }}"
+        ></video>
+      {% else %}
+        <div style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+          Add video URL in theme editor
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <!-- 6 (tall right) -->
+  {% assign block6 = section.blocks[5] %}
+  {% if block6 %}
+    <div class="testimonial-mosaic__item tall" {{ block6.shopify_attributes }}>
+      {% if block6.settings.video_url != blank %}
+        <video
+          src="{{ block6.settings.video_url }}"
+          {% if block6.settings.poster_image != blank %}poster="{{ block6.settings.poster_image | image_url }}"{% endif %}
+          muted
+          loop
+          preload="none"
+          playsinline
+          data-video-id="{{ block6.id }}"
+        ></video>
+      {% else %}
+        <div style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+          Add video URL in theme editor
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+<!-- Mobile Layout - Grouped Layout Like Reference Image -->
+<div class="mobile-testimonial-layout">
+  <!-- Group 1: Items 1, 2, 4 - 1fr 2fr layout -->
+  <div class="testimonial-group-1">
+    {% for block in section.blocks limit: 6 %}
+      {% liquid
+        assign video_url = block.settings.video_url
+        assign poster_url = block.settings.poster_image
+      %}
+      
+      {% if forloop.index == 1 or forloop.index == 2 or forloop.index == 4 %}
+        <div class="testimonial-mosaic__item {% if forloop.index == 4 %}center-item{% endif %}" {{ block.shopify_attributes }}>
+          {% if video_url != blank %}
+            <video
+              src="{{ video_url }}"
+              {% if poster_url != blank %}poster="{{ poster_url | image_url }}"{% endif %}
+              muted
+              loop
+              preload="none"
+              playsinline
+              data-video-id="{{ block.id }}"
+            ></video>
+          {% else %}
+            <div style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+              Add video URL in theme editor
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  <!-- Group 2: Items 3, 5, 6 with 1fr 1fr layout -->
+  <div class="testimonial-group-2">
+    {% for block in section.blocks limit: 6 %}
+      {% liquid
+        assign video_url = block.settings.video_url
+        assign poster_url = block.settings.poster_image
+      %}
+      
+      {% if forloop.index == 3 or forloop.index == 5 or forloop.index == 6 %}
+        <div class="testimonial-mosaic__item {% if forloop.index == 6 %}full-width-item{% endif %}" {{ block.shopify_attributes }}>
+          {% if video_url != blank %}
+            <video
+              src="{{ video_url }}"
+              {% if poster_url != blank %}poster="{{ poster_url | image_url }}"{% endif %}
+              muted
+              loop
+              preload="none"
+              playsinline
+              data-video-id="{{ block.id }}"
+            ></video>
+          {% else %}
+            <div style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+              Add video URL in theme editor
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Social Bar - Fixed for both Desktop and Mobile -->
+<div class="social-bar-collagen">
+  <div class="social-content">
+    <span class="handle">{{ instagram_handle }}</span>
+    
+    {% if instagram_url != blank %}
+      <a class="icon-link" href="{{ instagram_url }}" target="_blank" rel="noopener" aria-label="Follow us on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/>
+        </svg>
+      </a>
+    {% endif %}
+    
+    {% if facebook_url != blank %}
+      <a class="icon-link" href="{{ facebook_url }}" target="_blank" rel="noopener" aria-label="Follow us on Facebook">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    {% endif %}
+
+    {% if youtube_url != blank %}
+      <a class="icon-link" href="{{ youtube_url }}" target="_blank" rel="noopener" aria-label="Subscribe to our YouTube channel">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="9.75,15.02 15.5,11.75 9.75,8.48" fill="currentColor"/>
+        </svg>
+      </a>
+    {% endif %}
+    
+    {% if tiktok_url != blank %}
+      <a class="icon-link" href="{{ tiktok_url }}" target="_blank" rel="noopener" aria-label="Follow us on TikTok">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced video interaction for both layouts
+    document.querySelectorAll('.desktop-testimonial-layout .testimonial-mosaic__item video, .mobile-testimonial-layout .testimonial-mosaic__item video').forEach(function(video) {
+      let isPlaying = false;
+      
+      // Desktop: play on mouseenter, pause on mouseleave
+      video.parentElement.addEventListener('mouseenter', function() {
+        if (window.innerWidth > 900) {
+          video.play().catch(function(error) {
+            console.log('Video play failed:', error);
+          });
+        }
+      });
+      
+      video.parentElement.addEventListener('mouseleave', function() {
+        if (window.innerWidth > 900) {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+
+      // Mobile: Enhanced touch interaction
+      video.parentElement.addEventListener('touchstart', function(e) {
+        if (window.innerWidth <= 900) {
+          if (!isPlaying) {
+            video.play().catch(function(error) {
+              console.log('Video play failed:', error);
+            });
+            isPlaying = true;
+          } else {
+            video.pause();
+            video.currentTime = 0;
+            isPlaying = false;
+          }
+          e.preventDefault();
+        }
+      });
+
+      // Reset playing state when video ends
+      video.addEventListener('ended', function() {
+        isPlaying = false;
+        video.currentTime = 0;
+      });
+
+      // Pause video when scrolled out of view (performance optimization)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting && isPlaying) {
+            video.pause();
+            isPlaying = false;
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(video.parentElement);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Customer Testimonial Mos",
+  "tag": "section",
+  "class": "section-testimonial-mosaic",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "The voice of Our Happy Customers"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "99% of customers agree our products taste better than other brands."
+    },
+    {
+      "type": "header",
+      "content": "Social Media Settings"
+    },
+    {
+      "type": "text",
+      "id": "instagram_handle",
+      "label": "Instagram Handle",
+      "default": "@Evoqcollagen.co"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL",
+      "info": "Enter your Instagram profile URL"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL",
+      "info": "Enter your Facebook page URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL",
+      "info": "Enter your TikTok profile URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL",
+      "info": "Enter your YouTube channel URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video Testimonial",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "Upload video to Shopify Files or use external URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_image",
+          "label": "Video Poster Image",
+          "info": "Thumbnail image shown before video plays"
+        },
+        {
+          "type": "select",
+          "id": "grid_position",
+          "label": "Grid Position",
+          "default": "default",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "center",
+              "label": "Center (Large)"
+            },
+            {
+              "value": "tall",
+              "label": "Tall Right"
+            },
+            {
+              "value": "top",
+              "label": "Top Right"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom Right"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Testimonial Mosaic",
+      "blocks": [
+        {
+          "type": "video",
+          "settings": {
+            "grid_position": "default"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "grid_position": "default"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "grid_position": "center"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "grid_position": "top"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "grid_position": "bottom"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "grid_position": "tall"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

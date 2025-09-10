@@ -1,0 +1,143 @@
+{% comment %}
+  Rewards Login Banner Section
+  Add this as a section file: sections/rewards-login-banner.liquid
+{% endcomment %}
+
+{% unless customer %}
+<div class="rewards-banner">
+  <div class="rewards-banner__content">
+    <span class="rewards-banner__text">
+      {{ section.settings.banner_text | default: 'Login to redeem your exclusive rewards:' }}
+    </span>
+    
+    <a href="{{ routes.account_login_url }}" class="rewards-banner__button">
+      {{ section.settings.button_text | default: 'Login' }}
+    </a>
+  </div>
+</div>
+
+<style>
+  .rewards-banner {
+    background: linear-gradient(135deg, {{ section.settings.background_color  }});
+    padding: 12px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .rewards-banner__content {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .rewards-banner__text {
+    color: {{ section.settings.text_color }};
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 30px;
+    font-family: 'Inter';
+  }
+
+  .rewards-banner__button {
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    display: inline-block;
+    cursor: pointer;
+    width: 177px;
+    height: 44px;
+    line-height: 24px;
+  }
+
+  .rewards-banner__button:hover {
+    background-color: #0d47a1;
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .rewards-banner {
+      padding: 16px 15px;
+    }
+    
+    .rewards-banner__content {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .rewards-banner__text {
+      font-size: 20px;
+      text-align: center;
+      line-height: 30px;
+      font-weight: 500;
+      color: #101828;
+    }
+    
+    .rewards-banner__button {
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+    }
+  }
+</style>
+{% endunless %}
+
+{% schema %}
+{
+  "name": "Rewards Login Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "Login to redeem your exclusive rewards:"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Login"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#D9EAFB"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#101828"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#001F5F"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rewards Login Banner"
+    }
+  ]
+}
+{% endschema %}
