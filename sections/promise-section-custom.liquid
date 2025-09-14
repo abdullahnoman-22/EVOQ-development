@@ -15,7 +15,7 @@
           
           {% if block.settings.icon != blank %}
             <div class="promise-icon" style="background: {{ block.settings.icon_background }};">
-              <img src="{{ block.settings.icon | img_url: '60x60' }}" alt="{{ block.settings.title }}">
+              <img src="{{ block.settings.icon | img_url: 'master' }}" alt="{{ block.settings.title }}">
             </div>
           {% elsif block.settings.icon_svg != blank %}
             <div class="promise-icon" style="background: {{ block.settings.icon_background }};">

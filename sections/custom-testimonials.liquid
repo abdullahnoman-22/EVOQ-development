@@ -12,7 +12,7 @@
           <div class="cus-t-testimonial-card" {{ block.shopify_attributes }}>
             <div class="cus-t-testimonial-image">
               {% if block.settings.image %}
-                <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.name }}" loading="lazy">
+                <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.name }}" loading="lazy">
               {% else %}
                 <div class="cus-t-testimonial-placeholder"></div>
               {% endif %}
@@ -80,14 +80,12 @@
 }
 
 .cus-t-testimonial-card {
-  background: #8C777700;
-  border-radius: 12px;
+  background: white;
+  border-radius: 6px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #f3f3f3;
 }
 
-.cus-t-testimonial-card:hover {
-  transform: translateY(-5px);
-}
 
 .cus-t-testimonial-image {
   margin-bottom: 20px;
@@ -95,7 +93,7 @@
 
 .cus-t-testimonial-image img {
     width: 100%;
-    height: 225px;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -200,7 +198,7 @@
   }
   
   .cus-t-testimonial-image img {
-    height: 200px;
+    height: 100%;
     border-radius: 16px 16px 0 0;
   }
   
@@ -256,7 +254,7 @@
   }
   
   .cus-t-testimonial-image img {
-    height: 180px;
+    height: 100%;
   }
   
   .cus-t-testimonial-text {

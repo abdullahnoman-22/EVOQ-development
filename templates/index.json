@@ -15,7 +15,7 @@
         "slide_Q8pnCd": {
           "type": "slide",
           "settings": {
-            "slide_image": "shopify://shop_images/image_75.png",
+            "slide_image": "shopify://shop_images/image_75_97aa5c29-cee9-4e39-8785-6c21510add4f.png",
             "cus_image": "shopify://shop_images/Group_1171276765_2.png",
             "heading": "<p><strong>More Than Anti<br/></strong><em>Ageing</em></p>",
             "heading_size": "h1",
@@ -296,9 +296,9 @@
       "type": "collagen-before-after",
       "name": "Collagen Before/After",
       "settings": {
-        "before_image": "shopify://shop_images/Rectangle_96.png",
+        "before_image": "shopify://shop_images/Grouii.png",
         "before_label": "Before Evoq Collagen",
-        "after_image": "shopify://shop_images/image_3.png",
+        "after_image": "shopify://shop_images/Rectangl.png",
         "after_label": "After Evoq Collagen",
         "background_color": "rgba(0,0,0,0)",
         "heading_color": "#333333",
@@ -321,7 +321,7 @@
         "testimonial_ipGf6J": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/image_3.png",
+            "image": "shopify://shop_images/image-2.png",
             "name": "Jhony Jackyan",
             "title": "Clinically Studied",
             "testimonial_text": "Evoq Collagen Supplement is formulated using ingredients proven in clinical studies to support skin elasticity, hydration, and firmness. With regular use, users report smoother skin, stronger nails, and reduced signs of aging results that go beyond surface level.",
@@ -331,7 +331,7 @@
         "testimonial_BKWaGA": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/image_4.png",
+            "image": "shopify://shop_images/image_c9055e21-6ada-41dc-818f-cb2b6c9e2bb9.png",
             "name": "Samiul Budry",
             "title": "Recommended by Nutritionists",
             "testimonial_text": "Evoq is designed to support total body wellness not just beauty. Developed in collaboration with certified nutritionists. From gut health to joint mobility, each serving fits seamlessly into a health professional’s toolkit for daily vitality.",
@@ -341,7 +341,7 @@
         "testimonial_MKyTFa": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/image_5.png",
+            "image": "shopify://shop_images/image-1.png",
             "name": "Jara ninia",
             "title": "Science-Backed",
             "testimonial_text": "Every ingredient in Evoq Collagen Supplement is chosen for its efficacy, purity, and purpose. Free from fillers, GMOs, and artificial additives, it's a clean formula with real science behind it. Approved by health experts and trusted by conscious consumers.",
@@ -366,7 +366,7 @@
         "testimonial_P98GKc": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_110.png",
+            "image": "shopify://shop_images/Rectangle_110_3ffc8393-00c6-40ed-b5a0-b5534b7b6481.png",
             "name": "Esha",
             "title": "Skin & Anti-Aging",
             "quote": "I feel like I have gotten younger",
@@ -376,7 +376,7 @@
         "testimonial_hBAeaP": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_115.png",
+            "image": "shopify://shop_images/Rectangle_115_37a721f3-e3e6-43a1-b503-ffb3085e63c1.png",
             "name": "Nirmala",
             "title": "Skin & Anti-Aging",
             "quote": "Amazing transformation in just weeks",
@@ -386,7 +386,7 @@
         "testimonial_YU9kBJ": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_118.png",
+            "image": "shopify://shop_images/Rectangle_118_f9fcd6de-78fd-4d35-90b8-2b65d73925fa.png",
             "name": "Sarah Johnson",
             "title": "Hair Loss",
             "quote": "Amazing transformation in just weeks",
@@ -396,7 +396,7 @@
         "testimonial_CBRMTz": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_120.png",
+            "image": "shopify://shop_images/Rectangle_120_a30b7756-4643-418d-928a-b777d0eb82c3.png",
             "name": "Mike Chen",
             "title": "Busy Professional",
             "quote": "Perfect solution for my lifestyle",
@@ -553,7 +553,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Are your products Halal certified?",
-            "answer": "<p>es, our collagen products are Halal certified.</p>"
+            "answer": "<p>Yes, our collagen products are Halal certified.</p>"
           }
         },
         "faq_item_GDNEre": {

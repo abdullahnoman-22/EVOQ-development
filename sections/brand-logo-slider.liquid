@@ -5,7 +5,7 @@
       {% for block in section.blocks %}
         {% if block.settings.logo %}
           <div class="brand-logo">
-            <img src="{{ block.settings.logo | img_url: '200x' }}" alt="Brand Logo {{ forloop.index }}" loading="lazy">
+            <img src="{{ block.settings.logo | img_url: 'master' }}" alt="Brand Logo {{ forloop.index }}" loading="lazy">
           </div>
         {% endif %}
       {% endfor %}
@@ -14,7 +14,7 @@
       {% for block in section.blocks %}
         {% if block.settings.logo %}
           <div class="brand-logo">
-            <img src="{{ block.settings.logo | img_url: '200x' }}" alt="Brand Logo {{ forloop.index }}" loading="lazy">
+            <img src="{{ block.settings.logo | img_url: 'master' }}" alt="Brand Logo {{ forloop.index }}" loading="lazy">
           </div>
         {% endif %}
       {% endfor %}

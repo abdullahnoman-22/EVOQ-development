@@ -1,4 +1,4 @@
-<!-- Enhanced Mobile-First Blog Section -->
+<!-- Enhanced Mobile-First Blog Section with Tag Filtering -->
 {%- liquid
   assign blog = blogs[section.settings.blog] | default: blog
   assign articles_per_page = section.settings.articles_per_page | default: 4
@@ -31,9 +31,9 @@
         <!-- Filter Tags -->
         {%- if show_tags and blog.all_tags.size > 0 -%}
         <div class="cus-bg-blog-filter-tags">
-          <a href="{{ blog.url }}" class="cus-bg-filter-tag {% unless current_tags %}cus-bg-active{% endunless %}">All</a>
+          <button class="cus-bg-filter-tag cus-bg-active" data-filter="all">All</button>
           {%- for tag in blog.all_tags limit: 5 -%}
-            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="cus-bg-filter-tag {% if current_tags contains tag %}cus-bg-active{% endif %}">{{ tag }}</a>
+            <button class="cus-bg-filter-tag" data-filter="{{ tag | handle }}">{{ tag }}</button>
           {%- endfor -%}
         </div>
         {%- endif -%}
@@ -53,9 +53,21 @@
             if read_time < 1
               assign read_time = 1
             endif
+            
+            # Create data-tags attribute with all article tags
+            assign article_tags_string = ""
+            for article_tag in article.tags
+              assign article_tags_string = article_tags_string | append: article_tag | handle
+              unless forloop.last
+                assign article_tags_string = article_tags_string | append: ","
+              endunless
+            endfor
           -%}
           
-          <article class="cus-bg-blog-card {% if forloop.first %}cus-bg-blog-card--featured{% endif %}">
+          <article 
+            data-tags="{{ article_tags_string }}" 
+            class="cus-bg-blog-card {% if forloop.first %}cus-bg-blog-card--featured{% endif %}"
+          >
             {%- if article.image -%}
             <div class="cus-bg-blog-card-image">
               <a href="{{ article.url }}">
@@ -269,6 +281,7 @@
   font-weight: 500;
   transition: all 0.2s;
   border: 1px solid #5925DC;
+  cursor: pointer;
 }
 
 .cus-bg-filter-tag:hover,
@@ -330,12 +343,17 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
 }
 
 .cus-bg-blog-card:not(.cus-bg-blog-card--featured):hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Hidden state for filtered cards */
+.cus-bg-blog-card.cus-bg-hidden {
+  display: none;
 }
 
 .cus-bg-blog-card-image {
@@ -516,6 +534,23 @@
   padding: 40px 20px;
 }
 
+/* No results message */
+.cus-bg-no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  display: none;
+}
+
+.cus-bg-no-results h3 {
+  color: #6B7280;
+  margin-bottom: 8px;
+}
+
+.cus-bg-no-results p {
+  color: #9CA3AF;
+}
+
 /* Tablet Styles */
 @media (min-width: 768px) {
   .cus-bg-container {
@@ -629,6 +664,67 @@
   display: block;
 }
 </style>
+
+<!-- JavaScript for Tag Filtering -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.cus-bg-filter-tag');
+  const blogCards = document.querySelectorAll('.cus-bg-blog-card');
+  const blogGrid = document.querySelector('.cus-bg-blog-grid');
+  
+  // Create no results message if it doesn't exist
+  let noResultsMessage = document.querySelector('.cus-bg-no-results');
+  if (!noResultsMessage) {
+    noResultsMessage = document.createElement('div');
+    noResultsMessage.className = 'cus-bg-no-results';
+    noResultsMessage.innerHTML = `
+      <h3>No articles found</h3>
+      <p>No articles match the selected tag. Try selecting a different tag or "All" to see all articles.</p>
+    `;
+    blogGrid.appendChild(noResultsMessage);
+  }
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('cus-bg-active'));
+      
+      // Add active class to clicked button
+      this.classList.add('cus-bg-active');
+      
+      const filterValue = this.getAttribute('data-filter');
+      let visibleCount = 0;
+      
+      blogCards.forEach(card => {
+        if (filterValue === 'all') {
+          // Show all cards
+          card.classList.remove('cus-bg-hidden');
+          visibleCount++;
+        } else {
+          // Check if card has the selected tag
+          const cardTags = card.getAttribute('data-tags');
+          
+          if (cardTags && cardTags.split(',').includes(filterValue)) {
+            card.classList.remove('cus-bg-hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('cus-bg-hidden');
+          }
+        }
+      });
+      
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResultsMessage.style.display = 'block';
+      } else {
+        noResultsMessage.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
 
 {% schema %}
 {

@@ -31,7 +31,7 @@
             <div class="cus-rw-reward-voucher" {{ block.shopify_attributes }}>
               {% if block.settings.reward_image != blank %}
                 <div class="cus-rw-voucher-image">
-                  <img src="{{ block.settings.reward_image | image_url: width: 350 }}" 
+                  <img src="{{ block.settings.reward_image | img_url: 'master' }}" 
                        alt="{{ block.settings.reward_image.alt | default: block.settings.reward_title }}"
                        loading="lazy">
                 </div>

@@ -45,7 +45,7 @@
         "health_goal_LAJkPQ": {
           "type": "health_goal",
           "settings": {
-            "image": "shopify://shop_images/Group_1171277505.png",
+            "image": "shopify://shop_images/Group_1171277606.png",
             "title": "Skin and anti-aging",
             "description": "",
             "link": "shopify://collections/shop"
@@ -54,7 +54,7 @@
         "health_goal_diHYEJ": {
           "type": "health_goal",
           "settings": {
-            "image": "shopify://shop_images/Group_1171277507.png",
+            "image": "shopify://shop_images/image_bddd3c59-a5f0-4e28-9549-e4396d35bb30.png",
             "title": "Nails",
             "description": "",
             "link": "shopify://collections/shop"
@@ -63,7 +63,7 @@
         "health_goal_XgnNtD": {
           "type": "health_goal",
           "settings": {
-            "image": "shopify://shop_images/Group_1171277509.png",
+            "image": "shopify://shop_images/image-1_2385e93e-be70-46dd-8084-ee975db0b8d5.png",
             "title": "Hair Loss",
             "description": "",
             "link": "shopify://collections/shop"
@@ -72,7 +72,7 @@
         "health_goal_JqhzLP": {
           "type": "health_goal",
           "settings": {
-            "image": "shopify://shop_images/Group_1171277506.png",
+            "image": "shopify://shop_images/image-2_8412167a-3d4f-4fc7-83bf-581b7572ac1b.png",
             "title": "Joints and Bones",
             "description": "",
             "link": "shopify://collections/shop"
@@ -85,6 +85,7 @@
         "health_goal_XgnNtD",
         "health_goal_JqhzLP"
       ],
+      "disabled": true,
       "name": "Health Goals",
       "settings": {
         "heading": "Shop Evoq With a Goal",
@@ -96,11 +97,41 @@
     "custom_product_grid_hHz6jA": {
       "type": "custom-product-grid",
       "blocks": {
+        "collection_filter_mmtPrh": {
+          "type": "collection_filter",
+          "settings": {
+            "collection": "nails",
+            "image": "shopify://shop_images/image_bddd3c59-a5f0-4e28-9549-e4396d35bb30.png",
+            "title": "Nails"
+          }
+        },
+        "collection_filter_wH3nVU": {
+          "type": "collection_filter",
+          "settings": {
+            "collection": "shop",
+            "image": "shopify://shop_images/image-1_2385e93e-be70-46dd-8084-ee975db0b8d5.png",
+            "title": "Hair Loss"
+          }
+        },
+        "collection_filter_x78HPL": {
+          "type": "collection_filter",
+          "settings": {
+            "collection": "joints-and-bones",
+            "image": "shopify://shop_images/image-2_8412167a-3d4f-4fc7-83bf-581b7572ac1b.png",
+            "title": "Joints and Bones"
+          }
+        },
         "product_fDbXKA": {
           "type": "product",
           "settings": {
             "product": "blueberry-variant-42166223241306",
+            "collection": "",
             "variant_id": "42166223241306",
+            "product_tag_1": "nails",
+            "product_tag_2": "",
+            "product_tag_3": "",
+            "product_tag_4": "",
+            "product_tag_5": "",
             "custom_image": "shopify://shop_images/Group_1171277508.png",
             "custom_title": "Collagen  Powder - Blueberry",
             "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42166223241306",
@@ -124,7 +155,13 @@
           "type": "product",
           "settings": {
             "product": "blueberry-variant-42110940151898",
+            "collection": "",
             "variant_id": "42110940151898",
+            "product_tag_1": "joints and bones",
+            "product_tag_2": "hair loss",
+            "product_tag_3": "",
+            "product_tag_4": "",
+            "product_tag_5": "",
             "custom_image": "shopify://shop_images/Group_1171277507.png",
             "custom_title": "Collagen Powder - Chocolate",
             "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940151898",
@@ -148,7 +185,13 @@
           "type": "product",
           "settings": {
             "product": "blueberry-variant-42110940217434",
+            "collection": "",
             "variant_id": "42110940086362",
+            "product_tag_1": "nails",
+            "product_tag_2": "Hair loss",
+            "product_tag_3": "",
+            "product_tag_4": "",
+            "product_tag_5": "",
             "custom_image": "shopify://shop_images/Group_1171277509.png",
             "custom_title": "Collagen Powder - Strawberry",
             "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940086362",
@@ -172,7 +215,13 @@
           "type": "product",
           "settings": {
             "product": "blueberry-variant-42110940086362",
+            "collection": "",
             "variant_id": "42110940020826",
+            "product_tag_1": "nails",
+            "product_tag_2": "",
+            "product_tag_3": "",
+            "product_tag_4": "",
+            "product_tag_5": "",
             "custom_image": "shopify://shop_images/Group_1171277506.png",
             "custom_title": "Collagen Powder - Vanilla",
             "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940020826",
@@ -196,7 +245,13 @@
           "type": "product",
           "settings": {
             "product": "blueberry-variant-42110940020826",
+            "collection": "",
             "variant_id": "42110940217434",
+            "product_tag_1": "joints and bones",
+            "product_tag_2": "Hair loss",
+            "product_tag_3": "",
+            "product_tag_4": "",
+            "product_tag_5": "",
             "custom_image": "shopify://shop_images/Group_1171277505.png",
             "custom_title": "Collagen Powder - Mango",
             "custom_link": "https://developevoq.myshopify.com/products/collagen-powder?variant=42110940217434",
@@ -221,7 +276,13 @@
           "disabled": true,
           "settings": {
             "product": "collagen-powder",
+            "collection": "",
             "variant_id": "",
+            "product_tag_1": "",
+            "product_tag_2": "",
+            "product_tag_3": "",
+            "product_tag_4": "",
+            "product_tag_5": "",
             "custom_title": "",
             "custom_link": "shopify://products/collagen-powder",
             "currency": "$",
@@ -241,6 +302,9 @@
         }
       },
       "block_order": [
+        "collection_filter_mmtPrh",
+        "collection_filter_wH3nVU",
+        "collection_filter_x78HPL",
         "product_fDbXKA",
         "product_KB7mQq",
         "product_DmQVVC",
@@ -251,7 +315,14 @@
       "name": "Product Grid",
       "settings": {
         "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_bottom": 112,
+        "show_collection_filter": true,
+        "filter_heading": "Shop by health goal",
+        "all_products_image": "shopify://shop_images/Group_1171277606.png",
+        "all_products_text": "Skin and anti-aging",
+        "show_bundle_button": true,
+        "bundle_text": "Bundle and Save 25%",
+        "bundle_link": "shopify://pages/bundle",
         "show_sort": true
       }
     },

@@ -534,7 +534,7 @@
       </button>
       {% if section.settings.show_reviews and section.settings.image_review %}
         <div class="cus-f-footer-reviews">
-           <img src="{{ section.settings.image_review | img_url: '200x' }}" 
+           <img src="{{ section.settings.image_review | img_url: 'master' }}" 
                alt="Customer Reviews" 
                class="cus-f-review-image"
                loading="lazy">
@@ -557,7 +557,7 @@
       
       {% if section.settings.show_payment_icons %}
         <div class="cus-f-payment-icons">
-            <img src="{{ section.settings.image_payment | img_url: '200x' }}" 
+            <img src="{{ section.settings.image_payment | img_url: 'master' }}" 
                alt="Payment Icon" 
                loading="lazy">
         </div>
@@ -571,7 +571,7 @@
   <div class="subscription-popup">
     <div class="popup-image-section">
       {% if section.settings.popup_product_image %}
-        <img src="{{ section.settings.popup_product_image | img_url: '300x' }}" 
+        <img src="{{ section.settings.popup_product_image | img_url: 'master' }}" 
              alt="Product" 
              class="popup-product-image">
       {% else %}

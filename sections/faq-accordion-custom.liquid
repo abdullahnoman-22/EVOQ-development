@@ -32,7 +32,7 @@
     <div class="cus-faq-image">
       <div class="cus-faq-product-showcase">
         {% if section.settings.image %}
-          <img src="{{ section.settings.image | img_url: '600x600' }}" 
+          <img src="{{ section.settings.image | img_url: 'master' }}" 
                alt="{{ section.settings.image.alt | default: 'Product Image' }}" 
                class="cus-faq-product-image"
                loading="lazy">

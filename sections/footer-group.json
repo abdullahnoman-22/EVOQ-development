@@ -39,7 +39,7 @@
           "type": "shop_link",
           "settings": {
             "label": "Refer a Friend",
-            "link": "/pages/referrals"
+            "link": "shopify://pages/rewards"
           }
         },
         "about_link_kc6BYD": {

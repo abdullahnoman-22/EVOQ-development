@@ -15,7 +15,7 @@
          
           {% if block.settings.image != blank %}
             <div class="cus-health-card-image">
-              <img src="{{ block.settings.image | img_url: '400x200' }}"
+              <img src="{{ block.settings.image | img_url: 'master' }}"
                    alt="{{ block.settings.image.alt | default: block.settings.title }}"
                    loading="lazy">
             </div>

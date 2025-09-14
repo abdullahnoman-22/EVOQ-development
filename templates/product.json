@@ -408,13 +408,10 @@
           "type": "comparison_row",
           "settings": {
             "feature_name": "Evoq sets new Standards",
-            "pro_value": "Pro Collagen",
-            "pro_image": "shopify://shop_images/resize-175623059317028891047.png",
+            "pro_value": "Evoq Collagen",
             "pro_status": "neutral",
             "marine_value": "Marine Collagen",
-            "marine_image": "shopify://shop_images/fi_830484_1.png",
-            "bovine_value": "Bovine Collagen",
-            "bovine_image": "shopify://shop_images/fi_62470_1.png"
+            "bovine_value": "Bovine Collagen"
           }
         },
         "comparison_row_CXjWR8": {
@@ -712,8 +709,8 @@
           "settings": {
             "name": "Caitlin B.",
             "subtitle": "Urban Professional",
-            "before_image": "shopify://shop_images/image_8.png",
-            "after_image": "shopify://shop_images/image_4_cbf2a4af-c7a4-4111-87f8-8a49e1a56303.png",
+            "before_image": "shopify://shop_images/image-8.png",
+            "after_image": "shopify://shop_images/image-8.png",
             "testimonial_text": "As a mother of 3 children, has lost over 14kg in total. She wants to show her kids that it's possible to be a busy parent and still take care of oneself. Caitlin is very happy with the results she has achieved again. The shakes she uses are described as delicious and filling, and they do not affect her milk supply (as she is exclusively breastfeeding her 5-month-old child). Most importantly, the shakes have been effective for Caitlin."
           }
         },
@@ -722,8 +719,8 @@
           "settings": {
             "name": "Aisha",
             "subtitle": "Urban Professional",
-            "before_image": "shopify://shop_images/Rectangle_121.png",
-            "after_image": "shopify://shop_images/Rectangle_123.png",
+            "before_image": "shopify://shop_images/Grouii.png",
+            "after_image": "shopify://shop_images/Rectangl.png",
             "testimonial_text": "I started using this vegan collagen supplements mainly for my skin. After 5-6 months now, my skin felt so much smoother, and I’ve had fewer breakouts. The strawberry flavor is my go-to. It’s now part of my daily routine!"
           }
         },
@@ -732,8 +729,8 @@
           "settings": {
             "name": "Meera",
             "subtitle": "Homemaker",
-            "before_image": "shopify://shop_images/image_8.png",
-            "after_image": "shopify://shop_images/Rectangle_123.png",
+            "before_image": "shopify://shop_images/Grouii.png",
+            "after_image": "shopify://shop_images/Rectangl.png",
             "testimonial_text": "Post-40, I really felt my skin getting dull and my joints stiff. Evoq has helped in both areas! My skin feels firmer, and even my knees don’t ache as much when I walk. I love that it’s plant-based and clean."
           }
         },
@@ -742,8 +739,8 @@
           "settings": {
             "name": "Rohit",
             "subtitle": "Software Engineer",
-            "before_image": "shopify://shop_images/image_8.png",
-            "after_image": "shopify://shop_images/Rectangle_123.png",
+            "before_image": "shopify://shop_images/Grouii.png",
+            "after_image": "shopify://shop_images/Rectangl.png",
             "testimonial_text": "Collagen isn’t just for women! I noticed better hair texture and even fewer dark circles after 4 weeks of using Evoq. I really like the vanilla flavor in iced coffee. Definitely a game changer!"
           }
         },
@@ -752,8 +749,8 @@
           "settings": {
             "name": "Anil",
             "subtitle": "Entrepreneur",
-            "before_image": "shopify://shop_images/image_8.png",
-            "after_image": "shopify://shop_images/Rectangle_123.png",
+            "before_image": "shopify://shop_images/Grouii.png",
+            "after_image": "shopify://shop_images/Rectangl.png",
             "testimonial_text": "I travel a lot and use the sachets on the go. I've noticed my skin looking healthier and my digestion feels better too. It's great to have a clean, plant-based product that fits my lifestyle."
           }
         }

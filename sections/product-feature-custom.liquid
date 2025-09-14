@@ -17,7 +17,7 @@
             <!-- Product Image -->
             <div class="cus-pf-product-image-wrapper">
               {% if block.settings.product_image %}
-                <img src="{{ block.settings.product_image | img_url: '500x500' }}" 
+                <img src="{{ block.settings.product_image | img_url: 'master' }}" 
                      alt="{{ block.settings.product_title }}"
                      class="cus-pf-product-image">
               {% else %}

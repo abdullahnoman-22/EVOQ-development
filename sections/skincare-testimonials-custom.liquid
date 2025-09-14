@@ -34,7 +34,7 @@
                 <!-- Before Image (Full Width) -->
                 <div class="cus-tst-image-before">
                   {% if block.settings.before_image %}
-                    <img src="{{ block.settings.before_image | img_url: '800x' }}" 
+                    <img src="{{ block.settings.before_image | img_url: 'master' }}" 
                          alt="{{ block.settings.name }} before" 
                          loading="lazy"
                          onload="checkImagesLoaded('{{ section.id }}-{{ forloop.index0 }}')"
@@ -44,12 +44,15 @@
                       <span>Before Image</span>
                     </div>
                   {% endif %}
+                  <div class="cus-tst-image-label cus-tst-before-label">
+                    {{ block.settings.before_label | default: 'Before' }}
+                  </div>
                 </div>
                 
                 <!-- After Image (Clipped) -->
                 <div class="cus-tst-image-after">
                   {% if block.settings.after_image %}
-                    <img src="{{ block.settings.after_image | img_url: '800x' }}" 
+                    <img src="{{ block.settings.after_image | img_url: 'master' }}" 
                          alt="{{ block.settings.name }} after" 
                          loading="lazy"
                          onload="checkImagesLoaded('{{ section.id }}-{{ forloop.index0 }}')"
@@ -59,9 +62,12 @@
                       <span>After Image</span>
                     </div>
                   {% endif %}
+                  <div class="cus-tst-image-label cus-tst-after-label">
+                    {{ block.settings.after_label | default: 'After' }}
+                  </div>
                 </div>
                 
-                <!-- Interactive Slider Control -->
+                <!-- Updated Slider Control -->
                 <div class="cus-tst-slider-control">
                   <div class="cus-tst-slider-handle">
                     <div class="cus-tst-slider-circle">
@@ -246,14 +252,41 @@
   border-radius: 12px;
 }
 
+/* Updated Image Labels */
+.cus-tst-image-label {
+  position: absolute;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 36px;
+  font-weight: 600;
+  color: #001F5F;
+  z-index: 1;
+  /* Improve rendering performance */
+  transform: translateZ(0);
+}
+
+.cus-tst-before-label {
+  left: 20px;
+  top: 20px;
+  color: {{ section.settings.before_label_color | default: '#001F5F' }};
+}
+
+.cus-tst-after-label {
+  right: 20px;
+  bottom: 20px;
+  color: {{ section.settings.after_label_color | default: '#001F5F' }};
+}
+
+/* Updated Slider Control - Following second code pattern */
 .cus-tst-slider-control {
   position: absolute;
   top: 0;
   left: 50%;
   height: 100%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
+  border: 1px solid #fafafa;
   will-change: left;
   transform: translateZ(0);
 }
@@ -262,11 +295,10 @@
   position: absolute;
   top: 0;
   left: 50%;
-  width: 4px;
+  width: 2px;
   height: 100%;
   background: {{ section.settings.slider_color | default: '#ffffff' }};
   transform: translateX(-50%);
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
   opacity: 0.8;
 }
 
@@ -277,7 +309,7 @@
   transform: translate(-50%, -50%);
   pointer-events: all;
   cursor: grab;
-  z-index: 4;
+  z-index: 2;
 }
 
 .cus-tst-slider-handle:active {
@@ -293,8 +325,8 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  border: 3px solid rgba(255, 255, 255, 0.8);
   transition: all 0.2s ease;
+  border: 3px solid rgba(255, 255, 255, 0.8);
 }
 
 .cus-tst-slider-circle:hover {
@@ -389,6 +421,11 @@
     gap: 30px;
   }
   
+  .cus-tst-image-label {
+    font-size: 20px;
+    padding: 7px 14px;
+  }
+  
   .cus-tst-slider-circle {
     width: 45px;
     height: 45px;
@@ -437,9 +474,25 @@
     border-radius: 8px;
   }
   
+  .cus-tst-image-label {
+    font-size: 20px;
+    border-radius: 15px;
+  }
+  
+  .cus-tst-before-label {
+    left: 15px;
+    top: 15px;
+  }
+  
+  .cus-tst-after-label {
+    right: 15px;
+    bottom: 15px;
+  }
+  
   .cus-tst-slider-circle {
     width: 40px;
     height: 40px;
+    border-width: 2px;
   }
   
   .cus-tst-slider-circle svg {
@@ -473,9 +526,27 @@
     border-radius: 6px;
   }
   
+  .cus-tst-image-label {
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  
+  .cus-tst-before-label {
+    left: 10px;
+    top: 10px;
+  }
+  
+  .cus-tst-after-label {
+    right: 10px;
+    bottom: 10px;
+  }
+  
   .cus-tst-slider-circle {
     width: 35px;
     height: 35px;
+    border-width: 2px;
   }
   
   .cus-tst-slider-circle svg {
@@ -484,7 +555,40 @@
   }
   
   .cus-tst-slider-line {
-    width: 2px;
+    width: 1.5px;
+  }
+}
+
+/* Very Small Mobile Design */
+@media (max-width: 360px) {
+  .cus-tst-image-comparison-container {
+    height: 250px;
+  }
+  
+  .cus-tst-image-label {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 10px;
+  }
+  
+  .cus-tst-before-label {
+    left: 8px;
+    top: 8px;
+  }
+  
+  .cus-tst-after-label {
+    right: 8px;
+    bottom: 8px;
+  }
+  
+  .cus-tst-slider-circle {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .cus-tst-slider-circle svg {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -496,6 +600,30 @@
   
   .cus-tst-slider-circle {
     transform: scale(1.1);
+  }
+  
+  .cus-tst-image-label {
+    font-weight: 600;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .cus-tst-comparison-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .cus-tst-image-comparison-container {
+    height: 350px;
+  }
+  
+  .cus-tst-image-label {
+    font-size: 13px;
+    padding: 5px 10px;
   }
 }
 
@@ -665,8 +793,6 @@ function initializeCusSlider(sectionId) {
     slider.classList.remove('dragging');
     // Don't prevent default on touchend to allow other interactions
   });
-  
-  // Note: touchmove handling moved to main throttled function above
   
   // Keyboard accessibility
   sliderHandle.addEventListener('keydown', function(event) {

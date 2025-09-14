@@ -329,9 +329,9 @@ legend.form__label {
         >
         <label for="{{ input_id }}">
           {%- if variant_image and variant_image != blank -%}
-            <img src="{{ variant_image | image_url: width: 100 }}" alt="{{ value | escape }}" class="variant-thumb" />
+            <img src="{{ variant_image | img_url: 'master' }}" alt="{{ value | escape }}" class="variant-thumb" />
           {%- elsif matched_variant and matched_variant.image -%}
-            <img src="{{ matched_variant.image | img_url: '100x100' }}" alt="{{ value | escape }}" class="variant-thumb" />
+            <img src="{{ matched_variant.image | img_url: 'master' }}" alt="{{ value | escape }}" class="variant-thumb" />
           {%- endif -%}
 
           {%- if most_popular and most_popular != blank -%}

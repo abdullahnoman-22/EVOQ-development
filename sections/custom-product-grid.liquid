@@ -1,7 +1,90 @@
 <!-- sections/product-grid.liquid -->
 <div class="cus-pg-product-grid-section" 
      style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  
+  <!-- Collection Filter Section - Full Width -->
+  {% if section.settings.show_collection_filter %}
+    <div class="cus-pg-collection-filter-section">
+      <div class="page-width cus-container">
+        {% if section.settings.filter_heading != blank %}
+          <h2 class="cus-pg-collection-heading">
+            {{ section.settings.filter_heading }}
+          </h2>
+        {% endif %}
+
+        <div class="cus-pg-collection-grid">
+          <!-- All Products Option -->
+          <div class="cus-pg-collection-card active" data-collection="all" onclick="filterByCollection('all')">
+            <div class="cus-pg-collection-image">
+              {% if section.settings.all_products_image != blank %}
+                <img src="{{ section.settings.all_products_image | img_url: 'master' }}"
+                     alt="View All Products"
+                     loading="lazy">
+              {% else %}
+                <div class="cus-pg-placeholder-collection">
+                  <svg width="400" height="200" viewBox="0 0 400 200">
+                    <rect width="400" height="200" fill="#f5f5f5"/>
+                    <text x="200" y="100" text-anchor="middle" fill="#999">All Products</text>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            <div class="cus-pg-collection-content">
+              <h3 class="cus-pg-collection-title">
+                {{ section.settings.all_products_text | default: 'View all' }}
+              </h3>
+            </div>
+          </div>
+
+          <!-- Dynamic Collection Cards -->
+          {% for block in section.blocks %}
+            {% if block.type == 'collection_filter' %}
+              {% assign collection = collections[block.settings.collection] %}
+              
+              <div class="cus-pg-collection-card" 
+                   data-collection="{{ block.settings.collection }}" 
+                   onclick="filterByCollection('{{ block.settings.collection }}')">
+                <div class="cus-pg-collection-image">
+                  {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | img_url: 'master' }}"
+                         alt="{{ block.settings.image.alt | default: block.settings.title }}"
+                         loading="lazy">
+                  {% elsif collection.image %}
+                    <img src="{{ collection.image | img_url: 'master' }}"
+                         alt="{{ collection.image.alt | default: collection.title }}"
+                         loading="lazy">
+                  {% else %}
+                    <div class="cus-pg-placeholder-collection">
+                      <svg width="400" height="200" viewBox="0 0 400 200">
+                        <rect width="400" height="200" fill="#f5f5f5"/>
+                        <text x="200" y="100" text-anchor="middle" fill="#999">{{ block.settings.title }}</text>
+                      </svg>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="cus-pg-collection-content">
+                  <h3 class="cus-pg-collection-title">
+                    {{ block.settings.title | default: collection.title }}
+                  </h3>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if section.settings.show_bundle_button and section.settings.bundle_text != blank %}
+          <div class="cus-pg-bundle-button-wrapper">
+            <a href="{{ section.settings.bundle_link }}" class="cus-pg-bundle-button">
+              {{ section.settings.bundle_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
   <div class="page-width cus-container">
+    <!-- Sort and Product Grid Section -->
     {% if section.settings.show_sort %}
       <div class="cus-pg-sort-container">
         <select class="cus-pg-sort-select" onchange="sortProducts(this.value)">
@@ -15,6 +98,7 @@
     {% endif %}
 
     <div class="cus-pg-product-grid">
+      {% comment %} Render all products from all collections {% endcomment %}
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'product' %}
@@ -59,22 +143,49 @@
                 {% assign display_price = 0 %}
               {% endif %}
 
-              {% comment %} Variant selection - NEW ADDITION {% endcomment %}
+              {% comment %} Variant selection {% endcomment %}
               {% assign variant_id = block.settings.variant_id | plus: 0 %}
               {% assign selected_variant = product.variants | where: "id", variant_id | first %}
               {% if selected_variant == blank %}
                 {% assign selected_variant = product.selected_or_first_available_variant %}
               {% endif %}
 
-              <div class="cus-pg-product-card" data-price="{{ product_price }}" data-name="{{ product_title }}">
+              {% comment %} Build product tags string {% endcomment %}
+              {% assign product_tags = "" %}
+              {% if block.settings.product_tag_1 != blank %}
+                {% assign product_tags = product_tags | append: block.settings.product_tag_1 %}
+              {% endif %}
+              {% if block.settings.product_tag_2 != blank %}
+                {% if product_tags != blank %}{% assign product_tags = product_tags | append: "," %}{% endif %}
+                {% assign product_tags = product_tags | append: block.settings.product_tag_2 %}
+              {% endif %}
+              {% if block.settings.product_tag_3 != blank %}
+                {% if product_tags != blank %}{% assign product_tags = product_tags | append: "," %}{% endif %}
+                {% assign product_tags = product_tags | append: block.settings.product_tag_3 %}
+              {% endif %}
+              {% if block.settings.product_tag_4 != blank %}
+                {% if product_tags != blank %}{% assign product_tags = product_tags | append: "," %}{% endif %}
+                {% assign product_tags = product_tags | append: block.settings.product_tag_4 %}
+              {% endif %}
+              {% if block.settings.product_tag_5 != blank %}
+                {% if product_tags != blank %}{% assign product_tags = product_tags | append: "," %}{% endif %}
+                {% assign product_tags = product_tags | append: block.settings.product_tag_5 %}
+              {% endif %}
+
+              <div class="cus-pg-product-card" 
+                   data-price="{{ product_price }}" 
+                   data-name="{{ product_title }}"
+                   data-collection="{{ block.settings.collection }}"
+                   data-product-tags="{{ product_tags }}"
+                   {% if product %}data-product-collections="{% for col in product.collections %}{{ col.handle }}{% unless forloop.last %},{% endunless %}{% endfor %}"{% endif %}>
                 <div class="cus-pg-product-image">
                   {% if product_image %}
                     {% if block.settings.custom_image != blank %}
-                      <img src="{{ product_image | img_url: '300x300' }}"
+                      <img src="{{ product_image | img_url: 'master' }}"
                            alt="{{ block.settings.custom_image.alt | default: product_title }}"
                            loading="lazy">
                     {% else %}
-                      <img src="{{ product_image | img_url: '300x300' }}"
+                      <img src="{{ product_image | img_url: 'master' }}"
                            alt="{{ product_image.alt | default: product_title }}"
                            loading="lazy">
                     {% endif %}
@@ -151,7 +262,7 @@
                       {% endif %}
                     {% else %}
                       <!-- Custom link or no product - just link to custom URL -->
-                      <a href="{{ product_link }}" class="cus-pg-btn-primary cus-pg-add-to-cart" data-variant-id="{{ variant_id }}" {{ selected_variant }}>
+                      <a href="{{ product_link }}" class="cus-pg-btn-primary cus-pg-add-to-cart" data-variant-id="{{ variant_id }}">
                         {{ block.settings.add_to_cart_text | default: 'Add to cart' }}
                       </a>
                     {% endif %}
@@ -173,7 +284,111 @@
 
 <style>
 .cus-pg-product-grid-section {
-    margin: 110px 0;
+    margin: 0;
+}
+
+/* Collection Filter Styles - Full Width */
+.cus-pg-collection-filter-section {
+  background: #E2EDFA;
+  padding: 30px 0;
+  margin-bottom: 40px;
+  border-radius: 0; /* Remove border-radius for full width effect */
+  width: 100vw; /* Full viewport width */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.cus-pg-collection-heading {
+  text-align: start;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.cus-pg-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.cus-pg-collection-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.cus-pg-collection-card:hover,
+.cus-pg-collection-card.active {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  border: 2px solid #000;
+}
+
+.cus-pg-collection-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.cus-pg-collection-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cus-pg-placeholder-collection svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cus-pg-collection-content {
+  padding: 16px;
+  text-align: center;
+}
+
+.cus-pg-collection-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #101828;
+  margin: 0;
+  line-height: 1.4;
+  transition: font-weight 0.3s ease;
+}
+
+.cus-pg-collection-card:hover .cus-pg-collection-title,
+.cus-pg-collection-card.active .cus-pg-collection-title {
+  font-weight: 600;
+}
+
+.cus-pg-bundle-button-wrapper {
+  text-align: center;
+}
+
+.cus-pg-bundle-button {
+  display: inline-block;
+  background: none;
+  color: #001F5F;
+  padding: 8px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  border: 2px solid #001F5F;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cus-pg-bundle-button:hover {
+  background: #001F5F;
+  color: #fff;
 }
 
 /* Responsive padding adjustments */
@@ -183,8 +398,84 @@
     padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px !important;
     margin: 56px 0;
   }
+
+  .cus-pg-collection-filter-section {
+    padding: 30px 15px;
+  }
+ 
+  .cus-pg-collection-grid {
+    grid-template-columns: repeat(4, 95px);
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .cus-pg-collection-card {
+    width: 95px;
+    height: 109px;
+    border-radius: 7px;
+    border: 1px solid transparent;
+  }
+  
+  .cus-pg-collection-image {
+    height: 60px;
+  }
+ 
+  .cus-pg-collection-content {
+    padding: 8px 4px;
+  }
+  
+  .cus-pg-collection-title {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  
+  .cus-pg-collection-card:hover .cus-pg-collection-title,
+  .cus-pg-collection-card.active .cus-pg-collection-title {
+    font-size: 10px;
+    font-weight: 600;
+  }
 }
 
+@media (max-width: 480px) {
+  .cus-pg-collection-filter-section {
+    padding: 30px 10px;
+  }
+  
+  .cus-pg-collection-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .cus-pg-collection-card {
+    width: 95px;
+    height: 109px;
+    border-radius: 7px;
+    border: 1px solid transparent;
+  }
+  
+  .cus-pg-collection-image {
+    height: 60px;
+  }
+ 
+  .cus-pg-collection-content {
+    padding: 8px 4px;
+  }
+  
+  .cus-pg-collection-title {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  
+  .cus-pg-collection-card:hover .cus-pg-collection-title,
+  .cus-pg-collection-card.active .cus-pg-collection-title {
+    font-size: 10px;
+    font-weight: 600;
+  }
+}
+
+/* Original Product Grid Styles */
 .cus-pg-sort-container {
   display: flex;
   justify-content: flex-end;
@@ -223,9 +514,12 @@
   box-shadow: 0 5px 25px rgba(0,0,0,0.15);
 }
 
+.cus-pg-product-card.hidden {
+  display: none;
+}
+
 .cus-pg-product-image {
     width: 100%;
-    height: 350px;
     margin-bottom: 15px;
     border-radius: 12px;
     overflow: hidden;
@@ -463,8 +757,139 @@
 </style>
 
 <script>
+// Collection Filter Functionality with Single Selection Support
+let currentCollection = 'all';
+
+function filterByCollection(collectionHandle) {
+  // Set current selection (single selection only)
+  currentCollection = collectionHandle;
+  
+  // Update active state for all collection cards
+  document.querySelectorAll('.cus-pg-collection-card').forEach(card => {
+    card.classList.remove('active');
+  });
+  
+  // Set active state for selected collection
+  const activeCard = document.querySelector(`[data-collection="${collectionHandle}"]`);
+  if (activeCard) {
+    activeCard.classList.add('active');
+  }
+  
+  // Filter products based on selected collection
+  filterProducts();
+  
+  // Trigger sort if there's an active sort
+  const sortSelect = document.querySelector('.cus-pg-sort-select');
+  if (sortSelect && sortSelect.value) {
+    sortProducts(sortSelect.value);
+  }
+}
+
+function filterProducts() {
+  const productCards = document.querySelectorAll('.cus-pg-product-card');
+  
+  // Get the selected collection title for tag matching
+  let selectedCollectionTitle = '';
+  if (currentCollection !== 'all') {
+    const collectionCard = document.querySelector(`[data-collection="${currentCollection}"]`);
+    if (collectionCard) {
+      const titleElement = collectionCard.querySelector('.cus-pg-collection-title');
+      selectedCollectionTitle = titleElement ? titleElement.textContent.trim().toLowerCase() : '';
+    }
+  }
+  
+  productCards.forEach(card => {
+    if (currentCollection === 'all') {
+      // Show all products when "all" is selected
+      card.classList.remove('hidden');
+      card.style.display = 'block';
+    } else {
+      const cardCollection = card.dataset.collection;
+      const productCollections = card.dataset.productCollections;
+      const productTags = card.dataset.productTags;
+      
+      let shouldShowProduct = false;
+      
+      // Method 1: Check if product belongs to selected collection handle
+      if (cardCollection === currentCollection) {
+        shouldShowProduct = true;
+      }
+      
+      // Method 2: Check if product belongs to selected collection via productCollections
+      if (!shouldShowProduct && productCollections) {
+        const productCollectionsList = productCollections.split(',').map(col => col.trim());
+        shouldShowProduct = productCollectionsList.includes(currentCollection);
+      }
+      
+      // Method 3: Check if any product tag matches the selected collection title
+      if (!shouldShowProduct && productTags && selectedCollectionTitle) {
+        const tags = productTags.split(',').map(tag => tag.trim().toLowerCase());
+        shouldShowProduct = tags.includes(selectedCollectionTitle);
+      }
+      
+      // Method 4: Check if any product tag matches the collection handle
+      if (!shouldShowProduct && productTags) {
+        const tags = productTags.split(',').map(tag => tag.trim().toLowerCase());
+        shouldShowProduct = tags.includes(currentCollection.toLowerCase());
+      }
+      
+      // Show or hide the product based on matching criteria
+      if (shouldShowProduct) {
+        card.classList.remove('hidden');
+        card.style.display = 'block';
+      } else {
+        card.classList.add('hidden');
+        card.style.display = 'none';
+      }
+    }
+  });
+}
+
+// Enhanced Sort Products Function
+function sortProducts(sortType) {
+  const grid = document.querySelector('.cus-pg-product-grid');
+  const cards = Array.from(grid.querySelectorAll('.cus-pg-product-card:not(.hidden)'));
+  
+  cards.sort((a, b) => {
+    switch(sortType) {
+      case 'price-low-high':
+        return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+      case 'price-high-low':
+        return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+      case 'name-a-z':
+        return a.dataset.name.localeCompare(b.dataset.name);
+      case 'name-z-a':
+        return b.dataset.name.localeCompare(a.dataset.name);
+      default:
+        return 0;
+    }
+  });
+  
+  // Remove all cards and re-add them in sorted order
+  cards.forEach(card => {
+    grid.removeChild(card);
+  });
+  
+  cards.forEach(card => {
+    grid.appendChild(card);
+  });
+}
+
+// Function to clear filter and show all products
+function clearAllFilters() {
+  filterByCollection('all');
+}
+
+// Function to get currently selected collection
+function getCurrentCollection() {
+  return currentCollection;
+}
+
 // Enhanced Add to Cart Functionality with Variant ID Support
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize filter on page load to show all products
+  filterByCollection('all');
+  
   const addToCartButtons = document.querySelectorAll('.cus-pg-add-to-cart[data-variant-id]');
  
   addToCartButtons.forEach(button => {
@@ -737,6 +1162,45 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 300);
     }, 3000);
   }
+
+  // Debug function to help with testing
+  window.debugCollectionFilter = function() {
+    console.log('=== Single Collection Filter Debug ===');
+    console.log('Current Collection:', currentCollection);
+    
+    const collections = document.querySelectorAll('.cus-pg-collection-card');
+    console.log('Available Collections:');
+    collections.forEach(card => {
+      const handle = card.dataset.collection;
+      const title = card.querySelector('.cus-pg-collection-title').textContent.trim();
+      const isActive = card.classList.contains('active');
+      console.log(`  Handle: "${handle}" | Title: "${title}" | Active: ${isActive}`);
+    });
+    
+    const products = document.querySelectorAll('.cus-pg-product-card');
+    console.log('Products and their visibility:');
+    products.forEach((card, index) => {
+      const name = card.dataset.name;
+      const collection = card.dataset.collection;
+      const tags = card.dataset.productTags;
+      const isHidden = card.classList.contains('hidden');
+      console.log(`  Product ${index + 1}: "${name}"`);
+      console.log(`    Collection: "${collection}"`);
+      console.log(`    Tags: "${tags}"`);
+      console.log(`    Visible: ${!isHidden}`);
+    });
+    
+    if (currentCollection === 'all') {
+      console.log('Filter Logic: Showing all products');
+    } else {
+      console.log(`Filter Logic: Showing products with tag matching "${currentCollection}"`);
+    }
+  };
+
+  // Helper function to programmatically select a collection
+  window.selectCollection = function(collectionHandle) {
+    filterByCollection(collectionHandle);
+  };
 });
 
 // Additional helper function to manually trigger add to cart (can be called from other scripts)
@@ -771,7 +1235,7 @@ function addToCartWithVariant(variantId, quantity = 1) {
 
 {% schema %}
 {
-  "name": "Product Grid",
+  "name": "Product Grid with Col",
   "settings": [
     {
       "type": "header",
@@ -799,6 +1263,50 @@ function addToCartWithVariant(variantId, quantity = 1) {
     },
     {
       "type": "header",
+      "content": "Collection Filter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_filter",
+      "label": "Show collection filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "filter_heading",
+      "label": "Filter Section Heading",
+      "default": "Shop by health goal"
+    },
+    {
+      "type": "image_picker",
+      "id": "all_products_image",
+      "label": "All Products Image"
+    },
+    {
+      "type": "text",
+      "id": "all_products_text",
+      "label": "All Products Text",
+      "default": "View all"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundle_button",
+      "label": "Show Bundle Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bundle_text",
+      "label": "Bundle Button Text",
+      "default": "Bundle and Save 25%"
+    },
+    {
+      "type": "url",
+      "id": "bundle_link",
+      "label": "Bundle Button Link"
+    },
+    {
+      "type": "header",
       "content": "Sort Options"
     },
     {
@@ -809,6 +1317,29 @@ function addToCartWithVariant(variantId, quantity = 1) {
     }
   ],
   "blocks": [
+    {
+      "type": "collection_filter",
+      "name": "Collection Filter",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image (optional)",
+          "info": "Override collection image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Title (optional)",
+          "info": "Override collection title"
+        }
+      ]
+    },
     {
       "type": "product",
       "name": "Product",
@@ -824,10 +1355,50 @@ function addToCartWithVariant(variantId, quantity = 1) {
           "info": "Choose a product from your store, or use custom options below"
         },
         {
+          "type": "collection",
+          "id": "collection",
+          "label": "Product Collection",
+          "info": "Select which collection this product belongs to for filtering"
+        },
+        {
           "type": "text",
           "id": "variant_id",
           "label": "Variant ID (optional)",
           "info": "Paste the variant ID you want to add. If empty, first available variant will be used."
+        },
+        {
+          "type": "header",
+          "content": "Product Tags (Multi-Tag System)"
+        },
+        {
+          "type": "text",
+          "id": "product_tag_1",
+          "label": "Product Tag 1",
+          "info": "Add tags that match your collection handles. This product will show when these collections are selected."
+        },
+        {
+          "type": "text",
+          "id": "product_tag_2",
+          "label": "Product Tag 2",
+          "info": "Additional tag for multi-collection filtering"
+        },
+        {
+          "type": "text",
+          "id": "product_tag_3",
+          "label": "Product Tag 3",
+          "info": "Additional tag for multi-collection filtering"
+        },
+        {
+          "type": "text",
+          "id": "product_tag_4",
+          "label": "Product Tag 4",
+          "info": "Additional tag for multi-collection filtering"
+        },
+        {
+          "type": "text",
+          "id": "product_tag_5",
+          "label": "Product Tag 5",
+          "info": "Additional tag for multi-collection filtering"
         },
         {
           "type": "header",
@@ -981,8 +1552,17 @@ function addToCartWithVariant(variantId, quantity = 1) {
   ],
   "presets": [
     {
-      "name": "Product Grid",
+      "name": "Product Grid with Col",
       "blocks": [
+        {
+          "type": "collection_filter"
+        },
+        {
+          "type": "collection_filter"
+        },
+        {
+          "type": "collection_filter"
+        },
         {
           "type": "product"
         },

@@ -8,7 +8,7 @@
           <div class="cus-slider-slide-content">
             <div class="cus-slider-slide-image">
               {% if block.settings.image %}
-                <img src="{{ block.settings.image | img_url: '1200x600' }}"
+                <img src="{{ block.settings.image | img_url: 'master' }}"
                      alt="{{ block.settings.image.alt | default: block.settings.title }}"
                      loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
               {% else %}

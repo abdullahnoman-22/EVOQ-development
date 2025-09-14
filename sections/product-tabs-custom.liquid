@@ -83,7 +83,7 @@
 
               {% if block.settings.image != blank %}
                 <div class="product-visual">
-                  <img src="{{ block.settings.image | img_url: '600x600' }}" 
+                  <img src="{{ block.settings.image | img_url: 'master' }}" 
                        alt="{{ block.settings.image.alt | default: block.settings.tab_title }}"
                        class="product-image"
                        loading="lazy">
@@ -109,7 +109,7 @@
                     <div class="product-card {% if block.settings.show_limited_badge %}limited{% endif %}">
                       <a href="{{ product.url }}">
                         {% if product.featured_image %}
-                          <img src="{{ product.featured_image | img_url: '300x300' }}" 
+                          <img src="{{ product.featured_image | img_url: 'master' }}" 
                                alt="{{ product.title }}"
                                loading="lazy">
                         {% endif %}

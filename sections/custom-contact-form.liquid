@@ -8,7 +8,7 @@
     <div class="contact-header">
       {% if section.settings.show_icon and section.settings.header_image != blank %}
         <div class="header-icon">
-          <img src="{{ section.settings.header_image | img_url: '75x75' }}" alt="Contact Icon" width="75" height="75">
+          <img src="{{ section.settings.header_image | img_url: 'master' }}" alt="Contact Icon" width="75" height="75">
         </div>
       {% endif %}
       {% if section.settings.heading != blank %}

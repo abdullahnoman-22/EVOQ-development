@@ -135,7 +135,7 @@
       <!-- Image Section -->
       <div class="collagen-image">
         {% if section.settings.main_image %}
-          <img src="{{ section.settings.main_image | img_url: '600x' }}" 
+          <img src="{{ section.settings.main_image | img_url: 'master' }}" 
                alt="{{ section.settings.main_image.alt | default: 'Human body collagen diagram' }}"
                loading="lazy">
         {% else %}
